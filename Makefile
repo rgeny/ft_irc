@@ -6,7 +6,7 @@
 #    By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/28 13:54:47 by rgeny             #+#    #+#              #
-#    Updated: 2022/03/28 13:59:22 by rgeny            ###   ########.fr        #
+#    Updated: 2022/03/28 14:13:05 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ DEL_DIR				= rm -rf
 CC					= c++
 COMPILE_FLAG		= $(DEPS_FLAG) -std=c++98 -Wall -Werror -Wextra
 DEPS_FLAG			= -MMD
-INCLUDES_FLAG		= -I$(INCLUDES_DIR) -I$(CLASS_DIR)
+INCLUDES_FLAG		= -I$(INCLUDES_DIR)
 
 INCLUDES_DIR		= includes/
 CLASS_DIR			= class/
