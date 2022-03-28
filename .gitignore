@@ -1,0 +1,6 @@
+objs/*
+objs
+ircserv
+*.swp
+test
+test/*
