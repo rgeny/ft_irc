@@ -6,7 +6,7 @@
 #    By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/28 13:54:47 by rgeny             #+#    #+#              #
-#    Updated: 2022/03/28 14:13:05 by rgeny            ###   ########.fr        #
+#    Updated: 2022/03/29 15:45:21 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,16 @@ $(NAME)				: $(OBJS)
 $(OBJS_DIR)%.o		: %.cpp
 					$(NEW_DIR) $(OBJS_DIR)
 					$(CC) $(COMPILE_FLAG) -c $< $(INCLUDES_FLAG) -o $@
+
+install				:
+					/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+					echo 'eval "$$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> "$$HOME/.bashrc"
+					bash -c "brew install irssi"
+
+uninstall			:
+					bash -c "brew uninstall irssi"
+					/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
+					
 
 clean				:
 					$(DEL_DIR) $(OBJS_DIR)
