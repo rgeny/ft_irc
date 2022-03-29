@@ -6,7 +6,7 @@
 #    By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/28 13:54:47 by rgeny             #+#    #+#              #
-#    Updated: 2022/03/29 15:45:21 by rgeny            ###   ########.fr        #
+#    Updated: 2022/03/29 16:11:11 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,8 +46,8 @@ install				:
 					bash -c "brew install irssi"
 
 uninstall			:
-					bash -c "brew uninstall irssi"
 					/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
+					rm -rf ~/.linuxbrew
 					
 
 clean				:
