@@ -6,7 +6,7 @@
 #    By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/28 13:54:47 by rgeny             #+#    #+#              #
-#    Updated: 2022/03/29 16:11:11 by rgeny            ###   ########.fr        #
+#    Updated: 2022/03/31 18:06:52 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,11 @@ NEW_DIR				= mkdir -p
 DEL_DIR				= rm -rf
 
 CC					= c++
-COMPILE_FLAG		= $(DEPS_FLAG) -std=c++98 -Wall -Werror -Wextra
+COMPILE_FLAG		= $(DEPS_FLAG) -std=c++98 -Wall -Wextra -Werror
 DEPS_FLAG			= -MMD
 INCLUDES_FLAG		= -I$(INCLUDES_DIR)
+VALGRIND			= valgrind
+VALGRIND_FLAG		= --leak-check=full --show-leak-kinds=all --track-fds=yes
 
 INCLUDES_DIR		= includes/
 CLASS_DIR			= class/
@@ -49,6 +51,9 @@ uninstall			:
 					/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
 					rm -rf ~/.linuxbrew
 					
+
+valgrind			: all
+					$(VALGRIND) $(VALGRIND_FLAG) ./$(NAME)
 
 clean				:
 					$(DEL_DIR) $(OBJS_DIR)
