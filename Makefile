@@ -3,57 +3,51 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+         #
+#    By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/03/28 13:54:47 by rgeny             #+#    #+#              #
-#    Updated: 2022/03/31 18:06:52 by rgeny            ###   ########.fr        #
+#    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
+#    Updated: 2022/04/05 19:39:33 by ayzapata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NEW_DIR				= mkdir -p
 DEL_DIR				= rm -rf
+VERSION				= -std=c++98
 
 CC					= c++
-COMPILE_FLAG		= $(DEPS_FLAG) -std=c++98 -Wall -Wextra -Werror
+COMPILE_FLAG		= $(VERSION) -g -Wall -Werror -Wextra
 DEPS_FLAG			= -MMD
-INCLUDES_FLAG		= -I$(INCLUDES_DIR)
-VALGRIND			= valgrind
-VALGRIND_FLAG		= --leak-check=full --show-leak-kinds=all --track-fds=yes
+INCLUDES_FLAG		= -I $(INCLUDES_DIR)
 
 INCLUDES_DIR		= includes/
-CLASS_DIR			= class/
 OBJS_DIR			= objs/
 SRCS_DIR			= srcs/
 
 VPATH				= $(SRCS_DIR)
 
-SRCS				= $(addsuffix .cpp,		main)
+SRCS				= \
+					Exceptions.cpp \
+					User.cpp \
+					Channel.cpp \
+					Message.cpp \
+					check_arguments.cpp \
+					ircserv.cpp \
+					main.cpp
+
 OBJS				= $(patsubst %.cpp, $(OBJS_DIR)%.o, $(SRCS))
 DEPS				= $(OBJS:.o=.d)
 
 NAME				= ircserv
 
-all					: $(NAME)
 
-$(NAME)				: $(OBJS)
+all					: $(OBJS) $(NAME)
+					
+$(NAME)		: $(SRCS)
 					$(CC) $(COMPILE_FLAG) $^ -o $@
 
 $(OBJS_DIR)%.o		: %.cpp
 					$(NEW_DIR) $(OBJS_DIR)
-					$(CC) $(COMPILE_FLAG) -c $< $(INCLUDES_FLAG) -o $@
-
-install				:
-					/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-					echo 'eval "$$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> "$$HOME/.bashrc"
-					bash -c "brew install irssi"
-
-uninstall			:
-					/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
-					rm -rf ~/.linuxbrew
-					
-
-valgrind			: all
-					$(VALGRIND) $(VALGRIND_FLAG) ./$(NAME)
+					$(CC) $(COMPILE_FLAG) $(DEPS_FLAG) -c $< $(INCLUDES_FLAG) -o $@
 
 clean				:
 					$(DEL_DIR) $(OBJS_DIR)

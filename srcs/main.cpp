@@ -3,22 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/28 14:00:06 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/07 15:56:08 by abesombe         ###   ########.fr       */
+/*   Created: 2022/04/04 11:23:38 by ayzapata          #+#    #+#             */
+/*   Updated: 2022/04/05 17:29:55 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <vector>
-#include <iostream>
-#include <iterator>
+#include "../includes/ircserv.hpp"
 
-
-int	main	(int		argc
-			,char **	argv)
+bool	is_number(const std::string& str)
 {
-	std::vector<std::string>	arg	(argv + 1, argv + argc);
+	return str.find_first_not_of("0123456789") == std::string::npos;
+}
 
-	return (0);
+int	main(int argc, char ** argv)
+{
+	int	port;
+	std::string	password;
+
+	check_nbr_of_arguments(argc);
+	check_port_argument(std::string(argv[1]));
+	check_password_argument(std::string(argv[2]));
+	print_variable(BOLDMAGENTA, "ft_irc started", "", RESET);
+	port = atoi(argv[1]);
+	password = argv[2];
+
+	ircserv(port, password);
+	
+	return (EXIT_SUCCESS);
 }
