@@ -6,11 +6,12 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:23:38 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/05 17:29:55 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/07 16:01:48 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ircserv.hpp"
+
 
 bool	is_number(const std::string& str)
 {
