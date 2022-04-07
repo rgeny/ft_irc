@@ -6,7 +6,7 @@
 #    By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/28 13:54:47 by rgeny             #+#    #+#              #
-#    Updated: 2022/03/31 18:06:52 by rgeny            ###   ########.fr        #
+#    Updated: 2022/04/07 14:59:49 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NEW_DIR				= mkdir -p
 DEL_DIR				= rm -rf
 
 CC					= c++
-COMPILE_FLAG		= $(DEPS_FLAG) -std=c++98 -Wall -Wextra -Werror
+COMPILE_FLAG		= $(DEPS_FLAG) -std=c++98 #-Wall -Wextra -Werror
 DEPS_FLAG			= -MMD
 INCLUDES_FLAG		= -I$(INCLUDES_DIR)
 VALGRIND			= valgrind
