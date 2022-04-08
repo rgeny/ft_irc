@@ -6,7 +6,7 @@
 #    By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/08 17:33:09 by rgeny            ###   ########.fr        #
+#    Updated: 2022/04/08 19:15:37 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,14 +44,16 @@ DEPS				= $(OBJS:.o=.d)
 
 NAME				= ircserv
 
-all					: $(NAME)
+all					: new_dir $(NAME)
 
 $(NAME)				: $(OBJS)
 					$(CC) $(COMPILE_FLAG) $^ -o $@
 
 $(OBJS_DIR)%.o		: %.cpp
-					$(NEW_DIR) $(OBJS_DIR)
 					$(CC) $(COMPILE_FLAG) -c $< $(INCLUDES_FLAG) -o $@
+
+new_dir				:
+					$(NEW_DIR) $(OBJS_DIR)
 
 install				:
 					/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"

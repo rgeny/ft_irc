@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:06:01 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/08 18:19:34 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/08 19:22:51 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ Server:: Server	(std::string	password
 	sin.sin_family		= AF_INET;	
 	if (bind(this->_socket.get_socket(), (SOCKADDR *) &sin, sizeof(sin)) == SOCKET_ERROR)
 		throw error_bind_failed (); 
-	if (listen(-1, -1) == SOCKET_ERROR)
+	if (listen(this->_socket.get_socket(), QUEUE) == SOCKET_ERROR)
 		throw error_listen_failed ();
 	std::cout	<< "Server dfl constructor."
 				<< std::endl;
