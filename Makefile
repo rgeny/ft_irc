@@ -6,7 +6,7 @@
 #    By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/08 16:47:50 by rgeny            ###   ########.fr        #
+#    Updated: 2022/04/08 17:33:09 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,9 @@ INCLUDES_DIR		= includes/
 OBJS_DIR			= objs/
 SRCS_DIR			= srcs/
 SOCKET_DIR			= $(SRCS_DIR)Socket/
+SERVER_DIR			= $(SRCS_DIR)Server/
 
-VPATH				= $(SRCS_DIR) $(SOCKET_DIR)
+VPATH				= $(SRCS_DIR) $(SOCKET_DIR) $(SERVER_DIR)
 VPATH				+=
 
 DEFAULT_FILES		= .operator .structor .member .accessor
@@ -36,7 +37,8 @@ SRCS				= $(addsuffix .cpp,				main \
 													Message \
 													check_arguments \
 													ircserv \
-						$(addprefix Socket,			$(DEFAULT_FILES)))
+						$(addprefix Socket,			$(DEFAULT_FILES)) \
+						$(addprefix Server,			$(DEFAULT_FILES)))
 OBJS				= $(patsubst %.cpp, $(OBJS_DIR)%.o, $(SRCS))
 DEPS				= $(OBJS:.o=.d)
 

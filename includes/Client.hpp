@@ -1,46 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Socket.hpp                                         :+:      :+:    :+:   */
+/*   Client.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/08 12:52:03 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/08 16:53:53 by rgeny            ###   ########.fr       */
+/*   Created: 2022/04/08 12:43:21 by rgeny             #+#    #+#             */
+/*   Updated: 2022/04/08 12:51:57 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SOCKET_HPP
-# define SOCKET_HPP
-# define SOCKET_ERROR -1
+#ifndef CLIENT_HPP
+# define CLIENT_HPP
 
 # include <iostream>
-# include <unistd.h>
-# include "Exceptions.hpp"
-# include <sys/types.h>
-# include <sys/socket.h>
-# include <errno.h>
 
-typedef int	SOCKET;
-
-class Socket
+class Client
 {
 	public:
-		Socket	(void);
-		~Socket	(void);
+		Client	(Client & src);
+		~Client	(void);
 
-		const SOCKET &	get_socket	(void)	const;
+		Client &	operator=	(Client & src);
 
 	private:
-		SOCKET			_socket;
-		static SOCKET	_srv_socket;
+		SOCKET		_socket;
+		std::string	_nickname;
 
-		Socket	(Socket & src);
+		Client	(void);
 
-		Socket &	operator=	(Socket & src);
 };
 
 std::ostream &	operator<<	(std::ostream & os
-							,Socket & src);
+							,Client & src);
 #endif
 

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:55:06 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/08 16:15:09 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/08 16:52:02 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,7 @@ Socket:: Socket	(void)
 		this->_socket = Socket::_srv_socket;
 	}
 	else
-	{
-		SOCKADDR_IN	csin	= { 0 };
-		socklen_t	x = sizeof (csin);
-		this->_socket = accept(Socket::_srv_socket, (SOCKADDR *)&csin, &x);
-	}
+		this->_socket = accept(Socket::_srv_socket, NULL, NULL);
 	std::cout	<< "Socket dfl constructor."
 				<< std::endl;
 }
