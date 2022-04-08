@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/08 18:11:37 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/08 18:35:31 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ class Server
 		std::string	_hostname;
 		std::string	_password;
 
-		//
+		//tmp
 		Socket	_client_tmp;
-		//
+		//fin tmp
 
 
 
