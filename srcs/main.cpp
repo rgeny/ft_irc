@@ -36,7 +36,7 @@ int	main	(__attribute((unused)) int argc
 		Server	serv (password, port);
 
 		serv.main();
-		ircserv(port, password);
+		// ircserv(port, password);
 	}
 	catch (const wrong_number_of_arguments & e)
 	{

@@ -75,3 +75,36 @@ const char *error_listen_failed::what() const throw()
 	std::exit(EXIT_FAILURE);
 	return ("");
 };
+
+const char *error_accept_failed::what() const throw()
+{
+	std::cerr	<< RED
+				<< "Error: accept_failed: "
+				<< strerror(errno)
+				<< RESET
+				<< std::endl;
+	std::exit(EXIT_FAILURE);
+	return ("");
+};
+
+const char *error_recv_failed::what() const throw()
+{
+	std::cerr	<< RED
+				<< "Error: recv_failed: "
+				<< strerror(errno)
+				<< RESET
+				<< std::endl;
+	std::exit(EXIT_FAILURE);
+	return ("");
+};
+
+const char *error_send_failed::what() const throw()
+{
+	std::cerr	<< RED
+				<< "Error: send_failed: "
+				<< strerror(errno)
+				<< RESET
+				<< std::endl;
+	std::exit(EXIT_FAILURE);
+	return ("");
+};

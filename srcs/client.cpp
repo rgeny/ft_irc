@@ -41,7 +41,7 @@ int main(int argc, char const *argv[])
 		// std::cout << "Hello message sent" << std::endl;
 		valread = recv(sock, buffer, 512, 0);
 		buffer[valread] = '\0';
-		 std::cout << buffer << std::endl;
+		// std::cout << buffer << std::endl;
 	}
 	return 0;
 }

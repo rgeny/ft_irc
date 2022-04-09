@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:55:06 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/08 16:52:02 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/09 20:22:50 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ SOCKET	Socket::_srv_socket = SOCKET_ERROR;
 
 Socket:: Socket	(void)
 {
-	
-	(void)socket;
+	std::cout	<< "Socket dfl constructor."
+			<< std::endl;
+	// (void)socket;
 	if (Socket::_srv_socket == SOCKET_ERROR)
 	{
 		Socket::_srv_socket = socket(AF_INET, SOCK_STREAM, 0);
@@ -26,16 +27,21 @@ Socket:: Socket	(void)
 		this->_socket = Socket::_srv_socket;
 	}
 	else
+	{
+		std::cout	<< Socket::_srv_socket
+					<< "\n";
 		this->_socket = accept(Socket::_srv_socket, NULL, NULL);
-	std::cout	<< "Socket dfl constructor."
-				<< std::endl;
+		if (errno != 0)
+			throw error_accept_failed ();
+	}
+
 }
 
-Socket:: Socket	(Socket & src)
+Socket:: Socket	(const Socket & src)
 {
-	(void)src;
 	std::cout	<< "Socket cpy constructor."
 				<< std::endl;
+	(void)src;
 }
 
 Socket::~Socket	(void)
