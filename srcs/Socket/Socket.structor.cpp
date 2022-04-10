@@ -6,30 +6,37 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:55:06 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/09 20:22:50 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/10 17:52:53 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Socket.hpp"
 
-SOCKET	Socket::_srv_socket = SOCKET_ERROR;
+Socket::SOCKET	Socket::_srv_socket	= SOCKET_ERROR;
+Socket::TIMEVAL	Socket::_timeout	= { 0, 100 };
+Socket::SOCKET	Socket::_max		= SOCKET_ERROR;
 
-Socket:: Socket	(void)
+Socket:: Socket	(int port)
 {
 	std::cout	<< "Socket dfl constructor."
 			<< std::endl;
-	// (void)socket;
 	if (Socket::_srv_socket == SOCKET_ERROR)
 	{
 		Socket::_srv_socket = socket(AF_INET, SOCK_STREAM, 0);
 		if (errno != 0)
 			throw  error_opening_socket ();
 		this->_socket = Socket::_srv_socket;
+		SOCKADDR_IN		sin;
+		sin.sin_addr.s_addr	= htonl(INADDR_ANY);
+		sin.sin_port		= htons(port);
+		sin.sin_family		= AF_INET;
+		if (bind(this->_socket, (SOCKADDR *)&sin, sizeof(sin)) == SOCKET_ERROR)
+			return ;
+		if (listen(this->_socket, QUEUE) == SOCKET_ERROR)
+			return ;
 	}
 	else
 	{
-		std::cout	<< Socket::_srv_socket
-					<< "\n";
 		this->_socket = accept(Socket::_srv_socket, NULL, NULL);
 		if (errno != 0)
 			throw error_accept_failed ();

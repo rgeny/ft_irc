@@ -4,3 +4,4 @@ ircserv
 *.swp
 test
 test/*
+test.cpp
