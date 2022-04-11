@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Socket.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:52:03 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/10 18:11:41 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/11 19:03:55 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include <sys/types.h>
 # include <sys/socket.h>
 # include <errno.h>
+# include <sstream>
+# include <vector>
 
 
 class Socket
@@ -38,8 +40,8 @@ class Socket
 
 		void	add_in_fds	(fd_set * fds);
 		int		select		(fd_set * rfds
-									,fd_set * wfds);
-		int		receive		(std::string & str);
+							,fd_set * wfds);
+		int		receive		(std::vector<std::string> & str);
 		int		send		(std::string & msg);
 		bool	is_set		(fd_set * fds) const;
 
@@ -48,6 +50,7 @@ class Socket
 		static SOCKET	_srv_socket;
 		static TIMEVAL	_timeout;
 		static SOCKET	_max;
+		
 
 		Socket	(const Socket & src);
 

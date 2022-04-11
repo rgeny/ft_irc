@@ -36,7 +36,8 @@ int main(int argc, char const *argv[])
 	}
 	while (true)
 	{
-		std::cin >> hello;
+//		std::cin >> hello;
+		std::getline(std::cin, hello);
 		send(sock, hello.c_str(), hello.length(), 0);
 		// std::cout << "Hello message sent" << std::endl;
 		valread = recv(sock, buffer, 512, 0);
