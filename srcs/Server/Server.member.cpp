@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Server.member.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/11 19:54:55 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/12 12:57:41 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Server.hpp"
+#include "Command.hpp"
 #include <cstring>
 std::string Server::_hello = "Welcome to the Server\n";
 char		Server::_buffer[1024] = "";
@@ -49,6 +50,8 @@ void	Server::main			(void)
 										<< "] : "
 										<< buf[j]
 										<< std::endl;
+							Command cmd;
+							cmd.parse(buf[j], this->_clients[i]); 
 							this->_clients[i]->send(buf[j]);
 						}
 					}

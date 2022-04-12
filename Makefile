@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+         #
+#    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/11 19:51:39 by ayzapata         ###   ########.fr        #
+#    Updated: 2022/04/12 12:55:48 by abesombe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,9 +28,10 @@ OBJS_DIR			= objs/
 SRCS_DIR			= srcs/
 SOCKET_DIR			= $(SRCS_DIR)Socket/
 SERVER_DIR			= $(SRCS_DIR)Server/
+CMD_DIR				= $(SRCS_DIR)Command/
 UTILS_DIR			= $(SRCS_DIR)utils/
 
-VPATH				= $(SRCS_DIR) $(SOCKET_DIR) $(SERVER_DIR) $(UTILS_DIR)
+VPATH				= $(SRCS_DIR) $(SOCKET_DIR) $(SERVER_DIR) $(UTILS_DIR) $(CMD_DIR)
 VPATH				+=
 
 DEFAULT_FILES		= .operator .structor .member .accessor
@@ -42,7 +43,8 @@ SRCS				= $(addsuffix .cpp,				main \
 													ircserv \
 													split \
 						$(addprefix Socket,			$(DEFAULT_FILES)) \
-						$(addprefix Server,			$(DEFAULT_FILES)))
+						$(addprefix Server,			$(DEFAULT_FILES)) \
+						$(addprefix Command,			$(DEFAULT_FILES)))
 OBJS				= $(patsubst %.cpp, $(OBJS_DIR)%.o, $(SRCS))
 DEPS				= $(OBJS:.o=.d)
 

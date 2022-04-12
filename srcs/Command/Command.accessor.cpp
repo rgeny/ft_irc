@@ -6,9 +6,11 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 10:31:39 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/12 10:31:39 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/12 12:54:34 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Command.hpp"
 
+Command::Command(void){};
+Command::~Command(void){};
