@@ -1,40 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Client.structor.cpp                                :+:      :+:    :+:   */
+/*   Client.accessor.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/08 12:45:06 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/12 15:00:02 by rgeny            ###   ########.fr       */
+/*   Created: 2022/04/12 14:56:10 by rgeny             #+#    #+#             */
+/*   Updated: 2022/04/12 14:57:01 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Client.hpp"
 
-Client:: Client	(std::string nickname)
-	:_nickname(nickname)
+const std::string &	Client::get_nickname	(void) const
 {
-	std::cout	<< "Client parameter constructor."
-				<< std::endl;
+	return (this->_nickname);
 }
 
-Client:: Client	(void)
+void	Client::set_nickname	(std::string nickname)
 {
-	std::cout	<< "Client dfl constructor."
-				<< std::endl;
+	this->_nickname = nickname;
 }
-
-Client:: Client	(Client & src)
-	:_nickname(src.get_nickname())
-{
-	std::cout	<< "Client cpy constructor."
-				<< std::endl;
-}
-
-Client::~Client	(void)
-{
-	std::cout	<< "Client destructor."
-				<< std::endl;
-}
-

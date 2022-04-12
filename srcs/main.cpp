@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:23:38 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/08 18:29:09 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/12 15:02:50 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	main	(__attribute((unused)) int argc
 		Server	serv (password, port);
 
 		serv.main();
-		// ircserv(port, password);
 	}
 	catch (const wrong_number_of_arguments & e)
 	{

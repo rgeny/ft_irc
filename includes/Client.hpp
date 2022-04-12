@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:43:21 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/10 17:44:20 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/12 14:59:14 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,19 @@
 # define CLIENT_HPP
 
 # include <iostream>
+# include "Socket.hpp"
 
 class Client
 {
 	public:
+		Client	(std::string nickname);
 		Client	(Client & src);
 		~Client	(void);
 
 		Client &	operator=	(Client & src);
+
+		const std::string &	get_nickname	(void) const;
+		void				set_nickname	(std::string nickname);
 
 	private:
 		Socket		_socket;

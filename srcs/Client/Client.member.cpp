@@ -1,40 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Client.structor.cpp                                :+:      :+:    :+:   */
+/*   Client.member.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/08 12:45:06 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/12 15:00:02 by rgeny            ###   ########.fr       */
+/*   Created: 2022/04/12 14:57:53 by rgeny             #+#    #+#             */
+/*   Updated: 2022/04/12 14:57:53 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Client.hpp"
-
-Client:: Client	(std::string nickname)
-	:_nickname(nickname)
-{
-	std::cout	<< "Client parameter constructor."
-				<< std::endl;
-}
-
-Client:: Client	(void)
-{
-	std::cout	<< "Client dfl constructor."
-				<< std::endl;
-}
-
-Client:: Client	(Client & src)
-	:_nickname(src.get_nickname())
-{
-	std::cout	<< "Client cpy constructor."
-				<< std::endl;
-}
-
-Client::~Client	(void)
-{
-	std::cout	<< "Client destructor."
-				<< std::endl;
-}
 
