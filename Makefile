@@ -6,7 +6,7 @@
 #    By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/09 17:26:09 by ayzapata         ###   ########.fr        #
+#    Updated: 2022/04/11 19:51:39 by ayzapata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,14 +20,17 @@ DEPS_FLAG			= -MMD
 INCLUDES_FLAG		= -I$(INCLUDES_DIR)
 VALGRIND			= valgrind
 VALGRIND_FLAG		= --leak-check=full --show-leak-kinds=all --track-fds=yes
+PORT				= 6697
+SERV_NAME			= abc
 
 INCLUDES_DIR		= includes/
 OBJS_DIR			= objs/
 SRCS_DIR			= srcs/
 SOCKET_DIR			= $(SRCS_DIR)Socket/
 SERVER_DIR			= $(SRCS_DIR)Server/
+UTILS_DIR			= $(SRCS_DIR)utils/
 
-VPATH				= $(SRCS_DIR) $(SOCKET_DIR) $(SERVER_DIR)
+VPATH				= $(SRCS_DIR) $(SOCKET_DIR) $(SERVER_DIR) $(UTILS_DIR)
 VPATH				+=
 
 DEFAULT_FILES		= .operator .structor .member .accessor
@@ -37,6 +40,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													Message \
 													check_arguments \
 													ircserv \
+													split \
 						$(addprefix Socket,			$(DEFAULT_FILES)) \
 						$(addprefix Server,			$(DEFAULT_FILES)))
 OBJS				= $(patsubst %.cpp, $(OBJS_DIR)%.o, $(SRCS))
@@ -66,7 +70,7 @@ uninstall			:
 					
 
 valgrind			: all
-					$(VALGRIND) $(VALGRIND_FLAG) ./$(NAME) $(ARG)
+					$(VALGRIND) $(VALGRIND_FLAG) ./$(NAME) $(ARG) $(PORT) $(SERV_NAME)
 
 clean				:
 					$(DEL_DIR) $(OBJS_DIR)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.member.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/10 18:13:17 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/11 19:54:55 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,23 @@ void	Server::main			(void)
 			{
 				if (this->_clients[i]->is_set(&this->_rfds))
 				{
-					std::string buf;
+					std::vector<std::string>	buf;
 					int			n = this->_clients[i]->receive(buf);
 					if (n == 0)
 						this->del_client(i);
 					else
 					{
-						std::cout	<< "buf : "
-									<< buf
+						std::cout	<< buf.size()
 									<< std::endl;
-						this->_clients[i]->send(buf);
+						for (int j = 0; j < buf.size(); j++)
+						{
+							std::cout	<< "buf[" 
+										<< j
+										<< "] : "
+										<< buf[j]
+										<< std::endl;
+							this->_clients[i]->send(buf[j]);
+						}
 					}
 				}
 			}

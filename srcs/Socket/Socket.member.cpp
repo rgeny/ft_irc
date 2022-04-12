@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Socket.member.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:59:23 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/10 18:05:26 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/11 19:43:28 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/ircserv.hpp"
 #include "Socket.hpp"
+
 
 void	Socket::add_in_fds	(fd_set * fds)
 {
@@ -34,11 +36,11 @@ int		Socket::select		(fd_set * rfds
 	return (-1);
 }
 
-int	Socket::receive	(std::string & str)
+int	Socket::receive	(std::vector<std::string> & str)
 {
 	char	s[BUF_SIZE] = "";
-	int		n			= ::recv(this->_socket, s, BUF_SIZE - 1, 0);
-	str = s;
+	int		n			= 	recv(this->_socket, s, BUF_SIZE - 1, 0);
+	str = split(std::string(s), '\n');
 	return (n);
 }
 
@@ -51,3 +53,4 @@ bool		Socket::is_set	(fd_set * fds) const
 {
 	return (FD_ISSET(this->_socket, fds));
 }
+
