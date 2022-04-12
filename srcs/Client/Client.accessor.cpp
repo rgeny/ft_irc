@@ -1,40 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Client.structor.cpp                                :+:      :+:    :+:   */
+/*   Client.accessor.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/08 12:45:06 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/12 17:29:04 by ayzapata         ###   ########.fr       */
+/*   Created: 2022/04/12 16:35:46 by ayzapata          #+#    #+#             */
+/*   Updated: 2022/04/12 17:13:47 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Client.hpp"
 
-Client:: Client	(void)
+Socket const &	Client::get_socket(void) const
 {
-	std::cout	<< "Client dfl constructor."
-				<< std::endl;
+    return (this->_socket);
 }
-
-Client:: Client	(std::string nickname)
-	:nickname(nickname)
-{
-	std::cout	<< "Client parameter constructor."
-				<< std::endl;
-}
-
-Client:: Client	(Client & src)
-{
-	(void)src;
-	std::cout	<< "Client cpy constructor."
-				<< std::endl;
-}
-
-Client::~Client	(void)
-{
-	std::cout	<< "Client destructor."
-				<< std::endl;
-}
-

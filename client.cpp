@@ -6,8 +6,11 @@
 
 int main(int argc, char const *argv[])
 {
-	(void)argc;
-	(void)argv;
+	if (argc != 2)
+		{
+		std::cout << "\n Invalid argument: <port> \n" << std::endl;
+		return -1;
+	}
 	int sock = 0;
 	int	valread = 0;
 	struct sockaddr_in serv_addr;
@@ -20,7 +23,7 @@ int main(int argc, char const *argv[])
 	}
 
 	serv_addr.sin_family = AF_INET;
-	serv_addr.sin_port = htons(PORT);
+	serv_addr.sin_port = htons(atoi(argv[1]));
 
 	// Convert IPv4 and IPv6 addresses from text to binary form
 	if(inet_aton("127.0.0.1", &serv_addr.sin_addr) <= 0) 
@@ -36,13 +39,12 @@ int main(int argc, char const *argv[])
 	}
 	while (true)
 	{
-//		std::cin >> hello;
-		std::getline(std::cin, hello);
+		std::cin >> hello;
 		send(sock, hello.c_str(), hello.length(), 0);
 		// std::cout << "Hello message sent" << std::endl;
 		valread = recv(sock, buffer, 512, 0);
 		buffer[valread] = '\0';
-		 std::cout << buffer << std::endl;
+		// std::cout << buffer << std::endl;
 	}
 	return 0;
 }

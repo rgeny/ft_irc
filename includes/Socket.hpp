@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:52:03 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/11 19:03:55 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/12 17:37:46 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ class Socket
 		Socket	(int port = PORT);
 		~Socket	(void);
 
-		void	add_in_fds	(fd_set * fds);
+		void	add_in_fds	(fd_set * fds) const;
 		int		select		(fd_set * rfds
 							,fd_set * wfds);
-		int		receive		(std::vector<std::string> & str);
-		int		send		(std::string & msg);
+		int		receive		(std::vector<std::string> & str) const;
+		int		send		(std::string & msg) const ;
 		bool	is_set		(fd_set * fds) const;
 
 	private:

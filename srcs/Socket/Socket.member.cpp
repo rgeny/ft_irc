@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:59:23 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/11 19:43:28 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/12 17:37:22 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "Socket.hpp"
 
 
-void	Socket::add_in_fds	(fd_set * fds)
+void	Socket::add_in_fds	(fd_set * fds) const
 {
 	if (!FD_ISSET(this->_socket, fds))
 	{
@@ -36,7 +36,7 @@ int		Socket::select		(fd_set * rfds
 	return (-1);
 }
 
-int	Socket::receive	(std::vector<std::string> & str)
+int	Socket::receive	(std::vector<std::string> & str) const
 {
 	char	s[BUF_SIZE] = "";
 	int		n			= 	recv(this->_socket, s, BUF_SIZE - 1, 0);
@@ -44,7 +44,7 @@ int	Socket::receive	(std::vector<std::string> & str)
 	return (n);
 }
 
-int			Socket::send	(std::string & msg)
+int			Socket::send	(std::string & msg) const
 {
 	return (::send(this->_socket, msg.c_str(), msg.length(), 0));
 }

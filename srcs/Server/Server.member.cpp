@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.member.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/12 15:45:31 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/12 18:04:05 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,19 @@ void	Server::main			(void)
 		else if (this->_socket.is_set(&this->_rfds))
 		{
 			std::cout	<< "1\n";
-			this->_clients.push_back(new Socket);
+			this->_clients.push_back(new Client("Mr Satan"));
 		}
 		else
 		{
 			for (int i = 0; i < this->_clients.size(); i++)
 			{
-				if (this->_clients[i]->is_set(&this->_rfds))
+				if (this->_clients[i]->get_socket().is_set(&this->_rfds))
 				{
+					std::cout	<< "nickname: "
+								<< this->_clients[i]->nickname.get()
+								<< std::endl;
 					std::vector<std::string>	buf;
-					int			n = this->_clients[i]->receive(buf);
+					int			n = this->_clients[i]->get_socket().receive(buf);
 					if (n == 0)
 						this->del_client(i);
 					else
@@ -50,12 +53,11 @@ void	Server::main			(void)
 										<< "] : "
 										<< buf[j]
 										<< std::endl;
-							// Command cmd(std::vector<std::string>);
 							Command cmd;
 							cmd.parse(buf[j], this->_clients[i]);
 							for (int k = 0; k < cmd.cmd.get().size(); k++)
 								std::cout	<< cmd.cmd.get()[k] << std::endl;
-							this->_clients[i]->send(buf[j]);
+							this->_clients[i]->get_socket().send(buf[j]);
 						}
 					}
 				}
@@ -72,7 +74,7 @@ void	Server::init_rfds		(void)
 	this->_socket.add_in_fds(&this->_rfds);
 	for (int i = 0; i < this->_clients.size(); i++)
 	{
-		this->_clients[i]->add_in_fds(&this->_rfds);
+		this->_clients[i]->get_socket().add_in_fds(&this->_rfds);
 	}
 }
 

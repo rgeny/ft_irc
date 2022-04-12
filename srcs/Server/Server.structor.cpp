@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.structor.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:06:01 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/10 18:01:36 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/12 17:20:56 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ Server:: Server	(std::string	password
 				,int			port)
 	:_password(password)
 	,_hostname(HOSTNAME)
+	,_socket(port)
 {
 	std::cout	<< "Server dfl constructor."
 				<< std::endl;

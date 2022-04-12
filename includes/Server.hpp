@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/12 12:42:49 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/12 17:40:13 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ class Server
 		void	del_client		(int	i);
 
 	private:
-		Socket				_socket;
-		std::vector<Socket *>	_clients;
-		std::string			_hostname;
-		std::string			_password;
-		fd_set				_rfds;
-		fd_set				_wfds;
-		static char			_buffer[1024];
-		static std::string 	_hello;
+		Socket					_socket;
+		std::vector<Client *>	_clients;
+		std::string				_hostname;
+		std::string				_password;
+		fd_set					_rfds;
+		fd_set					_wfds;
+		static char				_buffer[1024];
+		static std::string 		_hello;
 
 };
 
