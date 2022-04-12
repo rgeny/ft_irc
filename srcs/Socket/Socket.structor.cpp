@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:55:06 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/10 17:52:53 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/12 18:30:47 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ Socket::~Socket	(void)
 {
 	if (this->_socket >= 0)
 	{
+		if (this->_socket == Socket::_srv_socket)
+			Socket::_srv_socket = SOCKET_ERROR;
 		close(this->_socket);
 		this->_socket = SOCKET_ERROR;
 	}

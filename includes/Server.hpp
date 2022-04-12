@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/10 18:11:59 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/12 18:26:57 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <string>
 # include <vector>
 # include "Socket.hpp"
-# include "Client.hpp"
 
 typedef struct sockaddr_in	SOCKADDR_IN;
 typedef struct sockaddr		SOCKADDR;

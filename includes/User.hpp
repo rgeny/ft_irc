@@ -3,44 +3,66 @@
 /*                                                        :::      ::::::::   */
 /*   User.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/04 15:02:13 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/05 16:18:20 by ayzapata         ###   ########.fr       */
+/*   Created: 2022/04/12 15:04:52 by rgeny             #+#    #+#             */
+/*   Updated: 2022/04/12 18:43:59 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef USER_HPP
 # define USER_HPP
+# define DFL_USERNAME "anonymous"
+# define DFL_REALNAME "anonymous"
 
-#include <iostream>
-#include <string>
+# include <iostream>
+# include <string>
+# include <vector>
+# include "Client.hpp"
 
-#include "Accessor.hpp"
+typedef enum
+{
+	USERMODE_a,
+	USERMODE_i,
+	USERMODE_w,
+	USERMODE_r,
+	USERMODE_o,
+	USERMODE_O,
+	USERMODE_s
+}	UserMode;
 
 class User
+	:public Client
 {
-	private:
-		User();
-	
 	public:
-		Accessor<std::string>	username;
-		Accessor<std::string>	nickname;
-		Accessor<std::string>	hostname;
-		Accessor<std::string>	realname;
-		Accessor<std::string>	mode;
+		User	(void);
+		User	(std::string	nickname
+				,std::string	username
+				,std::string	mode
+				,std::string	realname);
+		User	(User & src);
+		~User	(void);
 
-		User(std::string const & username
-			,std::string const & nickname
-			,std::string const & hostname
-			,std::string const & realname
-			,std::string const & mode);
-		User( User const & src);
-		User & operator=(User const & rhs);
-		~User();
+		User &	operator=	(User & src);
 
+		const std::string		get_username		(void) const;
+		const std::vector<bool>	get_mode			(void) const;
+		bool					get_specific_mode	(UserMode mode) const;
+		const std::string		get_realname		(void) const;
+
+		void	set_username		(std::string username);
+		void	set_mode			(std::string mode);
+		void	set_specific_mode	(UserMode mode
+									,bool val);
+		void	set_realname		(std::string realname);
+
+	private:
+		std::string			_username;
+		std::vector<bool>	_mode;
+		std::string			_realname;
 };
 
-std::ostream&	operator<<( std::ostream& o, User const & instance);
-
+std::ostream &	operator<<	(std::ostream & os
+							,User & src);
 #endif
+

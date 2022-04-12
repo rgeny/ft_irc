@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:46:14 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/05 19:38:13 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/12 18:24:04 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,11 @@
 #include <ctime>
 #include <arpa/inet.h> //htons
 #include <unistd.h> // close
-
 #include <sys/socket.h>
 
 #include "defines.hpp"
-#include "User.hpp"
 #include "Channel.hpp"
 #include "Message.hpp"
-
 #include "Exceptions.hpp"
 
 void	check_nbr_of_arguments(int argc);

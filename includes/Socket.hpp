@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:52:03 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/10 18:11:41 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/12 18:24:43 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@
 
 # include <iostream>
 # include <unistd.h>
-# include "Exceptions.hpp"
 # include <sys/types.h>
 # include <sys/socket.h>
 # include <errno.h>
+# include <arpa/inet.h>
+# include "Exceptions.hpp"
 
 
 class Socket

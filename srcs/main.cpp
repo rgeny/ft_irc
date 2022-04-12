@@ -6,13 +6,14 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:23:38 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/12 15:02:50 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/12 18:44:56 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ircserv.hpp"
+#include "ircserv.hpp"
 #include "Socket.hpp"
 #include "Server.hpp"
+#include "User.hpp"
 
 bool	is_number(const std::string& str)
 {
@@ -22,6 +23,14 @@ bool	is_number(const std::string& str)
 int	main	(__attribute((unused)) int argc
 			,__attribute((unused)) char ** argv)
 {
+	{
+		User	a;
+
+		std::cout	<< a;
+		a.set_specific_mode(USERMODE_a, true);
+		std::cout	<< a.get_specific_mode(USERMODE_a)
+					<< std::endl;
+	}
 	try
 	{
 		int	port;
