@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 10:30:23 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/12 12:56:19 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/12 14:57:05 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,15 @@ class Command
 {
 	public:
 		Command	(void);
+		// Command	(std::vector<std::string> const & cmd);
 		Command	(Command & src);
 		~Command	(void);
 		void parse(std::string cmd_str, Socket *user);
-
 		Command &	operator=	(Command & src);
-
+		Accessor<std::vector<std::string> > cmd;
+		
 	private:
-		std::vector<std::string> _cmd;
+
 		Socket *_user;
 };
 

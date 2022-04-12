@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/12 12:57:41 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/12 15:45:31 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,11 @@ void	Server::main			(void)
 										<< "] : "
 										<< buf[j]
 										<< std::endl;
+							// Command cmd(std::vector<std::string>);
 							Command cmd;
-							cmd.parse(buf[j], this->_clients[i]); 
+							cmd.parse(buf[j], this->_clients[i]);
+							for (int k = 0; k < cmd.cmd.get().size(); k++)
+								std::cout	<< cmd.cmd.get()[k] << std::endl;
 							this->_clients[i]->send(buf[j]);
 						}
 					}

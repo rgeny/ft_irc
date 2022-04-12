@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Accessor.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:00:29 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/07 18:28:42 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/12 15:06:58 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,10 @@ template	< class T = std::string >
 class Accessor
 {
 	private:
-		T	_val;
-		Accessor() {};
-
+		T	_val;	
 
 	public:
+		Accessor() {};
 		Accessor(T	value) : _val(value) {};
 		Accessor(Accessor const & src) : _val(src.value) {};
 		~Accessor() {};

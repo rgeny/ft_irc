@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 19:32:23 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/11 19:52:04 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/12 15:43:24 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ std::vector<std::string>	split	(const std::string &s
 	std::vector<std::string>	result;
 	std::stringstream			ss (s);
 	std::string					item;
+
 
 	while (getline (ss, item, delim))
 	{
