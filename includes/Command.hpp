@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 10:30:23 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/13 11:45:47 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/13 13:07:09 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class Command
 		~Command	(void);
 		void parse(std::string cmd_str, Client * user);
 		Command &	operator=	(Command & src);
-		Accessor<std::vector<std::string> > cmd;
+		Accessor<std::vector<std::string> > tokens;
 		
 	private:
 		Client *_user;

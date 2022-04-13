@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:46:14 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/13 11:50:32 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/13 15:26:27 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	ircserv	(int port
 				,std::string const & password);
 std::vector<std::string>	split	(const std::string &s
 									,char delim);
+std::string case_proof(std::string str);
 
 /*
 **  TEMPLATES

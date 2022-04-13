@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Socket.structor.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:55:06 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/10 17:52:53 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/13 14:46:14 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ Socket::SOCKET	Socket::_max		= SOCKET_ERROR;
 
 Socket:: Socket	(int port)
 {
+	cap = false;
 	std::cout	<< "Socket dfl constructor."
 			<< std::endl;
 	if (Socket::_srv_socket == SOCKET_ERROR)
