@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/13 15:02:07 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:00:08 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ class Server
 		void 	check_cmd(Client *sender, std::vector<std::string> tokens);
 		// int		admin(Client *sender, const std::vector<std::string> &msg);
 		// int		away(Client *sender, const std::vector<std::string> &msg);
+		int		cap(Client *sender, const std::vector<std::string> &msg);
 		// int		cnotice(Client *sender, const std::vector<std::string> &msg);
 		// int		cprivmsg(Client *sender, const std::vector<std::string> &msg);
 		// int		connect(Client *sender, const std::vector<std::string> &msg);

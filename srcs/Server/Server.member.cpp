@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/13 15:53:47 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:04:41 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,15 @@ void Server::check_cmd(Client *sender, std::vector<std::string> cmd)
 		// ((*it).second)(sender, cmd);
 }
 
+int	Server::cap(Client *sender, const std::vector<std::string> &msg)
+{
+	bool	tmp = true;
+	return (sender->get_socket().cap.set(tmp));
+}
+
 int	Server::nick(Client *sender, const std::vector<std::string> &msg)
 {
-	return 1;
+	if (sender->get_socket().cap.get() == true)
+		return 0;
+	return (-1);
 }
