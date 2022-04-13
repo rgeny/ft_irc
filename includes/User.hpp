@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   User.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:02:13 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/12 16:57:31 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/13 11:50:23 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <string>
+# include <map>
 // #include "Client.hpp"
 #include "Accessor.hpp"
 

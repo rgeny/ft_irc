@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:23:38 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/11 15:59:43 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/13 11:49:22 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main	(__attribute((unused)) int argc
 		port = atoi(argv[1]);
 		password = argv[2];
 		Server	serv (password, port);
+		serv.init_command_list();
 
 		serv.main();
 		// ircserv(port, password);

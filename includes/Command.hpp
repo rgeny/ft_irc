@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 10:30:23 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/12 17:38:15 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/13 11:45:47 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
 #include "User.hpp"
 #include "Accessor.hpp"
 #include "Client.hpp"

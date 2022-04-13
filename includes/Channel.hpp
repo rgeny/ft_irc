@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:14:15 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/05 16:16:33 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/13 11:51:13 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHANNEL_HPP
 # define CHANNEL_HPP
 
-#include <iostream>
-#include <string>
+# include <iostream>
+# include <string>
+# include <map>
 
-#include "Accessor.hpp"
+# include "Accessor.hpp"
 
 class Channel
 {

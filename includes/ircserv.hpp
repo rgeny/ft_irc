@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ircserv.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:46:14 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/11 19:53:03 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/13 11:50:32 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 # include <sys/socket.h>
 # include <vector>
+# include <map>
 # include <sstream>
 
 # include "defines.hpp"
