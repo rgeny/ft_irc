@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/14 15:31:21 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/14 16:19:56 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,7 @@ void Server::check_cmd(Client *sender, std::vector<std::string> cmd)
 int	Server::cap(Client *sender, const std::vector<std::string> &msg)
 {
 	bool	tmp = true;
+	std::cout << "CAP ACTIVATED!!" << std::endl;
 	sender->get_socket().cap.set(tmp);
 	return (0);
 }
@@ -179,7 +180,7 @@ int	Server::nick(Client *sender, const std::vector<std::string> &cmd)
 		// => if he is, then it means he wants to swap nickname
 		if (sender->get_user().nickname.get() != "anonymous")
 		{
-
+			std::cout << "CHANGE OF NICK!!" << std::endl;
 		}
 		// if the user is not registered on the server yet, he needs 
 		// to be welcomed for the 1st time on the server

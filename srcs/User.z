@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   User.cpp                                           :+:      :+:    :+:   */
+/*   User.z                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:10:14 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/05 16:21:33 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/14 16:12:05 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,7 @@ User::User( User const & src)
 	// std::cout << "Copy constructor User" << std::endl;
 }
 
-User & User::operator=(User const & rhs)
-{
-	this->username = rhs.username.get();
-	this->nickname = rhs.nickname.get();
-	this->hostname = rhs.hostname.get();
-	this->realname = rhs.realname.get();
-	this->mode = rhs.mode.get();
-	return (*this);
-}
+
 
 User::~User()
 {
@@ -65,18 +57,3 @@ User::~User()
 }
 
 
-std::ostream&	operator<<( std::ostream& o, User const & instance)
-{
-	o	<< "USER"
-		<< " USERNAME: "
-		<< instance.username.get()
-		<< " NICKNAME: "
-		<< instance.nickname.get()
-		<< " HOSTNAME: "
-		<< instance.hostname.get()
-		<< " REALNAME: "
-		<< instance.realname.get()
-		<< " MODE: "
-		<< instance.mode.get();
-	return (o);
-}

@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:01:53 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/14 15:04:14 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/14 16:15:12 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ User:: User	(void): nickname("anonymous")
 				<< std::endl;
 }
 
-User:: User	(User & src)
+User:: User	(User const & src)
 {
 	(void)src;
 	std::cout	<< "User cpy constructor."

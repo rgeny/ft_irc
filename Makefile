@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/14 15:42:03 by abesombe         ###   ########.fr        #
+#    Updated: 2022/04/14 16:08:13 by abesombe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,8 +46,8 @@ SRCS				= $(addsuffix .cpp,				main \
 						$(addprefix Socket,			$(DEFAULT_FILES)) \
 						$(addprefix Server,			$(DEFAULT_FILES)) \
 						$(addprefix Client,			$(DEFAULT_FILES)) \
-						$(addprefix Command,		$(DEFAULT_FILES))) \
-						$(addprefix User,			$(DEFAULT_FILES))) \
+						$(addprefix Command,		$(DEFAULT_FILES)) \
+						$(addprefix User,			$(DEFAULT_FILES)))
 OBJS				= $(patsubst %.cpp, $(OBJS_DIR)%.o, $(SRCS))
 DEPS				= $(OBJS:.o=.d)
 
