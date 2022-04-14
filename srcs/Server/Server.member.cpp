@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/14 16:19:56 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/14 16:22:31 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,7 @@ int	Server::nick(Client *sender, const std::vector<std::string> &cmd)
 {
 	if (sender->get_socket().cap.get() == true)
 	{
+		std::cout << "ACCEPTED IN CAP SECTION" << std::endl;
 		// First we check if the user is already registered 
 		// => if he is, then it means he wants to swap nickname
 		if (sender->get_user().nickname.get() != "anonymous")
