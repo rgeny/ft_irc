@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/14 12:03:50 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/14 13:05:05 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,10 +157,11 @@ void Server::check_cmd(Client *sender, std::vector<std::string> cmd)
 	if (it != _cmd_list.end())
 	{
 		std::cout << "FOUND IT" << std::endl;
+		it->second(sender, cmd);
 	}
 	else
 		std::cout << "UNKNOWN COMMAND" << std::endl;
-		// ((*it).second)(sender, cmd);
+		
 }
 
 int	Server::cap(Client *sender, const std::vector<std::string> &msg)
@@ -172,6 +173,7 @@ int	Server::cap(Client *sender, const std::vector<std::string> &msg)
 
 int	Server::nick(Client *sender, const std::vector<std::string> &msg)
 {
+	std::cout << "BANCO" <<std::endl;
 	if (sender->get_socket().cap.get() == true)
 		return 0;
 	return (-1);
