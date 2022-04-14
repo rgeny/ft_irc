@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/14 13:05:05 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/14 15:31:21 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ void Server::check_cmd(Client *sender, std::vector<std::string> cmd)
 	if (it != _cmd_list.end())
 	{
 		std::cout << "FOUND IT" << std::endl;
-		it->second(sender, cmd);
+		(this->*(it->second))(sender, cmd);
 	}
 	else
 		std::cout << "UNKNOWN COMMAND" << std::endl;
@@ -171,10 +171,25 @@ int	Server::cap(Client *sender, const std::vector<std::string> &msg)
 	return (0);
 }
 
-int	Server::nick(Client *sender, const std::vector<std::string> &msg)
+int	Server::nick(Client *sender, const std::vector<std::string> &cmd)
 {
-	std::cout << "BANCO" <<std::endl;
 	if (sender->get_socket().cap.get() == true)
+	{
+		// First we check if the user is already registered 
+		// => if he is, then it means he wants to swap nickname
+		if (sender->get_user().nickname.get() != "anonymous")
+		{
+
+		}
+		// if the user is not registered on the server yet, he needs 
+		// to be welcomed for the 1st time on the server
+		else	
+		{
+			if (_user_list.find(cmd[1]) == _user_list.end())
+				_user_list[cmd[1]] = &sender->get_user();
+			std::cout << "WELCOME TO THIS IRC SERVER!!" << std::endl;
+		}
 		return 0;
+	}
 	return (-1);
 }

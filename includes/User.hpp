@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:02:13 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/13 11:50:23 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/14 15:31:52 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@
 class User
 {
 	private:
-		User();
+
 	
 	public:
+		User();
 		Accessor<std::string>	username;
 		Accessor<std::string>	nickname;
 		Accessor<std::string>	hostname;

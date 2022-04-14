@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/13 15:26:39 by abesombe         ###   ########.fr        #
+#    Updated: 2022/04/14 15:42:03 by abesombe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,9 +30,10 @@ SOCKET_DIR			= $(SRCS_DIR)Socket/
 SERVER_DIR			= $(SRCS_DIR)Server/
 CLIENT_DIR			= $(SRCS_DIR)Client/
 CMD_DIR				= $(SRCS_DIR)Command/
+USER_DIR			= $(SRCS_DIR)User/
 UTILS_DIR			= $(SRCS_DIR)utils/
 
-VPATH				= $(SRCS_DIR) $(SOCKET_DIR) $(SERVER_DIR) $(CLIENT_DIR) $(CMD_DIR) $(UTILS_DIR) 
+VPATH				= $(SRCS_DIR) $(SOCKET_DIR) $(SERVER_DIR) $(CLIENT_DIR) $(CMD_DIR) $(USER_DIR) $(UTILS_DIR) 
 VPATH				+=
 
 DEFAULT_FILES		= .operator .structor .member .accessor
@@ -45,7 +46,8 @@ SRCS				= $(addsuffix .cpp,				main \
 						$(addprefix Socket,			$(DEFAULT_FILES)) \
 						$(addprefix Server,			$(DEFAULT_FILES)) \
 						$(addprefix Client,			$(DEFAULT_FILES)) \
-						$(addprefix Command,		$(DEFAULT_FILES)))
+						$(addprefix Command,		$(DEFAULT_FILES))) \
+						$(addprefix User,			$(DEFAULT_FILES))) \
 OBJS				= $(patsubst %.cpp, $(OBJS_DIR)%.o, $(SRCS))
 DEPS				= $(OBJS:.o=.d)
 

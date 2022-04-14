@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Client.accessor.cpp                                :+:      :+:    :+:   */
+/*   User.operator.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/12 16:35:46 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/14 15:19:36 by abesombe         ###   ########.fr       */
+/*   Created: 2022/04/14 15:01:58 by abesombe          #+#    #+#             */
+/*   Updated: 2022/04/14 15:01:58 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Client.hpp"
+#include "User.hpp"
 
-Socket&	Client::get_socket(void)
+User &	User::operator=	(User & src)
 {
-    return (this->_socket);
+	(void)src;
+	return (*this);
 }
 
-User&	Client::get_user(void)
+std::ostream &	operator<<		(std::ostream & os
+								,User & src)
 {
-    return (this->_user);
+	(void)src;
+	return (os);
 }
+

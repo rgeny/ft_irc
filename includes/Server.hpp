@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/14 12:36:46 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/14 15:15:06 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <utility>
 # include "Socket.hpp"
 # include "Client.hpp"
+# include "User.hpp"
 
 typedef struct sockaddr_in	SOCKADDR_IN;
 typedef struct sockaddr		SOCKADDR;
@@ -119,6 +120,7 @@ class Server
 		static char						_buffer[1024];
 		static std::string 				_hello;
 		userCmds					 	_cmd_list;
+		std::map<std::string, User *>	_user_list;
 };
 
 std::ostream &	operator<<	(std::ostream & os

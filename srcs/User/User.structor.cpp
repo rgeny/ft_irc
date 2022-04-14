@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Client.accessor.cpp                                :+:      :+:    :+:   */
+/*   User.structor.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/12 16:35:46 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/14 15:19:36 by abesombe         ###   ########.fr       */
+/*   Created: 2022/04/14 15:01:53 by abesombe          #+#    #+#             */
+/*   Updated: 2022/04/14 15:04:14 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Client.hpp"
+#include "User.hpp"
 
-Socket&	Client::get_socket(void)
+User:: User	(void): nickname("anonymous")
 {
-    return (this->_socket);
+	std::cout	<< "User dfl constructor."
+				<< std::endl;
 }
 
-User&	Client::get_user(void)
+User:: User	(User & src)
 {
-    return (this->_user);
+	(void)src;
+	std::cout	<< "User cpy constructor."
+				<< std::endl;
 }
+
+User::~User	(void)
+{
+	std::cout	<< "User destructor."
+				<< std::endl;
+}
+
