@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:43:21 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/13 16:03:46 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/14 10:50:50 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class Client
 		Client &	operator=	(Client & src);
 
 		Accessor<std::string>	nickname;
-		Socket const &	get_socket(void) const;
+		Socket &	get_socket(void);
 		
 	private:
 		Socket	_socket;

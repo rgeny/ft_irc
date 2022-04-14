@@ -6,12 +6,14 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/13 16:04:41 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/14 12:03:50 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Server.hpp"
 #include "Command.hpp"
+#include "ircserv.hpp"
+
 #include <cstring>
 std::string Server::_hello = "Welcome to the Server\n";
 char		Server::_buffer[1024] = "";
@@ -35,9 +37,9 @@ void	Server::main			(void)
 			{
 				if (this->_clients[i]->get_socket().is_set(&this->_rfds))
 				{
-					std::cout	<< "nickname: "
-								<< this->_clients[i]->nickname.get()
-								<< std::endl;
+					//std::cout	<< "nickname: "
+					//			<< this->_clients[i]->nickname.get()
+					//			<< std::endl;
 					std::vector<std::string>	buf;
 					int			n = this->_clients[i]->get_socket().receive(buf);
 					if (n == 0)
@@ -56,8 +58,8 @@ void	Server::main			(void)
 							Command cmd;
 							cmd.parse(buf[j], this->_clients[i]);
 							check_cmd(this->_clients[i], cmd.tokens.get());
-							for (int k = 0; k < cmd.tokens.get().size(); k++)
-								std::cout	<< cmd.tokens.get()[k] << std::endl;
+							//for (int k = 0; k < cmd.tokens.get().size(); k++)
+							//	std::cout	<< cmd.tokens.get()[k] << std::endl;
 							this->_clients[i]->get_socket().send(buf[j]);
 						}
 					}
@@ -150,18 +152,22 @@ void Server::init_cmd_list( void )
 
 void Server::check_cmd(Client *sender, std::vector<std::string> cmd)
 {
+	std::cout << "command: " << cmd[0] << " - caseproof version: " << case_proof(cmd[0]) << std::endl; 
 	userCmds::iterator it = _cmd_list.find(case_proof(cmd[0]));
 	if (it != _cmd_list.end())
 	{
 		std::cout << "FOUND IT" << std::endl;
 	}
+	else
+		std::cout << "UNKNOWN COMMAND" << std::endl;
 		// ((*it).second)(sender, cmd);
 }
 
 int	Server::cap(Client *sender, const std::vector<std::string> &msg)
 {
 	bool	tmp = true;
-	return (sender->get_socket().cap.set(tmp));
+	sender->get_socket().cap.set(tmp);
+	return (0);
 }
 
 int	Server::nick(Client *sender, const std::vector<std::string> &msg)
