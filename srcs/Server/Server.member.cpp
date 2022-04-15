@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/15 19:59:34 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/15 20:20:24 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,7 @@ void	Server::main			(void)
 										<< buf[j]
 										<< std::endl;
 							Command cmd;
-							if (j == buf.size() - 1)
-								cmd.parse(buf[j], this->_clients[i], 1);
-							else
-								cmd.parse(buf[j], this->_clients[i], 0);
+							cmd.parse(buf[j], this->_clients[i], 0);
 							std::cout << "size of tokens: " << cmd.tokens.get().size() << std::endl;
 							check_cmd(this->_clients[i], cmd.tokens.get());
 							//for (int k = 0; k < cmd.tokens.get().size(); k++)
