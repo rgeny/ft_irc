@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/15 16:26:24 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/15 17:04:48 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ void Server::check_cmd(Client *sender, std::vector<std::string> cmd)
 	userCmds::iterator it = _cmd_list.find(case_proof(cmd[0]));
 	if (it != _cmd_list.end())
 	{
-		std::cout << "FOUND IT" << std::endl;
+		std::cout << "COMMAND FOUND" << std::endl;
 		(this->*(it->second))(sender, cmd);
 	}
 	else
@@ -168,10 +168,9 @@ void Server::check_cmd(Client *sender, std::vector<std::string> cmd)
 int	Server::cap(Client *sender, const std::vector<std::string> &cmd)
 {
 	bool	tmp = true;
-	std::string cmd1 = "REQ";
-	std::string cmd2 = "LS";
-	std::cout << "cmd.size(): " << cmd.size() << std::endl;
-	if (cmd.size() > 1 && (case_proof(cmd[1]).compare(cmd1) == 0 || case_proof(cmd[1]).compare(cmd2) == 0))
+	if (cmd.size() > 1)
+		std::cout << "cmd.size(): " << cmd.size() << " - case_proof(cmd[1]): " << case_proof(cmd[1]) << std::endl;
+	if (cmd.size() > 1 && sender->get_socket().cap.get() == false && (case_proof(cmd[1]).compare("REQ") == 0 || case_proof(cmd[1]).compare("LS") == 0))
 	std::cout << "CAP ACTIVATED!!" << std::endl;
 	sender->get_socket().cap.set(tmp);
 	return (0);
@@ -190,7 +189,7 @@ int	Server::nick(Client *sender, const std::vector<std::string> &cmd)
 		}
 		// if the user is not registered on the server yet, he needs 
 		// to be welcomed for the 1st time on the server
-		else	
+		else if (cmd.size() > 1)
 		{
 			if (_user_list.find(cmd[1]) == _user_list.end())
 				_user_list[cmd[1]] = &sender->get_user();

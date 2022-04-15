@@ -6,17 +6,17 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/13 11:50:28 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/15 16:51:55 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MESSAGE_HPP
 #define MESSAGE_HPP
 
-#include <iostream>
-#include <string>
+# include <iostream>
+# include <string>
 # include <map>
-#include "User.hpp"
+# include "User.hpp"
 
 #include "Accessor.hpp"
 
