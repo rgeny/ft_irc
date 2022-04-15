@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/15 17:31:15 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/15 18:42:34 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ class Server
 		// int		topic(Client *sender, const std::vector<std::string> &msg);
 		// int		trace(Client *sender, const std::vector<std::string> &msg);
 		// int		uhnames(Client *sender, const std::vector<std::string> &msg);
-		// int		user(Client *sender, const std::vector<std::string> &msg);
+		int		user(Client *sender, const std::vector<std::string> &msg);
 		// int		userhost(Client *sender, const std::vector<std::string> &msg);
 		// int		userip(Client *sender, const std::vector<std::string> &msg);
 		// int		users(Client *sender, const std::vector<std::string> &msg);

@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/15 18:06:56 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/15 19:51:00 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,15 @@ void	Server::main			(void)
 										<< buf[j]
 										<< std::endl;
 							Command cmd;
-							cmd.parse(buf[j], this->_clients[i]);
+							if (j == buf.size() - 1)
+								cmd.parse(buf[j], this->_clients[i], 1);
+							else
+								cmd.parse(buf[j], this->_clients[i], 0);							
 							std::cout << "size of tokens: " << cmd.tokens.get().size() << std::endl;
 							check_cmd(this->_clients[i], cmd.tokens.get());
 							//for (int k = 0; k < cmd.tokens.get().size(); k++)
 							//	std::cout	<< cmd.tokens.get()[k] << std::endl;
-							this->_clients[i]->get_socket().send(buf[j]);
+							// this->_clients[i]->get_socket().send(buf[j]);
 						}
 					}
 				}
@@ -142,7 +145,7 @@ void Server::init_cmd_list( void )
 //   _cmd_list["TOPIC"] = &Server::topic;
 //   _cmd_list["TRACE"] = &Server::trace;
 //   _cmd_list["UHNAMES"] = &Server::uhnames;
-//   _cmd_list["USER"] = &Server::user;
+  _cmd_list["USER"] = &Server::user;
 //   _cmd_list["USERHOST"] = &Server::userhost;
 //   _cmd_list["USERIP"] = &Server::userip;
 //   _cmd_list["USERS"] = &Server::users;
@@ -173,8 +176,10 @@ int	Server::cap(Client *sender, const std::vector<std::string> &cmd)
 	if (cmd.size() > 1)
 		std::cout << "cmd.size(): " << cmd.size() << " - case_proof(cmd[1]): " << case_proof(cmd[1]) << std::endl;
 	if (cmd.size() > 1 && sender->get_socket().cap.get() == false && (case_proof(cmd[1]).compare("REQ") == 0 || case_proof(cmd[1]).compare("LS") == 0))
-	std::cout << "CAP ACTIVATED!!" << std::endl;
-	sender->get_socket().cap.set(tmp);
+	{
+		std::cout << "CAP ACTIVATED!!" << std::endl;
+		sender->get_socket().cap.set(tmp);
+	}
 	return (0);
 }
 
@@ -193,6 +198,36 @@ int	Server::nick(Client *sender, const std::vector<std::string> &cmd)
 		// to be welcomed for the 1st time on the server
 		else if (cmd.size() > 1)
 		{
+			if (_user_list.find(cmd[1]) == _user_list.end())
+			{
+				std::string moche = cmd[1];
+				sender->get_user().nickname.set(moche);
+				_user_list[cmd[1]] = &sender->get_user(); // we update the user_list with the new nickname / user
+			}
+			std::cout << "NICKNAME INTRODUCED!!" << std::endl;
+		}
+		return 0;
+	}
+	return (-1);
+}
+
+int	Server::user(Client *sender, const std::vector<std::string> &cmd)
+{
+	std::cout << "Je suis dans la commande user - " << sender->get_user().nickname.get() << std::endl;
+	if (sender->get_socket().cap.get() == true && sender->get_user().nickname.get() != "anonymous")
+	{
+		std::cout << "cmd.size(): " << cmd.size() << std::endl;
+		if (cmd.size() > 4)
+		{	
+			std::string u(cmd[1]);
+			std::string tmp = "";
+			User *cur_user = &sender->get_user();
+			cur_user->username.set(u);
+			std::cout << "cmd[1]: " << cmd[1] << std::endl;
+			std::cout << "USERNAME SET:" << cur_user->username.get() << std::endl;
+			for (int i = 5; i < cmd.size(); i++)
+				tmp += cmd[i];
+			cur_user->realname.set(tmp);
 			if (_user_list.find(cmd[1]) == _user_list.end())
 				_user_list[cmd[1]] = &sender->get_user(); // we update the user_list with the new nickname / user
 			Message reply(":"+_hostname, cmd[1], RPL_WELCOME, WELCOME_MSG + sender->get_user().fci());
