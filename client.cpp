@@ -14,7 +14,6 @@ int main(int argc, char const *argv[])
 	int sock = 0;
 	int	valread = 0;
 	struct sockaddr_in serv_addr;
-	std::string		hello;
 	char buffer[512] = {0};
 	if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
 	{
@@ -39,8 +38,9 @@ int main(int argc, char const *argv[])
 	}
 	while (true)
 	{
-		std::cin >> hello;
-		send(sock, hello.c_str(), hello.length(), 0);
+		std::string input;
+		getline(std::cin, input);
+		send(sock, input.c_str(), input.length(), 0);
 		// std::cout << "Hello message sent" << std::endl;
 		valread = recv(sock, buffer, 512, 0);
 		buffer[valread] = '\0';

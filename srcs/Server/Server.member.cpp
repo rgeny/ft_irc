@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/14 16:22:31 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/15 16:26:24 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	Server::main			(void)
 										<< std::endl;
 							Command cmd;
 							cmd.parse(buf[j], this->_clients[i]);
+							std::cout << "size of tokens: " << cmd.tokens.get().size() << std::endl;
 							check_cmd(this->_clients[i], cmd.tokens.get());
 							//for (int k = 0; k < cmd.tokens.get().size(); k++)
 							//	std::cout	<< cmd.tokens.get()[k] << std::endl;
@@ -164,9 +165,13 @@ void Server::check_cmd(Client *sender, std::vector<std::string> cmd)
 		
 }
 
-int	Server::cap(Client *sender, const std::vector<std::string> &msg)
+int	Server::cap(Client *sender, const std::vector<std::string> &cmd)
 {
 	bool	tmp = true;
+	std::string cmd1 = "REQ";
+	std::string cmd2 = "LS";
+	std::cout << "cmd.size(): " << cmd.size() << std::endl;
+	if (cmd.size() > 1 && (case_proof(cmd[1]).compare(cmd1) == 0 || case_proof(cmd[1]).compare(cmd2) == 0))
 	std::cout << "CAP ACTIVATED!!" << std::endl;
 	sender->get_socket().cap.set(tmp);
 	return (0);
