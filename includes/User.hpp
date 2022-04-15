@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:02:13 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/14 16:03:28 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/15 17:34:39 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ class User
 		User( User const & src);
 		User & operator=(User const & rhs);
 		~User();
+		std::string fci(void);
 
 };
 

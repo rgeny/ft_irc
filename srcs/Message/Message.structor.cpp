@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:20 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/15 16:55:14 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/15 17:41:50 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ Message::Message()
 	// std::cout << "Default constructor Message" << std::endl;
 }
 
-Message::Message(User *sender
-				,User *receiver
-				,std::string const & txt
-				,std::string const & commandCalled)
+Message::Message(std::string sender
+				,std::string receiver
+				,std::string txt
+				,std::string commandCalled)
 	:
 	_sender(sender),
 	_receiver(receiver),

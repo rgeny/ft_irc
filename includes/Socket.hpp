@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:52:03 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/13 14:43:57 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/15 17:48:13 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <iostream>
 # include <unistd.h>
 # include "Exceptions.hpp"
+# include "Message.hpp"
 # include <sys/types.h>
 # include <sys/socket.h>
 # include <errno.h>

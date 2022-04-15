@@ -6,12 +6,14 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/15 17:04:48 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/15 18:06:56 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Server.hpp"
 #include "Command.hpp"
+#include "Message.hpp"
+#include "User.hpp"
 #include "ircserv.hpp"
 
 #include <cstring>
@@ -192,8 +194,12 @@ int	Server::nick(Client *sender, const std::vector<std::string> &cmd)
 		else if (cmd.size() > 1)
 		{
 			if (_user_list.find(cmd[1]) == _user_list.end())
-				_user_list[cmd[1]] = &sender->get_user();
-			std::cout << "WELCOME TO THIS IRC SERVER!!" << std::endl;
+				_user_list[cmd[1]] = &sender->get_user(); // we update the user_list with the new nickname / user
+			Message reply(":"+_hostname, cmd[1], RPL_WELCOME, WELCOME_MSG + sender->get_user().fci());
+			std::string final_msg = reply.aggreg();
+			sender->get_socket().send(final_msg);
+			std::cout << "Reply sent: " << final_msg << std::endl;
+			//std::cout << "WELCOME TO THIS IRC SERVER!!" << std::endl;
 		}
 		return 0;
 	}

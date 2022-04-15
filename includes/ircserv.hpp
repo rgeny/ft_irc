@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:46:14 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/13 15:26:27 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/15 17:56:39 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # include "Message.hpp"
 
 # include "Exceptions.hpp"
+# define WELCOME_MSG "Welcome to the Internet Relay Network "
+# define RPL_WELCOME "001"
 
 void	check_nbr_of_arguments	(int argc);
 void	check_port_argument	(const std::string & str);

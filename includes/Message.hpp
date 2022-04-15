@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/15 16:51:55 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/15 18:02:32 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,25 @@ class Message
 {
 	private:
 		Message();
-		User					*_sender;
-		User					*_receiver;
+		std::string					_sender;
+		std::string					_receiver;
 	public:
 		Accessor<std::string>	txt;
 		Accessor<std::string>	commandCalled;
 
-		Message(User * sender,
-				User * receiver,
-				std::string const & txt,
-				std::string const & commandCalled);
+		Message(std::string sender,
+				std::string receiver,
+				std::string txt,
+				std::string commandCalled);
 		Message( Message const & src);
+		std::string const & aggreg(void);
 		Message & operator=(Message const & rhs);
 		~Message();
 
-		User *				getSender() const;
-		User *				getReceiver() const;
-		void				setSender(User * sender);
-		void				setReceiver(User * receiver);
+		std::string				getSender() const;
+		std::string				getReceiver() const;
+		void				setSender(std::string& sender);
+		void				setReceiver(std::string& receiver);
 		
 };
 

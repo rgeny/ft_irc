@@ -6,28 +6,28 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:09 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/15 16:55:25 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/15 17:42:31 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Message.hpp"
 
-User *	Message::getSender() const
+std::string Message::getSender() const
 {
 	return (this->_sender);
 }
 
-User *	Message::getReceiver() const
+std::string Message::getReceiver() const
 {
 	return (this->_receiver);
 }
 
-void	Message::setSender(User * sender)
+void	Message::setSender(std::string &sender)
 {
 	this->_sender = sender;
 }
 
-void	Message::setReceiver(User * receiver)
+void	Message::setReceiver(std::string &receiver)
 {
 	this->_receiver = receiver;
 }

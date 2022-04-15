@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/15 16:55:38 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/15 17:41:18 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ std::ostream&	operator<<( std::ostream& o, Message const & instance)
 {
 	o	<< "MESSAGE\n"
 		<< "FROM: "
-		<< *instance.getSender()
+		<< instance.getSender()
 		<< "\nTO: "
-		<< *instance.getReceiver()
+		<< instance.getReceiver()
 		<< "\nTXT: "
 		<< instance.txt.get()
 		<< "\nCMD: "
