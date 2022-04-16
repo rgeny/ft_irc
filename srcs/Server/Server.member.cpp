@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/16 02:01:20 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/16 09:51:48 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,12 +196,15 @@ int	Server::nick(Client *sender, const std::vector<std::string> &cmd)
 		else if (cmd.size() > 1)
 		{
 			std::string cmd1(cmd[1]);
+			r_trim(cmd1);
 			if (_user_list.find(cmd1) == _user_list.end())
 			{
 				sender->get_user().nickname.set(cmd1);
 				_user_list[cmd1] = &sender->get_user(); // we update the user_list with the new nickname / user
 			}
+
 			std::cout << "NICKNAME SET: " << sender->get_user().nickname.get() << std::endl;
+			std::cout << "TEST\n";
 		}
 		return 0;
 	}

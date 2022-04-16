@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/15 16:56:43 by abesombe         ###   ########.fr        #
+#    Updated: 2022/04/16 09:48:40 by abesombe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													ircserv \
 													split \
 													case_proof \
+													r_trim \
 						$(addprefix Socket,			$(DEFAULT_FILES)) \
 						$(addprefix Server,			$(DEFAULT_FILES)) \
 						$(addprefix Client,			$(DEFAULT_FILES)) \
