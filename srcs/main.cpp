@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:23:38 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/14 15:39:40 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/16 13:03:52 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	main	(__attribute((unused)) int argc
 		password = argv[2];
 		Server	serv (password, port);
 		serv.init_cmd_list();
+		serv.init_msg_list();
 
 		serv.main();
 		// ircserv(port, password);

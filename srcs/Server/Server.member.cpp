@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/16 09:51:48 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/16 13:34:05 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,148 @@ void	Server::init_rfds		(void)
 }
 
 
-void	Server::del_client		(int i)
+void	Server::del_client(int i)
 {
 	delete this->_clients[i];
 	this->_clients.erase(this->_clients.begin() + i);
+}
+
+void Server::init_msg_list( void )
+{
+	_msg_list["001"] = "Welcome to the Internet Relay Network <fci>";
+	_msg_list["002"] = "Your host is <servername>, running version <ver>";
+	_msg_list["003"] = "This server was created <date>";
+	_msg_list["004"] = "<servername> <version> <available user modes> <available channel modes>";
+	_msg_list["005"] = "Try server <server name>, port <port number>";
+	_msg_list["200"] = "Link <version & debug level> <destination> <next server> V<protocol version> <link uptime in seconds> <backstream sendq> <upstream sendq>";
+	_msg_list["201"] = "Try. <class> <server>";
+	_msg_list["202"] = "H.S. <class> <server>";
+	_msg_list["203"] = "???? <class> [<client IP address in dot form>]";
+	_msg_list["204"] = "Oper <class> <nick>";
+	_msg_list["205"] = "User <class> <nick>";
+	_msg_list["206"] = "Serv <class> <int>S <int>C <server> <nick!user|*!*>@<host|server> V<protocol version>";
+	_msg_list["207"] = "Service <class> <name> <type> <active type>";
+	_msg_list["208"] = "<newtype> 0 <client name>";
+	_msg_list["209"] = "Class <class> <count>";
+	_msg_list["211"] = "<linkname> <sendq> <sent messages> <sent Kbytes> <received messages> <received Kbytes> <time open>";
+	_msg_list["212"] = "<command> <count> <byte count> <remote count>";
+	_msg_list["219"] = "<stats letter> :End of STATS report";
+	_msg_list["221"] = "<user mode string>";
+	_msg_list["234"] = "<name> <server> <mask> <type> <hopcount> <info>";
+	_msg_list["235"] = "<mask> <type> :End of service listing";
+	_msg_list["242"] = ":Server Up %d days %d:%02d:%02d";
+	_msg_list["243"] = "O <hostmask> * <name>";
+	_msg_list["251"] = ":There are <integer> users and <integer> services on <integer> servers";
+	_msg_list["252"] = "<integer> :operator(s) online";
+	_msg_list["253"] = "<integer> :unknown connection(s)";
+	_msg_list["254"] = "<integer> :channels formed";
+	_msg_list["255"] = ":I have <integer> clients and <integer> servers";
+	_msg_list["256"] = "<server> :Administrative info";
+	_msg_list["257"] = ":<admin info>";
+	_msg_list["258"] = ":<admin info>";
+	_msg_list["259"] = ":<admin info>";
+	_msg_list["261"] = "File <logfile> <debug level>";
+	_msg_list["262"] = "<server name> <version & debug level> :End of TRACE";
+	_msg_list["263"] = "<command> :Please wait a while and try again.";
+	_msg_list["301"] = "<nick> :<away message>";
+	_msg_list["302"] = ":*1<reply> *( " " <reply> )";
+	_msg_list["303"] = ":*1<nick> *( " " <nick> )";
+	_msg_list["305"] = ":You are no longer marked as being away";
+	_msg_list["306"] = ":You have been marked as being away";
+	_msg_list["311"] = "<nick> <user> <host> * :<real name>";
+	_msg_list["312"] = "<nick> <server> :<server info>";
+	_msg_list["313"] = "<nick> :is an IRC operator";
+	_msg_list["314"] = "<nick> <user> <host> * :<real name>";
+	_msg_list["315"] = "<name> :End of WHO list";
+	_msg_list["317"] = "<nick> <integer> :seconds idle";
+	_msg_list["318"] = "<nick> :End of WHOIS list";
+	_msg_list["319"] = "<nick> :*( ( '@' / '+' ) <channel> " " )";
+	_msg_list["322"] = "<channel> <# visible> :<topic>";
+	_msg_list["323"] = ":End of LIST";
+	_msg_list["324"] = "<channel> <mode> <mode params>";
+	_msg_list["325"] = "<channel> <nickname>";
+	_msg_list["331"] = "<channel> :No topic is set";
+	_msg_list["332"] = "<channel> :<topic>";
+	_msg_list["341"] = "<channel> <nick>";
+	_msg_list["342"] = "<user> :Summoning user to IRC";
+	_msg_list["346"] = "<channel> <invitemask>";
+	_msg_list["347"] = "<channel> :End of channel invite list";
+	_msg_list["348"] = "<channel> <exceptionmask>";
+	_msg_list["349"] = "<channel> :End of channel exception list";
+	_msg_list["351"] = "<version>.<debuglevel> <server> :<comments>";
+	_msg_list["352"] = "<channel> <user> <host> <server> <nick> ( 'H' / 'G' > ['*'] [ ( '@' / '+' ) ] :<hopcount> <real name>";
+	_msg_list["353"] = "( '=' / '*' / '@' ) <channel> :[ '@' / '+' ] <nick> *( " " [ '@' / '+' ] <nick> )";
+	_msg_list["364"] = "<mask> <server> :<hopcount> <server info>";
+	_msg_list["365"] = "<mask> :End of LINKS list";
+	_msg_list["366"] = "<channel> :End of NAMES list";
+	_msg_list["367"] = "<channel> <banmask>";
+	_msg_list["368"] = "<channel> :End of channel ban list";
+	_msg_list["369"] = "<nick> :End of WHOWAS";
+	_msg_list["371"] = ":<string>";
+	_msg_list["372"] = ":- <text>";
+	_msg_list["374"] = ":End of INFO list";
+	_msg_list["375"] = ":- <server> Message of the day - ";
+	_msg_list["376"] = ":End of MOTD command";
+	_msg_list["381"] = ":You are now an IRC operator";
+	_msg_list["382"] = "<config file> :Rehashing";
+	_msg_list["383"] = "You are service <servicename>";
+	_msg_list["391"] = "<server> :<string showing server's local time>";
+	_msg_list["392"] = ":UserID Terminal Host";
+	_msg_list["393"] = ":<username> <ttyline> <hostname>";
+	_msg_list["394"] = ":End of users";
+	_msg_list["395"] = ":Nobody logged in";
+	_msg_list["401"] = "<nickname> :No such nick/channel";
+	_msg_list["402"] = "<server name> :No such server";
+	_msg_list["403"] = "<channel name> :No such channel";
+	_msg_list["404"] = "<channel name> :Cannot send to channel";
+	_msg_list["405"] = "<channel name> :You have joined too many channels";
+	_msg_list["406"] = "<nickname> :There was no such nickname";
+	_msg_list["407"] = "<target> :<error code> recipients. <abort message>";
+	_msg_list["408"] = "<service name> :No such service";
+	_msg_list["409"] = ":No origin specified";
+	_msg_list["411"] = ":No recipient given (<command>)";
+	_msg_list["412"] = ":No text to send";
+	_msg_list["413"] = "<mask> :No toplevel domain specified";
+	_msg_list["414"] = "<mask> :Wildcard in toplevel domain";
+	_msg_list["415"] = "<mask> :Bad Server/host mask";
+	_msg_list["421"] = "<command> :Unknown command";
+	_msg_list["422"] = ":MOTD File is missing";
+	_msg_list["423"] = "<server> :No administrative info available";
+	_msg_list["424"] = ":File error doing <file op> on <file>";
+	_msg_list["431"] = ":No nickname given";
+	_msg_list["432"] = "<nick> :Erroneous nickname";
+	_msg_list["433"] = "<nick> :Nickname is already in use";
+	_msg_list["436"] = "<nick> :Nickname collision KILL from <user>@<host>";
+	_msg_list["437"] = "<nick/channel> :Nick/channel is temporarily unavailable";
+	_msg_list["441"] = "<nick> <channel> :They aren't on that channel";
+	_msg_list["442"] = "<channel> :You're not on that channel";
+	_msg_list["443"] = "<user> <channel> :is already on channel";
+	_msg_list["444"] = "<user> :User not logged in";
+	_msg_list["445"] = ":SUMMON has been disabled";
+	_msg_list["446"] = ":USERS has been disabled";
+	_msg_list["451"] = ":You have not registered";
+	_msg_list["461"] = "<command> :Not enough parameters";
+	_msg_list["462"] = ":Unauthorized command (already registered)";
+	_msg_list["463"] = ":Your host isn't among the privileged";
+	_msg_list["464"] = ":Password incorrect";
+	_msg_list["465"] = ":You are banned from this server";
+	_msg_list["467"] = "<channel> :Channel key already set";
+	_msg_list["471"] = "<channel> :Cannot join channel (+l)";
+	_msg_list["472"] = "<char> :is unknown mode char to me for <channel>";
+	_msg_list["473"] = "<channel> :Cannot join channel (+i)";
+	_msg_list["474"] = "<channel> :Cannot join channel (+b)";
+	_msg_list["475"] = "<channel> :Cannot join channel (+k)";
+	_msg_list["476"] = "<channel> :Bad Channel Mask";
+	_msg_list["477"] = "<channel> :Channel doesn't support modes";
+	_msg_list["478"] = "<channel> <char> :Channel list is full";
+	_msg_list["481"] = ":Permission Denied- You're not an IRC operator";
+	_msg_list["482"] = "<channel> :You're not channel operator";
+	_msg_list["483"] = ":You can't kill a server!";
+	_msg_list["484"] = ":Your connection is restricted!";
+	_msg_list["485"] = ":You're not the original channel operator";
+	_msg_list["491"] = ":No O-lines for your host";
+	_msg_list["501"] = ":Unknown MODE flag";
+	_msg_list["502"] = ":Cannot change mode for other users";
 }
 
 void Server::init_cmd_list( void )
@@ -170,6 +308,13 @@ void Server::check_cmd(Client *sender, std::vector<std::string> cmd)
 int	Server::cap(Client *sender, const std::vector<std::string> &cmd)
 {
 	bool	tmp = true;
+	if (cmd.size() <= 1)
+	{
+		Message reply(":"+_hostname, cmd[1], ERR_NEEDMOREPARAMS, get_msg(ERR_NEEDMOREPARAMS));
+		std::string final_msg = reply.aggreg();
+		sender->get_socket().send(final_msg);
+		return (-1);
+	}
 	if (cmd.size() > 1)
 		std::cout << "cmd.size(): " << cmd.size() << " - case_proof(cmd[1]): " << case_proof(cmd[1]) << std::endl;
 	if (cmd.size() > 1 && sender->get_socket().cap.get() == false && (case_proof(cmd[1]).compare("REQ") == 0 || case_proof(cmd[1]).compare("LS") == 0))
@@ -204,7 +349,7 @@ int	Server::nick(Client *sender, const std::vector<std::string> &cmd)
 			}
 
 			std::cout << "NICKNAME SET: " << sender->get_user().nickname.get() << std::endl;
-			std::cout << "TEST\n";
+			// std::cout << "TEST\n";
 		}
 		return 0;
 	}
@@ -213,31 +358,57 @@ int	Server::nick(Client *sender, const std::vector<std::string> &cmd)
 
 int	Server::user(Client *sender, const std::vector<std::string> &cmd)
 {
-	std::cout << "Je suis dans la commande user - " << sender->get_user().nickname.get() << std::endl;
+	// std::cout << "Je suis dans la commande user - " << sender->get_user().nickname.get() << std::endl;
 	if (sender->get_socket().cap.get() == true && sender->get_user().nickname.get() != "anonymous")
 	{
-		std::cout << "cmd.size(): " << cmd.size() << std::endl;
+		// std::cout << "cmd.size(): " << cmd.size() << std::endl;
 		if (cmd.size() > 4)
 		{	
 			std::string u(cmd[1]);
 			std::string tmp = "";
 			User *cur_user = &sender->get_user();
 			cur_user->username.set(u);
-			std::cout << "cmd[1]: " << cmd[1] << std::endl;
-			std::cout << "USERNAME SET:" << cur_user->username.get() << std::endl;
+			// std::cout << "cmd[1]: " << cmd[1] << std::endl;
+			// std::cout << "USERNAME SET:" << cur_user->username.get() << std::endl;
 			for (int i = 5; i < cmd.size(); i++)
 				tmp += cmd[i];
 			cur_user->realname.set(tmp);
-			std::cout << "REALNAME SET:" << cur_user->realname.get() << std::endl;
+			// std::cout << "REALNAME SET:" << cur_user->realname.get() << std::endl;
 			if (_user_list.find(cmd[1]) == _user_list.end())
 				_user_list[cmd[1]] = &sender->get_user(); // we update the user_list with the new nickname / user
 			Message reply(":"+_hostname, cmd[1], RPL_WELCOME, WELCOME_MSG + sender->get_user().fci());
 			std::string final_msg = reply.aggreg();
-			std::cout << "Reply sent before: " << final_msg << std::endl;
+			// std::cout << "Reply sent before: " << final_msg << std::endl;
 			sender->get_socket().send(final_msg);
-			//std::cout << "WELCOME TO THIS IRC SERVER!!" << std::endl;
 		}
 		return 0;
 	}
 	return (-1);
+}
+
+std::string Server::get_msg(std::string msg_code)
+{
+	std::string msg_template;
+	msg_template = _msg_list[msg_code];
+	return(replace_tags(msg_template));
+}
+
+std::string Server::replace_tags(std::string msg_template)
+{
+	find_replace_all(msg_template, "<fci>", "abesombes!abesombes@127.0.0.1");
+	return (msg_template);
+}
+
+void Server::find_replace_all(std::string & data, std::string toSearch, std::string replaceStr)
+{
+    // Get the first occurrence
+    size_t pos = data.find(toSearch);
+    // Repeat till end is reached
+    while( pos != std::string::npos)
+    {
+        // Replace this occurrence of Sub String
+        data.replace(pos, toSearch.size(), replaceStr);
+        // Get the next occurrence from the current position
+        pos =data.find(toSearch, pos + replaceStr.size());
+    }
 }
