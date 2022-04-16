@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/16 13:34:05 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/16 19:21:24 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	Server::del_client(int i)
 
 void Server::init_msg_list( void )
 {
-	_msg_list["001"] = "Welcome to the Internet Relay Network <fci>";
+	_msg_list["001"] = "Welcome to the Internet Relay Network <fullclientidentifier>";
 	_msg_list["002"] = "Your host is <servername>, running version <ver>";
 	_msg_list["003"] = "This server was created <date>";
 	_msg_list["004"] = "<servername> <version> <available user modes> <available channel modes>";
@@ -308,16 +308,19 @@ void Server::check_cmd(Client *sender, std::vector<std::string> cmd)
 int	Server::cap(Client *sender, const std::vector<std::string> &cmd)
 {
 	bool	tmp = true;
+	std::vector<std::string> args(1, cmd[0]);
+	std::string cmd1 = cmd[1];
+	r_trim(cmd1);
 	if (cmd.size() <= 1)
 	{
-		Message reply(":"+_hostname, cmd[1], ERR_NEEDMOREPARAMS, get_msg(ERR_NEEDMOREPARAMS));
+		Message reply(":"+_hostname, cmd1, ERR_NEEDMOREPARAMS, get_msg(ERR_NEEDMOREPARAMS, &args));
 		std::string final_msg = reply.aggreg();
 		sender->get_socket().send(final_msg);
 		return (-1);
 	}
-	if (cmd.size() > 1)
-		std::cout << "cmd.size(): " << cmd.size() << " - case_proof(cmd[1]): " << case_proof(cmd[1]) << std::endl;
-	if (cmd.size() > 1 && sender->get_socket().cap.get() == false && (case_proof(cmd[1]).compare("REQ") == 0 || case_proof(cmd[1]).compare("LS") == 0))
+	else if (cmd.size() > 1)
+		std::cout << "cmd.size(): " << cmd.size() << " - case_proof(cmd1): " << case_proof(cmd1) << std::endl;
+	if (cmd.size() > 1 && sender->get_socket().cap.get() == false && (case_proof(cmd1).compare("REQ") == 0 || case_proof(cmd1).compare("LS") == 0))
 	{
 		std::cout << "CAP ACTIVATED!!" << std::endl;
 		sender->get_socket().cap.set(tmp);
@@ -376,9 +379,10 @@ int	Server::user(Client *sender, const std::vector<std::string> &cmd)
 			// std::cout << "REALNAME SET:" << cur_user->realname.get() << std::endl;
 			if (_user_list.find(cmd[1]) == _user_list.end())
 				_user_list[cmd[1]] = &sender->get_user(); // we update the user_list with the new nickname / user
-			Message reply(":"+_hostname, cmd[1], RPL_WELCOME, WELCOME_MSG + sender->get_user().fci());
+			std::vector<std::string> args(1, sender->get_user().fci());
+			Message reply(":"+_hostname, cmd[1], RPL_WELCOME, get_msg(RPL_WELCOME, &args)); // WELCOME_MSG + sender->get_user().fci()
 			std::string final_msg = reply.aggreg();
-			// std::cout << "Reply sent before: " << final_msg << std::endl;
+			std::cout << "Reply sent before: " << final_msg << std::endl;
 			sender->get_socket().send(final_msg);
 		}
 		return 0;
@@ -386,29 +390,51 @@ int	Server::user(Client *sender, const std::vector<std::string> &cmd)
 	return (-1);
 }
 
-std::string Server::get_msg(std::string msg_code)
+std::string Server::get_msg(std::string msg_code, std::vector<std::string> *args)
 {
 	std::string msg_template;
 	msg_template = _msg_list[msg_code];
-	return(replace_tags(msg_template));
+	return(replace_tags(msg_template, args));
 }
 
-std::string Server::replace_tags(std::string msg_template)
+std::string Server::replace_tags(std::string msg_template, std::vector<std::string> *args)
 {
-	find_replace_all(msg_template, "<fci>", "abesombes!abesombes@127.0.0.1");
+	// find_replace_all(msg_template, "<fci>", "abesombes!abesombes@127.0.0.1");
+	int position_tag = 0;
+	size_t pos_opentag;
+	size_t pos_closetag;
+	size_t tag_len;
+	for (std::vector<std::string>::iterator it = args->begin(); it < args->end(); it++)
+	{
+		pos_opentag = msg_template.find("<", position_tag);
+		std::cout << "pos_opentag: " << pos_opentag << std::endl;
+		if (pos_opentag != std::string::npos)
+		{
+			pos_closetag = msg_template.find(">", pos_opentag + 1);
+			std::cout << "pos_closetag: " << pos_closetag << std::endl;
+			if (pos_closetag != std::string::npos)
+			{
+				tag_len = pos_closetag - pos_opentag + 1;
+				std::cout << "tag_len: " << tag_len << std::endl;
+				msg_template = msg_template.replace(pos_opentag, tag_len, *it);
+				position_tag = pos_opentag + (*it).length();
+				std::cout << "position_tag: " << position_tag << std::endl;
+			}
+		}
+	}
 	return (msg_template);
 }
 
-void Server::find_replace_all(std::string & data, std::string toSearch, std::string replaceStr)
-{
-    // Get the first occurrence
-    size_t pos = data.find(toSearch);
-    // Repeat till end is reached
-    while( pos != std::string::npos)
-    {
-        // Replace this occurrence of Sub String
-        data.replace(pos, toSearch.size(), replaceStr);
-        // Get the next occurrence from the current position
-        pos =data.find(toSearch, pos + replaceStr.size());
-    }
-}
+// void Server::find_replace_tags(std::string & data, std::string toSearch, std::string replaceStr)
+// {
+//     // Get the first occurrence
+//     size_t pos = data.find(toSearch);
+//     // Repeat till end is reached
+//     while( pos != std::string::npos)
+//     {
+//         // Replace this occurrence of Sub String
+//         data.replace(pos, toSearch.size(), replaceStr);
+//         // Get the next occurrence from the current position
+//         pos =data.find(toSearch, pos + replaceStr.size());
+//     }
+//}

@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/16 13:31:14 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/16 18:45:03 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ class Server
 		void 	init_cmd_list	(void);
 		void	init_msg_list	(void);
 		void 	check_cmd(Client *sender, std::vector<std::string> tokens);
-		std::string get_msg(std::string msg_code);
-		std::string replace_tags(std::string msg_template);
-		void find_replace_all(std::string & data, std::string toSearch, std::string replaceStr);
+		std::string get_msg(std::string msg_code, std::vector<std::string> *args);
+		std::string replace_tags(std::string msg_template, std::vector<std::string> *args);
+		// void find_replace_tags(std::string & data, std::string toSearch, std::string replaceStr);
 		// int		admin(Client *sender, const std::vector<std::string> &msg);
 		// int		away(Client *sender, const std::vector<std::string> &msg);
 		int		cap(Client *sender, const std::vector<std::string> &msg);
