@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/15 20:27:08 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/16 02:01:20 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,11 +195,11 @@ int	Server::nick(Client *sender, const std::vector<std::string> &cmd)
 		// to be welcomed for the 1st time on the server
 		else if (cmd.size() > 1)
 		{
-			if (_user_list.find(cmd[1]) == _user_list.end())
+			std::string cmd1(cmd[1]);
+			if (_user_list.find(cmd1) == _user_list.end())
 			{
-				std::string moche = cmd[1];
-				sender->get_user().nickname.set(moche);
-				_user_list[cmd[1]] = &sender->get_user(); // we update the user_list with the new nickname / user
+				sender->get_user().nickname.set(cmd1);
+				_user_list[cmd1] = &sender->get_user(); // we update the user_list with the new nickname / user
 			}
 			std::cout << "NICKNAME SET: " << sender->get_user().nickname.get() << std::endl;
 		}
@@ -232,7 +232,6 @@ int	Server::user(Client *sender, const std::vector<std::string> &cmd)
 			std::string final_msg = reply.aggreg();
 			std::cout << "Reply sent before: " << final_msg << std::endl;
 			sender->get_socket().send(final_msg);
-			std::cout << "Reply sent: " << final_msg << std::endl;
 			//std::cout << "WELCOME TO THIS IRC SERVER!!" << std::endl;
 		}
 		return 0;
