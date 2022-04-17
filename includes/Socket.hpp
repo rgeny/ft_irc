@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:52:03 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/15 17:48:13 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/17 13:27:35 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ class Socket
 		int		receive		(std::vector<std::string> & str) const;
 		int		send		(std::string & msg) const ;
 		bool	is_set		(fd_set * fds) const;
-		Accessor<bool>	cap;
+		Accessor<int>	cap;
 
 	private:
 		SOCKET			_socket;

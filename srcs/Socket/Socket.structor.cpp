@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:55:06 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/13 14:46:14 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/17 13:28:27 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Socket::SOCKET	Socket::_max		= SOCKET_ERROR;
 
 Socket:: Socket	(int port)
 {
-	cap = false;
+	cap = 0;
 	std::cout	<< "Socket dfl constructor."
 			<< std::endl;
 	if (Socket::_srv_socket == SOCKET_ERROR)

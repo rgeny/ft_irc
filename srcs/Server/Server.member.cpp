@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/16 19:21:24 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/17 13:41:51 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 #include "Message.hpp"
 #include "User.hpp"
 #include "ircserv.hpp"
+#define WAITING_FOR_CAP_LS 0
+#define WAITING_FOR_CAP_END 1
+#define CAP_CYCLE_TERMINATED 2
 
 #include <cstring>
 std::string Server::_hello = "Welcome to the Server\n";
@@ -307,7 +310,7 @@ void Server::check_cmd(Client *sender, std::vector<std::string> cmd)
 
 int	Server::cap(Client *sender, const std::vector<std::string> &cmd)
 {
-	bool	tmp = true;
+	int	cap_step = WAITING_FOR_CAP_END;
 	std::vector<std::string> args(1, cmd[0]);
 	std::string cmd1 = cmd[1];
 	r_trim(cmd1);
@@ -320,17 +323,23 @@ int	Server::cap(Client *sender, const std::vector<std::string> &cmd)
 	}
 	else if (cmd.size() > 1)
 		std::cout << "cmd.size(): " << cmd.size() << " - case_proof(cmd1): " << case_proof(cmd1) << std::endl;
-	if (cmd.size() > 1 && sender->get_socket().cap.get() == false && (case_proof(cmd1).compare("REQ") == 0 || case_proof(cmd1).compare("LS") == 0))
+	if (cmd.size() > 1 && sender->get_socket().cap.get() == WAITING_FOR_CAP_LS && (case_proof(cmd1).compare("REQ") == 0 || case_proof(cmd1).compare("LS") == 0))
 	{
-		std::cout << "CAP ACTIVATED!!" << std::endl;
-		sender->get_socket().cap.set(tmp);
+		std::cout << "CAP LS ACTIVATED!!" << std::endl;
+		sender->get_socket().cap.set(cap_step);
+	}
+	else if (cmd.size() > 1 && sender->get_socket().cap.get() == WAITING_FOR_CAP_END && case_proof(cmd1).compare("END") == 0)
+	{
+		std::cout << "CAP CYCLE TERMINATED!!" << std::endl;
+		cap_step = CAP_CYCLE_TERMINATED;
+		sender->get_socket().cap.set(cap_step);
 	}
 	return (0);
 }
 
 int	Server::nick(Client *sender, const std::vector<std::string> &cmd)
 {
-	if (sender->get_socket().cap.get() == true)
+	if (sender->get_socket().cap.get() >= WAITING_FOR_CAP_END)
 	{
 		std::cout << "ACCEPTED IN CAP SECTION" << std::endl;
 		// First we check if the user is already registered 
@@ -362,7 +371,7 @@ int	Server::nick(Client *sender, const std::vector<std::string> &cmd)
 int	Server::user(Client *sender, const std::vector<std::string> &cmd)
 {
 	// std::cout << "Je suis dans la commande user - " << sender->get_user().nickname.get() << std::endl;
-	if (sender->get_socket().cap.get() == true && sender->get_user().nickname.get() != "anonymous")
+	if (sender->get_socket().cap.get() >= WAITING_FOR_CAP_END && sender->get_user().nickname.get() != "anonymous")
 	{
 		// std::cout << "cmd.size(): " << cmd.size() << std::endl;
 		if (cmd.size() > 4)
