@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:56:10 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/12 18:58:44 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/18 21:54:41 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,34 +17,27 @@ const std::string &	Client::get_nickname	(void) const
 	return (this->_nickname);
 }
 
-bool	is_available_start(char c)
-{
-	return ((c >= 'a' && c <= 'z')
-			|| (c >= 'A' && c <= 'Z')
-			|| (c >= '0' && c <= '9'));
-}
-
-bool	is_available	(char c)
-{
-	return ((c >= 'a' && c <= 'z')
-			|| (c >= 'A' && c <= 'Z')
-			|| (c >= '0' && c <= '9')
-			|| (c >= 0x5B && c <= 0x60)
-			|| (c >= 0x7B && c <= 0x7D)
-			|| c == '-');
-}
-
 void	Client::set_nickname	(std::string nickname)
 {
+	char	c = nickname[0];
+
 	if (nickname.size() > 9 || nickname.size() == 0
-		|| !is_available_start(nickname[0]))
+		|| (!isalpha(c) && !is_special(c)))
 	{
+		std::cout	<< "t1 : "
+					<< c
+					<< '\n';
 		return ;
 	}
-	for (int i = 1; i < 8; i++)
+	for (int i = 1; i < 8 && i < nickname.size(); i++)
 	{
-		if (!is_available(nickname[i]))
+		c = nickname[i];
+		if (!isalnum(c)
+			&& !is_special(c)
+			&& c != '-')
+		{
 			return ;
+		}
 	}
 	this->_nickname = nickname;
 }

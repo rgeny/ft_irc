@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:43:21 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/12 15:33:12 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/18 21:56:15 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 # include <iostream>
 # include "Socket.hpp"
+# include "Utils.hpp"
 
 class Client
 {

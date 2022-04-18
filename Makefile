@@ -6,7 +6,7 @@
 #    By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/12 18:28:41 by rgeny            ###   ########.fr        #
+#    Updated: 2022/04/18 21:55:22 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,14 +28,16 @@ SOCKET_DIR			= $(SRCS_DIR)Socket/
 SERVER_DIR			= $(SRCS_DIR)Server/
 CLIENT_DIR			= $(SRCS_DIR)Client/
 USER_DIR			= $(SRCS_DIR)User/
+UTILS_DIR			= $(SRCS_DIR)Utils/
 
 VPATH				= $(SRCS_DIR) $(SOCKET_DIR) $(SERVER_DIR) $(CLIENT_DIR)
-VPATH				+=$(USER_DIR)
+VPATH				+=$(USER_DIR) $(UTILS_DIR)
 
 DEFAULT_FILES		= .operator .structor .member .accessor
 SRCS				= $(addsuffix .cpp,				main \
 													Exceptions \
 													check_arguments \
+													is_ \
 						$(addprefix Socket,			$(DEFAULT_FILES)) \
 						$(addprefix Server,			$(DEFAULT_FILES)) \
 						$(addprefix Client,			$(DEFAULT_FILES)) \
