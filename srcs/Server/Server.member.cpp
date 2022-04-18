@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/18 18:56:56 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/18 20:07:48 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -320,7 +320,6 @@ int	Server::cap(Client *sender, const std::vector<std::string> &cmd)
 	}
 	if (cmd.size() <= 1)
 	{
-		std::cout << "I AM INSIDE ERR_NEEDMOREPARAMS\n";
 		Message reply(":"+_hostname, "", ERR_NEEDMOREPARAMS, get_msg(ERR_NEEDMOREPARAMS, &args));
 		std::string final_msg = reply.aggreg();
 		sender->get_socket().send(final_msg);
@@ -344,31 +343,53 @@ int	Server::cap(Client *sender, const std::vector<std::string> &cmd)
 
 int	Server::nick(Client *sender, const std::vector<std::string> &cmd)
 {
-	if (sender->get_socket().cap.get() >= WAITING_FOR_CAP_END)
+	std::vector<std::string> args;
+	if (cmd.size() <= 1)
+		args.push_back(cmd[0]);	
+	else if (cmd.size() > 1)
+		args.push_back(cmd[1]);	
+	if (cmd.size() <= 1)
 	{
-		std::cout << "ACCEPTED IN CAP SECTION" << std::endl;
-		// First we check if the user is already registered 
-		// => if he is, then it means he wants to swap nickname
-		if (sender->get_user().nickname.get() != "anonymous")
+		Message reply(":"+_hostname, "", ERR_NONICKNAMEGIVEN, get_msg(ERR_NONICKNAMEGIVEN, &args));
+		std::string final_msg = reply.aggreg();
+		sender->get_socket().send(final_msg);
+		return (-1);
+	}
+	else
+	{
+		if (sender->get_socket().cap.get() >= WAITING_FOR_CAP_END)
 		{
-			std::cout << "CHANGE OF NICK!!" << std::endl;
-		}
-		// if the user is not registered on the server yet, he needs 
-		// to be welcomed for the 1st time on the server
-		else if (cmd.size() > 1)
-		{
-			std::string cmd1(cmd[1]);
-			r_trim(cmd1);
-			if (_user_list.find(cmd1) == _user_list.end())
+			std::cout << "ACCEPTED IN CAP SECTION" << std::endl;
+			// First we check if the user is already registered 
+			// => if he is, then it means he wants to swap nickname
+			if (sender->get_user().is_nick_valid(cmd[1]) == false)
 			{
-				sender->get_user().nickname.set(cmd1);
-				_user_list[cmd1] = &sender->get_user(); // we update the user_list with the new nickname / user
+				Message reply(":"+_hostname, "", ERR_ERRONEUSNICKNAME, get_msg(ERR_ERRONEUSNICKNAME, &args));
+				std::string final_msg = reply.aggreg();
+				sender->get_socket().send(final_msg);
+				return (-1);
 			}
+			if (sender->get_user().nickname.get() != "anonymous")
+			{
+				std::cout << "CHANGE OF NICK!!" << std::endl;
+			}
+			// if the user is not registered on the server yet, he needs 
+			// to be welcomed for the 1st time on the server
+			else if (cmd.size() > 1)
+			{
+				std::string cmd1(cmd[1]);
+				r_trim(cmd1);
+				if (_user_list.find(cmd1) == _user_list.end())
+				{
+					sender->get_user().nickname.set(cmd1);
+					_user_list[cmd1] = &sender->get_user(); // we update the user_list with the new nickname / user
+				}
 
-			std::cout << "NICKNAME SET: " << sender->get_user().nickname.get() << std::endl;
-			// std::cout << "TEST\n";
+				std::cout << "NICKNAME SET: " << sender->get_user().nickname.get() << std::endl;
+				// std::cout << "TEST\n";
+			}
+			return 0;
 		}
-		return 0;
 	}
 	return (-1);
 }

@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:02:13 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/15 18:45:49 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/18 20:01:53 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ class User
 		User( User const & src);
 		User & operator=(User const & rhs);
 		~User();
+		bool is_nick_valid(std::string const & nickname);
 		std::string fci(void);
 
 };
