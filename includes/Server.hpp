@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/16 18:45:03 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/18 18:35:01 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,10 +115,10 @@ class Server
 		
 
 	private:
-		Socket							_socket;
 		std::vector<Client *>			_clients;
-		std::string						_hostname;
 		std::string						_password;
+		std::string						_hostname;
+		Socket							_socket;
 		fd_set							_rfds;
 		fd_set							_wfds;
 		static char						_buffer[1024];

@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/16 09:48:40 by abesombe         ###   ########.fr        #
+#    Updated: 2022/04/18 18:33:06 by abesombe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ DEL_DIR				= rm -rf
 VERSION				= -std=c++98
 
 CC					= c++
-COMPILE_FLAG		= $(DEPS_FLAG) $(VERSION) -g #-Wall -Werror -Wextra
+COMPILE_FLAG		= $(DEPS_FLAG) $(VERSION) -g -Wall -Werror -Wextra
 DEPS_FLAG			= -MMD
 INCLUDES_FLAG		= -I$(INCLUDES_DIR)
 VALGRIND			= valgrind

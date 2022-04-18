@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.structor.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:06:01 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/12 17:20:56 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/18 18:35:20 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ Server:: Server	(Server & src)
 
 Server::~Server	(void)
 {
-	for (int i = 0; i < this->_clients.size(); i++)
+	for (size_t i = 0; i < this->_clients.size(); i++)
 		delete this->_clients[i];
 	std::cout	<< "Server destructor."
 				<< std::endl;

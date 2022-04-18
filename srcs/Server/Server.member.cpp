@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/17 13:41:51 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/18 18:36:11 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	Server::main			(void)
 		}
 		else
 		{
-			for (int i = 0; i < this->_clients.size(); i++)
+			for (size_t i = 0; i < this->_clients.size(); i++)
 			{
 				if (this->_clients[i]->get_socket().is_set(&this->_rfds))
 				{
@@ -53,7 +53,7 @@ void	Server::main			(void)
 					{
 						std::cout	<< buf.size()
 									<< std::endl;
-						for (int j = 0; j < buf.size(); j++)
+						for (size_t j = 0; j < buf.size(); j++)
 						{
 							std::cout	<< "buf[" 
 										<< j
@@ -81,7 +81,7 @@ void	Server::init_rfds		(void)
 	FD_SET	(STDIN_FILENO
 			,&this->_rfds);
 	this->_socket.add_in_fds(&this->_rfds);
-	for (int i = 0; i < this->_clients.size(); i++)
+	for (size_t i = 0; i < this->_clients.size(); i++)
 	{
 		this->_clients[i]->get_socket().add_in_fds(&this->_rfds);
 	}
@@ -382,7 +382,7 @@ int	Server::user(Client *sender, const std::vector<std::string> &cmd)
 			cur_user->username.set(u);
 			// std::cout << "cmd[1]: " << cmd[1] << std::endl;
 			// std::cout << "USERNAME SET:" << cur_user->username.get() << std::endl;
-			for (int i = 5; i < cmd.size(); i++)
+			for (size_t i = 5; i < cmd.size(); i++)
 				tmp += cmd[i];
 			cur_user->realname.set(tmp);
 			// std::cout << "REALNAME SET:" << cur_user->realname.get() << std::endl;
