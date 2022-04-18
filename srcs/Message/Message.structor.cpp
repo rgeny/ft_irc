@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:20 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/15 17:41:50 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/18 19:15:38 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 Message::Message()
 	:
-	_sender(NULL),
-	_receiver(NULL),
-	txt(""),
-	commandCalled("")
+	_sender(""),
+	_receiver(""),
+	msg_code(""),
+	msg_content("")
 {
 	// std::cout << "Default constructor Message" << std::endl;
 }
@@ -27,11 +27,17 @@ Message::Message(std::string sender
 				,std::string txt
 				,std::string commandCalled)
 	:
-	_sender(sender),
-	_receiver(receiver),
-	txt(txt),
-	commandCalled(commandCalled)
+	msg_code(txt),
+	msg_content(commandCalled)
 {
+	if (!sender.empty())
+		_sender = sender;
+	else
+		_sender = "*";
+	if (!receiver.empty())
+		_receiver = receiver;
+	else
+		_receiver = "*";
 	// std::cout << "Parameterized constructor Message" << std::endl;
 }
 
@@ -39,8 +45,8 @@ Message::Message( Message const & src)
 	:
 	_sender(src.getSender()),
 	_receiver(src.getReceiver()),
-	txt(src.txt.get()),
-	commandCalled(src.commandCalled.get())
+	msg_code(src.msg_code.get()),
+	msg_content(src.msg_content.get())
 {
 	// std::cout << "Copy constructor Message" << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/15 18:02:32 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/18 19:05:38 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ class Message
 		std::string					_sender;
 		std::string					_receiver;
 	public:
-		Accessor<std::string>	txt;
-		Accessor<std::string>	commandCalled;
+		Accessor<std::string>	msg_code;
+		Accessor<std::string>	msg_content;
 
 		Message(std::string sender,
 				std::string receiver,
-				std::string txt,
-				std::string commandCalled);
+				std::string msg_code,
+				std::string msg_content);
 		Message( Message const & src);
 		std::string const & aggreg(void);
 		Message & operator=(Message const & rhs);

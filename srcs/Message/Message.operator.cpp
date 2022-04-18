@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/15 17:41:18 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/18 19:07:54 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ Message & Message::operator=(Message const & rhs)
 {
 	this->_sender = rhs.getSender();
 	this->_receiver = rhs.getReceiver();
-	this->txt = rhs.txt.get();
-	this->commandCalled = rhs.commandCalled.get();
+	this->msg_code = rhs.msg_code.get();
+	this->msg_content = rhs.msg_content.get();
 	return (*this);
 }
 
@@ -29,8 +29,8 @@ std::ostream&	operator<<( std::ostream& o, Message const & instance)
 		<< "\nTO: "
 		<< instance.getReceiver()
 		<< "\nTXT: "
-		<< instance.txt.get()
+		<< instance.msg_code.get()
 		<< "\nCMD: "
-		<< instance.commandCalled.get();
+		<< instance.msg_content.get();
 	return (o);
 }

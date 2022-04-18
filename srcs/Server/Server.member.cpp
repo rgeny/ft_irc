@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/18 18:36:11 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/18 18:56:56 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -312,11 +312,16 @@ int	Server::cap(Client *sender, const std::vector<std::string> &cmd)
 {
 	int	cap_step = WAITING_FOR_CAP_END;
 	std::vector<std::string> args(1, cmd[0]);
-	std::string cmd1 = cmd[1];
-	r_trim(cmd1);
+	std::string cmd1 = "";
+	if (cmd.size() > 1)
+	{
+		cmd1 = cmd[1];
+		r_trim(cmd1);
+	}
 	if (cmd.size() <= 1)
 	{
-		Message reply(":"+_hostname, cmd1, ERR_NEEDMOREPARAMS, get_msg(ERR_NEEDMOREPARAMS, &args));
+		std::cout << "I AM INSIDE ERR_NEEDMOREPARAMS\n";
+		Message reply(":"+_hostname, "", ERR_NEEDMOREPARAMS, get_msg(ERR_NEEDMOREPARAMS, &args));
 		std::string final_msg = reply.aggreg();
 		sender->get_socket().send(final_msg);
 		return (-1);
@@ -416,18 +421,18 @@ std::string Server::replace_tags(std::string msg_template, std::vector<std::stri
 	for (std::vector<std::string>::iterator it = args->begin(); it < args->end(); it++)
 	{
 		pos_opentag = msg_template.find("<", position_tag);
-		std::cout << "pos_opentag: " << pos_opentag << std::endl;
+		// std::cout << "pos_opentag: " << pos_opentag << std::endl;
 		if (pos_opentag != std::string::npos)
 		{
 			pos_closetag = msg_template.find(">", pos_opentag + 1);
-			std::cout << "pos_closetag: " << pos_closetag << std::endl;
+			// std::cout << "pos_closetag: " << pos_closetag << std::endl;
 			if (pos_closetag != std::string::npos)
 			{
 				tag_len = pos_closetag - pos_opentag + 1;
-				std::cout << "tag_len: " << tag_len << std::endl;
+				// std::cout << "tag_len: " << tag_len << std::endl;
 				msg_template = msg_template.replace(pos_opentag, tag_len, *it);
 				position_tag = pos_opentag + (*it).length();
-				std::cout << "position_tag: " << position_tag << std::endl;
+				// std::cout << "position_tag: " << position_tag << std::endl;
 			}
 		}
 	}
