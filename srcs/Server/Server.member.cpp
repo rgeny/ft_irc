@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/10 18:13:17 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/18 22:34:31 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,20 @@ void	Server::main			(void)
 	while (true)
 	{
 		this->init_rfds();
-		this->_socket.select(&this->_rfds, &this->_wfds);
+		this->select(&this->_rfds, &this->_wfds);
 		if (FD_ISSET(STDIN_FILENO, &this->_rfds))
 			return ;
-		else if (this->_socket.is_set(&this->_rfds))
+		else if (this->is_set(&this->_rfds))
 		{
 			std::cout	<< "1\n";
-			this->_clients.push_back(new Socket);
+			this->_clients.push_back(new Client);
 		}
 		else
 		{
 			for (int i = 0; i < this->_clients.size(); i++)
 			{
+				if (this->_clients[i]->is_set(&this->_wfds))
+					this->_clients[i]->send();
 				if (this->_clients[i]->is_set(&this->_rfds))
 				{
 					std::string buf;
@@ -43,7 +45,7 @@ void	Server::main			(void)
 						std::cout	<< "buf : "
 									<< buf
 									<< std::endl;
-						this->_clients[i]->send(buf);
+						this->_clients[i]->add_to_queue(buf);
 					}
 				}
 			}
@@ -53,13 +55,16 @@ void	Server::main			(void)
 
 void	Server::init_rfds		(void)
 {
+	FD_ZERO	(&this->_wfds);
 	FD_ZERO	(&this->_rfds);
 	FD_SET	(STDIN_FILENO
 			,&this->_rfds);
-	this->_socket.add_in_fds(&this->_rfds);
+	this->add_in_fds(&this->_rfds);
 	for (int i = 0; i < this->_clients.size(); i++)
 	{
 		this->_clients[i]->add_in_fds(&this->_rfds);
+		if (!this->_clients[i]->is_empty_msg_queue())
+			this->_clients[i]->add_in_fds(&this->_wfds);
 	}
 }
 

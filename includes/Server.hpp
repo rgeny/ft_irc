@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/12 18:26:57 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/18 22:23:06 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <iostream>
 # include <string>
 # include <vector>
-# include "Socket.hpp"
+# include "Client.hpp"
 
 typedef struct sockaddr_in	SOCKADDR_IN;
 typedef struct sockaddr		SOCKADDR;
@@ -27,6 +27,7 @@ typedef struct sockaddr		SOCKADDR;
 //fin tmp
 
 class Server
+	:private Socket
 {
 	public:
 		Server	(std::string	password
@@ -41,14 +42,13 @@ class Server
 		void	del_client		(int	i);
 
 	private:
-		Socket				_socket;
-		std::vector<Socket *>	_clients;
-		std::string			_hostname;
-		std::string			_password;
-		fd_set				_rfds;
-		fd_set				_wfds;
-		static char			_buffer[1024];
-		static std::string 	_hello;
+		std::vector<Client *>	_clients;
+		std::string				_hostname;
+		std::string				_password;
+		fd_set					_rfds;
+		fd_set					_wfds;
+		static char				_buffer[1024];
+		static std::string 		_hello;
 
 };
 

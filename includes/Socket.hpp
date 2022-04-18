@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:52:03 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/12 18:24:43 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/18 22:20:49 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ class Socket
 		typedef struct sockaddr		SOCKADDR;
 		typedef struct timeval		TIMEVAL;
 
-		Socket	(int port = PORT);
-		~Socket	(void);
+				Socket	(int port = PORT);
+		virtual	~Socket	(void);
 
 		void	add_in_fds	(fd_set * fds);
 		int		select		(fd_set * rfds
-									,fd_set * wfds);
+							,fd_set * wfds);
 		int		receive		(std::string & str);
 		int		send		(std::string & msg);
 		bool	is_set		(fd_set * fds) const;

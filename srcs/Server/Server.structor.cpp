@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:06:01 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/10 18:01:36 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/18 22:29:51 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 Server:: Server	(std::string	password
 				,int			port)
-	:_password(password)
+	:Socket(port)
+	,_password(password)
 	,_hostname(HOSTNAME)
 {
 	std::cout	<< "Server dfl constructor."
