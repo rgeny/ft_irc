@@ -6,14 +6,14 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:06:01 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/20 06:04:17 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/20 06:06:18 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Server.hpp"
 
 Server:: Server	(std::string	password
-				,int			port)
+				,SOCKET			port)
 	:Socket(port)
 	,_password(password)
 	,_hostname(HOSTNAME)

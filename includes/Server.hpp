@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/20 06:02:11 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/20 06:06:29 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ class Server
 	:private Socket
 {
 	public:
-		typedef std::vector<User *>::iterator		USERS_IT;
+		typedef std::vector<User *>::iterator	USERS_IT;
+		typedef int								SOCKET;
 
 		Server	(std::string	password
-				,int			port = PORT);
+				,SOCKET			port = PORT);
 		~Server	(void);
 
 		Server &	operator=	(Server & src);
