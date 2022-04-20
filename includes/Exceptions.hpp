@@ -6,14 +6,13 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:38:42 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/08 18:15:56 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/12 18:20:08 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXCEPTIONS_HPP
 # define EXCEPTIONS_HPP
 
-# include "ircserv.hpp"
 # include <errno.h>
 # include <cstring>
 # include <cstdio>

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
+#    By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/18 18:33:06 by abesombe         ###   ########.fr        #
+#    Updated: 2022/04/20 05:10:29 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,11 @@ DEL_DIR				= rm -rf
 VERSION				= -std=c++98
 
 CC					= c++
-COMPILE_FLAG		= $(DEPS_FLAG) $(VERSION) -g -Wall -Werror -Wextra
+COMPILE_FLAG		= $(DEPS_FLAG) $(VERSION) -g#-Wall -Werror -Wextra
 DEPS_FLAG			= -MMD
 INCLUDES_FLAG		= -I$(INCLUDES_DIR)
 VALGRIND			= valgrind
 VALGRIND_FLAG		= --leak-check=full --show-leak-kinds=all --track-fds=yes
-PORT				= 6697
-SERV_NAME			= abc
 
 INCLUDES_DIR		= includes/
 OBJS_DIR			= objs/
@@ -29,27 +27,20 @@ SRCS_DIR			= srcs/
 SOCKET_DIR			= $(SRCS_DIR)Socket/
 SERVER_DIR			= $(SRCS_DIR)Server/
 CLIENT_DIR			= $(SRCS_DIR)Client/
-CMD_DIR				= $(SRCS_DIR)Command/
-MSG_DIR				= $(SRCS_DIR)Message/
 USER_DIR			= $(SRCS_DIR)User/
-UTILS_DIR			= $(SRCS_DIR)utils/
+UTILS_DIR			= $(SRCS_DIR)Utils/
 
-VPATH				= $(SRCS_DIR) $(SOCKET_DIR) $(SERVER_DIR) $(CLIENT_DIR) $(CMD_DIR) $(MSG_DIR) $(USER_DIR) $(UTILS_DIR) 
-VPATH				+=
+VPATH				= $(SRCS_DIR) $(SOCKET_DIR) $(SERVER_DIR) $(CLIENT_DIR)
+VPATH				+=$(USER_DIR) $(UTILS_DIR)
 
 DEFAULT_FILES		= .operator .structor .member .accessor
 SRCS				= $(addsuffix .cpp,				main \
 													Exceptions \
 													check_arguments \
-													ircserv \
-													split \
-													case_proof \
-													r_trim \
+													is_ \
 						$(addprefix Socket,			$(DEFAULT_FILES)) \
 						$(addprefix Server,			$(DEFAULT_FILES)) \
 						$(addprefix Client,			$(DEFAULT_FILES)) \
-						$(addprefix Command,		$(DEFAULT_FILES)) \
-						$(addprefix Message,		$(DEFAULT_FILES)) \
 						$(addprefix User,			$(DEFAULT_FILES)))
 OBJS				= $(patsubst %.cpp, $(OBJS_DIR)%.o, $(SRCS))
 DEPS				= $(OBJS:.o=.d)
@@ -78,7 +69,7 @@ uninstall			:
 					
 
 valgrind			: all
-					$(VALGRIND) $(VALGRIND_FLAG) ./$(NAME) $(ARG) $(PORT) $(SERV_NAME)
+					$(VALGRIND) $(VALGRIND_FLAG) ./$(NAME) $(ARG)
 
 clean				:
 					$(DEL_DIR) $(OBJS_DIR)
@@ -86,7 +77,9 @@ clean				:
 fclean				: clean
 					$(DEL_DIR) $(NAME)
 
-re					: fclean all
+re					:
+					make fclean
+					make
 
 -include			$(DEPS)
 

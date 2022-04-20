@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Socket.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:52:03 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/17 13:27:35 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/18 22:20:49 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,11 @@
 
 # include <iostream>
 # include <unistd.h>
-# include "Exceptions.hpp"
-# include "Message.hpp"
 # include <sys/types.h>
 # include <sys/socket.h>
 # include <errno.h>
-# include <sstream>
-# include <vector>
-# include <map>
+# include <arpa/inet.h>
+# include "Exceptions.hpp"
 
 
 class Socket
@@ -37,24 +34,21 @@ class Socket
 		typedef struct sockaddr		SOCKADDR;
 		typedef struct timeval		TIMEVAL;
 
-		Socket	(int port = PORT);
-		~Socket	(void);
+				Socket	(int port = PORT);
+		virtual	~Socket	(void);
 
-		void	add_in_fds	(fd_set * fds) const;
+		void	add_in_fds	(fd_set * fds);
 		int		select		(fd_set * rfds
 							,fd_set * wfds);
-		int		receive		(std::vector<std::string> & str) const;
-		int		send		(std::string & msg) const ;
+		int		receive		(std::string & str);
+		int		send		(std::string & msg);
 		bool	is_set		(fd_set * fds) const;
-		Accessor<int>	cap;
 
 	private:
 		SOCKET			_socket;
 		static SOCKET	_srv_socket;
 		static TIMEVAL	_timeout;
 		static SOCKET	_max;
-
-		
 
 		Socket	(const Socket & src);
 

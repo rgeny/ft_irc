@@ -3,50 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   User.operator.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/14 15:01:58 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/14 16:13:44 by abesombe         ###   ########.fr       */
+/*   Created: 2022/04/12 16:45:21 by rgeny             #+#    #+#             */
+/*   Updated: 2022/04/12 18:32:47 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "User.hpp"
 
-//User &	User::operator=	(User & src)
-//{
-//	(void)src;
-//	return (*this);
-//}
-
-User & User::operator=(User const & rhs)
+User &	User::operator=	(User & src)
 {
-	this->username = rhs.username.get();
-	this->nickname = rhs.nickname.get();
-	this->hostname = rhs.hostname.get();
-	this->realname = rhs.realname.get();
-	this->mode = rhs.mode.get();
+	this->_username = src.get_username();
+	this->_mode = src.get_mode();
+	this->_realname = src.get_realname();
 	return (*this);
 }
 
 std::ostream &	operator<<		(std::ostream & os
 								,User & src)
 {
-	(void)src;
+	os	<< "nickname : "
+		<< src.get_nickname()
+		<< std::endl
+		<< "username : "
+		<< src.get_username()
+		<< std::endl
+		<< "mode :"
+		<< std::endl;
+	const char	*usermode[] =
+		{"a", "i", "w", "r"
+		,"o", "O", "s"};
+	for (int i = 0; i < 7; i++)
+	{
+		os	<< usermode[i]
+			<< " : "
+			<< std::boolalpha
+			<< src.get_mode()[i]
+			<< std::endl;
+	}
+	os	<< "realname : "
+		<< src.get_realname()
+		<< std::endl;
+	
 	return (os);
 }
 
-std::ostream&	operator<<( std::ostream& o, User const & instance)
-{
-	o	<< "USER"
-		<< " USERNAME: "
-		<< instance.username.get()
-		<< " NICKNAME: "
-		<< instance.nickname.get()
-		<< " HOSTNAME: "
-		<< instance.hostname.get()
-		<< " REALNAME: "
-		<< instance.realname.get()
-		<< " MODE: "
-		<< instance.mode.get();
-	return (o);
-}

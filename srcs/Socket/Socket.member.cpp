@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Socket.member.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:59:23 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/20 10:36:31 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/18 22:12:35 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ircserv.hpp"
 #include "Socket.hpp"
 
-
-void	Socket::add_in_fds	(fd_set * fds) const
+void	Socket::add_in_fds	(fd_set * fds)
 {
 	if (!FD_ISSET(this->_socket, fds))
 	{
@@ -36,17 +34,15 @@ int		Socket::select		(fd_set * rfds
 	return (-1);
 }
 
-int	Socket::receive	(std::vector<std::string> & str) const
+int	Socket::receive	(std::string & str)
 {
 	char	s[BUF_SIZE] = "";
-	int		n			= 	recv(this->_socket, s, BUF_SIZE - 1, 0);
-	str = split(std::string(s), '\n');
-	if (str.size() >= 1)
-		r_trim(str[str.size() - 1]);
+	int		n			= ::recv(this->_socket, s, BUF_SIZE - 1, 0);
+	str = s;
 	return (n);
 }
 
-int			Socket::send	(std::string & msg) const
+int			Socket::send	(std::string & msg)
 {
 	return (::send(this->_socket, msg.c_str(), msg.length(), 0));
 }
@@ -55,4 +51,3 @@ bool		Socket::is_set	(fd_set * fds) const
 {
 	return (FD_ISSET(this->_socket, fds));
 }
-

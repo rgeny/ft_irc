@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   r_trim.cpp                                         :+:      :+:    :+:   */
+/*   Utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/16 09:46:06 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/16 09:48:25 by abesombe         ###   ########.fr       */
+/*   Created: 2022/04/18 21:36:35 by rgeny             #+#    #+#             */
+/*   Updated: 2022/04/18 21:55:53 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ircserv.hpp"
+#ifndef UTILS_HPP
+# define UTILS_HPP
+# include <iostream>
+# include <locale>
 
-void r_trim(std::string &str)
-{
-    if (str[str.length() - 1] == '\r')
-        str = str.substr(0, str.length() - 1);
-}
+bool	is_special	(char c);
+bool	is_hexdigit	(char c);
+#endif

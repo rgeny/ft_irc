@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:23:38 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/16 13:03:52 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/18 21:56:34 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ircserv.hpp"
+#include "ircserv.hpp"
 #include "Socket.hpp"
 #include "Server.hpp"
 #include "User.hpp"
@@ -31,15 +31,12 @@ int	main	(__attribute((unused)) int argc
 		check_nbr_of_arguments(argc);
 		check_port_argument(std::string(argv[1]));
 		check_password_argument(std::string(argv[2]));
-		print_variable(BOLDMAGENTA, "Majin Boo 魔人ブウ", "", RESET);
+		print_variable(BOLDMAGENTA, "ft_irc started", "", RESET);
 		port = atoi(argv[1]);
 		password = argv[2];
 		Server	serv (password, port);
-		serv.init_cmd_list();
-		serv.init_msg_list();
 
 		serv.main();
-		// ircserv(port, password);
 	}
 	catch (const wrong_number_of_arguments & e)
 	{

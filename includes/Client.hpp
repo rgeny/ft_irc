@@ -3,38 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   Client.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:43:21 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/14 15:19:25 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/20 05:08:33 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CLIENT_HPP
 # define CLIENT_HPP
-# include "Socket.hpp"
-# include "Accessor.hpp"
+# define DFL_NICKNAME "anonymous"
+
 # include <iostream>
-# include <map>
+# include <queue>
+# include "Socket.hpp"
+# include "Utils.hpp"
 
 class Client
+	:public Socket
 {
 	public:
+		Client	(void);
 		Client	(std::string nickname);
 		Client	(Client & src);
 		~Client	(void);
 
 		Client &	operator=	(Client & src);
 
-		Accessor<std::string>	nickname;
-		Socket &	get_socket(void);
-		User &		get_user(void);
-		
-	private:
-		Socket	_socket;
-		User	_user;
-		Client	(void);
+		const std::string &	get_nickname	(void) const;
+		bool				set_nickname	(std::string nickname);
 
+		void	add_to_queue		(std::string & msg);
+		bool	is_empty_msg_queue	(void) const;
+		int		send				(void);
+
+	private:
+//		Socket					_socket;
+		std::string				_nickname;
+		std::queue<std::string>	_msg_queue;
 };
 
 std::ostream &	operator<<	(std::ostream & os

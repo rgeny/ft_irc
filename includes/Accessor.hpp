@@ -3,27 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   Accessor.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:00:29 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/13 11:51:02 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/07 18:28:42 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ACCESSOR_HPP
 #define ACCESSOR_HPP
 
-# include <iostream>
-# include <string>
+#include <iostream>
+#include <string>
 
 template	< class T = std::string >
 class Accessor
 {
 	private:
-		T	_val;	
+		T	_val;
+		Accessor() {};
+
 
 	public:
-		Accessor() {};
 		Accessor(T	value) : _val(value) {};
 		Accessor(Accessor const & src) : _val(src.value) {};
 		~Accessor() {};

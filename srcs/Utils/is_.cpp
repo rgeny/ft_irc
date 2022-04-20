@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Message.member.cpp                                 :+:      :+:    :+:   */
+/*   is_.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/18 19:16:25 by abesombe         ###   ########.fr       */
+/*   Created: 2022/04/18 21:53:06 by rgeny             #+#    #+#             */
+/*   Updated: 2022/04/18 21:54:32 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Message.hpp"
+#include "Utils.hpp"
 
-std::string const & Message::aggreg(void)
+bool	is_special	(char c)
 {
-    std::string *tmp = new std::string(_sender + " " + msg_code.get() + " " + _receiver + " " + msg_content.get() + "\r\n");
-    return (*tmp);
+	return ((c >= '[' && c <= '`')
+			|| (c >= '{' && c <= '}'));
+}
+
+bool	is_hexdigit	(char c)
+{
+	return ((c >= 'A' && c <= 'F')
+			|| isdigit(c));
 }
