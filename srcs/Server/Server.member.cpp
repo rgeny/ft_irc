@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/20 11:05:52 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/20 12:51:02 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -310,7 +310,7 @@ void Server::check_cmd(Client *sender, std::vector<std::string> cmd)
 
 int	Server::cap(Client *sender, const std::vector<std::string> &cmd)
 {
-	int	cap_step = WAITING_FOR_CAP_END;
+	int	cap_step = WAITING_FOR_CAP_LS;
 	std::vector<std::string> args(1, cmd[0]);
 	std::string cmd1 = "";
 	if (cmd.size() > 1)
@@ -332,7 +332,7 @@ int	Server::cap(Client *sender, const std::vector<std::string> &cmd)
 		std::cout << "CAP LS ACTIVATED!!" << std::endl;
 		sender->get_socket().cap.set(cap_step);
 	}
-	else if (cmd.size() > 1 && sender->get_socket().cap.get() == WAITING_FOR_CAP_END && case_proof(cmd1).compare("END") == 0)
+	else if (cmd.size() > 1 && sender->get_socket().cap.get() == WAITING_FOR_CAP_LS && case_proof(cmd1).compare("END") == 0)
 	{
 		std::cout << "CAP CYCLE TERMINATED!!" << std::endl;
 		cap_step = CAP_CYCLE_TERMINATED;
@@ -363,12 +363,12 @@ int	Server::nick(Client *sender, const std::vector<std::string> &cmd)
 	}
 	else
 	{
-		if (sender->get_socket().cap.get() >= WAITING_FOR_CAP_END)
+		if (sender->get_socket().cap.get() >= WAITING_FOR_CAP_LS)
 		{
 			std::cout << "ACCEPTED IN CAP SECTION" << std::endl;
 			// First we check if the user is already registered 
 			// => if he is, then it means he wants to swap nickname
-			if (sender->get_user().is_nick_valid(cmd[1]) == false)
+			if (sender->get_user().is_nick_valid(cmd1) == false)
 			{
 				Message reply(":"+_hostname, "", ERR_ERRONEUSNICKNAME, get_msg(ERR_ERRONEUSNICKNAME, &args));
 				std::string final_msg = reply.aggreg();
@@ -403,7 +403,7 @@ int	Server::nick(Client *sender, const std::vector<std::string> &cmd)
 int	Server::user(Client *sender, const std::vector<std::string> &cmd)
 {
 	// std::cout << "Je suis dans la commande user - " << sender->get_user().nickname.get() << std::endl;
-	if (sender->get_socket().cap.get() >= WAITING_FOR_CAP_END && sender->get_user().nickname.get() != "anonymous")
+	if (sender->get_socket().cap.get() >= WAITING_FOR_CAP_LS && sender->get_user().nickname.get() != "anonymous")
 	{
 		// std::cout << "cmd.size(): " << cmd.size() << std::endl;
 		if (cmd.size() > 4)
