@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:06:01 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/20 05:59:44 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/20 06:04:17 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,16 @@ Server:: Server	(std::string	password
 
 Server:: Server	(Server & src)
 {
-	(void)src;
 	std::cout	<< "Server cpy constructor."
 				<< std::endl;
+	(void)src;
 }
 
 Server::~Server	(void)
 {
-	for (int i = 0; i < this->_users.size(); i++)
-		delete this->_users[i];
 	std::cout	<< "Server destructor."
 				<< std::endl;
+	std::vector<User *> &	users = this->_users;
+	for (USERS_IT it = users.begin(), ite = users.end(); it != ite; it++)
+		delete (*it);
 }
