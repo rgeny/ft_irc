@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/20 06:07:54 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/20 06:08:42 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@
 # include <string>
 # include <vector>
 # include "User.hpp"
-
-//tmp
-#define MAX_CLIENTS 10
-//fin tmp
 
 class Server
 	:private Socket
