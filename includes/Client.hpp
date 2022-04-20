@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:43:21 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/18 22:14:08 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/20 05:08:33 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class Client
 		Client &	operator=	(Client & src);
 
 		const std::string &	get_nickname	(void) const;
-		void				set_nickname	(std::string nickname);
+		bool				set_nickname	(std::string nickname);
 
 		void	add_to_queue		(std::string & msg);
 		bool	is_empty_msg_queue	(void) const;
