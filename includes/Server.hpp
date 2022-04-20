@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/20 05:58:56 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/20 06:02:11 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ class Server
 
 		Server	(std::string	password
 				,int			port = PORT);
-		Server	(Server & src);
 		~Server	(void);
 
 		Server &	operator=	(Server & src);
@@ -48,6 +47,8 @@ class Server
 		std::string				_buf;
 		fd_set					_rfds;
 		fd_set					_wfds;
+
+		Server	(Server & src);
 };
 
 std::ostream &	operator<<	(std::ostream & os
