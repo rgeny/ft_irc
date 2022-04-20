@@ -6,7 +6,7 @@
 #    By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/18 21:55:22 by rgeny            ###   ########.fr        #
+#    Updated: 2022/04/20 05:10:29 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,9 @@ clean				:
 fclean				: clean
 					$(DEL_DIR) $(NAME)
 
-re					: fclean all
+re					:
+					make fclean
+					make
 
 -include			$(DEPS)
 
