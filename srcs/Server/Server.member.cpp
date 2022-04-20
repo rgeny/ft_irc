@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/20 06:00:42 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/20 19:26:33 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,10 @@ void	Server::check_fds		(void)
 			(*it)->send();
 		else if ((*it)->is_set(&this->_rfds))
 		{
-			if ((*it)->receive(this->_buf) == 0)
+			int	n = (*it)->receive(this->_buf);
+			if (n == 0)
 				this->del_client(it);
-			else
+			else if (n > 0)
 			{
 				std::cout	<< "buf : "
 							<< this->_buf
