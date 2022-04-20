@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:46:14 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/16 12:48:45 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/20 14:54:39 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,10 +177,9 @@ void	check_password_argument	(const std::string & str);
 bool    is_number	(const std::string& str);
 void	ircserv	(int port
 				,std::string const & password);
-std::vector<std::string>	split	(const std::string &s
-									,char delim);
+std::vector<std::string>	split	(std::string	&s
+									,std::string	delimiter);
 std::string case_proof(std::string str);
-void r_trim(std::string &str);
 
 /*
 **  TEMPLATES

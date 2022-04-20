@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 15:20:32 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/18 18:33:41 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/20 15:06:49 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,5 @@ std::string case_proof(std::string str)
             char_str[i] = str.c_str()[i];
     }
     char_str[size] = '\0';
-    //printf("\nchar_str: %s\n", char_str);
     return (std::string(char_str));
 }

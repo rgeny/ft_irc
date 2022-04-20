@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/18 18:35:01 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/20 16:29:10 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct sockaddr		SOCKADDR;
 class Server
 {
 	
-	typedef int (Server::*UserCommandPointer)(Client *, std::vector<std::string> const & message);
+	typedef int (Server::*UserCommandPointer)(Client *, std::vector<std::string> & message);
 	typedef std::map<std::string, UserCommandPointer> userCmds;
 	// typedef std::map<std::string, UserCommandPointer> serviceCommands;
 
@@ -52,12 +52,11 @@ class Server
 		void 	init_cmd_list	(void);
 		void	init_msg_list	(void);
 		void 	check_cmd(Client *sender, std::vector<std::string> tokens);
-		std::string get_msg(std::string msg_code, std::vector<std::string> *args);
-		std::string replace_tags(std::string msg_template, std::vector<std::string> *args);
+
 		// void find_replace_tags(std::string & data, std::string toSearch, std::string replaceStr);
 		// int		admin(Client *sender, const std::vector<std::string> &msg);
 		// int		away(Client *sender, const std::vector<std::string> &msg);
-		int		cap(Client *sender, const std::vector<std::string> &msg);
+		int		cap(Client *sender, std::vector<std::string> &msg);
 		// int		cnotice(Client *sender, const std::vector<std::string> &msg);
 		// int		cprivmsg(Client *sender, const std::vector<std::string> &msg);
 		// int		connect(Client *sender, const std::vector<std::string> &msg);
@@ -79,7 +78,7 @@ class Server
 		// int		motd(Client *sender, const std::vector<std::string> &msg);
 		// int		names(Client *sender, const std::vector<std::string> &msg);
 		// int		namesx(Client *sender, const std::vector<std::string> &msg);
-		int			nick(Client *sender, const std::vector<std::string> &msg);
+		int			nick(Client *sender, std::vector<std::string> &msg);
 		// int		notice(Client *sender, const std::vector<std::string> &msg);
 		// int		oper(Client *sender, const std::vector<std::string> &msg);
 		// int		part(Client *sender, const std::vector<std::string> &msg);
@@ -103,7 +102,7 @@ class Server
 		// int		topic(Client *sender, const std::vector<std::string> &msg);
 		// int		trace(Client *sender, const std::vector<std::string> &msg);
 		// int		uhnames(Client *sender, const std::vector<std::string> &msg);
-		int		user(Client *sender, const std::vector<std::string> &msg);
+		int		user(Client *sender, std::vector<std::string> &msg);
 		// int		userhost(Client *sender, const std::vector<std::string> &msg);
 		// int		userip(Client *sender, const std::vector<std::string> &msg);
 		// int		users(Client *sender, const std::vector<std::string> &msg);
@@ -113,7 +112,8 @@ class Server
 		// int		who(Client *sender, const std::vector<std::string> &msg);
 		// int		whois(Client *sender, const std::vector<std::string> &msg);
 		
-
+		std::map<std::string, std::string>	get_msg_list(void) const;
+		
 	private:
 		std::vector<Client *>			_clients;
 		std::string						_password;
