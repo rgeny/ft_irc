@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/20 16:37:31 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/20 16:46:39 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ class Message
 		size_t 					size_arg(void);
 		std::string 			get_msg(std::string & msg_code, std::vector<std::string> & args, std::map<std::string, std::string> & _msg_list);
 		const std::string &		forge(std::string & sender, std::string & msg_code, std::map<std::string, std::string> & _msg_list);
-		std::string 			replace_tags(std::string msg_template, std::vector<std::string> *args);
+		std::string 			replace_tags(std::string msg_template, std::vector<std::string> & args);
 };
 
 std::ostream&	operator<<( std::ostream& o, Message const & instance);
