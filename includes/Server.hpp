@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/20 06:06:29 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/20 06:07:54 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@ class Server
 		Server &	operator=	(Server & src);
 
 		void	main			(void);
-		void	init_fds		(void);
-		void	check_fds		(void);
-		void	del_client		(USERS_IT & it);
 
 	private:
 		std::vector<User *>		_users;
@@ -50,6 +47,10 @@ class Server
 		fd_set					_wfds;
 
 		Server	(Server & src);
+
+		void	init_fds		(void);
+		void	check_fds		(void);
+		void	del_client		(USERS_IT & it);
 };
 
 std::ostream &	operator<<	(std::ostream & os
