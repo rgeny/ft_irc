@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/18 22:34:31 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/20 05:22:11 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,12 @@ char		Server::_buffer[1024] = "";
 
 void	Server::main			(void)
 {
-	while (true)
+	while (!FD_ISSET(STDIN_FILENO, &this->_rfds))
 	{
-		this->init_rfds();
+		this->init_fds();
 		this->select(&this->_rfds, &this->_wfds);
-		if (FD_ISSET(STDIN_FILENO, &this->_rfds))
-			return ;
-		else if (this->is_set(&this->_rfds))
-		{
-			std::cout	<< "1\n";
+		if (this->is_set(&this->_rfds))
 			this->_clients.push_back(new Client);
-		}
 		else
 		{
 			for (int i = 0; i < this->_clients.size(); i++)
@@ -53,7 +48,7 @@ void	Server::main			(void)
 	}
 }
 
-void	Server::init_rfds		(void)
+void	Server::init_fds		(void)
 {
 	FD_ZERO	(&this->_wfds);
 	FD_ZERO	(&this->_rfds);

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:06:01 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/18 22:29:51 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/20 05:21:25 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ Server:: Server	(std::string	password
 				<< std::endl;
 	if (errno != 0)
 		throw error_opening_socket ();
+	FD_ZERO(&this->_wfds);
+	FD_ZERO(&this->_rfds);
 }
 
 Server:: Server	(Server & src)

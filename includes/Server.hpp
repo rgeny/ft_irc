@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/18 22:23:06 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/20 05:22:03 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 # include <string>
 # include <vector>
 # include "Client.hpp"
-
-typedef struct sockaddr_in	SOCKADDR_IN;
-typedef struct sockaddr		SOCKADDR;
 
 //tmp
 #define MAX_CLIENTS 10
@@ -38,7 +35,7 @@ class Server
 		Server &	operator=	(Server & src);
 
 		void	main			(void);
-		void	init_rfds		(void);
+		void	init_fds		(void);
 		void	del_client		(int	i);
 
 	private:
