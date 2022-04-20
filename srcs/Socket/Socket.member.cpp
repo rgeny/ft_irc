@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:59:23 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/16 09:49:53 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/20 10:36:31 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	Socket::receive	(std::vector<std::string> & str) const
 	char	s[BUF_SIZE] = "";
 	int		n			= 	recv(this->_socket, s, BUF_SIZE - 1, 0);
 	str = split(std::string(s), '\n');
-	r_trim(str[str.size() - 1]);
+	if (str.size() >= 1)
+		r_trim(str[str.size() - 1]);
 	return (n);
 }
 
