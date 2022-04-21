@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/22 15:25:11 by abesombe         ###   ########.fr        #
+#    Updated: 2022/04/23 01:36:09 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,9 +31,11 @@ USER_DIR			= $(SRCS_DIR)User/
 UTILS_DIR			= $(SRCS_DIR)Utils/
 COMMAND_DIR			= $(SRCS_DIR)Command/
 MESSAGE_DIR			= $(SRCS_DIR)Message/
+HISTORICALNODE_DIR	= $(SRCS_DIR)HistoricalNode/
 
 VPATH				= $(SRCS_DIR) $(SOCKET_DIR) $(SERVER_DIR) $(CLIENT_DIR)
 VPATH				+=$(USER_DIR) $(UTILS_DIR) $(COMMAND_DIR) $(MESSAGE_DIR)
+VPATH				+=$(HISTORICALNODE_DIR)
 
 ifndef ARG
 	ARG = 6697 abc
@@ -51,12 +53,14 @@ SRCS				= $(addsuffix .cpp,				main \
 						$(addprefix Client,			$(DEFAULT_FILES)) \
 						$(addprefix User,			$(DEFAULT_FILES)) \
 						$(addprefix Command,		$(DEFAULT_FILES)) \
-						$(addprefix Message,		$(DEFAULT_FILES)))
+						$(addprefix Message,		$(DEFAULT_FILES)) \
+						$(addprefix HistoricalNode,	$(DEFAULT_FILES)))
 OBJS				= $(patsubst %.cpp, $(OBJS_DIR)%.o, $(SRCS))
 DEPS				= $(OBJS:.o=.d)
 
 NAME				= ircserv
 CLIENT				= client
+TEST				= test
 
 all					: new_dir $(NAME)
 
@@ -86,11 +90,15 @@ $(CLIENT)			:
 					$(CC) client.cpp $(INCLUDES_FLAG) -o $@
 					./$@ $(ARG)
 
+$(TEST)				:
+					$(CC) test.cpp -o $@
+					./$@
+
 clean				:
 					$(DEL_DIR) $(OBJS_DIR)
 
 fclean				: clean
-					$(DEL_DIR) $(NAME) $(CLIENT)
+					$(DEL_DIR) $(NAME) $(CLIENT) $(TEST)
 
 re					:
 					make fclean
@@ -98,5 +106,5 @@ re					:
 
 -include			$(DEPS)
 
-.PHONY				: all clean fclean re client
+.PHONY				: all clean fclean re client test
 
