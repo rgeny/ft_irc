@@ -6,7 +6,7 @@
 #    By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/21 09:53:13 by rgeny            ###   ########.fr        #
+#    Updated: 2022/04/21 09:57:24 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,7 +84,7 @@ clean				:
 					$(DEL_DIR) $(OBJS_DIR)
 
 fclean				: clean
-					$(DEL_DIR) $(NAME)
+					$(DEL_DIR) $(NAME) $(CLIENT)
 
 re					:
 					make fclean
