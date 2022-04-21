@@ -6,7 +6,7 @@
 #    By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/20 05:10:29 by rgeny            ###   ########.fr        #
+#    Updated: 2022/04/21 09:34:49 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,10 @@ UTILS_DIR			= $(SRCS_DIR)Utils/
 
 VPATH				= $(SRCS_DIR) $(SOCKET_DIR) $(SERVER_DIR) $(CLIENT_DIR)
 VPATH				+=$(USER_DIR) $(UTILS_DIR)
+
+ifndef ARG
+	ARG = 6697 abc
+endif
 
 DEFAULT_FILES		= .operator .structor .member .accessor
 SRCS				= $(addsuffix .cpp,				main \
@@ -71,6 +75,10 @@ uninstall			:
 valgrind			: all
 					$(VALGRIND) $(VALGRIND_FLAG) ./$(NAME) $(ARG)
 
+client				:
+					$(CC) client.cpp -o client
+					./client $(ARG)
+
 clean				:
 					$(DEL_DIR) $(OBJS_DIR)
 
@@ -83,5 +91,5 @@ re					:
 
 -include			$(DEPS)
 
-.PHONY				: all clean fclean re
+.PHONY				: all clean fclean re client
 

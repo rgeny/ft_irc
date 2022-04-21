@@ -6,7 +6,7 @@
 
 int main(int argc, char const *argv[])
 {
-	if (argc != 2)
+	if (argc < 2)
 		{
 		std::cout << "\n Invalid argument: <port> \n" << std::endl;
 		return -1;
