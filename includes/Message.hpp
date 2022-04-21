@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/21 15:24:31 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/21 16:12:15 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ class Message
 		std::string				getReceiver() const;
 		void					setSender(std::string& sender);
 		void					setReceiver(std::string& receiver);
-		void					add_arg(std::string &arg);
+		void					add_arg(std::string arg);
 		size_t 					size_arg(void);
 		std::string 			get_msg(std::string & msg_code, std::vector<std::string> & args, std::map<std::string, std::string> & _msg_list);
 		const std::string &		forge(std::string & sender, std::string msg_code, std::map<std::string, std::string> & _msg_list);

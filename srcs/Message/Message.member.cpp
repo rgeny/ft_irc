@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/21 15:26:29 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/21 16:11:54 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ std::string const & Message::aggreg(void)
 	return (*tmp);
 }
 
-void Message::add_arg(std::string &arg)
+void Message::add_arg(std::string arg)
 {
 	this->_msg_args.push_back(arg);
 }
