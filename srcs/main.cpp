@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:23:38 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/23 01:34:54 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 01:36:34 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,12 @@
 #include "Socket.hpp"
 #include "Server.hpp"
 #include "User.hpp"
-#include "HistoricalNode.hpp"
+#include "Historical.hpp"
+#include <unistd.h>
 
 int	main	(__attribute((unused)) int argc
 			,__attribute((unused)) char ** argv)
 {
-	{
-		HistoricalNode	a("abc", "def");
-
-		std::cout	<< std::endl
-					<< a
-					<< std::endl;
-	}
-	return (0);
 	try
 	{
 		int	port;
