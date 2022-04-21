@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 10:33:57 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/21 10:49:01 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/21 10:59:07 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ class HistoricalNode
 	public:
 		HistoricalNode	(std::string last
 						,std::string actual);
+		HistoricalNode	(HistoricalNode & src);
 		~HistoricalNode	(void);
 
 		HistoricalNode &	operator=	(HistoricalNode & src);
@@ -35,7 +36,6 @@ class HistoricalNode
 		const time_t		_timestamp;
 
 		HistoricalNode	(void);
-		HistoricalNode	(HistoricalNode & src);
 };
 
 std::ostream &	operator<<	(std::ostream & os
