@@ -1,6 +1,7 @@
 objs/*
 objs
 ircserv
+client
 *.swp
 test
 test/*
