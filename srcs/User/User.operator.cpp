@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:45:21 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/12 18:32:47 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/21 09:51:50 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 User &	User::operator=	(User & src)
 {
-	this->_username = src.get_username();
-	this->_mode = src.get_mode();
-	this->_realname = src.get_realname();
+	this->_username = src._username;
+	this->_mode = src._mode;
+	this->_realname = src._realname;
 	return (*this);
 }
 

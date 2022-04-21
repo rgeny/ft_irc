@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:55:22 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/12 14:59:48 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/21 09:50:18 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Client &	Client::operator=	(Client & src)
 {
-	this->_nickname = src.get_nickname();
+	this->_nickname = src._nickname;
 	return (*this);
 }
 

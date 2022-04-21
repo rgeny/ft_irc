@@ -6,7 +6,7 @@
 #    By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/21 09:34:49 by rgeny            ###   ########.fr        #
+#    Updated: 2022/04/21 09:53:13 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ OBJS				= $(patsubst %.cpp, $(OBJS_DIR)%.o, $(SRCS))
 DEPS				= $(OBJS:.o=.d)
 
 NAME				= ircserv
+CLIENT				= client
 
 all					: new_dir $(NAME)
 
@@ -75,9 +76,9 @@ uninstall			:
 valgrind			: all
 					$(VALGRIND) $(VALGRIND_FLAG) ./$(NAME) $(ARG)
 
-client				:
-					$(CC) client.cpp -o client
-					./client $(ARG)
+$(CLIENT)			:
+					$(CC) client.cpp -o $@
+					./$@ $(ARG)
 
 clean				:
 					$(DEL_DIR) $(OBJS_DIR)
