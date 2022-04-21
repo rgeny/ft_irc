@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:23:38 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/21 10:53:07 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/21 12:05:51 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include "Socket.hpp"
 #include "Server.hpp"
 #include "User.hpp"
-#include "HistoricalNode.hpp"
+#include "Historical.hpp"
+#include <unistd.h>
 
 bool	is_number(const std::string& str)
 {
@@ -24,14 +25,6 @@ bool	is_number(const std::string& str)
 int	main	(__attribute((unused)) int argc
 			,__attribute((unused)) char ** argv)
 {
-	{
-		HistoricalNode	a("abc", "def");
-
-		std::cout	<< std::endl
-					<< a
-					<< std::endl;
-	}
-	return (0);
 	try
 	{
 		int	port;

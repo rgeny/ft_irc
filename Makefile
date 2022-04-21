@@ -6,7 +6,7 @@
 #    By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/21 10:36:23 by rgeny            ###   ########.fr        #
+#    Updated: 2022/04/21 11:08:02 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,9 +30,10 @@ CLIENT_DIR			= $(SRCS_DIR)Client/
 USER_DIR			= $(SRCS_DIR)User/
 UTILS_DIR			= $(SRCS_DIR)Utils/
 HISTORICALNODE_DIR	= $(SRCS_DIR)HistoricalNode/
+HISTORICAL_DIR		= $(SRCS_DIR)Historical/
 
 VPATH				= $(SRCS_DIR) $(SOCKET_DIR) $(SERVER_DIR) $(CLIENT_DIR)
-VPATH				+=$(USER_DIR) $(UTILS_DIR) $(HISTORICALNODE_DIR)
+VPATH				+=$(USER_DIR) $(UTILS_DIR) $(HISTORICALNODE_DIR) $(HISTORICAL_DIR)
 
 ifndef ARG
 	ARG = 6697 abc
@@ -47,7 +48,8 @@ SRCS				= $(addsuffix .cpp,				main \
 						$(addprefix Server,			$(DEFAULT_FILES)) \
 						$(addprefix Client,			$(DEFAULT_FILES)) \
 						$(addprefix User,			$(DEFAULT_FILES)) \
-						$(addprefix HistoricalNode,	$(DEFAULT_FILES)))
+						$(addprefix HistoricalNode,	$(DEFAULT_FILES)) \
+						$(addprefix Historical,		$(DEFAULT_FILES)))
 OBJS				= $(patsubst %.cpp, $(OBJS_DIR)%.o, $(SRCS))
 DEPS				= $(OBJS:.o=.d)
 
