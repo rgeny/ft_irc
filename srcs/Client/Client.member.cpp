@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:57:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/20 19:33:04 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/21 09:12:59 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,12 @@ int		Client::send	(void)
 	else
 	{
 		std::string &	msg = this->_msg_queue.front();
+		std::cout	<< "msg size : "
+					<< msg.size()
+					<< std::endl;
+		int	ret = this->Socket::send(msg);
 		this->_msg_queue.pop();
-		return (this->Socket::send(msg));
+		return (ret);
 	}
 	return (-1);
 }
@@ -43,7 +47,7 @@ int		Client::receive	(std::string & msg)
 
 	if (msg_timer < cur_time)
 		msg_timer = cur_time;
-	else if ((msg_timer - cur_time) > MSG_MAX_TIMER)
+	if ((msg_timer - cur_time) + MSG_PENALIZE_TIME >= MSG_MAX_TIMER)
 		return (-1);
 	msg_timer += MSG_PENALIZE_TIME;
 	return (this->Socket::receive(msg));
