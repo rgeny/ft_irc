@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/20 14:54:34 by abesombe         ###   ########.fr        #
+#    Updated: 2022/04/21 17:19:57 by abesombe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,9 +41,9 @@ DEFAULT_FILES		= .operator .structor .member .accessor
 SRCS				= $(addsuffix .cpp,				main \
 													Exceptions \
 													check_arguments \
-													ircserv \
 													split \
 													case_proof \
+													is_	\
 						$(addprefix Socket,			$(DEFAULT_FILES)) \
 						$(addprefix Server,			$(DEFAULT_FILES)) \
 						$(addprefix Client,			$(DEFAULT_FILES)) \

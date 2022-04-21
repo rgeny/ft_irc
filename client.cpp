@@ -6,7 +6,7 @@
 
 int main(int argc, char const *argv[])
 {
-	if (argc != 2)
+	if (argc < 2)
 		{
 		std::cout << "\n Invalid argument: <port> \n" << std::endl;
 		return -1;
@@ -40,6 +40,7 @@ int main(int argc, char const *argv[])
 	{
 		std::string input;
 		getline(std::cin, input);
+		input += "\r\n";
 		send(sock, input.c_str(), input.length(), 0);
 		// std::cout << "Hello message sent" << std::endl;
 		valread = recv(sock, buffer, 512, 0);

@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/20 16:29:10 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/21 17:37:48 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,13 @@
 # include <map>
 # include <utility>
 # include "Socket.hpp"
-# include "Client.hpp"
 # include "User.hpp"
 
-typedef struct sockaddr_in	SOCKADDR_IN;
-typedef struct sockaddr		SOCKADDR;
-
-//tmp
-#define MAX_CLIENTS 10
-//fin tmp
 
 class Server
 {
 	
-	typedef int (Server::*UserCommandPointer)(Client *, std::vector<std::string> & message);
+	typedef int (Server::*UserCommandPointer)(User *, std::vector<std::string> & message);
 	typedef std::map<std::string, UserCommandPointer> userCmds;
 	// typedef std::map<std::string, UserCommandPointer> serviceCommands;
 
@@ -51,71 +44,71 @@ class Server
 		void	del_client		(int	i);
 		void 	init_cmd_list	(void);
 		void	init_msg_list	(void);
-		void 	check_cmd(Client *sender, std::vector<std::string> tokens);
+		void 	check_cmd(User *sender, std::vector<std::string> tokens);
 
 		// void find_replace_tags(std::string & data, std::string toSearch, std::string replaceStr);
-		// int		admin(Client *sender, const std::vector<std::string> &msg);
-		// int		away(Client *sender, const std::vector<std::string> &msg);
-		int		cap(Client *sender, std::vector<std::string> &msg);
-		// int		cnotice(Client *sender, const std::vector<std::string> &msg);
-		// int		cprivmsg(Client *sender, const std::vector<std::string> &msg);
-		// int		connect(Client *sender, const std::vector<std::string> &msg);
-		// int		die(Client *sender, const std::vector<std::string> &msg);
-		// int		encap(Client *sender, const std::vector<std::string> &msg);
-		// int		error(Client *sender, const std::vector<std::string> &msg);
-		// int		help(Client *sender, const std::vector<std::string> &msg);
-		// int		info(Client *sender, const std::vector<std::string> &msg);
-		// int		invite(Client *sender, const std::vector<std::string> &msg);
-		// int		ison(Client *sender, const std::vector<std::string> &msg);
-		// int		join(Client *sender, const std::vector<std::string> &msg);
-		// int		kick(Client *sender, const std::vector<std::string> &msg);
-		// int		kill(Client *sender, const std::vector<std::string> &msg);
-		// int		knock(Client *sender, const std::vector<std::string> &msg);
-		// int		links(Client *sender, const std::vector<std::string> &msg);
-		// int		list(Client *sender, const std::vector<std::string> &msg);
-		// int		lusers(Client *sender, const std::vector<std::string> &msg);
-		// int		mode(Client *sender, const std::vector<std::string> &msg);
-		// int		motd(Client *sender, const std::vector<std::string> &msg);
-		// int		names(Client *sender, const std::vector<std::string> &msg);
-		// int		namesx(Client *sender, const std::vector<std::string> &msg);
-		int			nick(Client *sender, std::vector<std::string> &msg);
-		// int		notice(Client *sender, const std::vector<std::string> &msg);
-		// int		oper(Client *sender, const std::vector<std::string> &msg);
-		// int		part(Client *sender, const std::vector<std::string> &msg);
-		// int		pass(Client *sender, const std::vector<std::string> &msg);
-		// int		ping(Client *sender, const std::vector<std::string> &msg);
-		// int		pong(Client *sender, const std::vector<std::string> &msg);
-		// int		privmsg(Client *sender, const std::vector<std::string> &msg);
-		// int		quit(Client *sender, const std::vector<std::string> &msg);
-		// int		rehash(Client *sender, const std::vector<std::string> &msg);
-		// int		rules(Client *sender, const std::vector<std::string> &msg);
-		// int		server(Client *sender, const std::vector<std::string> &msg);
-		// int		service(Client *sender, const std::vector<std::string> &msg);
-		// int		servlist(Client *sender, const std::vector<std::string> &msg);
-		// int		squery(Client *sender, const std::vector<std::string> &msg);
-		// int		squit(Client *sender, const std::vector<std::string> &msg);
-		// int		setname(Client *sender, const std::vector<std::string> &msg);
-		// int		silence(Client *sender, const std::vector<std::string> &msg);
-		// int		stats(Client *sender, const std::vector<std::string> &msg);
-		// int		summon(Client *sender, const std::vector<std::string> &msg);
-		// int		time(Client *sender, const std::vector<std::string> &msg);
-		// int		topic(Client *sender, const std::vector<std::string> &msg);
-		// int		trace(Client *sender, const std::vector<std::string> &msg);
-		// int		uhnames(Client *sender, const std::vector<std::string> &msg);
-		int		user(Client *sender, std::vector<std::string> &msg);
-		// int		userhost(Client *sender, const std::vector<std::string> &msg);
-		// int		userip(Client *sender, const std::vector<std::string> &msg);
-		// int		users(Client *sender, const std::vector<std::string> &msg);
-		// int		version(Client *sender, const std::vector<std::string> &msg);
-		// int		wallops(Client *sender, const std::vector<std::string> &msg);
-		// int		watch(Client *sender, const std::vector<std::string> &msg);
-		// int		who(Client *sender, const std::vector<std::string> &msg);
-		// int		whois(Client *sender, const std::vector<std::string> &msg);
+		// int		admin(User *sender, const std::vector<std::string> &msg);
+		// int		away(User *sender, const std::vector<std::string> &msg);
+		int		cap(User *sender, std::vector<std::string> &msg);
+		// int		cnotice(User *sender, const std::vector<std::string> &msg);
+		// int		cprivmsg(User *sender, const std::vector<std::string> &msg);
+		// int		connect(User *sender, const std::vector<std::string> &msg);
+		// int		die(User *sender, const std::vector<std::string> &msg);
+		// int		encap(User *sender, const std::vector<std::string> &msg);
+		// int		error(User *sender, const std::vector<std::string> &msg);
+		// int		help(User *sender, const std::vector<std::string> &msg);
+		// int		info(User *sender, const std::vector<std::string> &msg);
+		// int		invite(User *sender, const std::vector<std::string> &msg);
+		// int		ison(User *sender, const std::vector<std::string> &msg);
+		// int		join(User *sender, const std::vector<std::string> &msg);
+		// int		kick(User *sender, const std::vector<std::string> &msg);
+		// int		kill(User *sender, const std::vector<std::string> &msg);
+		// int		knock(User *sender, const std::vector<std::string> &msg);
+		// int		links(User *sender, const std::vector<std::string> &msg);
+		// int		list(User *sender, const std::vector<std::string> &msg);
+		// int		lusers(User *sender, const std::vector<std::string> &msg);
+		// int		mode(User *sender, const std::vector<std::string> &msg);
+		// int		motd(User *sender, const std::vector<std::string> &msg);
+		// int		names(User *sender, const std::vector<std::string> &msg);
+		// int		namesx(User *sender, const std::vector<std::string> &msg);
+		int			nick(User *sender, std::vector<std::string> &msg);
+		// int		notice(User *sender, const std::vector<std::string> &msg);
+		// int		oper(User *sender, const std::vector<std::string> &msg);
+		// int		part(User *sender, const std::vector<std::string> &msg);
+		// int		pass(User *sender, const std::vector<std::string> &msg);
+		// int		ping(User *sender, const std::vector<std::string> &msg);
+		// int		pong(User *sender, const std::vector<std::string> &msg);
+		// int		privmsg(User *sender, const std::vector<std::string> &msg);
+		// int		quit(User *sender, const std::vector<std::string> &msg);
+		// int		rehash(User *sender, const std::vector<std::string> &msg);
+		// int		rules(User *sender, const std::vector<std::string> &msg);
+		// int		server(User *sender, const std::vector<std::string> &msg);
+		// int		service(User *sender, const std::vector<std::string> &msg);
+		// int		servlist(User *sender, const std::vector<std::string> &msg);
+		// int		squery(User *sender, const std::vector<std::string> &msg);
+		// int		squit(User *sender, const std::vector<std::string> &msg);
+		// int		setname(User *sender, const std::vector<std::string> &msg);
+		// int		silence(User *sender, const std::vector<std::string> &msg);
+		// int		stats(User *sender, const std::vector<std::string> &msg);
+		// int		summon(User *sender, const std::vector<std::string> &msg);
+		// int		time(User *sender, const std::vector<std::string> &msg);
+		// int		topic(User *sender, const std::vector<std::string> &msg);
+		// int		trace(User *sender, const std::vector<std::string> &msg);
+		// int		uhnames(User *sender, const std::vector<std::string> &msg);
+		int		user(User *sender, std::vector<std::string> &msg);
+		// int		userhost(User *sender, const std::vector<std::string> &msg);
+		// int		userip(User *sender, const std::vector<std::string> &msg);
+		// int		users(User *sender, const std::vector<std::string> &msg);
+		// int		version(User *sender, const std::vector<std::string> &msg);
+		// int		wallops(User *sender, const std::vector<std::string> &msg);
+		// int		watch(User *sender, const std::vector<std::string> &msg);
+		// int		who(User *sender, const std::vector<std::string> &msg);
+		// int		whois(User *sender, const std::vector<std::string> &msg);
 		
 		std::map<std::string, std::string>	get_msg_list(void) const;
 		
 	private:
-		std::vector<Client *>			_clients;
+		std::vector<User *>			_clients;
 		std::string						_password;
 		std::string						_hostname;
 		Socket							_socket;

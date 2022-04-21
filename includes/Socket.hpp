@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:52:03 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/17 13:27:35 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/21 17:23:05 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,12 @@
 
 # include <iostream>
 # include <unistd.h>
-# include "Exceptions.hpp"
-# include "Message.hpp"
 # include <sys/types.h>
 # include <sys/socket.h>
+# include <arpa/inet.h>
 # include <errno.h>
-# include <sstream>
 # include <vector>
-# include <map>
-
+# include "Exceptions.hpp"
 
 class Socket
 {
@@ -46,7 +43,6 @@ class Socket
 		int		receive		(std::vector<std::string> & str) const;
 		int		send		(std::string & msg) const ;
 		bool	is_set		(fd_set * fds) const;
-		Accessor<int>	cap;
 
 	private:
 		SOCKET			_socket;

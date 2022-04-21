@@ -6,17 +6,19 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:38:42 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/08 18:15:56 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/21 17:19:02 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXCEPTIONS_HPP
 # define EXCEPTIONS_HPP
 
-# include "ircserv.hpp"
 # include <errno.h>
 # include <cstring>
 # include <cstdio>
+# include <iostream>
+# include <cstdlib>
+# include "defines.hpp"
 
 class wrong_number_of_arguments : public std::exception
 {

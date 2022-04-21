@@ -6,14 +6,14 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:23:38 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/16 13:03:52 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/21 17:17:38 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ircserv.hpp"
-#include "Socket.hpp"
+#include "ircserv.hpp"
 #include "Server.hpp"
-#include "User.hpp"
+#include "defines.hpp"
+#include "Exceptions.hpp"
 
 bool	is_number(const std::string& str)
 {

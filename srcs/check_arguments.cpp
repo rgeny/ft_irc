@@ -6,11 +6,12 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:42:06 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/05 17:52:40 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/21 17:19:26 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ircserv.hpp"
+#include "ircserv.hpp"
+#include "Exceptions.hpp"
 
 void	check_nbr_of_arguments(int argc)
 {
