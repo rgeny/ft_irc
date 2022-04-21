@@ -6,7 +6,7 @@
 #    By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/21 09:57:24 by rgeny            ###   ########.fr        #
+#    Updated: 2022/04/21 22:33:52 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,9 +29,11 @@ SERVER_DIR			= $(SRCS_DIR)Server/
 CLIENT_DIR			= $(SRCS_DIR)Client/
 USER_DIR			= $(SRCS_DIR)User/
 UTILS_DIR			= $(SRCS_DIR)Utils/
+COMMAND_DIR			= $(SRCS_DIR)Command/
+MESSAGE_DIR			= $(SRCS_DIR)Message/
 
 VPATH				= $(SRCS_DIR) $(SOCKET_DIR) $(SERVER_DIR) $(CLIENT_DIR)
-VPATH				+=$(USER_DIR) $(UTILS_DIR)
+VPATH				+=$(USER_DIR) $(UTILS_DIR) $(COMMAND_DIR) $(MESSAGE_DIR)
 
 ifndef ARG
 	ARG = 6697 abc
@@ -42,10 +44,14 @@ SRCS				= $(addsuffix .cpp,				main \
 													Exceptions \
 													check_arguments \
 													is_ \
+													split \
+													case_proof\
 						$(addprefix Socket,			$(DEFAULT_FILES)) \
 						$(addprefix Server,			$(DEFAULT_FILES)) \
 						$(addprefix Client,			$(DEFAULT_FILES)) \
-						$(addprefix User,			$(DEFAULT_FILES)))
+						$(addprefix User,			$(DEFAULT_FILES)) \
+						$(addprefix Command,		$(DEFAULT_FILES)) \
+						$(addprefix Message,		$(DEFAULT_FILES)))
 OBJS				= $(patsubst %.cpp, $(OBJS_DIR)%.o, $(SRCS))
 DEPS				= $(OBJS:.o=.d)
 
@@ -77,7 +83,7 @@ valgrind			: all
 					$(VALGRIND) $(VALGRIND_FLAG) ./$(NAME) $(ARG)
 
 $(CLIENT)			:
-					$(CC) client.cpp -o $@
+					$(CC) client.cpp $(INCLUDES_FLAG) -o $@
 					./$@ $(ARG)
 
 clean				:

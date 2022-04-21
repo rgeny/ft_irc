@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:23:38 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/18 21:56:34 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/21 20:08:06 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 #include "Socket.hpp"
 #include "Server.hpp"
 #include "User.hpp"
-
-bool	is_number(const std::string& str)
-{
-	return str.find_first_not_of("0123456789") == std::string::npos;
-}
 
 int	main	(__attribute((unused)) int argc
 			,__attribute((unused)) char ** argv)
@@ -54,27 +49,5 @@ int	main	(__attribute((unused)) int argc
 	{
 		e.what();
 	}
-	catch (const error_bind_failed & e)
-	{
-		e.what();
-	}
-	catch (const error_listen_failed & e)
-	{
-		e.what();
-	}
 	return (EXIT_SUCCESS);
 }
-//	Socket	x;
-//	std::cout	<< x
-//				<< std::endl;
-//	
-//	SOCKADDR_IN	sin;
-//	sin.sin_addr.s_addr = htonl(INADDR_ANY);
-//	sin.sin_port		= htons(6697);
-//	sin.sin_family		= AF_INET;
-//	bind(x.get_socket(), (SOCKADDR *) &sin, sizeof (sin));
-//	std::cout	<< "a"
-//				<< std::endl;
-//	listen(x.get_socket(), 10);
-//	std::cout	<< "b"
-//				<< std::endl;

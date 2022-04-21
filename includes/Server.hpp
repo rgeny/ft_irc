@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/20 06:08:42 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/21 21:25:02 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <string>
 # include <vector>
 # include "User.hpp"
+# include "Command.hpp"
+# include "Message.hpp"
 
 class Server
 	:private Socket
@@ -41,6 +43,8 @@ class Server
 		std::string				_buf;
 		fd_set					_rfds;
 		fd_set					_wfds;
+		Command					_cmd;
+		Message					_msg;
 
 		Server	(Server & src);
 

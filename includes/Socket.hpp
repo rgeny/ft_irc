@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:52:03 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/18 22:20:49 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/21 21:37:05 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@
 # include <sys/socket.h>
 # include <errno.h>
 # include <arpa/inet.h>
+# include <string>
+
 # include "Exceptions.hpp"
+# include "Utils.hpp"
 
 
 class Socket
@@ -37,11 +40,11 @@ class Socket
 				Socket	(int port = PORT);
 		virtual	~Socket	(void);
 
-		void	add_in_fds	(fd_set * fds);
+		void	add_in_fds	(fd_set * fds) const;
 		int		select		(fd_set * rfds
 							,fd_set * wfds);
-		int		receive		(std::string & str);
-		int		send		(std::string & msg);
+		int		receive		(std::string & str) const;
+		int		send		(std::string & msg) const;
 		bool	is_set		(fd_set * fds) const;
 
 	private:

@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 17:49:54 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/08 18:29:25 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/21 20:09:58 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,27 +54,6 @@ const char *error_opening_socket::what() const throw()
 	return ("");
 };
 
-const char *error_bind_failed::what() const throw()
-{
-	std::cerr	<< RED
-				<< "Error: bind_failed: "
-				<< strerror(errno)
-				<< RESET
-				<< std::endl;
-	std::exit(EXIT_FAILURE);
-	return ("");
-};
-
-const char *error_listen_failed::what() const throw()
-{
-	std::cerr	<< RED
-				<< "Error: listen_failed: "
-				<< strerror(errno)
-				<< RESET
-				<< std::endl;
-	std::exit(EXIT_FAILURE);
-	return ("");
-};
 
 const char *error_accept_failed::what() const throw()
 {

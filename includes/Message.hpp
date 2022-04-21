@@ -6,44 +6,66 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/05 16:24:17 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/21 22:52:11 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MESSAGE_HPP
-#define MESSAGE_HPP
+# define MESSAGE_HPP
 
-#include <iostream>
-#include <string>
-#include "User.hpp"
+# include <iostream>
+# include <string>
+# include <map>
+# include "User.hpp"
+# include "defines.hpp"
 
 #include "Accessor.hpp"
 
 class Message
 {
-	private:
-		Message();
-		User					*_sender;
-		User					*_receiver;
 	public:
-		Accessor<std::string>	txt;
-		Accessor<std::string>	commandCalled;
+		Accessor<std::string>	msg_code;
+		Accessor<std::string>	msg_content;
 
-		Message(User * sender,
-				User * receiver,
-				std::string const & txt,
-				std::string const & commandCalled);
-		Message( Message const & src);
+		// tmp
+		Message();
+		// fin tmp
+
+		Message		(std::string sender
+					,std::string receiver
+					,std::string msg_code
+					,std::string msg_content);
+		Message		(Message const & src);
+		~Message	(void);
+
 		Message & operator=(Message const & rhs);
-		~Message();
 
-		User *				getSender() const;
-		User *				getReceiver() const;
-		void				setSender(User * sender);
-		void				setReceiver(User * receiver);
-		
+		std::string	getSender	(void) const;
+		std::string	getReceiver	(void) const;
+		void		setSender	(std::string & sender);
+		void		setReceiver	(std::string & receiver);
+		std::string	get_msg		(std::string & msg_code
+								,std::vector<std::string> & args
+								,std::map<std::string, std::string> & _msg_list);
+
+		void				add_arg			(std::string arg);
+		size_t				size_arg		(void);
+		const std::string &	forge			(std::string sender
+											,std::string msg_code);
+		std::string			replace_tags	(std::string msg_template
+											,std::vector<std::string> &	args);
+		std::string const &	aggreg			(void);
+
+	private:
+
+		static std::map<std::string, std::string>	_msg_list;
+
+		std::string 				_sender;
+		std::string 				_receiver;
+		std::vector<std::string>	_msg_args;
 };
 
-std::ostream&	operator<<( std::ostream& o, Message const & instance);
+std::ostream &	operator<<	(std::ostream & o
+							,Message const & instance);
 
 #endif

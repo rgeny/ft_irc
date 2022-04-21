@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:00:29 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/07 18:28:42 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/21 21:41:10 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@ class Accessor
 {
 	private:
 		T	_val;
-		Accessor() {};
 
 
 	public:
+		//tmp
+		Accessor() {};
+		//fin tmp
+
 		Accessor(T	value) : _val(value) {};
 		Accessor(Accessor const & src) : _val(src.value) {};
 		~Accessor() {};
