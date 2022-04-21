@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 10:56:05 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/21 11:08:59 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/21 12:46:42 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,20 @@ Historical:: Historical	(Historical & src)
 {
 	std::cout	<< "Historical cpy constructor."
 				<< std::endl;
-	for (HISTORICAL_IT it = src._historical.begin(), ite = src._historical.end(); it != ite; it++)
+	
+	HISTORICAL_IT	it	= src._historical.begin();
+	HISTORICAL_IT	ite	= src._historical.end();
+
+	while (it != ite)
 	{
 		this->_historical.push_back(new HistoricalNode(**it));
+		it++;
 	}
 }
 
 Historical::~Historical	(void)
 {
-	for (HISTORICAL_IT it = this->_historical.begin(), ite = this->_historical.end(); it != ite; it++)
-	{
-		delete (*it);
-	}
+	this->_clear_history();
 	std::cout	<< "Historical destructor."
 				<< std::endl;
 }
-
