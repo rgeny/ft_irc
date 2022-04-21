@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 10:29:45 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/21 10:48:16 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/21 10:57:36 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ HistoricalNode:: HistoricalNode	(std::string last
 }
 
 HistoricalNode:: HistoricalNode	(HistoricalNode & src)
-	:_timestamp(time(NULL))
+	:_last(src._last)
+	,_actual(src._actual)
+	,_timestamp(src._timestamp)
 {
-	(void)src;
 	std::cout	<< "HistoricalNode cpy constructor."
 				<< std::endl;
 }
