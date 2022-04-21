@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/20 16:47:37 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/21 15:26:29 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,18 @@ std::string const & Message::aggreg(void)
 
 void Message::add_arg(std::string &arg)
 {
-	this->msg_args.push_back(arg);
+	this->_msg_args.push_back(arg);
 }
 
 size_t Message::size_arg(void)
 {
-	return(this->msg_args.size());
+	return(this->_msg_args.size());
 }
 
-std::string const & Message::forge(std::string & sender, std::string & msg_code, std::map<std::string, std::string> & msg_list)
+std::string const & Message::forge(std::string & sender, std::string msg_code, std::map<std::string, std::string> & msg_list)
 {
-	std::string content = get_msg(msg_code, msg_args, msg_list);
+	std::string content = get_msg(msg_code, _msg_args, msg_list);
+	
 	std::string *tmp = new std::string(sender + " " + msg_code + " " + _receiver + " " + content + "\r\n");
 	return (*tmp);
 }

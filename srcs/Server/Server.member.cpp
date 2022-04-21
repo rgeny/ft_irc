@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/20 16:25:59 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/21 15:27:28 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -301,41 +301,41 @@ void Server::check_cmd(Client *sender, std::vector<std::string> cmd)
 int	Server::nick(Client *sender, std::vector<std::string> &cmd)
 {
 	Message reply;
-	std::string err_code;
 	
 	if (cmd.size() <= 1)
 	{
 		reply.add_arg(cmd[0]);
-		err_code = ERR_NONICKNAMEGIVEN;
-		std::string final_msg = reply.forge(_hostname, err_code, _msg_list);
+		std::string final_msg = reply.forge(_hostname, ERR_NONICKNAMEGIVEN, _msg_list);
 		sender->get_socket().send(final_msg);
 		return (-1);
 	}
 	else
 	{
 		reply.add_arg(cmd[1]);
-			if (sender->get_user().is_nick_valid(cmd[1]) == false)
+		std::cout << "nickname: " << cmd[1] << std::endl;
+		if (sender->get_user().is_nick_valid(cmd[1]) == false)
+		{
+			std::string final_msg = reply.forge(_hostname, ERR_ERRONEUSNICKNAME, _msg_list);
+			sender->get_socket().send(final_msg);
+			return (-1);
+		}
+		if (sender->get_user().nickname.get() != "anonymous")
+		{
+			std::cout << "CHANGE OF NICK!!" << std::endl;
+		}
+		else if (cmd.size() > 1)
+		{
+			if (_user_list.find(cmd[1]) == _user_list.end())
 			{
-				err_code = ERR_ERRONEUSNICKNAME;
-				std::string final_msg = reply.forge(_hostname, err_code, _msg_list);
-				sender->get_socket().send(final_msg);
-				return (-1);
+				std::cout << "I am in\n";
+				sender->get_user().nickname.set(cmd[1]); 
+				_user_list[cmd[1]] = &sender->get_user(); // we update the user_list with the new nickname / user
 			}
-			if (sender->get_user().nickname.get() != "anonymous")
-			{
-				std::cout << "CHANGE OF NICK!!" << std::endl;
-			}
-			else if (cmd.size() > 1)
-			{
-				if (_user_list.find(cmd[1]) == _user_list.end())
-				{
-					_user_list[cmd[1]] = &sender->get_user(); // we update the user_list with the new nickname / user
-				}
 
-				std::cout << "NICKNAME SET: " << sender->get_user().nickname.get() << std::endl;
+			std::cout << "NICKNAME SET: " << sender->get_user().nickname.get() << std::endl;
 
-			}
-			return 0;
+		}
+		return (0);
 	}
 	return (-1);
 }
@@ -343,7 +343,6 @@ int	Server::nick(Client *sender, std::vector<std::string> &cmd)
 int	Server::user(Client *sender, std::vector<std::string> &cmd)
 {
 	Message reply;
-	std::string msg_code;
 	
 	if (sender->get_user().nickname.get() != "anonymous")
 	{
@@ -353,19 +352,16 @@ int	Server::user(Client *sender, std::vector<std::string> &cmd)
 			std::string tmp = "";
 			User *cur_user = &sender->get_user();
 			cur_user->username.set(u);
-			std::string replace_tags(std::string msg_template, std::vector<std::string> *args);
 			for (size_t i = 5; i < cmd.size(); i++)
 				tmp += cmd[i];
 			cur_user->realname.set(tmp);
 			if (_user_list.find(cmd[1]) == _user_list.end())
 				_user_list[cmd[1]] = &sender->get_user();
-			std::vector<std::string> args(1, sender->get_user().fci());
-			msg_code = RPL_WELCOME;
-			std::string final_msg = reply.forge(_hostname, msg_code, _msg_list);
+			reply.add_arg(sender->get_user().fci());
+			std::string final_msg = reply.forge(_hostname, RPL_WELCOME, _msg_list);
 			sender->get_socket().send(final_msg);
 		}
 		return 0;
 	}
 	return (-1);
 }
-
