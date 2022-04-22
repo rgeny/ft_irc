@@ -6,13 +6,14 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/22 12:09:38 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/22 17:33:00 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SERVER_HPP
 # define SERVER_HPP
 # define HOSTNAME "127.0.0.1"
+# define SERVER_NAME "Majin Boo"
 
 # include <iostream>
 # include <string>
@@ -38,6 +39,7 @@ class Server
 
 	private:
 		std::vector<User *>		_users;
+		std::string				_servername;
 		std::string				_hostname;
 		std::string				_password;
 		std::string				_buf;

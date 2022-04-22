@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:06:01 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/22 10:45:39 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/22 17:33:55 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ Server:: Server	(std::string	password
 	:Socket(port)
 	,_cmd(this->_users)
 	,_password(password)
+	,_servername(SERVER_NAME)
 	,_hostname(HOSTNAME)
 {
 	std::cout	<< "Server dfl constructor."
@@ -29,6 +30,7 @@ Server:: Server	(std::string	password
 
 Server:: Server	(Server & src)
 	:_cmd(this->_users)
+	,_servername(src._servername)
 {
 	std::cout	<< "Server cpy constructor."
 				<< std::endl;
