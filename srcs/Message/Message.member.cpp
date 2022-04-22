@@ -6,41 +6,56 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/21 22:50:02 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/22 12:33:51 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Message.hpp"
 
-std::string const & Message::aggreg(void)
+std::string const	Message::aggreg	(void)
 {
-	std::string *tmp = new std::string(_sender + " " + msg_code.get() + " " + _receiver + " " + msg_content.get() + "\r\n");
-	return (*tmp);
+	std::string tmp		= this->_sender
+						+ " "
+						+ msg_code.get()
+						+ " "
+						+ _receiver
+						+ " "
+						+ msg_content.get()
+						+ "\r\n";
+	return (tmp);
 }
 
-void Message::add_arg(std::string arg)
+void	Message::add_arg	(std::string arg)
 {
 	this->_msg_args.push_back(arg);
 }
 
-size_t Message::size_arg(void)
+size_t	Message::size_arg	(void)
 {
 	return(this->_msg_args.size());
 }
 
-std::string const & Message::forge(std::string sender, std::string msg_code)
+std::string const	Message::forge	(std::string sender
+									,std::string msg_code)
 {
-	std::string content = get_msg(msg_code, _msg_args, this->_msg_list);
+	std::string content = get_msg(msg_code, _msg_args);
 	
-	std::string *tmp = new std::string(sender + " " + msg_code + " " + _receiver + " " + content + "\r\n");
-	return (*tmp);
+	std::string	tmp	= sender
+					+ " "
+					+ msg_code
+					+ " "
+					+ _receiver
+					+ " "
+					+ content
+					+ "\r\n";
+	return (tmp);
 }
 
-std::string Message::get_msg(std::string & msg_code, std::vector<std::string> & args, std::map<std::string, std::string> & msg_list)
+std::string	Message::get_msg	(std::string & msg_code
+								,std::vector<std::string> & args)
 {
-	std::string msg_template;
-	msg_template = msg_list[msg_code];
-	return(replace_tags(msg_template, args));
+	std::string		msg_template	= this->_msg_list[msg_code];
+	return (replace_tags(msg_template, args));
 }
 
 std::string Message::replace_tags(std::string msg_template, std::vector<std::string> &args)

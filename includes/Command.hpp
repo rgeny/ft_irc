@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/21 22:52:48 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/22 12:28:14 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,32 +26,39 @@
 class Command
 {
 	public:
-		typedef int (Command::*UserCommandPointer)	(Client & client
-													,std::vector<std::string> & msg);
-		typedef std::map<std::string, UserCommandPointer>	UserCmds;
+		typedef int (Command::*CommandPointer)	(std::vector<std::string> & msg);
+		typedef std::map<std::string, CommandPointer>	CmdsFct;
+		typedef std::vector<std::vector<std::string> >	ClientCmds;
 
 
-		Accessor<std::vector<std::string> >	tokens;
+//		Accessor<std::vector<std::string> >	tokens;
 
-		Command	(void);
-		Command	(Command & src);
+		Command		(std::vector<User *> & users);
+		Command		(Command & src);
 		~Command	(void);
 
 		Command &	operator=	(Command & src);
 
-		void	parse		(std::string cmd_str
-							,Client * user);
-		void	check_cmd	(Client & sender
-							,std::vector<std::string> cmd);
-		int		nick		(Client & sender
-							,std::vector<std::string> & msg);
-		int		user		(Client & sender
-							,std::vector<std::string> & msg);
+		void	main		(Client * client
+							,std::string & arg);
 
 	private:
-		static UserCmds		_cmd_list;
+		static CmdsFct		_cmds_fct;
 
-		Client *	_user;
+		std::vector<User *>	&	_users;
+
+		ClientCmds		_client_cmds;
+		Client *		_client;
+		bool			_is_user;
+
+//		Command	(void);
+
+		bool	_get_user_type	(void);
+		void	_parse			(std::string & cmd);
+		void	_check_cmd		(std::vector<std::string> & cmd);
+
+		int		_nick			(std::vector<std::string> & msg);
+		int		_user			(std::vector<std::string> & msg);
 };
 
 std::ostream &	operator<<	(std::ostream & os
@@ -59,6 +66,7 @@ std::ostream &	operator<<	(std::ostream & os
 #endif
 
 // void		find_replace_tags(std::string & data, std::string toSearch, std::string replaceStr);
+
 // int		admin(Client *sender, const std::vector<std::string> &msg);
 // int		away(Client *sender, const std::vector<std::string> &msg);
 // int		cap(Client *sender, std::vector<std::string> &msg);

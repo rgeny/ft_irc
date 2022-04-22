@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/21 22:52:11 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/22 12:34:02 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,29 @@ class Message
 
 		Message & operator=(Message const & rhs);
 
-		std::string	getSender	(void) const;
-		std::string	getReceiver	(void) const;
-		void		setSender	(std::string & sender);
-		void		setReceiver	(std::string & receiver);
 		std::string	get_msg		(std::string & msg_code
-								,std::vector<std::string> & args
-								,std::map<std::string, std::string> & _msg_list);
+								,std::vector<std::string> & args);
+
+//		void				main			(std::string msg_code
+//											,Client * client);
 
 		void				add_arg			(std::string arg);
 		size_t				size_arg		(void);
-		const std::string &	forge			(std::string sender
+		const std::string	forge			(std::string sender
 											,std::string msg_code);
 		std::string			replace_tags	(std::string msg_template
 											,std::vector<std::string> &	args);
-		std::string const &	aggreg			(void);
+		std::string const	aggreg			(void);
 
 	private:
 
 		static std::map<std::string, std::string>	_msg_list;
 
+		Client *					_client;
+//		std::string					_msg_code;
+
+
+		std::string					_msg_content;
 		std::string 				_sender;
 		std::string 				_receiver;
 		std::vector<std::string>	_msg_args;

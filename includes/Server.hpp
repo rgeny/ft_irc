@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/21 21:25:02 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/22 12:09:38 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ class Server
 		fd_set					_rfds;
 		fd_set					_wfds;
 		Command					_cmd;
-		Message					_msg;
 
 		Server	(Server & src);
 

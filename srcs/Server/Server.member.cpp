@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/20 19:26:33 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/22 11:13:58 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void	Server::check_fds		(void)
 				std::cout	<< "buf : "
 							<< this->_buf
 							<< std::endl;
-				(*it)->add_to_queue(this->_buf);
+				this->_cmd.main(*it, this->_buf);
+//				(*it)->add_to_queue(this->_buf);
 			}
 		}
 	}
