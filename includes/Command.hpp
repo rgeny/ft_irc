@@ -39,9 +39,8 @@ class Command
 
 		Command &	operator=	(Command & src);
 
-		void	main		(Client * client
+void	main		(Client * client
 							,std::string & arg);
-
 	private:
 		static CmdsFct		_cmds_fct;
 

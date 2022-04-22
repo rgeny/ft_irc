@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.member.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/22 14:58:45 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/22 16:10:16 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ void	Command::main	(Client * client
 							ite = this->_client_cmds.end();
 	while (it != ite)
 	{
+		std::vector<std::string>::iterator it_token = (*it).begin();
+		std::vector<std::string>::iterator ite_token = (*it).end();
+		while (it_token != ite_token)
+		{
+			std::cout << *it_token << std::endl;
+			it_token++;
+		}
 		this->_check_cmd(*it);
 		it++;
 	}
@@ -85,6 +92,8 @@ int		Command::_nick	(std::vector<std::string> & cmd)
 			if (this->_client->set_nickname(cmd[1]) == false)
 			{
 				std::string final_msg = reply.forge("127.0.0.1", ERR_ERRONEUSNICKNAME);
+				std::cout	 << "msg forge : " 
+							<< final_msg << "\n";
 				this->_client->add_to_queue(final_msg);
 				return (-1);
 			}
@@ -130,6 +139,7 @@ int		Command::_user	(std::vector<std::string> & cmd)
 			for (size_t i = 5; i < cmd.size(); i++)
 				tmp += cmd[i];
 			cur_user.set_realname(tmp);
+			reply.set_receiver(this->_client->get_nickname());
 //			if (_user_list.find(cmd[1]) == _user_list.end())
 //				_user_list[cmd[1]] = &this->_client->get_user();
 //			reply.add_arg(this->_client->get_user().fci());
@@ -137,7 +147,7 @@ int		Command::_user	(std::vector<std::string> & cmd)
 
 //			std::string	final_msg = this->_msg.main(this->_client, RPL_WELCOME);
 
-			std::string final_msg = cur_user.get_nickname() + "!" + cur_user.get_username() + "@127.0.0.1" + reply.forge("127.0.0.1", RPL_WELCOME);
+			std::string final_msg = reply.forge(":127.0.0.1", RPL_WELCOME);
 			this->_client->add_to_queue(final_msg);
 		}
 		return 0;

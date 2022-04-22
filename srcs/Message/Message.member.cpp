@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/22 14:36:10 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/22 16:12:54 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,11 @@ std::string Message::replace_tags(std::string msg_template, std::vector<std::str
 	return (msg_template);
 }
 
+void				Message::set_receiver	(std::string receiver)
+{
+	_receiver = receiver;
+}
+
 void	Message::_init_msg_list	(void)
 {
 	if (Message::_msg_list.size() == 0)
@@ -119,7 +124,7 @@ void	Message::_init_msg_list	(void)
 //		Message::_msg_list[RPL_LUSERUNKNOWN] = "<integer> :unknown connection(s)";
 //		Message::_msg_list[RPL_LUSERCHANNELS] = "<integer> :channels formed";
 //		Message::_msg_list[RPL_LUSERME] = ":I have <integer> clients and <integer> servers";
-//		Message::_msg_list[RPL_ADMINME] = "<server> :Administrative info";
+//		Message::_msg_list[RPL_ADMINME] = "<server> :Administrative info"
 //		Message::_msg_list[RPL_ADMINLOC1] = ":<admin info>";
 //		Message::_msg_list[RPL_ADMINLOC2] = ":<admin info>";
 //		Message::_msg_list[RPL_ADMINEMAIL] = ":<admin info>";
