@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/22 17:33:00 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/22 18:08:06 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@
 # include "User.hpp"
 # include "Command.hpp"
 # include "Message.hpp"
+# include "ServerData.hpp"
 
 class Server
 	:private Socket
+	,private ServerData
 {
 	public:
 		typedef std::vector<User *>::iterator	USERS_IT;
@@ -38,10 +40,6 @@ class Server
 		void	main			(void);
 
 	private:
-		std::vector<User *>		_users;
-		std::string				_servername;
-		std::string				_hostname;
-		std::string				_password;
 		std::string				_buf;
 		fd_set					_rfds;
 		fd_set					_wfds;
