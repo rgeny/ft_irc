@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:46:14 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/21 21:31:39 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/22 13:16:38 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@
 void	check_nbr_of_arguments	(int argc);
 void	check_port_argument		(const std::string & str);
 void	check_password_argument	(const std::string & str);
-
-std::string	case_proof	(std::string str);
 
 /*
 **  TEMPLATES
