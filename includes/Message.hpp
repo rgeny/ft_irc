@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/22 12:34:02 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/22 14:33:56 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ class Message
 		Client *					_client;
 //		std::string					_msg_code;
 
+		void	_init_msg_list	(void);
 
 		std::string					_msg_content;
 		std::string 				_sender;
