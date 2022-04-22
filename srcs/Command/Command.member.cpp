@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/22 16:10:16 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/22 19:18:05 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,12 +155,32 @@ int		Command::_user	(std::vector<std::string> & cmd)
 	return (-1);
 }
 
+int		Command::_join	(std::vector<std::string> & cmd)
+{
+	Message reply;
+
+	if (cmd.size() < 2)
+	{
+		reply.add_arg(cmd[0]);
+		std::string final_msg = reply.forge("127.0.0.1", ERR_NEEDMOREPARAMS);
+		this->_client->add_to_queue(final_msg);
+		return (-1);
+	}
+	else
+	{
+		if (chans.count(cmd[1]) == 1)
+	}
+return (0);
+}
+
 void	Command::_init_cmd_fct	(void)
 {
 		if (Command::_cmds_fct.size() == 0)
 	{
 		Command::_cmds_fct[NICK]		= &Command::_nick;
 		Command::_cmds_fct[USER]		= &Command::_user;
+		Command::_cmds_fct[JOIN]		= &Command::_join;
+
 	}
 }
 //		Command::_cmds_fct[ADMIN]		= &Command::_admin;
@@ -176,7 +196,6 @@ void	Command::_init_cmd_fct	(void)
 //		Command::_cmds_fct[INFO]		= &Command::_info;
 //		Command::_cmds_fct[INVITE]		= &Command::_invite;
 //		Command::_cmds_fct[ISON]		= &Command::_ison;
-//		Command::_cmds_fct[JOIN]		= &Command::_join;
 //		Command::_cmds_fct[KICK]		= &Command::_kick;
 //		Command::_cmds_fct[KILL]		= &Command::_kill;
 //		Command::_cmds_fct[KNOCK]		= &Command::_knock;

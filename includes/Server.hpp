@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/22 12:09:38 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/22 19:14:28 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@
 # include <iostream>
 # include <string>
 # include <vector>
+# include <map>
 # include "User.hpp"
 # include "Command.hpp"
 # include "Message.hpp"
+# include "Channel.hpp"
 
 class Server
 	:private Socket
@@ -37,13 +39,14 @@ class Server
 		void	main			(void);
 
 	private:
-		std::vector<User *>		_users;
-		std::string				_hostname;
-		std::string				_password;
-		std::string				_buf;
-		fd_set					_rfds;
-		fd_set					_wfds;
-		Command					_cmd;
+		std::vector<User *>								_users;
+		std::map<std::string, Channel *>				_chans;
+		std::string										_hostname;
+		std::string										_password;
+		std::string										_buf;
+		fd_set											_rfds;
+		fd_set											_wfds;
+		Command											_cmd;
 
 		Server	(Server & src);
 

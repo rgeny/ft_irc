@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/22 14:57:40 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/22 19:05:12 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	main		(Client * client
 
 		int		_nick			(std::vector<std::string> & msg);
 		int		_user			(std::vector<std::string> & msg);
+		int		_join			(std::vector<std::string> & cmd);
 
 		void	_init_cmd_fct	(void);
 };
