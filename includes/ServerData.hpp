@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 17:55:06 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/22 18:01:17 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 01:38:58 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <string>
 # include <vector>
 # include "User.hpp"
+# include "Historical.hpp"
 
 struct ServerData
 {
@@ -25,6 +26,7 @@ struct ServerData
 		std::string				_servername;
 		std::string				_hostname;
 		std::string				_password;
+		Historical				_historical;
 };
 
 #endif
