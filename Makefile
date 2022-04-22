@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/22 15:25:11 by abesombe         ###   ########.fr        #
+#    Updated: 2022/04/22 17:40:22 by abesombe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ DEL_DIR				= rm -rf
 VERSION				= -std=c++98
 
 CC					= c++
-COMPILE_FLAG		= $(DEPS_FLAG) $(VERSION) -g#-Wall -Werror -Wextra
+COMPILE_FLAG		= $(DEPS_FLAG) $(VERSION) -g -Wall -Werror -Wextra
 DEPS_FLAG			= -MMD
 INCLUDES_FLAG		= -I$(INCLUDES_DIR)
 VALGRIND			= valgrind
@@ -31,9 +31,11 @@ USER_DIR			= $(SRCS_DIR)User/
 UTILS_DIR			= $(SRCS_DIR)Utils/
 COMMAND_DIR			= $(SRCS_DIR)Command/
 MESSAGE_DIR			= $(SRCS_DIR)Message/
+CHANNEL_DIR			= $(SRCS_DIR)Channel/
 
 VPATH				= $(SRCS_DIR) $(SOCKET_DIR) $(SERVER_DIR) $(CLIENT_DIR)
 VPATH				+=$(USER_DIR) $(UTILS_DIR) $(COMMAND_DIR) $(MESSAGE_DIR)
+VPATH				+=$(CHANNEL_DIR)
 
 ifndef ARG
 	ARG = 6697 abc
@@ -51,6 +53,7 @@ SRCS				= $(addsuffix .cpp,				main \
 						$(addprefix Client,			$(DEFAULT_FILES)) \
 						$(addprefix User,			$(DEFAULT_FILES)) \
 						$(addprefix Command,		$(DEFAULT_FILES)) \
+						$(addprefix Channel,		$(DEFAULT_FILES)) \
 						$(addprefix Message,		$(DEFAULT_FILES)))
 OBJS				= $(patsubst %.cpp, $(OBJS_DIR)%.o, $(SRCS))
 DEPS				= $(OBJS:.o=.d)
