@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/22 16:10:16 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/22 17:00:38 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,12 +155,24 @@ int		Command::_user	(std::vector<std::string> & cmd)
 	return (-1);
 }
 
+int		Command::_ping	(std::vector<std::string> & cmd)
+{
+	if (cmd.size() > 1)
+	{
+		std::string	final_msg = "PONG ";
+		final_msg += this->_client->get_nickname() + "\r\n";
+		this->_client->add_to_queue(final_msg);
+	}
+	return (0);
+}
+
 void	Command::_init_cmd_fct	(void)
 {
 		if (Command::_cmds_fct.size() == 0)
 	{
 		Command::_cmds_fct[NICK]		= &Command::_nick;
 		Command::_cmds_fct[USER]		= &Command::_user;
+		Command::_cmds_fct[PING]		= &Command::_ping;
 	}
 }
 //		Command::_cmds_fct[ADMIN]		= &Command::_admin;
@@ -191,7 +203,6 @@ void	Command::_init_cmd_fct	(void)
 //		Command::_cmds_fct[OPER]		= &Command::_oper;
 //		Command::_cmds_fct[PART]		= &Command::_part;
 //		Command::_cmds_fct[PASS]		= &Command::_pass;
-//		Command::_cmds_fct[PING]		= &Command::_ping;
 //		Command::_cmds_fct[PONG]		= &Command::_pong;
 //		Command::_cmds_fct[PRIVMSG]		= &Command::_privmsg;
 //		Command::_cmds_fct[QUIT]		= &Command::_quit;
