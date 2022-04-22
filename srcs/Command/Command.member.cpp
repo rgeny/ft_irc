@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/22 16:10:16 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/22 18:11:47 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	Command::main	(Client * client
 
 bool	Command::_get_user_type	(void)
 {
-	std::vector<User *>::iterator	it	= this->_users.begin(),
-									ite	= this->_users.end();
+	std::vector<User *>::iterator	it	= this->_data._users.begin(),
+									ite	= this->_data._users.end();
 	while (it != ite)
 	{
 		if (*it == this->_client)

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:06:01 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/22 18:07:05 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/22 18:09:26 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Server:: Server	(std::string	password
 				,SOCKET			port)
 	:Socket(port)
 	,ServerData()
-	,_cmd(this->_users)
+	,_cmd(*this)
 {
 	this->_password = password;
 	this->_servername = SERVER_NAME;
@@ -31,7 +31,7 @@ Server:: Server	(std::string	password
 
 Server:: Server	(Server & src)
 	:ServerData()
-	,_cmd(this->_users)
+	,_cmd(*this)
 {
 	this->_password = src._password;
 	this->_servername = src._servername;

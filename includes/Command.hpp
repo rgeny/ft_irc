@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/22 14:57:40 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/22 18:10:15 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "Message.hpp"
 # include "Accessor.hpp"
 # include "ircserv.hpp"
+# include "ServerData.hpp"
 
 class Command
 {
@@ -33,7 +34,7 @@ class Command
 
 //		Accessor<std::vector<std::string> >	tokens;
 
-		Command		(std::vector<User *> & users);
+		Command		(ServerData & data);
 		Command		(Command & src);
 		~Command	(void);
 
@@ -44,7 +45,7 @@ void	main		(Client * client
 	private:
 		static CmdsFct		_cmds_fct;
 
-		std::vector<User *>	&	_users;
+		ServerData &		_data;
 
 		ClientCmds		_client_cmds;
 		Client *		_client;
