@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 16:25:18 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 17:45:08 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	Server::_check_fds		(void)
 	{
 		if ((*it)->is_set(&this->_wfds))
 			(*it)->send();
+		else if ((*it)->be_disconnected)
+			this->_del_user(it);
 		else if ((*it)->is_set(&this->_rfds))
 			this->_read_user_msg(it);
 		else
@@ -82,10 +84,10 @@ void	Server::_check_tmp_user	(USERS_IT & it)
 
 	if (tmp_users.find(*it) != tmp_users.end())
 	{
-		if ((*it)->co_is_complete())
-			this->_tmp_users.erase(*it);
-		else if (this->_tmp_users[*it] + DFL_TIMEOUT <= cur_time)
-			this->_del_user(it);
+	if ((*it)->co_is_complete())
+		this->_tmp_users.erase(*it);
+	else if (this->_tmp_users[*it] + DFL_TIMEOUT <= cur_time)
+		this->_del_user(it);
 	}
 }
 
