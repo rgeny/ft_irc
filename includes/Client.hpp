@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:43:21 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/21 09:03:02 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 15:11:18 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,13 @@ class Client
 		bool	is_empty_msg_queue	(void) const;
 		int		receive				(std::string & msg);
 		int		send				(void);
+		bool	passwd_is_sent		(void) const;
 
 	private:
 		std::string				_nickname;
 		std::queue<std::string>	_msg_queue;
 		time_t					_msg_timer;
+		bool					_passwd;
 };
 
 std::ostream &	operator<<	(std::ostream & os
