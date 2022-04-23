@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:57:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 15:10:37 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 15:20:25 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,4 @@ int		Client::receive	(std::string & msg)
 		return (-1);
 	msg_timer += MSG_PENALIZE_TIME;
 	return (this->Socket::receive(msg));
-}
-
-bool	Client::passwd_is_sent	(void) const
-{
-	return (this->_passwd);
 }

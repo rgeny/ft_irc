@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 04:00:19 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 15:35:28 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ class Command
 
 		Command &	operator=	(Command & src);
 
-void	main		(Client * client
+		void	main		(Client * client
 							,std::string & arg);
 	private:
 		static CmdsFct		_cmds_fct;
@@ -55,6 +55,7 @@ void	main		(Client * client
 		void	_parse			(std::string & cmd);
 		void	_check_cmd		(std::vector<std::string> & cmd);
 
+		int		_pass			(std::vector<std::string> & msg);
 		int		_nick			(std::vector<std::string> & msg);
 		int		_user			(std::vector<std::string> & msg);
 		int		_ping			(std::vector<std::string> & msg);

@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/23 04:33:51 by rgeny            ###   ########.fr        #
+#    Updated: 2022/04/23 15:20:45 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													nick \
 													ping \
 													user \
+													pass \
 						$(addprefix Message,		$(DEFAULT_FILES)) \
 						$(addprefix HistoricalNode,	$(DEFAULT_FILES)) \
 						$(addprefix Historical,		$(DEFAULT_FILES)))

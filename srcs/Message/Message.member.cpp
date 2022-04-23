@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/23 04:35:23 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 15:30:47 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ void	Message::_init_msg_list	(void)
 		Message::_msg_list[ERR_ERRONEUSNICKNAME] = "<nick> :Erroneous nickname";
 		Message::_msg_list[ERR_NOORIGIN] = ":No origin specified";
 		Message::_msg_list[ERR_NOSUCHSERVER] = "<server name> :No such server";
+		Message::_msg_list[ERR_NEEDMOREPARAMS] = "<command> :Not enough parameters";
+		Message::_msg_list[ERR_ALREADYREGISTRED] = ":Unauthorized command (already registered)";
 
 		//CMD MSG
 		Message::_msg_list[PONG] = "<server> <server2>";
@@ -208,8 +210,6 @@ void	Message::_init_msg_list	(void)
 //		Message::_msg_list[ERR_SUMMONDISABLED] = ":SUMMON has been disabled";
 //		Message::_msg_list[ERR_USERSDISABLED] = ":USERS has been disabled";
 //		Message::_msg_list[ERR_NOTREGISTERED] = ":You have not registered";
-//		Message::_msg_list[ERR_NEEDMOREPARAMS] = "<command> :Not enough parameters";
-//		Message::_msg_list[ERR_ALREADYREGISTRED] = ":Unauthorized command (already registered)";
 //		Message::_msg_list[ERR_NOPERMFORHOST] = ":Your host isn't among the privileged";
 //		Message::_msg_list[ERR_PASSWDMISMATCH] = ":Password incorrect";
 //		Message::_msg_list[ERR_YOUREBANNEDCREEP] = ":You are banned from this server";
