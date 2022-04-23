@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:22:33 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/22 11:02:46 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 14:47:19 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@
 /*
 **	RETURN MSG
 */
+# define END_OF_MSG "\r\n"
 # define WELCOME_MSG "Welcome to the Internet Relay Network "
 
 /*

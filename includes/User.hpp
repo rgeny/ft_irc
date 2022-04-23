@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:04:52 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/12 18:43:59 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 14:38:15 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ class User
 		void	set_specific_mode	(UserMode mode
 									,bool val);
 		void	set_realname		(std::string realname);
+
+		bool	co_is_complete	(void) const;
 
 	private:
 		std::string			_username;

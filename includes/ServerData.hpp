@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 17:55:06 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 01:38:58 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 14:49:31 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@
 struct ServerData
 {
 	public:
-		std::vector<User *>		_users;
-		std::string				_servername;
-		std::string				_hostname;
-		std::string				_password;
-		Historical				_historical;
+		std::vector<User *>			_users;
+		std::map<User *, time_t>	_tmp_users;
+		std::string					_servername;
+		std::string					_hostname;
+		std::string					_password;
+		Historical					_historical;
 };
 
 #endif

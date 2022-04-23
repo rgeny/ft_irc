@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 02:06:38 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 14:49:42 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SERVER_HPP
 # define HOSTNAME "127.0.0.1"
 # define SERVER_NAME "MajinBoo"
+# define TIME_TO_CONNECT 4
 
 # include <iostream>
 # include <string>
@@ -29,8 +30,10 @@ class Server
 	,private ServerData
 {
 	public:
-		typedef std::vector<User *>::iterator	USERS_IT;
-		typedef int								SOCKET;
+		typedef std::vector<User *>::iterator		USERS_IT;
+		typedef std::map<User *, time_t>			NEW_USERS;
+		typedef NEW_USERS::iterator					NEW_USERS_IT;
+		typedef int									SOCKET;
 
 		Server	(std::string	password
 				,SOCKET			port = PORT);
@@ -48,9 +51,11 @@ class Server
 
 		Server	(Server & src);
 
-		void	init_fds		(void);
-		void	check_fds		(void);
-		void	del_client		(USERS_IT & it);
+		void	_init_fds		(void);
+		void	_check_fds		(void);
+		void	_new_user		(void);
+		void	_del_user		(USERS_IT & it);
+		void	_check_tmp_user	(USERS_IT & it);
 };
 
 std::ostream &	operator<<	(std::ostream & os
