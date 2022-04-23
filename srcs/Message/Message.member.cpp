@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/23 03:05:27 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 03:11:03 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void	Message::_init_msg_list	(void)
 		Message::_msg_list[RPL_WELCOME] = "Welcome to the Internet Relay Network <fullclientidentifier>";
 		Message::_msg_list[ERR_ERRONEUSNICKNAME] = "<nick> :Erroneous nickname";
 		Message::_msg_list[ERR_NOORIGIN] = ":No origin specified";
+		Message::_msg_list[ERR_NOSUCHSERVER] = "<server name> :No such server";
 
 		//CMD MSG
 		Message::_msg_list[PONG] = "<server> <server2>";
@@ -189,7 +190,6 @@ void	Message::_init_msg_list	(void)
 //		Message::_msg_list[RPL_ENDOFUSERS] = ":End of users";
 //		Message::_msg_list[RPL_NOUSERS] = ":Nobody logged in";
 //		Message::_msg_list[ERR_NOSUCHNICK] = "<nickname> :No such nick/channel";
-//		Message::_msg_list[ERR_NOSUCHSERVER] = "<server name> :No such server";
 //		Message::_msg_list[ERR_NOSUCHCHANNEL] = "<channel name> :No such channel";
 //		Message::_msg_list[ERR_CANNOTSENDTOCHAN] = "<channel name> :Cannot send to channel";
 //		Message::_msg_list[ERR_TOOMANYCHANNELS] = "<channel name> :You have joined too many channels";

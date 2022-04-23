@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 03:07:41 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 03:17:48 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int		Command::_nick	(std::vector<std::string> & cmd)
 			if (this->_client->set_nickname(cmd[1]) == false)
 			{
 				std::string final_msg = reply.forge(this->_data._servername, ERR_ERRONEUSNICKNAME);
-				std::cout	 << "msg forge : " 
+				std::cout	<< "msg forge : " 
 							<< final_msg << "\n";
 				this->_client->add_to_queue(final_msg);
 				return (-1);
@@ -143,11 +143,11 @@ int		Command::_user	(std::vector<std::string> & cmd)
 //			if (_user_list.find(cmd[1]) == _user_list.end())
 //				_user_list[cmd[1]] = &this->_client->get_user();
 //			reply.add_arg(this->_client->get_user().fci());
-			reply.add_arg(cur_user.get_nickname() + "!" + cur_user.get_username() + "@127.0.0.1");
+			reply.add_arg(cur_user.get_nickname() + "!" + cur_user.get_username() + "@" + this->_data._servername);
 
 //			std::string	final_msg = this->_msg.main(this->_client, RPL_WELCOME);
 
-			std::string final_msg = reply.forge(this->_data._servername, RPL_WELCOME);
+			std::string final_msg = reply.forge("127.0.0.1", RPL_WELCOME);
 			this->_client->add_to_queue(final_msg);
 		}
 		return 0;
@@ -158,12 +158,23 @@ int		Command::_user	(std::vector<std::string> & cmd)
 int		Command::_ping	(std::vector<std::string> & cmd)
 {
 	Message	reply;
+
+
 	if (cmd.size() > 1)
 	{
-		reply.add_arg(this->_data._servername);
-		reply.add_arg(cmd[1]);
-		std::string final_msg = reply.forge(this->_data._servername, PONG);
-		this->_client->add_to_queue(final_msg);
+		if (cmd[1] != this->_data._servername)
+		{
+			reply.add_arg(cmd[1]);
+			std::string	final_msg = reply.forge(this->_data._servername, ERR_NOSUCHSERVER);
+			this->_client->add_to_queue(final_msg);
+		}
+		else
+		{
+			reply.add_arg(this->_data._servername);
+			reply.add_arg(cmd[1]);
+			std::string final_msg = reply.forge(this->_data._servername, PONG);
+			this->_client->add_to_queue(final_msg);
+		}
 	}
 	else
 	{
