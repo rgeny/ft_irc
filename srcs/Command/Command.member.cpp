@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 03:17:48 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 03:26:18 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ int		Command::_user	(std::vector<std::string> & cmd)
 
 //			std::string	final_msg = this->_msg.main(this->_client, RPL_WELCOME);
 
-			std::string final_msg = reply.forge("127.0.0.1", RPL_WELCOME);
+			std::string final_msg = reply.forge(this->_data._servername, RPL_WELCOME);
 			this->_client->add_to_queue(final_msg);
 		}
 		return 0;
@@ -157,31 +157,23 @@ int		Command::_user	(std::vector<std::string> & cmd)
 
 int		Command::_ping	(std::vector<std::string> & cmd)
 {
-	Message	reply;
+	Message			reply;
+	std::string		code = PONG;
+	std::string		final_msg;
 
-
-	if (cmd.size() > 1)
-	{
-		if (cmd[1] != this->_data._servername)
-		{
-			reply.add_arg(cmd[1]);
-			std::string	final_msg = reply.forge(this->_data._servername, ERR_NOSUCHSERVER);
-			this->_client->add_to_queue(final_msg);
-		}
-		else
-		{
-			reply.add_arg(this->_data._servername);
-			reply.add_arg(cmd[1]);
-			std::string final_msg = reply.forge(this->_data._servername, PONG);
-			this->_client->add_to_queue(final_msg);
-		}
-	}
+	if (cmd.size() == 1)
+		code = ERR_NOORIGIN;
 	else
 	{
-		std::string	final_msg = reply.forge(this->_data._servername, ERR_NOORIGIN);
-		this->_client->add_to_queue(final_msg);
+		if (cmd[1] == this->_data._servername)
+			reply.add_arg(this->_data._servername);
+		else
+			code = ERR_NOSUCHSERVER;
+		reply.add_arg(cmd[1]);
 	}
-	return (0);
+	final_msg = reply.forge(this->_data._servername, code);
+	this->_client->add_to_queue(final_msg);
+	return (-(code == PONG));
 }
 
 void	Command::_init_cmd_fct	(void)
