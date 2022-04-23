@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 01:54:05 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 04:00:19 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@ class Command
 		typedef std::map<std::string, CommandPointer>	CmdsFct;
 		typedef std::vector<std::vector<std::string> >	ClientCmds;
 
-
-//		Accessor<std::vector<std::string> >	tokens;
-
 		Command		(ServerData & data);
 		Command		(Command & src);
 		~Command	(void);
@@ -50,6 +47,7 @@ void	main		(Client * client
 		ClientCmds		_client_cmds;
 		Client *		_client;
 		bool			_is_user;
+		Message			_reply;
 
 //		Command	(void);
 

@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 03:26:18 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 04:02:31 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,6 @@ void	Command::main	(Client * client
 							ite = this->_client_cmds.end();
 	while (it != ite)
 	{
-//		std::vector<std::string>::iterator it_token = (*it).begin();
-//		std::vector<std::string>::iterator ite_token = (*it).end();
-//		while (it_token != ite_token)
-//		{
-//			std::cout << *it_token << std::endl;
-//			it_token++;
-//		}
 		this->_check_cmd(*it);
 		it++;
 	}
@@ -60,9 +53,6 @@ void	Command::_parse	(std::string & cmd)
 		this->_client_cmds.push_back(split(*it, " "));
 		it++;
 	}
-//	std::string	tmp;
-//	this->tokens = split (cmd_str, " ");
-//	this->_user = user;
 }
 
 void	Command::_check_cmd	(std::vector<std::string> & cmd)
@@ -74,50 +64,28 @@ void	Command::_check_cmd	(std::vector<std::string> & cmd)
 
 int		Command::_nick	(std::vector<std::string> & cmd)
 {
-	Message reply;
-
 	if (cmd.size() <= 1)
 	{
-		reply.add_arg(cmd[0]);
-		std::string final_msg = reply.forge(this->_data._servername, ERR_NONICKNAMEGIVEN);
+		this->_reply.add_arg(cmd[0]);
+		std::string final_msg = this->_reply.forge(ERR_NONICKNAMEGIVEN);
 		this->_client->add_to_queue(final_msg);
 		return (-1);
 	}
 	else
 	{
-		reply.add_arg(cmd[1]);
+		this->_reply.add_arg(cmd[1]);
 		std::cout << "nickname: " << cmd[1] << std::endl;
 		if (cmd.size() > 1)
 		{
 			if (this->_client->set_nickname(cmd[1]) == false)
 			{
-				std::string final_msg = reply.forge(this->_data._servername, ERR_ERRONEUSNICKNAME);
+				std::string final_msg = this->_reply.forge(ERR_ERRONEUSNICKNAME);
 				std::cout	<< "msg forge : " 
 							<< final_msg << "\n";
 				this->_client->add_to_queue(final_msg);
 				return (-1);
 			}
-//		if (this->_client->get_user().is_nick_valid(cmd[1]) == false)
-//		{
-//			std::string final_msg = reply.forge("127.0.0.1", ERR_ERRONEUSNICKNAME, _msg_list);
-//			this->_client->add_to_queue(final_msg);
-//			return (-1);
-//		}
-//		if (this->_client->get_nickname() != "anonymous")
-//		{
-//			std::cout << "CHANGE OF NICK!!" << std::endl;
-//		}
-//		else if (cmd.size() > 1)
-//		{
-//			if (_user_list.find(cmd[1]) == _user_list.end())
-//			{
-//				std::cout << "I am in\n";
-//				this->_client->get_user().nickname.set(cmd[1]);
-//				_user_list[cmd[1]] = &this->_client->get_user(); // we update the user_list with the new nickname / user
-//			}
-
 			std::cout << "NICKNAME SET: " << this->_client->get_nickname() << std::endl;
-
 		}
 		return (0);
 	}
@@ -126,8 +94,6 @@ int		Command::_nick	(std::vector<std::string> & cmd)
 
 int		Command::_user	(std::vector<std::string> & cmd)
 {
-	Message reply;
-
 	if (this->_client->get_nickname() != "anonymous")
 	{
 		if (cmd.size() > 4)
@@ -139,15 +105,9 @@ int		Command::_user	(std::vector<std::string> & cmd)
 			for (size_t i = 5; i < cmd.size(); i++)
 				tmp += cmd[i];
 			cur_user.set_realname(tmp);
-			reply.set_receiver(this->_client->get_nickname());
-//			if (_user_list.find(cmd[1]) == _user_list.end())
-//				_user_list[cmd[1]] = &this->_client->get_user();
-//			reply.add_arg(this->_client->get_user().fci());
-			reply.add_arg(cur_user.get_nickname() + "!" + cur_user.get_username() + "@" + this->_data._servername);
-
-//			std::string	final_msg = this->_msg.main(this->_client, RPL_WELCOME);
-
-			std::string final_msg = reply.forge(this->_data._servername, RPL_WELCOME);
+			this->_reply.set_receiver(this->_client->get_nickname());
+			this->_reply.add_arg(cur_user.get_nickname() + "!" + cur_user.get_username() + "@" + this->_data._servername);
+			std::string final_msg = this->_reply.forge(RPL_WELCOME);
 			this->_client->add_to_queue(final_msg);
 		}
 		return 0;
@@ -157,7 +117,6 @@ int		Command::_user	(std::vector<std::string> & cmd)
 
 int		Command::_ping	(std::vector<std::string> & cmd)
 {
-	Message			reply;
 	std::string		code = PONG;
 	std::string		final_msg;
 
@@ -166,12 +125,12 @@ int		Command::_ping	(std::vector<std::string> & cmd)
 	else
 	{
 		if (cmd[1] == this->_data._servername)
-			reply.add_arg(this->_data._servername);
+			this->_reply.add_arg(this->_data._servername);
 		else
 			code = ERR_NOSUCHSERVER;
-		reply.add_arg(cmd[1]);
+		this->_reply.add_arg(cmd[1]);
 	}
-	final_msg = reply.forge(this->_data._servername, code);
+	final_msg = this->_reply.forge(code);
 	this->_client->add_to_queue(final_msg);
 	return (-(code == PONG));
 }

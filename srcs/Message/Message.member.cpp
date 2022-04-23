@@ -6,69 +6,59 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/23 03:11:03 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 04:12:08 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Message.hpp"
-
-
-std::string const	Message::aggreg	(void)
-{
-	std::string tmp		= this->_sender
-						+ " "
-						+ msg_code.get()
-						+ " "
-						+ _receiver
-						+ " "
-						+ msg_content.get()
-						+ "\r\n";
-	return (tmp);
-}
 
 void	Message::add_arg	(std::string arg)
 {
 	this->_msg_args.push_back(arg);
 }
 
-size_t	Message::size_arg	(void)
-{
-	return(this->_msg_args.size());
-}
-
-std::string const	Message::forge	(std::string sender
-									,std::string msg_code)
+std::string const	Message::forge	(std::string msg_code)
 {
 	std::string content = get_msg(msg_code, _msg_args);
-	
-	std::string	tmp	= ":"
-					+ sender
-					+ " "
-					+ msg_code
-					+ " ";
+	std::string	msg = ":";
+
+	if (!this->_sender.empty())
+		this->_sender.clear();
+	else
+		msg += *this->_servername;
+
+	msg += " "
+		+ msg_code
+		+ " ";
+
 	if (!this->_receiver.empty())
 	{
-		tmp	+=	this->_receiver
+		msg	+=	this->_receiver
 			+	" ";
 	}
-	tmp += content
+
+	msg += content
 		+ "\r\n";
-	return (tmp);
+
+	this->_clear_data();
+	return (msg);
 }
 
-std::string	Message::get_msg	(std::string & msg_code
-								,std::vector<std::string> & args)
+std::string		Message::_get_msg	(std::string & msg_code
+									,std::vector<std::string> & args)
 {
 	std::string		msg_template	= this->_msg_list[msg_code];
 	return (replace_tags(msg_template, args));
 }
 
-std::string Message::replace_tags(std::string msg_template, std::vector<std::string> &args)
+std::string		Message::_replace_tags	(std::string msg_template
+										,std::vector<std::string> & args)
 {
-	int position_tag = 0;
-	size_t pos_opentag;
-	size_t pos_closetag;
-	size_t tag_len;
+	int		position_tag = 0;
+	size_t	pos_opentag;
+	size_t	pos_closetag;
+	size_t	tag_len;
+
 	for (std::vector<std::string>::iterator it = args.begin(); it < args.end(); it++)
 	{
 		pos_opentag = msg_template.find("<", position_tag);
@@ -86,9 +76,11 @@ std::string Message::replace_tags(std::string msg_template, std::vector<std::str
 	return (msg_template);
 }
 
-void				Message::set_receiver	(std::string receiver)
+void	Message::_clear_data	(void)
 {
-	_receiver = receiver;
+	this->_sender.clear();
+	this->_receiver.clear();
+	this->_msg_args.clear();
 }
 
 void	Message::_init_msg_list	(void)
