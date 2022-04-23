@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/23 02:18:16 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 03:01:52 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,11 @@ void	Message::_init_msg_list	(void)
 		//RETURN MSG
 		Message::_msg_list[RPL_WELCOME] = "Welcome to the Internet Relay Network <fullclientidentifier>";
 		Message::_msg_list[ERR_ERRONEUSNICKNAME] = "<nick> :Erroneous nickname";
+		Message::_msg_list[ERR_NOORIGIN] = ":No origin specified";
 
 		//CMD MSG
 		Message::_msg_list[PONG] = "<server> <server2>";
-	}	
+	}
 }
 
 //		Message::_msg_list[RPL_YOURHOST] = "Your host is <servername>, running version <ver>";
@@ -194,7 +195,6 @@ void	Message::_init_msg_list	(void)
 //		Message::_msg_list[ERR_WASNOSUCHNICK] = "<nickname> :There was no such nickname";
 //		Message::_msg_list[ERR_TOOMANYTARGETS] = "<target> :<error code> recipients. <abort message>";
 //		Message::_msg_list[ERR_NOSUCHSERVICE] = "<service name> :No such service";
-//		Message::_msg_list[ERR_NOORIGIN] = ":No origin specified";
 //		Message::_msg_list[ERR_NORECIPIENT] = ":No recipient given (<command>)";
 //		Message::_msg_list[ERR_NOTEXTTOSEND] = ":No text to send";
 //		Message::_msg_list[ERR_NOTOPLEVEL] = "<mask> :No toplevel domain specified";

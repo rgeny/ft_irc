@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 02:54:57 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 03:03:07 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,12 +157,17 @@ int		Command::_user	(std::vector<std::string> & cmd)
 
 int		Command::_ping	(std::vector<std::string> & cmd)
 {
+	Message	reply;
 	if (cmd.size() > 1)
 	{
-		Message reply;
 		reply.add_arg(this->_data._servername);
 		reply.add_arg(cmd[1]);
 		std::string final_msg = reply.forge(":" + this->_data._servername, PONG);
+		this->_client->add_to_queue(final_msg);
+	}
+	else
+	{
+		std::string	final_msg = reply.forge(":" + this->_data._servername, ERR_NOORIGIN);
 		this->_client->add_to_queue(final_msg);
 	}
 	return (0);
