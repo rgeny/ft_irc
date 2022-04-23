@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 14:49:42 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 14:58:39 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define SERVER_HPP
 # define HOSTNAME "127.0.0.1"
 # define SERVER_NAME "MajinBoo"
-# define TIME_TO_CONNECT 4
+# define DFL_TIMEOUT 4
 
 # include <iostream>
 # include <string>
@@ -56,6 +56,7 @@ class Server
 		void	_new_user		(void);
 		void	_del_user		(USERS_IT & it);
 		void	_check_tmp_user	(USERS_IT & it);
+		void	_read_user_msg	(USERS_IT & it);
 };
 
 std::ostream &	operator<<	(std::ostream & os

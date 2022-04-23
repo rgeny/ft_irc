@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 14:51:48 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 14:58:58 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,21 +53,7 @@ void	Server::_check_fds		(void)
 		if ((*it)->is_set(&this->_wfds))
 			(*it)->send();
 		else if ((*it)->is_set(&this->_rfds))
-		{
-			int	n = (*it)->receive(this->_buf);
-			if (n == 0)
-				this->_del_user(it);
-			else if (n > 0)
-			{
-				if (this->_buf.compare(END_OF_MSG) != 0)
-				{
-					std::cout	<< "buf : "
-								<< this->_buf
-								<< std::endl;
-					this->_cmd.main(*it, this->_buf);
-				}
-			}
-		}
+			this->_read_user_msg(it);
 		else
 			this->_check_tmp_user(it);
 	}
@@ -98,7 +84,25 @@ void	Server::_check_tmp_user	(USERS_IT & it)
 	{
 		if ((*it)->co_is_complete())
 			this->_tmp_users.erase(*it);
-		else if (this->_tmp_users[*it] + TIME_TO_CONNECT <= cur_time)
+		else if (this->_tmp_users[*it] + DFL_TIMEOUT <= cur_time)
 			this->_del_user(it);
+	}
+}
+
+void	Server::_read_user_msg	(USERS_IT & it)
+{
+	int	n = (*it)->receive(this->_buf);
+
+	if (n == 0)
+		this->_del_user(it);
+	else if (n > 0)
+	{
+		if (this->_buf.compare(END_OF_MSG) != 0)
+		{
+			std::cout	<< "buf : "
+						<< this->_buf
+						<< std::endl;
+			this->_cmd.main(*it, this->_buf);
+		}
 	}
 }
