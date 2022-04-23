@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 04:31:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 16:44:19 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 16:45:41 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		Command::_nick	(std::vector<std::string> & cmd)
 	std::string	oldest_nickname = this->_client->get_nickname();
 	std::string final_msg;
 
-	if (!this->_client.get_passwd_is_sent())
+	if (!this->_client->get_passwd_is_sent())
 	{
 		return (-1);
 	}
