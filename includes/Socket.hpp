@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:52:03 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/21 21:37:05 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 16:29:57 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 
 # include "Exceptions.hpp"
 # include "Utils.hpp"
+# include "defines.hpp"
 
 
 class Socket

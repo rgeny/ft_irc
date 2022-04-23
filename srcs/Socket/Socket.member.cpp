@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:59:23 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/21 21:37:44 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 16:32:49 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,29 @@ int	Socket::receive	(std::string & str) const
 	char	s[BUF_SIZE] = "";
 	int		n			= ::recv(this->_socket, s, BUF_SIZE - 1, 0);
 	str = s;
+	std::cout	<< std::endl
+				<< BOLD
+				<< "Message recv :"
+				<< RESET
+				<< std::endl
+				<< "\""
+				<< str
+				<< "\""
+				<< std::endl;
 	return (n);
 }
 
 int			Socket::send	(std::string & msg) const
 {
+	std::cout	<< std::endl
+				<< BOLD
+				<< "Message send :"
+				<< RESET
+				<< std::endl
+				<< "\""
+				<< msg
+				<< "\""
+				<< std::endl;
 	return (::send(this->_socket, msg.c_str(), msg.length(), 0));
 }
 
