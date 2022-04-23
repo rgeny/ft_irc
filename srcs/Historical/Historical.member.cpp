@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 11:05:09 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/21 13:01:30 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 16:04:29 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,25 @@ std::string	Historical::find_actual	(std::string nickname)
 		it++;
 	}
 	return (nickname);
+}
+
+bool	Historical::nick_is_lock	(std::string & nickname)
+{
+	this->_rm_obsolete_history();
+
+	HISTORICAL_IT	it	= this->_historical.begin();
+	HISTORICAL_IT	ite	= this->_historical.end();
+
+	while (it != ite)
+	{
+		if (nickname == (*it)->get_last()
+			|| nickname == (*it)->get_actual())
+		{
+			return (true);
+		}
+		it++;
+	}
+	return (false);
 }
 
 void	Historical::_rm_obsolete_history	(void)

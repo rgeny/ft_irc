@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 10:54:36 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/21 13:04:57 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 16:04:41 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ class Historical
 
 		Historical &	operator=	(Historical & src);
 
-		void		new_node	(std::string last
-								,std::string actual);
-		std::string	find_actual	(std::string nickname);
+		void		new_node		(std::string last
+									,std::string actual);
+		std::string	find_actual		(std::string nickname);
+		bool		nick_is_lock	(std::string & nickname);
 
 	private:
 		std::vector<HistoricalNode *>	_historical;
