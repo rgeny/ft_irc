@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:56:10 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 15:20:21 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 17:49:08 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,5 @@ bool	Client::get_passwd_is_sent	(void) const
 
 void	Client::set_passwd_is_sent	(bool new_val)
 {
-	if (!this->_passwd_is_sent)
-		this->_passwd_is_sent = new_val;
+	this->_passwd_is_sent = new_val;
 }
