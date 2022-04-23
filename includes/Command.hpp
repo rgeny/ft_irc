@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 15:35:28 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 15:53:29 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ class Command
 		typedef int (Command::*CommandPointer)	(std::vector<std::string> & msg);
 		typedef std::map<std::string, CommandPointer>	CmdsFct;
 		typedef std::vector<std::vector<std::string> >	ClientCmds;
+		typedef std::vector<User *>						USERS_LIST;
+		typedef USERS_LIST::iterator					USERS_IT;
 
 		Command		(ServerData & data);
 		Command		(Command & src);
@@ -51,9 +53,10 @@ class Command
 
 //		Command	(void);
 
-		bool	_get_user_type	(void);
-		void	_parse			(std::string & cmd);
-		void	_check_cmd		(std::vector<std::string> & cmd);
+		bool	_get_user_type		(void);
+		void	_parse				(std::string & cmd);
+		void	_check_cmd			(std::vector<std::string> & cmd);
+		bool	_nick_already_used	(std::string & nickname) const;
 
 		int		_pass			(std::vector<std::string> & msg);
 		int		_nick			(std::vector<std::string> & msg);

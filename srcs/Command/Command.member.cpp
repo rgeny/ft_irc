@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 15:12:40 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 15:53:55 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,18 @@ void	Command::_check_cmd	(std::vector<std::string> & cmd)
 	CmdsFct::iterator	it = this->_cmds_fct.find(case_proof(cmd[0]));
 	if (it != this->_cmds_fct.end())
 		(this->*(it->second))(cmd);
+}
+
+bool	Command::_nick_already_used	(std::string & nickname) const
+{
+	USERS_LIST	users = this->_data._users;
+
+	for (USERS_IT it = users.begin(), ite = users.end(); it != ite; it++)
+	{
+		if ((*it)->get_nickname() == nickname)
+			return (true);
+	}
+	return (false);
 }
 
 void	Command::_init_cmd_fct	(void)

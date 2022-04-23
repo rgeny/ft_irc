@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/23 15:30:47 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 16:15:18 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,10 @@ void	Message::_init_msg_list	(void)
 		Message::_msg_list[ERR_NOSUCHSERVER] = "<server name> :No such server";
 		Message::_msg_list[ERR_NEEDMOREPARAMS] = "<command> :Not enough parameters";
 		Message::_msg_list[ERR_ALREADYREGISTRED] = ":Unauthorized command (already registered)";
+		Message::_msg_list[ERR_NONICKNAMEGIVEN] = ":No nickname given";
+		Message::_msg_list[ERR_NICKNAMEINUSE] = "<nick> :Nickname is already in use";
+		Message::_msg_list[ERR_UNAVAILRESOURCE] = "<nick/channel> :Nick/channel is temporarily unavailable";
+		Message::_msg_list[ERR_RESTRICTED] = ":Your connection is restricted!";
 
 		//CMD MSG
 		Message::_msg_list[PONG] = "<server> <server2>";
@@ -199,10 +203,7 @@ void	Message::_init_msg_list	(void)
 //		Message::_msg_list[ERR_NOMOTD] = ":MOTD File is missing";
 //		Message::_msg_list[ERR_NOADMININFO] = "<server> :No administrative info available";
 //		Message::_msg_list[ERR_FILEERROR] = ":File error doing <file op> on <file>";
-//		Message::_msg_list[ERR_NONICKNAMEGIVEN] = ":No nickname given";
-//		Message::_msg_list[ERR_NICKNAMEINUSE] = "<nick> :Nickname is already in use";
 //		Message::_msg_list[ERR_NICKCOLLISION] = "<nick> :Nickname collision KILL from <user>@<host>";
-//		Message::_msg_list[ERR_UNAVAILRESOURCE] = "<nick/channel> :Nick/channel is temporarily unavailable";
 //		Message::_msg_list[ERR_USERNOTINCHANNEL] = "<nick> <channel> :They aren't on that channel";
 //		Message::_msg_list[ERR_NOTONCHANNEL] = "<channel> :You're not on that channel";
 //		Message::_msg_list[ERR_USERONCHANNEL] = "<user> <channel> :is already on channel";
@@ -225,7 +226,6 @@ void	Message::_init_msg_list	(void)
 //		Message::_msg_list[ERR_NOPRIVILEGES] = ":Permission Denied- You're not an IRC operator";
 //		Message::_msg_list[ERR_CHANOPRIVSNEEDED] = "<channel> :You're not channel operator";
 //		Message::_msg_list[ERR_CANTKILLSERVER] = ":You can't kill a server!";
-//		Message::_msg_list[ERR_RESTRICTED] = ":Your connection is restricted!";
 //		Message::_msg_list[ERR_UNIQOPPRIVSNEEDED] = ":You're not the original channel operator";
 //		Message::_msg_list[ERR_NOOPERHOST] = ":No O-lines for your host";
 //		Message::_msg_list[ERR_UMODEUNKNOWNFLAG] = ":Unknown MODE flag";

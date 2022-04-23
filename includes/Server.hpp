@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 14:58:39 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 15:51:47 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@ class Server
 	,private ServerData
 {
 	public:
-		typedef std::vector<User *>::iterator		USERS_IT;
-		typedef std::map<User *, time_t>			NEW_USERS;
-		typedef NEW_USERS::iterator					NEW_USERS_IT;
-		typedef int									SOCKET;
+		typedef std::vector<User *>			USERS_LIST;
+		typedef USERS_LIST::iterator		USERS_IT;
+		typedef std::map<User *, time_t>	NEW_USERS;
+		typedef NEW_USERS::iterator			NEW_USERS_IT;
+		typedef int							SOCKET;
 
 		Server	(std::string	password
 				,SOCKET			port = PORT);
