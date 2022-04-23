@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 04:31:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 16:17:09 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 16:20:17 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,41 +15,39 @@
 int		Command::_nick	(std::vector<std::string> & cmd)
 {
 	std::string	oldest_nickname = this->_client->get_nickname();
+	std::string final_msg;
 
 	if (cmd.size() <= 1)
 	{
 		this->_reply.add_arg(cmd[0]);
-		std::string final_msg = this->_reply.forge(ERR_NONICKNAMEGIVEN);
-		this->_client->add_to_queue(final_msg);
+		final_msg = this->_reply.forge(ERR_NONICKNAMEGIVEN);
 		return (-1);
 	}
 	else if (this->_nick_already_used(cmd[1]))
 	{
 		this->_reply.add_arg(cmd[1]);
-		std::string	final_msg = this->_reply.forge(ERR_NICKNAMEINUSE);
-		this->_client->add_to_queue(final_msg);
+		final_msg = this->_reply.forge(ERR_NICKNAMEINUSE);
 		return (-1);
 	}
 	else if (this->_data._historical.nick_is_lock(cmd[1]))
 	{
 		this->_reply.add_arg(cmd[1]);
-		std::string	final_msg = this->_reply.forge(ERR_UNAVAILRESOURCE);
-		this->_client->add_to_queue(final_msg);
+		final_msg = this->_reply.forge(ERR_UNAVAILRESOURCE);
 		return (-1);
 	}
 	else if (static_cast<User *>(this->_client)->get_specific_mode(USERMODE_r))
 	{
-		std::string	final_msg = this->_reply.forge(ERR_RESTRICTED);
-		this->_client->add_to_queue(final_msg);
+		final_msg = this->_reply.forge(ERR_RESTRICTED);
 		return (-1);
 	}
 	else if (this->_client->set_nickname(cmd[1]) == false)
 	{
 		this->_reply.add_arg(cmd[1]);
-		std::string final_msg = this->_reply.forge(ERR_ERRONEUSNICKNAME);
-		this->_client->add_to_queue(final_msg);
+		final_msg = this->_reply.forge(ERR_ERRONEUSNICKNAME);
 		return (-1);
 	}
+	if (!final_msg.empty())
+		this->_client->add_to_queue(final_msg);
 	this->_data._historical.new_node(oldest_nickname, cmd[1]);
 	return (0);
 

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 14:58:58 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 16:25:18 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,6 @@ void	Server::_read_user_msg	(USERS_IT & it)
 	else if (n > 0)
 	{
 		if (this->_buf.compare(END_OF_MSG) != 0)
-		{
-			std::cout	<< "buf : "
-						<< this->_buf
-						<< std::endl;
 			this->_cmd.main(*it, this->_buf);
-		}
 	}
 }
