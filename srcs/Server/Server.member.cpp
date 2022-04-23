@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 14:50:19 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 14:51:48 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,14 +101,4 @@ void	Server::_check_tmp_user	(USERS_IT & it)
 		else if (this->_tmp_users[*it] + TIME_TO_CONNECT <= cur_time)
 			this->_del_user(it);
 	}
-//
-//
-//	NEW_USERS &	tmp_users	= this->_tmp_users;
-//	time_t		cur_time	= time(NULL);
-//
-//	for (NEW_USERS_IT it = tmp_users.begin(), ite = tmp_users.end(); it != ite; it++)
-//	{
-//		if ((*it).second + TIME_TO_CONNECT > cur_time)
-//			this->_del_user(this->_users.find(*it));
-//	}
 }
