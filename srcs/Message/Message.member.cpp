@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/23 03:01:52 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 03:05:27 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ std::string const	Message::forge	(std::string sender
 {
 	std::string content = get_msg(msg_code, _msg_args);
 	
-	std::string	tmp	= sender
+	std::string	tmp	= ":"
+					+ sender
 					+ " "
 					+ msg_code
 					+ " ";
