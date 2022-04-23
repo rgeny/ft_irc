@@ -6,13 +6,13 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 04:31:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 04:32:07 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 17:31:55 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Command.hpp"
 
-int		Command::_user	(std::vector<std::string> & cmd)
+e_error		Command::_user	(std::vector<std::string> & cmd)
 {
 	if (this->_client->get_nickname() != "anonymous")
 	{
@@ -30,7 +30,7 @@ int		Command::_user	(std::vector<std::string> & cmd)
 			std::string final_msg = this->_reply.forge(RPL_WELCOME);
 			this->_client->add_to_queue(final_msg);
 		}
-		return 0;
+		return (SUCCESS);
 	}
-	return (-1);
+	return (ERROR_CONTINUE);
 }

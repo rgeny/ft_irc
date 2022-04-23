@@ -6,13 +6,13 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 04:32:15 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 04:34:38 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 17:31:48 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Command.hpp"
 
-int		Command::_ping	(std::vector<std::string> & cmd)
+e_error		Command::_ping	(std::vector<std::string> & cmd)
 {
 	std::string		code = PONG;
 	std::string		final_msg;
@@ -29,5 +29,7 @@ int		Command::_ping	(std::vector<std::string> & cmd)
 	}
 	final_msg = this->_reply.forge(code);
 	this->_client->add_to_queue(final_msg);
-	return (-(code == PONG));
+	if (code == PONG)
+		return (SUCCESS);
+	return (ERROR_CONTINUE);
 }

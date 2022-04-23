@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 15:53:29 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 17:32:20 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,17 @@
 # include "ircserv.hpp"
 # include "ServerData.hpp"
 
+enum e_error
+{
+	SUCCESS,
+	ERROR_CONTINUE,
+	ERROR_KILL
+};
+
 class Command
 {
 	public:
-		typedef int (Command::*CommandPointer)	(std::vector<std::string> & msg);
+		typedef e_error (Command::*CommandPointer)	(std::vector<std::string> & msg);
 		typedef std::map<std::string, CommandPointer>	CmdsFct;
 		typedef std::vector<std::vector<std::string> >	ClientCmds;
 		typedef std::vector<User *>						USERS_LIST;
@@ -58,10 +65,10 @@ class Command
 		void	_check_cmd			(std::vector<std::string> & cmd);
 		bool	_nick_already_used	(std::string & nickname) const;
 
-		int		_pass			(std::vector<std::string> & msg);
-		int		_nick			(std::vector<std::string> & msg);
-		int		_user			(std::vector<std::string> & msg);
-		int		_ping			(std::vector<std::string> & msg);
+		e_error		_pass			(std::vector<std::string> & msg);
+		e_error		_nick			(std::vector<std::string> & msg);
+		e_error		_user			(std::vector<std::string> & msg);
+		e_error		_ping			(std::vector<std::string> & msg);
 
 		void	_init_cmd_fct	(void);
 };
@@ -72,58 +79,58 @@ std::ostream &	operator<<	(std::ostream & os
 
 // void		find_replace_tags(std::string & data, std::string toSearch, std::string replaceStr);
 
-// int		admin(Client *sender, const std::vector<std::string> &msg);
-// int		away(Client *sender, const std::vector<std::string> &msg);
-// int		cap(Client *sender, std::vector<std::string> &msg);
-// int		cnotice(Client *sender, const std::vector<std::string> &msg);
-// int		cprivmsg(Client *sender, const std::vector<std::string> &msg);
-// int		connect(Client *sender, const std::vector<std::string> &msg);
-// int		die(Client *sender, const std::vector<std::string> &msg);
-// int		encap(Client *sender, const std::vector<std::string> &msg);
-// int		error(Client *sender, const std::vector<std::string> &msg);
-// int		help(Client *sender, const std::vector<std::string> &msg);
-// int		info(Client *sender, const std::vector<std::string> &msg);
-// int		invite(Client *sender, const std::vector<std::string> &msg);
-// int		ison(Client *sender, const std::vector<std::string> &msg);
-// int		join(Client *sender, const std::vector<std::string> &msg);
-// int		kick(Client *sender, const std::vector<std::string> &msg);
-// int		kill(Client *sender, const std::vector<std::string> &msg);
-// int		knock(Client *sender, const std::vector<std::string> &msg);
-// int		links(Client *sender, const std::vector<std::string> &msg);
-// int		list(Client *sender, const std::vector<std::string> &msg);
-// int		lusers(Client *sender, const std::vector<std::string> &msg);
-// int		mode(Client *sender, const std::vector<std::string> &msg);
-// int		motd(Client *sender, const std::vector<std::string> &msg);
-// int		names(Client *sender, const std::vector<std::string> &msg);
-// int		namesx(Client *sender, const std::vector<std::string> &msg);
-// int		notice(Client *sender, const std::vector<std::string> &msg);
-// int		oper(Client *sender, const std::vector<std::string> &msg);
-// int		part(Client *sender, const std::vector<std::string> &msg);
-// int		pass(Client *sender, const std::vector<std::string> &msg);
-// int		ping(Client *sender, const std::vector<std::string> &msg);
-// int		pong(Client *sender, const std::vector<std::string> &msg);
-// int		privmsg(Client *sender, const std::vector<std::string> &msg);
-// int		quit(Client *sender, const std::vector<std::string> &msg);
-// int		rehash(Client *sender, const std::vector<std::string> &msg);
-// int		rules(Client *sender, const std::vector<std::string> &msg);
-// int		server(Client *sender, const std::vector<std::string> &msg);
-// int		service(Client *sender, const std::vector<std::string> &msg);
-// int		servlist(Client *sender, const std::vector<std::string> &msg);
-// int		squery(Client *sender, const std::vector<std::string> &msg);
-// int		squit(Client *sender, const std::vector<std::string> &msg);
-// int		setname(Client *sender, const std::vector<std::string> &msg);
-// int		silence(Client *sender, const std::vector<std::string> &msg);
-// int		stats(Client *sender, const std::vector<std::string> &msg);
-// int		summon(Client *sender, const std::vector<std::string> &msg);
-// int		time(Client *sender, const std::vector<std::string> &msg);
-// int		topic(Client *sender, const std::vector<std::string> &msg);
-// int		trace(Client *sender, const std::vector<std::string> &msg);
-// int		uhnames(Client *sender, const std::vector<std::string> &msg);
-// int		userhost(Client *sender, const std::vector<std::string> &msg);
-// int		userip(Client *sender, const std::vector<std::string> &msg);
-// int		users(Client *sender, const std::vector<std::string> &msg);
-// int		version(Client *sender, const std::vector<std::string> &msg);
-// int		wallops(Client *sender, const std::vector<std::string> &msg);
-// int		watch(Client *sender, const std::vector<std::string> &msg);
-// int		who(Client *sender, const std::vector<std::string> &msg);
-// int		whois(Client *sender, const std::vector<std::string> &msg);
+// e_error		admin(Client *sender, const std::vector<std::string> &msg);
+// e_error		away(Client *sender, const std::vector<std::string> &msg);
+// e_error		cap(Client *sender, std::vector<std::string> &msg);
+// e_error		cnotice(Client *sender, const std::vector<std::string> &msg);
+// e_error		cprivmsg(Client *sender, const std::vector<std::string> &msg);
+// e_error		connect(Client *sender, const std::vector<std::string> &msg);
+// e_error		die(Client *sender, const std::vector<std::string> &msg);
+// e_error		encap(Client *sender, const std::vector<std::string> &msg);
+// e_error		error(Client *sender, const std::vector<std::string> &msg);
+// e_error		help(Client *sender, const std::vector<std::string> &msg);
+// e_error		info(Client *sender, const std::vector<std::string> &msg);
+// e_error		invite(Client *sender, const std::vector<std::string> &msg);
+// e_error		ison(Client *sender, const std::vector<std::string> &msg);
+// e_error		join(Client *sender, const std::vector<std::string> &msg);
+// e_error		kick(Client *sender, const std::vector<std::string> &msg);
+// e_error		kill(Client *sender, const std::vector<std::string> &msg);
+// e_error		knock(Client *sender, const std::vector<std::string> &msg);
+// e_error		links(Client *sender, const std::vector<std::string> &msg);
+// e_error		list(Client *sender, const std::vector<std::string> &msg);
+// e_error		lusers(Client *sender, const std::vector<std::string> &msg);
+// e_error		mode(Client *sender, const std::vector<std::string> &msg);
+// e_error		motd(Client *sender, const std::vector<std::string> &msg);
+// e_error		names(Client *sender, const std::vector<std::string> &msg);
+// e_error		namesx(Client *sender, const std::vector<std::string> &msg);
+// e_error		notice(Client *sender, const std::vector<std::string> &msg);
+// e_error		oper(Client *sender, const std::vector<std::string> &msg);
+// e_error		part(Client *sender, const std::vector<std::string> &msg);
+// e_error		pass(Client *sender, const std::vector<std::string> &msg);
+// e_error		ping(Client *sender, const std::vector<std::string> &msg);
+// e_error		pong(Client *sender, const std::vector<std::string> &msg);
+// e_error		privmsg(Client *sender, const std::vector<std::string> &msg);
+// e_error		quit(Client *sender, const std::vector<std::string> &msg);
+// e_error		rehash(Client *sender, const std::vector<std::string> &msg);
+// e_error		rules(Client *sender, const std::vector<std::string> &msg);
+// e_error		server(Client *sender, const std::vector<std::string> &msg);
+// e_error		service(Client *sender, const std::vector<std::string> &msg);
+// e_error		servlist(Client *sender, const std::vector<std::string> &msg);
+// e_error		squery(Client *sender, const std::vector<std::string> &msg);
+// e_error		squit(Client *sender, const std::vector<std::string> &msg);
+// e_error		setname(Client *sender, const std::vector<std::string> &msg);
+// e_error		silence(Client *sender, const std::vector<std::string> &msg);
+// e_error		stats(Client *sender, const std::vector<std::string> &msg);
+// e_error		summon(Client *sender, const std::vector<std::string> &msg);
+// e_error		time(Client *sender, const std::vector<std::string> &msg);
+// e_error		topic(Client *sender, const std::vector<std::string> &msg);
+// e_error		trace(Client *sender, const std::vector<std::string> &msg);
+// e_error		uhnames(Client *sender, const std::vector<std::string> &msg);
+// e_error		userhost(Client *sender, const std::vector<std::string> &msg);
+// e_error		userip(Client *sender, const std::vector<std::string> &msg);
+// e_error		users(Client *sender, const std::vector<std::string> &msg);
+// e_error		version(Client *sender, const std::vector<std::string> &msg);
+// e_error		wallops(Client *sender, const std::vector<std::string> &msg);
+// e_error		watch(Client *sender, const std::vector<std::string> &msg);
+// e_error		who(Client *sender, const std::vector<std::string> &msg);
+// e_error		whois(Client *sender, const std::vector<std::string> &msg);
