@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 01:53:58 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 02:54:57 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void	Command::main	(Client * client
 							ite = this->_client_cmds.end();
 	while (it != ite)
 	{
-		std::vector<std::string>::iterator it_token = (*it).begin();
-		std::vector<std::string>::iterator ite_token = (*it).end();
-		while (it_token != ite_token)
-		{
-			std::cout << *it_token << std::endl;
-			it_token++;
-		}
+//		std::vector<std::string>::iterator it_token = (*it).begin();
+//		std::vector<std::string>::iterator ite_token = (*it).end();
+//		while (it_token != ite_token)
+//		{
+//			std::cout << *it_token << std::endl;
+//			it_token++;
+//		}
 		this->_check_cmd(*it);
 		it++;
 	}
@@ -159,8 +159,10 @@ int		Command::_ping	(std::vector<std::string> & cmd)
 {
 	if (cmd.size() > 1)
 	{
-		std::string	final_msg = "PONG ";
-		final_msg += this->_client->get_nickname() + "\r\n";
+		Message reply;
+		reply.add_arg(this->_data._servername);
+		reply.add_arg(cmd[1]);
+		std::string final_msg = reply.forge(":" + this->_data._servername, PONG);
 		this->_client->add_to_queue(final_msg);
 	}
 	return (0);

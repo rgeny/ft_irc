@@ -6,14 +6,14 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 01:40:40 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 02:06:38 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SERVER_HPP
 # define SERVER_HPP
 # define HOSTNAME "127.0.0.1"
-# define SERVER_NAME "Majin Boo"
+# define SERVER_NAME "MajinBoo"
 
 # include <iostream>
 # include <string>

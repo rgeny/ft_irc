@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/22 16:12:54 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/23 02:18:16 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,14 @@ std::string const	Message::forge	(std::string sender
 	std::string	tmp	= sender
 					+ " "
 					+ msg_code
-					+ " "
-					+ _receiver
-					+ " "
-					+ content
-					+ "\r\n";
+					+ " ";
+	if (!this->_receiver.empty())
+	{
+		tmp	+=	this->_receiver
+			+	" ";
+	}
+	tmp += content
+		+ "\r\n";
 	return (tmp);
 }
 
@@ -91,8 +94,12 @@ void	Message::_init_msg_list	(void)
 {
 	if (Message::_msg_list.size() == 0)
 	{
+		//RETURN MSG
 		Message::_msg_list[RPL_WELCOME] = "Welcome to the Internet Relay Network <fullclientidentifier>";
 		Message::_msg_list[ERR_ERRONEUSNICKNAME] = "<nick> :Erroneous nickname";
+
+		//CMD MSG
+		Message::_msg_list[PONG] = "<server> <server2>";
 	}	
 }
 
