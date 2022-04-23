@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/23 04:12:08 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 04:35:23 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	Message::add_arg	(std::string arg)
 
 std::string const	Message::forge	(std::string msg_code)
 {
-	std::string content = get_msg(msg_code, _msg_args);
+	std::string content = _get_msg(msg_code, _msg_args);
 	std::string	msg = ":";
 
 	if (!this->_sender.empty())
@@ -48,7 +48,7 @@ std::string		Message::_get_msg	(std::string & msg_code
 									,std::vector<std::string> & args)
 {
 	std::string		msg_template	= this->_msg_list[msg_code];
-	return (replace_tags(msg_template, args));
+	return (_replace_tags(msg_template, args));
 }
 
 std::string		Message::_replace_tags	(std::string msg_template

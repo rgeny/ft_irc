@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 04:02:31 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/23 04:34:10 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,78 +62,78 @@ void	Command::_check_cmd	(std::vector<std::string> & cmd)
 		(this->*(it->second))(cmd);
 }
 
-int		Command::_nick	(std::vector<std::string> & cmd)
-{
-	if (cmd.size() <= 1)
-	{
-		this->_reply.add_arg(cmd[0]);
-		std::string final_msg = this->_reply.forge(ERR_NONICKNAMEGIVEN);
-		this->_client->add_to_queue(final_msg);
-		return (-1);
-	}
-	else
-	{
-		this->_reply.add_arg(cmd[1]);
-		std::cout << "nickname: " << cmd[1] << std::endl;
-		if (cmd.size() > 1)
-		{
-			if (this->_client->set_nickname(cmd[1]) == false)
-			{
-				std::string final_msg = this->_reply.forge(ERR_ERRONEUSNICKNAME);
-				std::cout	<< "msg forge : " 
-							<< final_msg << "\n";
-				this->_client->add_to_queue(final_msg);
-				return (-1);
-			}
-			std::cout << "NICKNAME SET: " << this->_client->get_nickname() << std::endl;
-		}
-		return (0);
-	}
-	return (-1);
-}
+//int		Command::_nick	(std::vector<std::string> & cmd)
+//{
+//	if (cmd.size() <= 1)
+//	{
+//		this->_reply.add_arg(cmd[0]);
+//		std::string final_msg = this->_reply.forge(ERR_NONICKNAMEGIVEN);
+//		this->_client->add_to_queue(final_msg);
+//		return (-1);
+//	}
+//	else
+//	{
+//		this->_reply.add_arg(cmd[1]);
+//		std::cout << "nickname: " << cmd[1] << std::endl;
+//		if (cmd.size() > 1)
+//		{
+//			if (this->_client->set_nickname(cmd[1]) == false)
+//			{
+//				std::string final_msg = this->_reply.forge(ERR_ERRONEUSNICKNAME);
+//				std::cout	<< "msg forge : " 
+//							<< final_msg << "\n";
+//				this->_client->add_to_queue(final_msg);
+//				return (-1);
+//			}
+//			std::cout << "NICKNAME SET: " << this->_client->get_nickname() << std::endl;
+//		}
+//		return (0);
+//	}
+//	return (-1);
+//}
 
-int		Command::_user	(std::vector<std::string> & cmd)
-{
-	if (this->_client->get_nickname() != "anonymous")
-	{
-		if (cmd.size() > 4)
-		{
-			std::string u(cmd[1]);
-			std::string tmp = "";
-			User & cur_user = static_cast<User &>(*this->_client);
-			cur_user.set_username(u);
-			for (size_t i = 5; i < cmd.size(); i++)
-				tmp += cmd[i];
-			cur_user.set_realname(tmp);
-			this->_reply.set_receiver(this->_client->get_nickname());
-			this->_reply.add_arg(cur_user.get_nickname() + "!" + cur_user.get_username() + "@" + this->_data._servername);
-			std::string final_msg = this->_reply.forge(RPL_WELCOME);
-			this->_client->add_to_queue(final_msg);
-		}
-		return 0;
-	}
-	return (-1);
-}
-
-int		Command::_ping	(std::vector<std::string> & cmd)
-{
-	std::string		code = PONG;
-	std::string		final_msg;
-
-	if (cmd.size() == 1)
-		code = ERR_NOORIGIN;
-	else
-	{
-		if (cmd[1] == this->_data._servername)
-			this->_reply.add_arg(this->_data._servername);
-		else
-			code = ERR_NOSUCHSERVER;
-		this->_reply.add_arg(cmd[1]);
-	}
-	final_msg = this->_reply.forge(code);
-	this->_client->add_to_queue(final_msg);
-	return (-(code == PONG));
-}
+//int		Command::_user	(std::vector<std::string> & cmd)
+//{
+//	if (this->_client->get_nickname() != "anonymous")
+//	{
+//		if (cmd.size() > 4)
+//		{
+//			std::string u(cmd[1]);
+//			std::string tmp = "";
+//			User & cur_user = static_cast<User &>(*this->_client);
+//			cur_user.set_username(u);
+//			for (size_t i = 5; i < cmd.size(); i++)
+//				tmp += cmd[i];
+//			cur_user.set_realname(tmp);
+//			this->_reply.set_receiver(this->_client->get_nickname());
+//			this->_reply.add_arg(cur_user.get_nickname() + "!" + cur_user.get_username() + "@" + this->_data._servername);
+//			std::string final_msg = this->_reply.forge(RPL_WELCOME);
+//			this->_client->add_to_queue(final_msg);
+//		}
+//		return 0;
+//	}
+//	return (-1);
+//}
+//
+//int		Command::_ping	(std::vector<std::string> & cmd)
+//{
+//	std::string		code = PONG;
+//	std::string		final_msg;
+//
+//	if (cmd.size() == 1)
+//		code = ERR_NOORIGIN;
+//	else
+//	{
+//		if (cmd[1] == this->_data._servername)
+//			this->_reply.add_arg(this->_data._servername);
+//		else
+//			code = ERR_NOSUCHSERVER;
+//		this->_reply.add_arg(cmd[1]);
+//	}
+//	final_msg = this->_reply.forge(code);
+//	this->_client->add_to_queue(final_msg);
+//	return (-(code == PONG));
+//}
 
 void	Command::_init_cmd_fct	(void)
 {

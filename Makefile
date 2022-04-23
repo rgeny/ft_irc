@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/23 01:41:15 by rgeny            ###   ########.fr        #
+#    Updated: 2022/04/23 04:33:51 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,13 +30,14 @@ CLIENT_DIR			= $(SRCS_DIR)Client/
 USER_DIR			= $(SRCS_DIR)User/
 UTILS_DIR			= $(SRCS_DIR)Utils/
 COMMAND_DIR			= $(SRCS_DIR)Command/
+COMMAND_FCT_DIR		= $(COMMAND_DIR)Command_function/
 MESSAGE_DIR			= $(SRCS_DIR)Message/
 HISTORICALNODE_DIR	= $(SRCS_DIR)HistoricalNode/
 HISTORICAL_DIR		= $(SRCS_DIR)Historical/
 
 VPATH				= $(SRCS_DIR) $(SOCKET_DIR) $(SERVER_DIR) $(CLIENT_DIR)
 VPATH				+=$(USER_DIR) $(UTILS_DIR) $(COMMAND_DIR) $(MESSAGE_DIR)
-VPATH				+=$(HISTORICALNODE_DIR) $(HISTORICAL_DIR)
+VPATH				+=$(HISTORICALNODE_DIR) $(HISTORICAL_DIR) $(COMMAND_FCT_DIR)
 
 ifndef ARG
 	ARG = 6697 abc
@@ -54,6 +55,9 @@ SRCS				= $(addsuffix .cpp,				main \
 						$(addprefix Client,			$(DEFAULT_FILES)) \
 						$(addprefix User,			$(DEFAULT_FILES)) \
 						$(addprefix Command,		$(DEFAULT_FILES)) \
+													nick \
+													ping \
+													user \
 						$(addprefix Message,		$(DEFAULT_FILES)) \
 						$(addprefix HistoricalNode,	$(DEFAULT_FILES)) \
 						$(addprefix Historical,		$(DEFAULT_FILES)))
