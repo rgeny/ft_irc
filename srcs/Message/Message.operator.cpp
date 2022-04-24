@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Message.operator.cpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/22 11:50:09 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/24 15:04:57 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,13 @@
 
 Message & Message::operator=(Message const & rhs)
 {
-//	this->_sender = rhs._sender;
-//	this->_receiver = rhs._receiver;
-//	this->msg_code = rhs.msg_code.get();
-//	this->msg_content = rhs.msg_content.get();
+	(void)rhs;
 	return (*this);
 }
 
-std::ostream&	operator<<( std::ostream& o, Message const & instance)
+std::ostream&	operator<<( std::ostream& os, Message const & src)
 {
-//	o	<< "MESSAGE\n"
-//		<< "FROM: "
-//		<< instance.getSender()
-//		<< "\nTO: "
-//		<< instance.getReceiver()
-//		<< "\nTXT: "
-//		<< instance.msg_code.get()
-//		<< "\nCMD: "
-//		<< instance.msg_content.get();
-	return (o);
+	(void)src;
+	return (os);
 }
+

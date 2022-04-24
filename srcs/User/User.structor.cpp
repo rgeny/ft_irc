@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   User.structor.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:35:05 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/12 18:29:53 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/24 15:02:04 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ User:: User	(std::string	nickname
 	,_username(username)
 	,_realname(realname)
 {
+	(void)mode;
 	this->_mode.resize(8);
 	for (int i = 0; i < 8; i++)
 		this->_mode[i] = false;

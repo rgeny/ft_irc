@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.member.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/22 19:18:05 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/24 15:02:34 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,10 +166,10 @@ int		Command::_join	(std::vector<std::string> & cmd)
 		this->_client->add_to_queue(final_msg);
 		return (-1);
 	}
-	else
-	{
-		if (chans.count(cmd[1]) == 1)
-	}
+	// else
+	// {
+	// 	if (chans.count(cmd[1]) == 1)
+	// }
 return (0);
 }
 

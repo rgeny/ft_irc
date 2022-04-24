@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Message.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/22 16:08:26 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/24 15:03:55 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ class Message
 		std::vector<std::string>	_msg_args;
 };
 
-std::ostream &	operator<<	(std::ostream & o
-							,Message const & instance);
+std::ostream &	operator<<	(std::ostream & os
+							,Message const & src);
 
 #endif

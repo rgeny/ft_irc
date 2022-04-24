@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Message.structor.cpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:51:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/22 14:37:11 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/24 15:07:00 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 std::map<std::string, std::string>	Message::_msg_list;
 
 Message:: Message	(void)
-	:_sender()
-	,_receiver()
-	,msg_code("")
+	:msg_code("")
 	,msg_content("")
+	,_sender()
+	,_receiver()
 {
 	std::cout	<< "Message dfl constructor."
 				<< std::endl;
