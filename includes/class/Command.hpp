@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/24 09:10:22 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/24 13:09:56 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include "User.hpp"
 
 # include "Message.hpp"
-# include "Accessor.hpp"
 # include "ircserv.hpp"
 # include "ServerData.hpp"
 

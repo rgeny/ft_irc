@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/23 04:11:51 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/24 13:09:33 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <map>
 # include "User.hpp"
 # include "defines.hpp"
-
-#include "Accessor.hpp"
 
 class Message
 {

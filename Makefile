@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/24 12:49:35 by rgeny            ###   ########.fr        #
+#    Updated: 2022/04/24 13:42:56 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,17 @@ VERSION				= -std=c++98
 CC					= c++
 COMPILE_FLAG		= $(DEPS_FLAG) $(VERSION) -g#-Wall -Werror -Wextra
 DEPS_FLAG			= -MMD
-INCLUDES_FLAG		= -I$(INCLUDES_DIR)
+INCLUDES_FLAG		= $(addprefix -I ,	$(INCLUDES_DIR) \
+										$(CLASS_DIR) \
+										$(DEFINES_DIR))
 VALGRIND			= valgrind
 VALGRIND_FLAG		= --leak-check=full --show-leak-kinds=all --track-fds=yes
 
 INCLUDES_DIR		= includes/
+CLASS_DIR			= $(INCLUDES_DIR)class/
+DEFINES_DIR			= $(INCLUDES_DIR)defines/
 OBJS_DIR			= objs/
+
 SRCS_DIR			= srcs/
 SOCKET_DIR			= $(SRCS_DIR)Socket/
 SERVER_DIR			= $(SRCS_DIR)Server/

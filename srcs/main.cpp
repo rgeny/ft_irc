@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:23:38 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/23 01:40:20 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/24 13:42:01 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main	(__attribute((unused)) int argc
 		check_nbr_of_arguments(argc);
 		check_port_argument(std::string(argv[1]));
 		check_password_argument(std::string(argv[2]));
-		print_variable(BOLDMAGENTA, "ft_irc started", "", RESET);
+		print_variable(BOLD MAGENTA, "ft_irc started", "", RESET);
 		port = atoi(argv[1]);
 		password = argv[2];
 		Server	serv (password, port);
