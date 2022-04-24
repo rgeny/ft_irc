@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:57:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 15:20:25 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/24 08:47:46 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	Client::add_to_queue	(std::string & msg)
 {
-	this->_msg_queue.push(msg);
+	if (!this->be_disconnected)
+		this->_msg_queue.push(msg);
 }
 
 bool	Client::is_empty_msg_queue	(void) const

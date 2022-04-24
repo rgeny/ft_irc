@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/23 16:15:18 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/24 09:07:44 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,11 @@ void	Message::_init_msg_list	(void)
 		Message::_msg_list[ERR_NICKNAMEINUSE] = "<nick> :Nickname is already in use";
 		Message::_msg_list[ERR_UNAVAILRESOURCE] = "<nick/channel> :Nick/channel is temporarily unavailable";
 		Message::_msg_list[ERR_RESTRICTED] = ":Your connection is restricted!";
+		Message::_msg_list[ERR_PASSWDMISMATCH] = ":Password incorrect";
 
 		//CMD MSG
 		Message::_msg_list[PONG] = "<server> <server2>";
+		Message::_msg_list[ERROR] = ":<result> Link: <nick> by <serv> (<cause>)";
 	}
 }
 
@@ -212,7 +214,6 @@ void	Message::_init_msg_list	(void)
 //		Message::_msg_list[ERR_USERSDISABLED] = ":USERS has been disabled";
 //		Message::_msg_list[ERR_NOTREGISTERED] = ":You have not registered";
 //		Message::_msg_list[ERR_NOPERMFORHOST] = ":Your host isn't among the privileged";
-//		Message::_msg_list[ERR_PASSWDMISMATCH] = ":Password incorrect";
 //		Message::_msg_list[ERR_YOUREBANNEDCREEP] = ":You are banned from this server";
 //		Message::_msg_list[ERR_KEYSET] = "<channel> :Channel key already set";
 //		Message::_msg_list[ERR_CHANNELISFULL] = "<channel> :Cannot join channel (+l)";
