@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 15:51:47 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/24 09:08:03 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define SERVER_HPP
 # define HOSTNAME "127.0.0.1"
 # define SERVER_NAME "MajinBoo"
-# define DFL_TIMEOUT 4
+# define DFL_TIMEOUT 15
 
 # include <iostream>
 # include <string>

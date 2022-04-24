@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/24 12:49:14 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/24 13:06:22 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ void	Command::_check_cmd	(std::vector<std::string> & cmd)
 {
 	CmdsFct::iterator	it = this->_cmds_fct.find(case_proof(cmd[0]));
 	if (it != this->_cmds_fct.end())
-		(this->*(it->second))(cmd);
+	{
+		e_error	error = (this->*(it->second))(cmd);
+		this->_check_error(error);
+	}
 }
 
 bool	Command::_nick_already_used	(std::string & nickname) const
@@ -72,4 +75,17 @@ bool	Command::_nick_already_used	(std::string & nickname) const
 			return (true);
 	}
 	return (false);
+}
+void	Command::_check_error	(e_error code)
+{
+	if (code == ERROR_PASSWDMISMATCH)
+	{
+		this->_reply.add_arg(CLOSE);
+		this->_reply.add_arg(this->_client->get_nickname());
+		this->_reply.add_arg(this->_data._servername);
+		this->_reply.add_arg(BADPASSWD);
+		std::string	final_msg = this->_reply.forge(ERROR);
+		this->_client->add_to_queue(final_msg);
+		this->_client->be_disconnected = true;
+	}
 }

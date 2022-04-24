@@ -6,12 +6,14 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 17:32:20 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/24 09:10:22 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COMMAND_HPP
 # define COMMAND_HPP
+# define CLOSE "Closing"
+# define BADPASSWD "Bad password"
 
 # include <iostream>
 # include <string>
@@ -28,7 +30,8 @@ enum e_error
 {
 	SUCCESS,
 	ERROR_CONTINUE,
-	ERROR_KILL
+	ERROR_KILL,
+	ERROR_PASSWDMISMATCH
 };
 
 class Command
@@ -64,6 +67,7 @@ class Command
 		void	_parse				(std::string & cmd);
 		void	_check_cmd			(std::vector<std::string> & cmd);
 		bool	_nick_already_used	(std::string & nickname) const;
+		void	_check_error		(e_error code);
 
 		e_error		_pass			(std::vector<std::string> & msg);
 		e_error		_nick			(std::vector<std::string> & msg);
