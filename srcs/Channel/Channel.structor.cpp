@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.structor.cpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/22 17:36:54 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/22 18:43:06 by abesombe         ###   ########.fr       */
+/*   Created: 2022/04/04 15:19:17 by ayzapata          #+#    #+#             */
+/*   Updated: 2022/04/24 15:10:45 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
