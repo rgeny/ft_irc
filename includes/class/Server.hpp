@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/24 09:08:03 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 16:08:35 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 class Server
 	:private Socket
-	,private ServerData
+	,private Command
 {
 	public:
 		typedef std::vector<User *>			USERS_LIST;
@@ -45,10 +45,8 @@ class Server
 		void	main			(void);
 
 	private:
-		std::string				_buf;
 		fd_set					_rfds;
 		fd_set					_wfds;
-		Command					_cmd;
 
 		Server	(Server & src);
 

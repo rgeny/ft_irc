@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 04:32:15 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 17:31:48 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 18:21:27 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,9 @@
 
 e_error		Command::_ping	(std::vector<std::string> & cmd)
 {
-	std::string		code = PONG;
-	std::string		final_msg;
-
 	if (cmd.size() == 1)
-		code = ERR_NOORIGIN;
-	else
-	{
-		if (cmd[1] == this->_data._servername)
-			this->_reply.add_arg(this->_data._servername);
-		else
-			code = ERR_NOSUCHSERVER;
-		this->_reply.add_arg(cmd[1]);
-	}
-	final_msg = this->_reply.forge(code);
-	this->_client->add_to_queue(final_msg);
-	if (code == PONG)
-		return (SUCCESS);
-	return (ERROR_CONTINUE);
+		return (this->_err_noorigin());
+	else if (cmd[1] != this->_servername)
+		return (this->_err_nosuchserver());
+	return (this->_cmd_pong());
 }

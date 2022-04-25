@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 11:05:09 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 16:04:29 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 17:29:36 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	Historical::new_node	(std::string last
 {
 	this->_rm_obsolete_history();
 
-	this->_historical.push_back(new HistoricalNode(last, actual));
+	if (last != actual)
+		this->_historical.push_back(new HistoricalNode(last, actual));
 }
 
 std::string	Historical::find_actual	(std::string nickname)

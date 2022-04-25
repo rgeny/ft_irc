@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 17:45:08 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 16:12:39 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ void	Server::main			(void)
 
 void	Server::_init_fds		(void)
 {
-	std::vector<User *> &	users = this->_users;
+	USERS_LIST &	users = this->_users;
+	USERS_IT &		it = this->_users_it;
+	USERS_IT &		ite = this->_users_ite;
 
 	FD_ZERO	(&this->_wfds);
 	FD_ZERO	(&this->_rfds);
@@ -36,7 +38,7 @@ void	Server::_init_fds		(void)
 			,&this->_rfds);
 	this->add_in_fds(&this->_rfds);
 
-	for (USERS_IT	it = users.begin(), ite = users.end(); it != ite; it++)
+	for (it = users.begin(), ite = users.end(); it != ite; it++)
 	{
 		(*it)->add_in_fds(&this->_rfds);
 		if (!(*it)->is_empty_msg_queue())
@@ -46,9 +48,11 @@ void	Server::_init_fds		(void)
 
 void	Server::_check_fds		(void)
 {
-	std::vector<User *> &	users = this->_users;
+	USERS_LIST &	users = this->_users;
+	USERS_IT &		it = this->_users_it;
+	USERS_IT &		ite = this->_users_ite;
 
-	for (USERS_IT it = users.begin(), ite = users.end(); it != ite; it++)
+	for (it = users.begin(), ite = users.end(); it != ite; it++)
 	{
 		if ((*it)->is_set(&this->_wfds))
 			(*it)->send();
@@ -72,8 +76,10 @@ void	Server::_new_user	(void)
 void	Server::_del_user		(USERS_IT & it)
 {
 	delete (*it);
-	if (this->_tmp_users.find(*it) != this->_tmp_users.end())
-		this->_tmp_users.erase(*it);
+//	if (this->_tmp_users.find(*it) != this->_tmp_users.end())
+	std::cout	<< "number of deleted elements in tmp_users : "
+				<< this->_tmp_users.erase(*it)
+				<< std::endl;
 	this->_users.erase(it);
 }
 
@@ -93,13 +99,13 @@ void	Server::_check_tmp_user	(USERS_IT & it)
 
 void	Server::_read_user_msg	(USERS_IT & it)
 {
-	int	n = (*it)->receive(this->_buf);
+	int	n = (*it)->receive(this->_msg);
 
 	if (n == 0)
 		this->_del_user(it);
 	else if (n > 0)
 	{
-		if (this->_buf.compare(END_OF_MSG) != 0)
-			this->_cmd.main(*it, this->_buf);
+		if (this->_msg.compare(END_OF_MSG) != 0)
+			this->Command::main();
 	}
 }

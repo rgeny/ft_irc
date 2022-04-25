@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/24 13:09:56 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 16:11:08 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,11 @@
 # include "ircserv.hpp"
 # include "ServerData.hpp"
 
-enum e_error
-{
-	SUCCESS,
-	ERROR_CONTINUE,
-	ERROR_KILL,
-	ERROR_PASSWDMISMATCH
-};
+# include "e_error.hpp"
+
 
 class Command
+	:virtual protected Message
 {
 	public:
 		typedef e_error (Command::*CommandPointer)	(std::vector<std::string> & msg);
@@ -42,28 +38,26 @@ class Command
 		typedef std::vector<User *>						USERS_LIST;
 		typedef USERS_LIST::iterator					USERS_IT;
 
-		Command		(ServerData & data);
+		Command		(void);
 		Command		(Command & src);
 		~Command	(void);
 
 		Command &	operator=	(Command & src);
 
-		void	main		(Client * client
-							,std::string & arg);
+		void	main		(void);
 	private:
 		static CmdsFct		_cmds_fct;
 
-		ServerData &		_data;
+//		ServerData &		_data;
 
 		ClientCmds		_client_cmds;
 		Client *		_client;
 		bool			_is_user;
-		Message			_reply;
 
 //		Command	(void);
 
 		bool	_get_user_type		(void);
-		void	_parse				(std::string & cmd);
+		void	_parse				(void);
 		void	_check_cmd			(std::vector<std::string> & cmd);
 		bool	_nick_already_used	(std::string & nickname) const;
 		void	_check_error		(e_error code);

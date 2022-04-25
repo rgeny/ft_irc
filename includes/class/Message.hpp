@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/24 13:09:33 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 18:09:19 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@
 # include <iostream>
 # include <string>
 # include <map>
-# include "User.hpp"
 # include "defines.hpp"
+# include "Data.hpp"
+
+# include "e_error.hpp"
 
 class Message
+	:virtual protected Data
 {
 	public:
-		Message		(std::string * servername);
+		Message		(void);
 		Message		(Message const & src);
 		~Message	(void);
 
@@ -34,12 +37,35 @@ class Message
 		void				add_arg			(std::string arg);
 		std::string const	forge			(std::string msg_code);
 
+	protected:
+		e_error	_err_passwdmismatch		(void) const;
+		e_error	_err_nonicknamegiven	(void) const;
+		e_error	_err_nicknameinuse		(void) const;
+		e_error	_err_unavailresource	(void) const;
+		e_error	_err_restricted			(void) const;
+		e_error	_err_erroneusnickname	(void) const;
+		e_error	_err_needmoreparams		(void) const;
+		e_error	_err_alreadyregistred	(void) const;
+		e_error	_err_noorigin			(void) const;
+		e_error	_err_nosuchserver		(void) const;
+
+		e_error	_cmd_pong				(void) const;
+	
+
 	private:
+
+		std::string	_set_msg_base	(std::string code) const;
+
+		std::string	_set_reply_base	(std::string code) const;
+		std::string	_set_reply_base	(std::string code
+									,std::string receiver) const;
+//		std::string	set_msg_base	(std::string receiver) const;
+
+
+
+
 		static std::map<std::string, std::string>	_msg_list;
 
-		Message	(void);
-
-		const std::string *			_servername;
 		std::string					_sender;
 		std::string 				_receiver;
 		std::vector<std::string>	_msg_args;

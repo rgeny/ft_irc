@@ -6,11 +6,48 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/24 09:07:44 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 18:14:47 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Message.hpp"
+
+std::string	Message::_set_msg_base	(std::string code) const
+{
+	std::string	msg	= ":"
+					+ this->_servername
+					+ " "
+					+ code
+					+ " ";
+	return (msg);
+}
+
+std::string	Message::_set_reply_base	(std::string code) const
+{
+	std::string	msg	= this->_set_msg_base(code);
+
+	std::string	nickname = (*this->_users_it)->get_nickname();
+	msg += (nickname == DFL_NICKNAME) ? "* " : nickname + " ";
+	return (msg);
+}
+
+std::string	Message::_set_reply_base	(std::string code
+										,std::string receiver) const
+{
+	std::string	msg	= this->_set_msg_base(code)
+					+ receiver
+					+ " ";
+	return (msg);
+}
+
+
+
+
+
+
+
+
+
 
 void	Message::add_arg	(std::string arg)
 {
@@ -25,7 +62,7 @@ std::string const	Message::forge	(std::string msg_code)
 	if (!this->_sender.empty())
 		this->_sender.clear();
 	else
-		msg += *this->_servername;
+		msg += this->_servername;
 
 	msg += " "
 		+ msg_code
@@ -88,20 +125,24 @@ void	Message::_init_msg_list	(void)
 	if (Message::_msg_list.size() == 0)
 	{
 		//RETURN MSG
-		Message::_msg_list[RPL_WELCOME] = "Welcome to the Internet Relay Network <fullclientidentifier>";
-		Message::_msg_list[ERR_ERRONEUSNICKNAME] = "<nick> :Erroneous nickname";
-		Message::_msg_list[ERR_NOORIGIN] = ":No origin specified";
-		Message::_msg_list[ERR_NOSUCHSERVER] = "<server name> :No such server";
-		Message::_msg_list[ERR_NEEDMOREPARAMS] = "<command> :Not enough parameters";
-		Message::_msg_list[ERR_ALREADYREGISTRED] = ":Unauthorized command (already registered)";
+		Message::_msg_list[ERR_PASSWDMISMATCH] = ":Password incorrect";
 		Message::_msg_list[ERR_NONICKNAMEGIVEN] = ":No nickname given";
 		Message::_msg_list[ERR_NICKNAMEINUSE] = "<nick> :Nickname is already in use";
 		Message::_msg_list[ERR_UNAVAILRESOURCE] = "<nick/channel> :Nick/channel is temporarily unavailable";
 		Message::_msg_list[ERR_RESTRICTED] = ":Your connection is restricted!";
-		Message::_msg_list[ERR_PASSWDMISMATCH] = ":Password incorrect";
-
+		Message::_msg_list[ERR_ERRONEUSNICKNAME] = "<nick> :Erroneous nickname";
+		Message::_msg_list[ERR_NEEDMOREPARAMS] = "<command> :Not enough parameters";
+		Message::_msg_list[ERR_ALREADYREGISTRED] = ":Unauthorized command (already registered)";
+		Message::_msg_list[ERR_NOORIGIN] = ":No origin specified";
+		Message::_msg_list[ERR_NOSUCHSERVER] = "<server name> :No such server";
+		
 		//CMD MSG
 		Message::_msg_list[PONG] = "<server> <server2>";
+
+
+		Message::_msg_list[RPL_WELCOME] = "Welcome to the Internet Relay Network <fullclientidentifier>";
+
+		//CMD MSG
 		Message::_msg_list[ERROR] = ":<result> Link: <nick> by <serv> (<cause>)";
 	}
 }

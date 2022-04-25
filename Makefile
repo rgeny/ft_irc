@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/25 12:36:27 by rgeny            ###   ########.fr        #
+#    Updated: 2022/04/25 18:18:51 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,9 @@ UTILS_DIR			= $(SRCS_DIR)Utils/
 COMMAND_DIR			= $(SRCS_DIR)Command/
 COMMAND_FCT_DIR		= $(COMMAND_DIR)Command_function/
 MESSAGE_DIR			= $(SRCS_DIR)Message/
+ERROR_MSG_DIR		= $(MESSAGE_DIR)error_msg/
+REPLY_MSG_DIR		= $(MESSAGE_DIR)reply_msg/
+CMD_MSG_DIR			= $(MESSAGE_DIR)cmd_msg/
 HISTORICALNODE_DIR	= $(SRCS_DIR)HistoricalNode/
 HISTORICAL_DIR		= $(SRCS_DIR)Historical/
 DATA_DIR			= $(SRCS_DIR)Data/
@@ -44,7 +47,7 @@ DATA_DIR			= $(SRCS_DIR)Data/
 VPATH				= $(SRCS_DIR) $(SOCKET_DIR) $(SERVER_DIR) $(CLIENT_DIR)
 VPATH				+=$(USER_DIR) $(UTILS_DIR) $(COMMAND_DIR) $(MESSAGE_DIR)
 VPATH				+=$(HISTORICALNODE_DIR) $(HISTORICAL_DIR) $(COMMAND_FCT_DIR)
-VPATH				+=$(DATA_DIR)
+VPATH				+=$(DATA_DIR) $(ERROR_MSG_DIR) $(REPLY_MSG_DIR) $(CMD_MSG_DIR)
 
 ifndef ARG
 	ARG = 6697 abc
@@ -60,6 +63,18 @@ SRCS				= $(addsuffix .cpp,				main \
 													print_error \
 						$(addprefix Socket,			$(DEFAULT_FILES)) \
 						$(addprefix Message,		$(DEFAULT_FILES)) \
+													err_passmismatch \
+													err_nonicknamegiven \
+													err_nicknameinuse \
+													err_unavailresource \
+													err_restricted \
+													err_erroneusnickname \
+													err_needmoreparams \
+													err_alreadyregistred \
+													err_noorigin \
+													err_nosuchserver \
+													\
+													cmd_pong \
 						$(addprefix Command,		$(DEFAULT_FILES)) \
 													init_cmd_fct \
 													nick \

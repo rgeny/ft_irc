@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 04:31:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/24 09:13:45 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 17:31:55 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,50 +14,26 @@
 
 e_error		Command::_nick	(std::vector<std::string> & cmd)
 {
-	std::string	oldest_nickname = this->_client->get_nickname();
-	std::string final_msg;
+	std::string	oldest_nickname = (*this->_users_it)->get_nickname();
 
-	if (!this->_client->get_passwd_is_sent())
-	{
-		this->_reply.set_receiver(this->_client->get_nickname());
-		final_msg = this->_reply.forge(ERR_PASSWDMISMATCH);
-		this->_client->add_to_queue(final_msg);
-		return (ERROR_PASSWDMISMATCH);
-	}
+	if (!(*this->_users_it)->get_passwd_is_sent())
+		return (this->_err_passwdmismatch());
 	else if (cmd.size() <= 1)
+		return (this->_err_nonicknamegiven());
+	else if (oldest_nickname != cmd[1]
+			&& this->_nick_already_used(cmd[1]))
 	{
-		this->_reply.add_arg(cmd[0]);
-		final_msg = this->_reply.forge(ERR_NONICKNAMEGIVEN);
-		this->_client->add_to_queue(final_msg);
-		return (ERROR_CONTINUE);
+		return (this->_err_nicknameinuse());
 	}
-	else if (this->_nick_already_used(cmd[1]))
+	else if (oldest_nickname != this->_historical.find_actual(cmd[1])
+			&& this->_historical.nick_is_lock(cmd[1]))
 	{
-		this->_reply.add_arg(cmd[1]);
-		final_msg = this->_reply.forge(ERR_NICKNAMEINUSE);
-		this->_client->add_to_queue(final_msg);
-		return (ERROR_CONTINUE);
+		return (this->_err_unavailresource());
 	}
-	else if (this->_data._historical.nick_is_lock(cmd[1]))
-	{
-		this->_reply.add_arg(cmd[1]);
-		final_msg = this->_reply.forge(ERR_UNAVAILRESOURCE);
-		this->_client->add_to_queue(final_msg);
-		return (ERROR_CONTINUE);
-	}
-	else if (static_cast<User *>(this->_client)->get_specific_mode(USERMODE_r))
-	{
-		final_msg = this->_reply.forge(ERR_RESTRICTED);
-		this->_client->add_to_queue(final_msg);
-		return (ERROR_CONTINUE);
-	}
-	else if (this->_client->set_nickname(cmd[1]) == false)
-	{
-		this->_reply.add_arg(cmd[1]);
-		final_msg = this->_reply.forge(ERR_ERRONEUSNICKNAME);
-		this->_client->add_to_queue(final_msg);
-		return (ERROR_CONTINUE);
-	}
-	this->_data._historical.new_node(oldest_nickname, cmd[1]);
+	else if (static_cast<User *>((*this->_users_it))->get_specific_mode(USERMODE_r))
+		return (this->_err_restricted());
+	else if ((*this->_users_it)->set_nickname(cmd[1]) == false)
+		return (this->_err_erroneusnickname());
+	this->_historical.new_node(oldest_nickname, cmd[1]);
 	return (SUCCESS);
 }

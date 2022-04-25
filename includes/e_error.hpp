@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Message.structor.cpp                               :+:      :+:    :+:   */
+/*   e_error.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/21 20:51:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 11:39:34 by rgeny            ###   ########.fr       */
+/*   Created: 2022/04/25 16:00:37 by rgeny             #+#    #+#             */
+/*   Updated: 2022/04/25 16:01:12 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Message.hpp"
+#ifndef E_ERROR_HPP
+# define E_ERROR_HPP
 
-std::map<std::string, std::string>	Message::_msg_list;
+# include <iostream>
 
-Message:: Message	(void)
+enum e_error
 {
-	std::cout	<< "Message dfl constructor."
-				<< std::endl;
-	this->_init_msg_list();
-}
+	SUCCESS,
+	ERROR_CONTINUE,
+	ERROR_KILL,
+	ERROR_PASSWDMISMATCH
+};
 
-Message:: Message	(Message const & src)
-{
-	(void)src;
-	std::cout	<< "Message cpy constructor."
-				<< std::endl;
-	this->_init_msg_list();
-}
+#endif
 
-Message::~Message	(void)
-{
-	std::cout	<< "Message destructor."
-				<< std::endl;
-}

@@ -6,21 +6,25 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/24 13:08:13 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 17:18:10 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Command.hpp"
 
-void	Command::main	(Client * client
-						,std::string & cmd)
+void	Command::main	(void)
 {
-	this->_client = client;
+	this->_client = (*this->_users_it);
 	this->_is_user = this->_get_user_type();
-	this->_parse(cmd);
+	this->_parse();
 
-	ClientCmds::iterator	it	= this->_client_cmds.begin(),
-							ite = this->_client_cmds.end();
+	MSGS_LIST &	msgs	= this->_msgs;
+	MSGS_IT &	it		= this->_msgs_it;
+	MSGS_IT &	ite 	= this->_msgs_ite;
+
+	it = msgs.begin();
+	ite = msgs.end();
+
 	while (it != ite)
 	{
 		this->_check_cmd(*it);
@@ -30,8 +34,8 @@ void	Command::main	(Client * client
 
 bool	Command::_get_user_type	(void)
 {
-	std::vector<User *>::iterator	it	= this->_data._users.begin(),
-									ite	= this->_data._users.end();
+	USERS_IT	it	= this->_users.begin(),
+				ite	= this->_users.end();
 	while (it != ite)
 	{
 		if (*it == this->_client)
@@ -41,16 +45,16 @@ bool	Command::_get_user_type	(void)
 	return (false);
 }
 
-void	Command::_parse	(std::string & cmd)
+void	Command::_parse	(void)
 {
-	std::vector<std::string>	tmp = split(cmd, "\r\n");
+	std::vector<std::string>	tmp = split(this->_msg, "\r\n");
 
-	this->_client_cmds.clear();
+	this->_msgs.clear();
 	std::vector<std::string>::iterator	it = tmp.begin(),
 										ite = tmp.end();
 	while (it != ite)
 	{
-		this->_client_cmds.push_back(split(*it, " "));
+		this->_msgs.push_back(split(*it, " "));
 		it++;
 	}
 }
@@ -67,7 +71,7 @@ void	Command::_check_cmd	(std::vector<std::string> & cmd)
 
 bool	Command::_nick_already_used	(std::string & nickname) const
 {
-	USERS_LIST	users = this->_data._users;
+	USERS_LIST	users = this->_users;
 
 	for (USERS_IT it = users.begin(), ite = users.end(); it != ite; it++)
 	{
@@ -80,11 +84,11 @@ void	Command::_check_error	(e_error code)
 {
 	if (code == ERROR_PASSWDMISMATCH)
 	{
-		this->_reply.add_arg(CLOSE);
-		this->_reply.add_arg(this->_client->get_nickname());
-		this->_reply.add_arg(this->_data._servername);
-		this->_reply.add_arg(BADPASSWD);
-		std::string	final_msg = this->_reply.forge(ERROR);
+		this->add_arg(CLOSE);
+		this->add_arg(this->_client->get_nickname());
+		this->add_arg(this->_servername);
+		this->add_arg(BADPASSWD);
+		std::string	final_msg = this->forge(ERROR);
 		this->_client->add_to_queue(final_msg);
 		this->_client->be_disconnected = true;
 	}
