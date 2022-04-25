@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 16:11:08 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 21:06:35 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 
 # include "Message.hpp"
 # include "ircserv.hpp"
-# include "ServerData.hpp"
 
 # include "e_error.hpp"
 
@@ -48,8 +47,6 @@ class Command
 	private:
 		static CmdsFct		_cmds_fct;
 
-//		ServerData &		_data;
-
 		ClientCmds		_client_cmds;
 		Client *		_client;
 		bool			_is_user;
@@ -60,7 +57,7 @@ class Command
 		void	_parse				(void);
 		void	_check_cmd			(std::vector<std::string> & cmd);
 		bool	_nick_already_used	(std::string & nickname) const;
-		void	_check_error		(e_error code);
+//		void	_check_error		(e_error code);
 
 		e_error		_pass			(std::vector<std::string> & msg);
 		e_error		_nick			(std::vector<std::string> & msg);

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 04:31:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 17:31:55 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 20:32:20 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ e_error		Command::_nick	(std::vector<std::string> & cmd)
 	{
 		return (this->_err_unavailresource());
 	}
-	else if (static_cast<User *>((*this->_users_it))->get_specific_mode(USERMODE_r))
+	else if ((*this->_users_it)->get_specific_mode(USERMODE_r))
 		return (this->_err_restricted());
 	else if ((*this->_users_it)->set_nickname(cmd[1]) == false)
 		return (this->_err_erroneusnickname());

@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Message.structor.cpp                               :+:      :+:    :+:   */
+/*   cmd_error.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/21 20:51:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 21:16:45 by rgeny            ###   ########.fr       */
+/*   Created: 2022/04/25 20:49:15 by rgeny             #+#    #+#             */
+/*   Updated: 2022/04/25 21:14:18 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Message.hpp"
 
-//std::map<std::string, std::string>	Message::_msg_list;
-
-Message:: Message	(void)
+e_error	Message::_cmd_error	(e_error code) const
 {
-	std::cout	<< "Message dfl constructor."
-				<< std::endl;
-//	this->_init_msg_list();
-}
-
-Message:: Message	(Message const & src)
-{
-	(void)src;
-	std::cout	<< "Message cpy constructor."
-				<< std::endl;
-//	this->_init_msg_list();
-}
-
-Message::~Message	(void)
-{
-	std::cout	<< "Message destructor."
-				<< std::endl;
+	User &	cur_user	= *(*this->_users_it);
+	std::string	msg	= std::string(ERROR)
+					+ " :Closing link: "
+					+ cur_user.get_nickname()
+					+ " by "
+					+ this->_servername
+					+ " ";
+	switch (code)
+	{
+		case ERROR_BAD_PASSWD :
+			msg += "(Bad Password)\r\n";
+			break;
+		default :
+			return (code);
+	}
+	cur_user.add_to_queue(msg);
+	cur_user.be_disconnected = true;
+	return (code);
 }

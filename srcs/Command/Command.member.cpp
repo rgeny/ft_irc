@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 17:18:10 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 21:15:16 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	Command::_check_cmd	(std::vector<std::string> & cmd)
 	if (it != this->_cmds_fct.end())
 	{
 		e_error	error = (this->*(it->second))(cmd);
-		this->_check_error(error);
+		this->_cmd_error(error);
 	}
 }
 
@@ -79,17 +79,4 @@ bool	Command::_nick_already_used	(std::string & nickname) const
 			return (true);
 	}
 	return (false);
-}
-void	Command::_check_error	(e_error code)
-{
-	if (code == ERROR_PASSWDMISMATCH)
-	{
-		this->add_arg(CLOSE);
-		this->add_arg(this->_client->get_nickname());
-		this->add_arg(this->_servername);
-		this->add_arg(BADPASSWD);
-		std::string	final_msg = this->forge(ERROR);
-		this->_client->add_to_queue(final_msg);
-		this->_client->be_disconnected = true;
-	}
 }

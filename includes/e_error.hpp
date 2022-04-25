@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 16:00:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 16:01:12 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 21:04:12 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@ enum e_error
 	SUCCESS,
 	ERROR_CONTINUE,
 	ERROR_KILL,
-	ERROR_PASSWDMISMATCH
+	ERROR_BAD_PASSWD,
+	ERROR_PING_REPLY,
+	ERROR_PING_TIMEOUT,
+	ERROR_REGISTRATION_TIMEOUT,
+	ERROR_CLIENT_EXITED,
+	ERROR_SERVER_EXITED
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/25 18:09:19 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 21:16:13 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ class Message
 		std::string const	forge			(std::string msg_code);
 
 	protected:
+		//error reply
 		e_error	_err_passwdmismatch		(void) const;
 		e_error	_err_nonicknamegiven	(void) const;
 		e_error	_err_nicknameinuse		(void) const;
@@ -49,7 +50,12 @@ class Message
 		e_error	_err_noorigin			(void) const;
 		e_error	_err_nosuchserver		(void) const;
 
+		//reply
+		e_error	_rpl_welcome			(void) const;
+
+		//command reply
 		e_error	_cmd_pong				(void) const;
+		e_error	_cmd_error				(e_error code) const;
 	
 
 	private:
@@ -64,19 +70,19 @@ class Message
 
 
 
-		static std::map<std::string, std::string>	_msg_list;
-
-		std::string					_sender;
-		std::string 				_receiver;
-		std::vector<std::string>	_msg_args;
-
-
-		std::string		_get_msg		(std::string & msg_code
-										,std::vector<std::string> & args);
-		std::string		_replace_tags	(std::string msg_template
-										,std::vector<std::string> &	args);
-		void			_clear_data		(void);
-		void			_init_msg_list	(void);
+//		static std::map<std::string, std::string>	_msg_list;
+//
+//		std::string					_sender;
+//		std::string 				_receiver;
+//		std::vector<std::string>	_msg_args;
+//
+//
+//		std::string		_get_msg		(std::string & msg_code
+//										,std::vector<std::string> & args);
+//		std::string		_replace_tags	(std::string msg_template
+//										,std::vector<std::string> &	args);
+//		void			_clear_data		(void);
+//		void			_init_msg_list	(void);
 };
 
 std::ostream &	operator<<	(std::ostream & o

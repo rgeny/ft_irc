@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/25 18:18:51 by rgeny            ###   ########.fr        #
+#    Updated: 2022/04/25 21:09:02 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													print_error \
 						$(addprefix Socket,			$(DEFAULT_FILES)) \
 						$(addprefix Message,		$(DEFAULT_FILES)) \
-													err_passmismatch \
+													err_passwdmismatch \
 													err_nonicknamegiven \
 													err_nicknameinuse \
 													err_unavailresource \
@@ -74,7 +74,11 @@ SRCS				= $(addsuffix .cpp,				main \
 													err_noorigin \
 													err_nosuchserver \
 													\
+													rpl_welcome \
+													\
 													cmd_pong \
+													cmd_error \
+													\
 						$(addprefix Command,		$(DEFAULT_FILES)) \
 													init_cmd_fct \
 													nick \

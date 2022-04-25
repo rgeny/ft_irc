@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/25 18:14:47 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 21:16:04 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,106 +47,102 @@ std::string	Message::_set_reply_base	(std::string code
 
 
 
-
-
-void	Message::add_arg	(std::string arg)
-{
-	this->_msg_args.push_back(arg);
-}
-
-std::string const	Message::forge	(std::string msg_code)
-{
-	std::string content = _get_msg(msg_code, _msg_args);
-	std::string	msg = ":";
-
-	if (!this->_sender.empty())
-		this->_sender.clear();
-	else
-		msg += this->_servername;
-
-	msg += " "
-		+ msg_code
-		+ " ";
-
-	if (!this->_receiver.empty())
-	{
-		msg	+=	this->_receiver
-			+	" ";
-	}
-
-	msg += content
-		+ "\r\n";
-
-	this->_clear_data();
-	return (msg);
-}
-
-std::string		Message::_get_msg	(std::string & msg_code
-									,std::vector<std::string> & args)
-{
-	std::string		msg_template	= this->_msg_list[msg_code];
-	return (_replace_tags(msg_template, args));
-}
-
-std::string		Message::_replace_tags	(std::string msg_template
-										,std::vector<std::string> & args)
-{
-	int		position_tag = 0;
-	size_t	pos_opentag;
-	size_t	pos_closetag;
-	size_t	tag_len;
-
-	for (std::vector<std::string>::iterator it = args.begin(); it < args.end(); it++)
-	{
-		pos_opentag = msg_template.find("<", position_tag);
-		if (pos_opentag != std::string::npos)
-		{
-			pos_closetag = msg_template.find(">", pos_opentag + 1);
-			if (pos_closetag != std::string::npos)
-			{
-				tag_len = pos_closetag - pos_opentag + 1;
-				msg_template = msg_template.replace(pos_opentag, tag_len, *it);
-				position_tag = pos_opentag + (*it).length();
-			}
-		}
-	}
-	return (msg_template);
-}
-
-void	Message::_clear_data	(void)
-{
-	this->_sender.clear();
-	this->_receiver.clear();
-	this->_msg_args.clear();
-}
-
-void	Message::_init_msg_list	(void)
-{
-	if (Message::_msg_list.size() == 0)
-	{
-		//RETURN MSG
-		Message::_msg_list[ERR_PASSWDMISMATCH] = ":Password incorrect";
-		Message::_msg_list[ERR_NONICKNAMEGIVEN] = ":No nickname given";
-		Message::_msg_list[ERR_NICKNAMEINUSE] = "<nick> :Nickname is already in use";
-		Message::_msg_list[ERR_UNAVAILRESOURCE] = "<nick/channel> :Nick/channel is temporarily unavailable";
-		Message::_msg_list[ERR_RESTRICTED] = ":Your connection is restricted!";
-		Message::_msg_list[ERR_ERRONEUSNICKNAME] = "<nick> :Erroneous nickname";
-		Message::_msg_list[ERR_NEEDMOREPARAMS] = "<command> :Not enough parameters";
-		Message::_msg_list[ERR_ALREADYREGISTRED] = ":Unauthorized command (already registered)";
-		Message::_msg_list[ERR_NOORIGIN] = ":No origin specified";
-		Message::_msg_list[ERR_NOSUCHSERVER] = "<server name> :No such server";
-		
-		//CMD MSG
-		Message::_msg_list[PONG] = "<server> <server2>";
-
-
-		Message::_msg_list[RPL_WELCOME] = "Welcome to the Internet Relay Network <fullclientidentifier>";
-
-		//CMD MSG
-		Message::_msg_list[ERROR] = ":<result> Link: <nick> by <serv> (<cause>)";
-	}
-}
-
+//
+//
+//void	Message::add_arg	(std::string arg)
+//{
+//	this->_msg_args.push_back(arg);
+//}
+//
+//std::string const	Message::forge	(std::string msg_code)
+//{
+//	std::string content = _get_msg(msg_code, _msg_args);
+//	std::string	msg = ":";
+//
+//	if (!this->_sender.empty())
+//		this->_sender.clear();
+//	else
+//		msg += this->_servername;
+//
+//	msg += " "
+//		+ msg_code
+//		+ " ";
+//
+//	if (!this->_receiver.empty())
+//	{
+//		msg	+=	this->_receiver
+//			+	" ";
+//	}
+//
+//	msg += content
+//		+ "\r\n";
+//
+//	this->_clear_data();
+//	return (msg);
+//}
+//
+//std::string		Message::_get_msg	(std::string & msg_code
+//									,std::vector<std::string> & args)
+//{
+//	std::string		msg_template	= this->_msg_list[msg_code];
+//	return (_replace_tags(msg_template, args));
+//}
+//
+//std::string		Message::_replace_tags	(std::string msg_template
+//										,std::vector<std::string> & args)
+//{
+//	int		position_tag = 0;
+//	size_t	pos_opentag;
+//	size_t	pos_closetag;
+//	size_t	tag_len;
+//
+//	for (std::vector<std::string>::iterator it = args.begin(); it < args.end(); it++)
+//	{
+//		pos_opentag = msg_template.find("<", position_tag);
+//		if (pos_opentag != std::string::npos)
+//		{
+//			pos_closetag = msg_template.find(">", pos_opentag + 1);
+//			if (pos_closetag != std::string::npos)
+//			{
+//				tag_len = pos_closetag - pos_opentag + 1;
+//				msg_template = msg_template.replace(pos_opentag, tag_len, *it);
+//				position_tag = pos_opentag + (*it).length();
+//			}
+//		}
+//	}
+//	return (msg_template);
+//}
+//
+//void	Message::_clear_data	(void)
+//{
+//	this->_sender.clear();
+//	this->_receiver.clear();
+//	this->_msg_args.clear();
+//}
+//
+//void	Message::_init_msg_list	(void)
+//{
+//	if (Message::_msg_list.size() == 0)
+//	{
+//		//RETURN MSG
+//		Message::_msg_list[ERR_PASSWDMISMATCH] = ":Password incorrect";
+//		Message::_msg_list[ERR_NONICKNAMEGIVEN] = ":No nickname given";
+//		Message::_msg_list[ERR_NICKNAMEINUSE] = "<nick> :Nickname is already in use";
+//		Message::_msg_list[ERR_UNAVAILRESOURCE] = "<nick/channel> :Nick/channel is temporarily unavailable";
+//		Message::_msg_list[ERR_RESTRICTED] = ":Your connection is restricted!";
+//		Message::_msg_list[ERR_ERRONEUSNICKNAME] = "<nick> :Erroneous nickname";
+//		Message::_msg_list[ERR_NEEDMOREPARAMS] = "<command> :Not enough parameters";
+//		Message::_msg_list[ERR_ALREADYREGISTRED] = ":Unauthorized command (already registered)";
+//		Message::_msg_list[ERR_NOORIGIN] = ":No origin specified";
+//		Message::_msg_list[ERR_NOSUCHSERVER] = "<server name> :No such server";
+//		Message::_msg_list[RPL_WELCOME] = "Welcome to the Internet Relay Network <fullclientidentifier>";
+//		
+//		//CMD MSG
+//		Message::_msg_list[PONG] = "<server> <server2>";
+//		Message::_msg_list[ERROR] = ":<result> Link: <nick> by <serv> (<cause>)";
+//	}
+//}
+//
 //		Message::_msg_list[RPL_YOURHOST] = "Your host is <servername>, running version <ver>";
 //		Message::_msg_list[RPL_CREATED] = "This server was created <date>";
 //		Message::_msg_list[RPL_MYINFO] = "<servername> <version> <available user modes> <available channel modes>";

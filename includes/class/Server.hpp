@@ -6,34 +6,24 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 16:08:35 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 20:16:47 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SERVER_HPP
 # define SERVER_HPP
-# define HOSTNAME "127.0.0.1"
-# define SERVER_NAME "MajinBoo"
 # define DFL_TIMEOUT 15
 
 # include <iostream>
 # include <string>
 # include <vector>
-# include "User.hpp"
 # include "Command.hpp"
-# include "Message.hpp"
-# include "ServerData.hpp"
-# include "Historical.hpp"
 
 class Server
 	:private Socket
 	,private Command
 {
 	public:
-		typedef std::vector<User *>			USERS_LIST;
-		typedef USERS_LIST::iterator		USERS_IT;
-		typedef std::map<User *, time_t>	NEW_USERS;
-		typedef NEW_USERS::iterator			NEW_USERS_IT;
 		typedef int							SOCKET;
 
 		Server	(std::string	password

@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ServerData.hpp                                     :+:      :+:    :+:   */
+/*   rpl_welcome.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/22 17:55:06 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 14:49:31 by rgeny            ###   ########.fr       */
+/*   Created: 2022/04/25 20:37:10 by rgeny             #+#    #+#             */
+/*   Updated: 2022/04/25 20:44:29 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERVERDATA_HPP
-# define SERVERDATA_HPP
+#include "Message.hpp"
 
-# include <iostream>
-# include <string>
-# include <vector>
-# include "User.hpp"
-# include "Historical.hpp"
-
-struct ServerData
+e_error	Message::_rpl_welcome	(void) const
 {
-	public:
-		std::vector<User *>			_users;
-		std::map<User *, time_t>	_tmp_users;
-		std::string					_servername;
-		std::string					_hostname;
-		std::string					_password;
-		Historical					_historical;
-};
-
-#endif
-
+	User &	cur_user	= *(*this->_users_it);
+	std::string	msg	= this->_set_reply_base(RPL_WELCOME)
+					+ "Welcome to the Internet Relay Network "
+					+ cur_user.get_nickname()
+					+ "!"
+					+ cur_user.get_username()
+					+ "@"
+					+ this->_servername
+					+ "\r\n";
+	cur_user.add_to_queue(msg);
+	return (SUCCESS);
+}

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 16:12:39 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 20:18:15 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,24 +76,21 @@ void	Server::_new_user	(void)
 void	Server::_del_user		(USERS_IT & it)
 {
 	delete (*it);
-//	if (this->_tmp_users.find(*it) != this->_tmp_users.end())
-	std::cout	<< "number of deleted elements in tmp_users : "
-				<< this->_tmp_users.erase(*it)
-				<< std::endl;
+	this->_tmp_users.erase(*it);
 	this->_users.erase(it);
 }
 
 void	Server::_check_tmp_user	(USERS_IT & it)
 {
-	NEW_USERS &	tmp_users	= this->_tmp_users;
+	TMP_USERS &	tmp_users	= this->_tmp_users;
 	time_t		cur_time	= time(NULL);
 
 	if (tmp_users.find(*it) != tmp_users.end())
 	{
-	if ((*it)->co_is_complete())
-		this->_tmp_users.erase(*it);
-	else if (this->_tmp_users[*it] + DFL_TIMEOUT <= cur_time)
-		this->_del_user(it);
+		if ((*it)->co_is_complete())
+			this->_tmp_users.erase(*it);
+		else if (this->_tmp_users[*it] + DFL_TIMEOUT <= cur_time)
+			this->_del_user(it);
 	}
 }
 
