@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:23:38 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/24 13:42:01 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 12:44:50 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,19 @@ int	main	(__attribute((unused)) int argc
 	}
 	catch (const wrong_number_of_arguments & e)
 	{
-		e.what();
+		return (print_error(e.what()));
 	}
 	catch (const wrong_port_argument & e)
 	{
-		e.what();
+		return (print_error(e.what()));
 	}
 	catch (const wrong_password_argument & e)
 	{
-		e.what();
+		return (print_error(e.what()));
 	}
 	catch (const error_opening_socket & e)
 	{
-		e.what();
+		return (print_error(e.what()));
 	}
 	return (EXIT_SUCCESS);
 }

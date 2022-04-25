@@ -6,84 +6,44 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 17:49:54 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/21 20:09:58 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 12:50:53 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ircserv.hpp"
+#include "Exceptions.hpp"
 
 const char *wrong_number_of_arguments::what() const throw()
 {
-	std::cerr	<< RED
-				<< "Error: wrong number of arguments."
-				<< "It should be ./ircserv <port> <password>"
-				<< RESET
-				<< std::endl;
-	std::exit(EXIT_FAILURE);
-	return ("");
+	return (ERROR_NBR_OF_ARGS);
 }
 
 const char *wrong_port_argument::what() const throw()
 {
-	std::cerr	<< RED
-				<< "Error: the port argument has not the right format"
-				<< RESET
-				<< std::endl;
-	std::exit(EXIT_FAILURE);
-	return ("");
+	return (ERROR_PORT_ARG);
 };
 
 const char *wrong_password_argument::what() const throw()
 {
-	std::cerr	<< RED
-				<< "Error: the password argument has not the right format"
-				<< RESET
-				<< std::endl;
-	std::exit(EXIT_FAILURE);
-	return ("");
+	return (ERROR_PASSWD_ARG);
 };
 
 const char *error_opening_socket::what() const throw()
 {
-	std::cerr	<< RED
-				<< "Error: opening socket: "
-				<< strerror(errno)
-				<< RESET
-				<< std::endl;
-	std::exit(EXIT_FAILURE);
-	return ("");
+	return (ERROR_OPEN_SOCKET);
 };
 
 
 const char *error_accept_failed::what() const throw()
 {
-	std::cerr	<< RED
-				<< "Error: accept_failed: "
-				<< strerror(errno)
-				<< RESET
-				<< std::endl;
-	std::exit(EXIT_FAILURE);
-	return ("");
+	return (ERROR_ACCEPT);
 };
 
 const char *error_recv_failed::what() const throw()
 {
-	std::cerr	<< RED
-				<< "Error: recv_failed: "
-				<< strerror(errno)
-				<< RESET
-				<< std::endl;
-	std::exit(EXIT_FAILURE);
-	return ("");
+	return (ERROR_RECV);
 };
 
 const char *error_send_failed::what() const throw()
 {
-	std::cerr	<< RED
-				<< "Error: send_failed: "
-				<< strerror(errno)
-				<< RESET
-				<< std::endl;
-	std::exit(EXIT_FAILURE);
-	return ("");
+	return (ERROR_SEND);
 };
