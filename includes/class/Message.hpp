@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/25 21:16:13 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 21:19:29 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ class Message
 
 		Message & operator=(Message const & rhs);
 
-		void	set_sender		(std::string sender);
-		void	set_receiver	(std::string receiver);
+//		void	set_sender		(std::string sender);
+//		void	set_receiver	(std::string receiver);
 
-		void				add_arg			(std::string arg);
-		std::string const	forge			(std::string msg_code);
+//		void				add_arg			(std::string arg);
+//		std::string const	forge			(std::string msg_code);
 
 	protected:
 		//error reply
@@ -84,8 +84,8 @@ class Message
 //		void			_clear_data		(void);
 //		void			_init_msg_list	(void);
 };
-
-std::ostream &	operator<<	(std::ostream & o
-							,Message const & instance);
+//
+//std::ostream &	operator<<	(std::ostream & o
+//							,Message const & instance);
 
 #endif

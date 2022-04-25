@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 21:06:35 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 21:30:54 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ class Command
 	public:
 		typedef e_error (Command::*CommandPointer)	(std::vector<std::string> & msg);
 		typedef std::map<std::string, CommandPointer>	CmdsFct;
-		typedef std::vector<std::vector<std::string> >	ClientCmds;
-		typedef std::vector<User *>						USERS_LIST;
-		typedef USERS_LIST::iterator					USERS_IT;
+//		typedef std::vector<std::vector<std::string> >	ClientCmds;
+//		typedef std::vector<User *>						USERS_LIST;
+//		typedef USERS_LIST::iterator					USERS_IT;
 
 		Command		(void);
 		Command		(Command & src);
@@ -47,8 +47,8 @@ class Command
 	private:
 		static CmdsFct		_cmds_fct;
 
-		ClientCmds		_client_cmds;
-		Client *		_client;
+//		ClientCmds		_client_cmds;
+//		Client *		_client;
 		bool			_is_user;
 
 //		Command	(void);

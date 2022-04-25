@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:51:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 21:16:45 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 21:19:56 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ Message:: Message	(void)
 }
 
 Message:: Message	(Message const & src)
+	:Data()
 {
 	(void)src;
 	std::cout	<< "Message cpy constructor."

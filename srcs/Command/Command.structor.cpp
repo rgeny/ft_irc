@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:41:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 11:37:50 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 21:20:55 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 Command::CmdsFct	Command::_cmds_fct;
 
 Command:: Command	(void)
+	:Data()
+	,Message()
 {
 	std::cout	<< "Command dfl constructor."
 				<< std::endl;
@@ -22,6 +24,8 @@ Command:: Command	(void)
 }
 
 Command:: Command	(Command & src)
+	:Data()
+	,Message()
 {
 	std::cout	<< "Command cpy constructor."
 				<< std::endl;

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:04:52 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 14:38:15 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 21:33:27 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ class User
 				,std::string	username
 				,std::string	mode
 				,std::string	realname);
-		User	(User & src);
+		User	(User const & src);
 		~User	(void);
 
 		User &	operator=	(User & src);

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:35:05 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/12 18:29:53 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 21:32:21 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ User:: User	(std::string	nickname
 	,_username(username)
 	,_realname(realname)
 {
+	(void)mode;
+
 	this->_mode.resize(8);
 	for (int i = 0; i < 8; i++)
 		this->_mode[i] = false;
@@ -38,7 +40,8 @@ User:: User	(std::string	nickname
 //	this->_mod[USERMODE_i] = (mode == "6" || mode == "4");
 }
 
-User:: User	(User & src)
+User:: User	(User const & src)
+	:Client()
 {
 	(void)src;
 	std::cout	<< "User cpy constructor."

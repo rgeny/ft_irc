@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 21:15:16 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 21:31:43 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	Command::main	(void)
 {
-	this->_client = (*this->_users_it);
+	(*this->_users_it) = (*this->_users_it);
 	this->_is_user = this->_get_user_type();
 	this->_parse();
 
@@ -38,7 +38,7 @@ bool	Command::_get_user_type	(void)
 				ite	= this->_users.end();
 	while (it != ite)
 	{
-		if (*it == this->_client)
+		if (*it == (*this->_users_it))
 			return (true);
 		it++;
 	}

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 20:16:47 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 21:34:19 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include "Command.hpp"
 
 class Server
-	:private Socket
-	,private Command
+	:virtual private Socket
+	,virtual private Command
 {
 	public:
 		typedef int							SOCKET;

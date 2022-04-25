@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:56:10 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 17:49:08 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 21:20:18 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	Client::set_nickname	(std::string nickname)
 	{
 		return (false);
 	}
-	for (int i = 1; i < 8 && i < nickname.size(); i++)
+	for (std::size_t i = 1; i < 8 && i < nickname.size(); i++)
 	{
 		c = nickname[i];
 		if (!isalnum(c)

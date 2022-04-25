@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 10:50:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 20:24:26 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/25 21:33:01 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ class Data
 		MSGS_IT			_msgs_ite;
 
 		// Server data
-		std::string		_servername;
 		std::string		_password;
+		std::string		_servername;
 		std::string		_hostname;
 		Historical		_historical;
 
