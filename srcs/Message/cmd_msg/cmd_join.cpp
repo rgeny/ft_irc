@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_pong.cpp                                       :+:      :+:    :+:   */
+/*   cmd_join.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:52:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/26 19:21:24 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/26 19:21:29 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Message.hpp"
 
-e_error	Message::_cmd_pong	(void) const
+e_error	Message::_cmd_join	(void) const
 {
-	std::string	msg	= this->_set_msg_base (PONG)
+	std::string	msg	= this->_set_msg_base (JOIN)
 					+ this->_servername
 					+ " "
 					+ (*this->_msgs_it)[1]

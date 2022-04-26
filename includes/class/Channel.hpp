@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:14:15 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/26 12:29:21 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/26 19:31:55 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ class Channel
 		Channel(std::string &name,
 				std::string password);
 		// Channel(std::string const &	name,
-		// 		std::string const & topic,
+		// 		std::string const & tocompic,
 		// 		std::vector<bool> const & mode,
 		// 		std::string const & password,
 		// 		std::size_t const & limit,
