@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 21:36:35 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 12:44:21 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/26 18:29:47 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ bool	is_number	(const std::string & str);
 
 std::vector<std::string>	split	(std::string str
 									,std::string delimiter);
-std::string		case_proof	(std::string str);
+std::string					case_proof	(std::string str);
+bool 						check_chan_name(std::string name);
 #endif

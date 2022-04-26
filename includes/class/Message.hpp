@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/26 17:41:52 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/26 19:24:39 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ class Message
 		void	_init_msg_error	(void);
 
 		std::string	_set_msg_base	(std::string code) const;
+		std::string	Message::_set_msg_base	(std::string sender, std::string code, std::string target) const;
 
 		std::string	_set_reply_base	(std::string code) const;
 		std::string	_set_reply_base	(std::string code

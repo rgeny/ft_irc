@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/25 21:16:04 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/26 19:24:09 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,17 @@ std::string	Message::_set_msg_base	(std::string code) const
 					+ " "
 					+ code
 					+ " ";
+	return (msg);
+}
+
+std::string	Message::_set_msg_base	(std::string sender, std::string code, std::string target) const
+{
+	std::string	msg	= ":"
+					+ sender
+					+ " "
+					+ code
+					+ " "
+					+ target;
 	return (msg);
 }
 
