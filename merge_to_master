@@ -7,3 +7,10 @@ git push origin YourBranch
 git checkout master
 git merge YourBranch
 git push
+
+
+git rebase :
+git rebase TargetBranch
+Régler conflit
+git add -A
+git rebase --continue
