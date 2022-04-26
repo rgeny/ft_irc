@@ -16,6 +16,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
+#include "User.hpp"
 
 typedef enum
 {
@@ -63,10 +65,14 @@ typedef enum
 
 class Channel
 {
+	public:
+		typedef std::map<std::string, User *> CHAN_USER_LIST;
+
 	private:
 		Channel();
 		std::string 		_name;
 		std::string			_topic;
+		CHAN_USER_LIST		_chan_user_list;
 		std::vector<bool>	_mode;
 		std::string			_password;
 		size_t				_limit;
@@ -76,18 +82,20 @@ class Channel
 
 	
 	public:
-
-		Channel(std::string const &	name,
-				std::string const & topic,
-				std::vector<bool> const & mode,
-				std::string const & password,
-				std::size_t const & limit,
-				bool		const & is_safe,
-				int			const &	reop_delay
-				);
+		Channel(std::string &name,
+				std::string password);
+		// Channel(std::string const &	name,
+		// 		std::string const & topic,
+		// 		std::vector<bool> const & mode,
+		// 		std::string const & password,
+		// 		std::size_t const & limit,
+		// 		bool		const & is_safe,
+		// 		int			const &	reop_delay
+		// 		);
 		Channel( Channel const & src);
 		Channel & operator=(Channel const & rhs);
 		~Channel();
+		CHAN_USER_LIST & get_chan_user_list();
 
 };
 
