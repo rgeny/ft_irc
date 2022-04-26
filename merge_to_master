@@ -1,0 +1,9 @@
+git push origin YourBranch
+git checkout master
+git pull
+git checkout YourBranch
+git rebase master (si nouveau contenu sur master)
+git push origin YourBranch
+git checkout master
+git merge YourBranch
+git push
