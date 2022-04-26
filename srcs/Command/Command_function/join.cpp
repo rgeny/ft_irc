@@ -14,19 +14,20 @@
 
 e_error	Command::_join	(std::vector<std::string> & cmd)
 {
-//	Message reply;
-
 	if (cmd.size() < 2)
 		return (this->_err_needmoreparams());
-//	{
-//		reply.add_arg(cmd[0]);
-//		std::string final_msg = reply.forge("127.0.0.1", ERR_NEEDMOREPARAMS);
-//		this->_client->add_to_queue(final_msg);
-//		return (-1);
-//	}
-	// else
-	// {
-	// 	if (chans.count(cmd[1]) == 1)
-	// }
+	else
+	{
+		Channel::CHAN_USER_LIST *tmp = NULL;
+		if ((_chans_it = this->_chans.find(case_proof(cmd[1]))) == _chans.end())
+		{
+			this->_chans[case_proof(cmd[1])] = new Channel(cmd[1], "");
+			_chans_it = this->_chans.find(case_proof(cmd[1]));
+		}
+		tmp = &(*_chans_it).second->get_chan_user_list();
+		(*tmp)[(*_users_it)->get_nickname()] = *_users_it;
+		for (Channel::CHAN_USER_LIST::iterator it = tmp->begin(); it != tmp->end(); it++)
+		std::cout << (*it).second->get_nickname() << std::endl;
+	}
 	return (SUCCESS);
 }

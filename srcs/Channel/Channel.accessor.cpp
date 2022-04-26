@@ -12,3 +12,7 @@
 
 #include "Channel.hpp"
 
+Channel::CHAN_USER_LIST & Channel::get_chan_user_list()
+{
+    return (_chan_user_list);
+}
