@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 16:00:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/26 18:35:56 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/26 18:42:32 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 enum e_error
 {
 	SUCCESS,
+	ERROR_CONTINUE,
 	ERROR_KILL,
 	ERROR_BAD_PASSWD,
 	ERROR_PING_REPLY,
