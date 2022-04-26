@@ -6,17 +6,17 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/26 13:22:07 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/26 18:32:21 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Command.hpp"
 
-e_error	Command::_join	(std::vector<std::string> & cmd)
+e_error	Command::_join	(void)
 {
 //	Message reply;
 
-	if (cmd.size() < 2)
+	if ((*this->_msgs_it).size() < 2)
 		return (this->_err_needmoreparams());
 //	{
 //		reply.add_arg(cmd[0]);

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 10:50:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 21:33:01 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/26 18:28:46 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ class Data
 		typedef USERS_LIST::iterator					USERS_IT;
 		typedef std::map<User *, time_t>				TMP_USERS;
 		typedef TMP_USERS::iterator						TMP_USERS_IT;
-		typedef std::vector<std::vector<std::string> >	MSGS_LIST;
+		typedef std::vector<std::string>				MSG;
+		typedef std::vector<MSG>						MSGS_LIST;
 		typedef MSGS_LIST::iterator						MSGS_IT;
 
 		Data	(std::string password = DFL_PASSWD

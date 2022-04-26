@@ -6,13 +6,13 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 17:06:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/26 17:15:32 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/26 18:22:29 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Command.hpp"
 
-e_error	Command::_quit	(std::vector<std::string> & msg)
+e_error	Command::_quit	(void)
 {
 	return (ERROR_CLIENT_EXITED);
 }

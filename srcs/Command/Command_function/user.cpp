@@ -6,13 +6,13 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 04:31:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 20:47:30 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/26 18:31:16 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Command.hpp"
 
-e_error		Command::_user	(std::vector<std::string> & cmd)
+e_error		Command::_user	(void)
 {
 	if ((*this->_users_it)->get_nickname() != "anonymous")
 	{
@@ -20,13 +20,13 @@ e_error		Command::_user	(std::vector<std::string> & cmd)
 		{
 			User & cur_user = *(*this->_users_it);
 
-			cur_user.set_username(cmd[1]);
+			cur_user.set_username((*this->_msgs_it)[1]);
 		
 			//tmp
 			std::string	tmp;
 			size_t	size = (*this->_msgs_it).size();
 			for (size_t i = 4; i < size; i++)
-				tmp += cmd[i];
+				tmp += (*this->_msgs_it)[i];
 			//fin tmp
 			std::cout	<< "realname : "
 						<< tmp

@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/26 17:56:49 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/26 18:25:13 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	Command::main	(void)
 
 	while (it != ite)
 	{
-		this->_check_cmd(*it);
+		this->_check_cmd();
 		it++;
 	}
 }
@@ -59,13 +59,13 @@ void	Command::_parse	(void)
 	}
 }
 
-void	Command::_check_cmd	(std::vector<std::string> & cmd)
+void	Command::_check_cmd	(void)
 {
-	CmdsFct::iterator	it = this->_cmds_fct.find(case_proof(cmd[0]));
+	CmdsFct::iterator	it = this->_cmds_fct.find(case_proof((*this->_msgs_it)[0]));
 
 	if (it != this->_cmds_fct.end())
 	{
-		e_error	error = (this->*(it->second))(cmd);
+		e_error	error = (this->*(it->second))();
 		this->_cmd_error(error);
 	}
 }
