@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 20:49:15 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 21:14:18 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/26 15:56:19 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 e_error	Message::_cmd_error	(e_error code) const
 {
-	User &	cur_user	= *(*this->_users_it);
+	User &	cur_user	= (*this->_users_it);
 	std::string	msg	= std::string(ERROR)
 					+ " :Closing link: "
 					+ cur_user.get_nickname()

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 11:19:30 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 20:28:18 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/26 16:08:46 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Data &	Data::operator=	(Data & src)
 
 	this->_delete_users();
 	for (USERS_IT it = src._users.begin(), ite = src._users.end(); it != ite; it++)
-		this->_users.push_back(new User(**it));
+		this->_users.push_back(*it);
 
 	this->_servername = src._servername;
 	this->_hostname = src._hostname;

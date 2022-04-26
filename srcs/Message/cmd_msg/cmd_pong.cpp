@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:52:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 18:16:55 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/26 15:56:42 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ e_error	Message::_cmd_pong	(void) const
 					+ " "
 					+ (*this->_msgs_it)[1]
 					+ "\r\n";
-	(*this->_users_it)->add_to_queue(msg);
+	(*this->_users_it).add_to_queue(msg);
 	return (SUCCESS);
 }

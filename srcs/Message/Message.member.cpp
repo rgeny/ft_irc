@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/25 21:16:04 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/26 15:53:49 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ std::string	Message::_set_reply_base	(std::string code) const
 {
 	std::string	msg	= this->_set_msg_base(code);
 
-	std::string	nickname = (*this->_users_it)->get_nickname();
+	std::string	nickname = (*this->_users_it).get_nickname();
 	msg += (nickname == DFL_NICKNAME) ? "* " : nickname + " ";
 	return (msg);
 }
@@ -39,9 +39,6 @@ std::string	Message::_set_reply_base	(std::string code
 					+ " ";
 	return (msg);
 }
-
-
-
 
 
 

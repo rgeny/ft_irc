@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 04:31:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 20:47:30 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/26 15:59:14 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 e_error		Command::_user	(std::vector<std::string> & cmd)
 {
-	if ((*this->_users_it)->get_nickname() != "anonymous")
+	if ((*this->_users_it).get_nickname() != "anonymous")
 	{
 		if ((*this->_msgs_it).size() > 4)
 		{
-			User & cur_user = *(*this->_users_it);
+			User & cur_user = (*this->_users_it);
 
 			cur_user.set_username(cmd[1]);
 		

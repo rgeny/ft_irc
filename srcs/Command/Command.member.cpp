@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/26 12:44:01 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/26 15:58:07 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ bool	Command::_get_user_type	(void)
 				ite	= this->_users.end();
 	while (it != ite)
 	{
-		if (*it == (*this->_users_it))
+		if ((*it).get_nickname() == (*this->_users_it).get_nickname())
 			return (true);
 		it++;
 	}
@@ -75,7 +75,7 @@ bool	Command::_nick_already_used	(std::string & nickname) const
 
 	for (USERS_IT it = users.begin(), ite = users.end(); it != ite; it++)
 	{
-		if ((*it)->get_nickname() == nickname)
+		if ((*it).get_nickname() == nickname)
 			return (true);
 	}
 	return (false);

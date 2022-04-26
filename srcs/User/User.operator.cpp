@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:45:21 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/21 09:51:50 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/26 16:08:11 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@ User &	User::operator=	(User & src)
 	this->_mode = src._mode;
 	this->_realname = src._realname;
 	return (*this);
+}
+
+bool	User::operator==	(User & src)
+{
+	return (this->get_nickname() == src.get_nickname());
+}
+
+bool	User::operator<		(User & src)
+{
+	return (this->get_nickname() < src.get_nickname());
 }
 
 std::ostream &	operator<<		(std::ostream & os
