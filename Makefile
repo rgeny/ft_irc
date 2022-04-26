@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/26 12:16:18 by ayzapata         ###   ########.fr        #
+#    Updated: 2022/04/26 12:28:18 by ayzapata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,8 +92,8 @@ SRCS				= $(addsuffix .cpp,				main \
 						$(addprefix User,			$(DEFAULT_FILES)) \
 						$(addprefix HistoricalNode,	$(DEFAULT_FILES)) \
 						$(addprefix Historical,		$(DEFAULT_FILES)) \
-						$(addprefix Data,			$(DEFAULT_FILES)))
-						$(addprefix Channel,		$(DEFAULT_FILES)) \
+						$(addprefix Data,			$(DEFAULT_FILES)) \
+						$(addprefix Channel,		$(DEFAULT_FILES)))
 OBJS				= $(patsubst %.cpp, $(OBJS_DIR)%.o, $(SRCS))
 DEPS				= $(OBJS:.o=.d)
 

@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/26 12:26:20 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/26 12:29:51 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,6 @@ Message & Message::operator=(Message const & rhs)
 //		<< instance.msg_content.get();
 //	return (o);
 //}
-	return (*this);
-}
+//	return (*this);
+//}
 
-std::ostream&	operator<<( std::ostream& os, Message const & src)
-{
-	(void)src;
-	return (os);
-}
