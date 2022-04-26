@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/26 13:21:48 by rgeny            ###   ########.fr        #
+#    Updated: 2022/04/26 17:30:58 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ DEL_DIR				= rm -rf
 VERSION				= -std=c++98
 
 CC					= c++
-COMPILE_FLAG		= $(DEPS_FLAG) $(VERSION) -g -Wall -Werror -Wextra
+COMPILE_FLAG		= $(DEPS_FLAG) $(VERSION) -g #-Wall -Werror -Wextra
 DEPS_FLAG			= -MMD
 INCLUDES_FLAG		= $(addprefix -I ,	$(INCLUDES_DIR) \
 										$(CLASS_DIR) \
@@ -65,6 +65,8 @@ SRCS				= $(addsuffix .cpp,				main \
 													print_error \
 						$(addprefix Socket,			$(DEFAULT_FILES)) \
 						$(addprefix Message,		$(DEFAULT_FILES)) \
+													init_msg_error \
+													\
 													err_passwdmismatch \
 													err_nonicknamegiven \
 													err_nicknameinuse \
@@ -88,6 +90,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													user \
 													pass \
 													join \
+													quit \
 						$(addprefix Server,			$(DEFAULT_FILES)) \
 						$(addprefix Client,			$(DEFAULT_FILES)) \
 						$(addprefix User,			$(DEFAULT_FILES)) \

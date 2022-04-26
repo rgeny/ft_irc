@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:51:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/26 12:43:04 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/26 17:43:22 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Message:: Message	(void)
 {
 	std::cout	<< "Message dfl constructor."
 				<< std::endl;
-//	this->_init_msg_list();
+	this->_init_msg_error();
 }
 
 Message:: Message	(Message const & src)
@@ -27,7 +27,7 @@ Message:: Message	(Message const & src)
 	(void)src;
 	std::cout	<< "Message cpy constructor."
 				<< std::endl;
-//	this->_init_msg_list();
+	this->_init_msg_error();
 }
 
 Message::~Message	(void)

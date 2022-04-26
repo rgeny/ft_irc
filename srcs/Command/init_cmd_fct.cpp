@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 12:48:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/26 13:16:12 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/26 17:10:20 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	Command::_init_cmd_fct	(void)
 		Command::_cmds_fct[USER]		= &Command::_user;
 		Command::_cmds_fct[PING]		= &Command::_ping;
 		Command::_cmds_fct[JOIN]		= &Command::_join;
+		Command::_cmds_fct[QUIT]		= &Command::_quit;
 	}
 }
 //		Command::_cmds_fct[ADMIN]		= &Command::_admin;
@@ -52,7 +53,6 @@ void	Command::_init_cmd_fct	(void)
 //		Command::_cmds_fct[PART]		= &Command::_part;
 //		Command::_cmds_fct[PONG]		= &Command::_pong;
 //		Command::_cmds_fct[PRIVMSG]		= &Command::_privmsg;
-//		Command::_cmds_fct[QUIT]		= &Command::_quit;
 //		Command::_cmds_fct[REHASH]		= &Command::_rehash;
 //		Command::_cmds_fct[RULES]		= &Command::_rules;
 //		Command::_cmds_fct[SERVER]		= &Command::_server;

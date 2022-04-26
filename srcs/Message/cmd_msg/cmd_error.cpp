@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 20:49:15 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 21:14:18 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/26 17:59:31 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,10 @@ e_error	Message::_cmd_error	(e_error code) const
 					+ " by "
 					+ this->_servername
 					+ " ";
-	switch (code)
-	{
-		case ERROR_BAD_PASSWD :
-			msg += "(Bad Password)\r\n";
-			break;
-		default :
-			return (code);
-	}
+	MsgError_it	it = this->_msg_error.find(code);
+	if (it == this->_msg_error.end())
+		return (code);
+	msg += (*it).second;
 	cur_user.add_to_queue(msg);
 	cur_user.be_disconnected = true;
 	return (code);

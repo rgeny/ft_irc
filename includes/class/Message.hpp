@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/25 21:19:29 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/26 17:41:52 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ class Message
 	:virtual protected Data
 {
 	public:
+		typedef std::map<e_error, std::string>	MsgError;
+		typedef MsgError::const_iterator		MsgError_it;
+
 		Message		(void);
 		Message		(Message const & src);
 		~Message	(void);
@@ -59,6 +62,9 @@ class Message
 	
 
 	private:
+		MsgError	_msg_error;
+
+		void	_init_msg_error	(void);
 
 		std::string	_set_msg_base	(std::string code) const;
 

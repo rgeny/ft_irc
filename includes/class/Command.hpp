@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/26 13:20:46 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/26 17:24:15 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ class Command
 		e_error		_nick			(std::vector<std::string> & msg);
 		e_error		_user			(std::vector<std::string> & msg);
 		e_error		_ping			(std::vector<std::string> & msg);
+		e_error		_quit			(std::vector<std::string> & msg);
 
 		//Channel Command
 		e_error		_join			(std::vector<std::string> & msg);

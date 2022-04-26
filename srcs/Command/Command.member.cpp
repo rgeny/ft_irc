@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/26 12:44:01 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/26 17:56:49 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	Command::_parse	(void)
 void	Command::_check_cmd	(std::vector<std::string> & cmd)
 {
 	CmdsFct::iterator	it = this->_cmds_fct.find(case_proof(cmd[0]));
+
 	if (it != this->_cmds_fct.end())
 	{
 		e_error	error = (this->*(it->second))(cmd);
