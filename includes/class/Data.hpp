@@ -21,6 +21,7 @@
 # include <vector>
 # include <map>
 # include "User.hpp"
+# include "Channel.hpp"
 # include "Historical.hpp"
 
 class Data
@@ -28,6 +29,8 @@ class Data
 	public:
 		typedef std::vector<User *>						USERS_LIST;
 		typedef USERS_LIST::iterator					USERS_IT;
+		typedef std::map<std::string, Channel *>		CHANS_LIST;
+		typedef CHANS_LIST::iterator					CHANS_IT;
 		typedef std::map<User *, time_t>				TMP_USERS;
 		typedef TMP_USERS::iterator						TMP_USERS_IT;
 		typedef std::vector<std::string>				MSG;
@@ -47,6 +50,11 @@ class Data
 		USERS_LIST		_users;
 		USERS_IT		_users_it;
 		USERS_IT		_users_ite;
+
+		// chan list
+		CHANS_LIST		_chans;
+		CHANS_IT		_chans_it;
+		CHANS_IT		_chans_ite;		
 
 		// list of users who must send specific data and will be disconnected if they don't
 		TMP_USERS		_tmp_users;
