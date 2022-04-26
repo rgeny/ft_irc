@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:23:38 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/25 12:44:50 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/26 15:29:46 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@ int	main	(__attribute((unused)) int argc
 		port = atoi(argv[1]);
 		password = argv[2];
 		Server	serv (password, port);
+		std::cout	<< std::endl;
+		Server	scpy(serv);
+		std::cout	<< std::endl;
 
-		serv.main();
+//		serv.main();
 	}
 	catch (const wrong_number_of_arguments & e)
 	{

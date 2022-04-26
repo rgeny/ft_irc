@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:52:03 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 16:29:57 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/26 15:28:42 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <errno.h>
 # include <arpa/inet.h>
 # include <string>
+# include <map>
 
 # include "Exceptions.hpp"
 # include "Utils.hpp"
@@ -33,12 +34,15 @@
 class Socket
 {
 	public:
-		typedef int					SOCKET;
-		typedef struct sockaddr_in	SOCKADDR_IN;
-		typedef struct sockaddr		SOCKADDR;
-		typedef struct timeval		TIMEVAL;
+		typedef int						SOCKET;
+		typedef struct sockaddr_in		SOCKADDR_IN;
+		typedef struct sockaddr			SOCKADDR;
+		typedef struct timeval			TIMEVAL;
+		typedef std::map<SOCKET, int>	SOCKET_LIST;
+		typedef SOCKET_LIST::iterator	SOCKET_LIST_IT;
 
 				Socket	(int port = PORT);
+				Socket	(const Socket & src);
 		virtual	~Socket	(void);
 
 		void	add_in_fds	(fd_set * fds) const;
@@ -49,12 +53,13 @@ class Socket
 		bool	is_set		(fd_set * fds) const;
 
 	private:
-		SOCKET			_socket;
-		static SOCKET	_srv_socket;
-		static TIMEVAL	_timeout;
-		static SOCKET	_max;
+		static SOCKET		_srv_socket;
+		static TIMEVAL		_timeout;
+		static SOCKET		_max;
+		static SOCKET_LIST	_socket_list;
 
-		Socket	(const Socket & src);
+		SOCKET			_socket;
+
 
 		Socket &	operator=	(Socket & src);
 };

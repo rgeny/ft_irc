@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:06:01 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/26 12:42:48 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/26 15:28:24 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Server:: Server	(std::string	password
 }
 
 Server:: Server	(Server & src)
-	:Socket(PORT)
+	:Socket(src)
 	,Data(src)
 	,Message()
 	,Command()

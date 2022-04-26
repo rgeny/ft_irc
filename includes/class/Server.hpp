@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/26 12:44:42 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/26 15:29:27 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,20 @@ class Server
 	,virtual private Command
 {
 	public:
-		typedef int							SOCKET;
-
 		Server	(std::string	password
 				,SOCKET			port = PORT);
+		Server	(Server & src);
 		~Server	(void);
 
 		Server &	operator=	(Server & src);
 
 		void	main			(void);
 
+
 	private:
 		fd_set					_rfds;
 		fd_set					_wfds;
 
-		Server	(Server & src);
 
 		void	_init_fds		(void);
 		void	_check_fds		(void);
