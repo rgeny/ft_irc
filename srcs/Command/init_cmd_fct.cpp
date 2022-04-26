@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 12:48:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/24 12:49:05 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/26 13:16:12 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	Command::_init_cmd_fct	(void)
 		Command::_cmds_fct[NICK]		= &Command::_nick;
 		Command::_cmds_fct[USER]		= &Command::_user;
 		Command::_cmds_fct[PING]		= &Command::_ping;
+		Command::_cmds_fct[JOIN]		= &Command::_join;
 	}
 }
 //		Command::_cmds_fct[ADMIN]		= &Command::_admin;
