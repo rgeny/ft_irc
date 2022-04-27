@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:52:03 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/27 22:14:52 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 22:20:40 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,5 @@ class Socket
 		Socket &	operator=	(Socket & src);
 };
 
-std::ostream &	operator<<	(std::ostream & os
-							,Socket & src);
 #endif
 
