@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:04:52 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/27 20:41:36 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/28 00:06:05 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <string>
 # include <vector>
 # include "Client.hpp"
+# include "String.hpp"
 
 typedef enum
 {
@@ -45,10 +46,10 @@ class User
 
 		User &	operator=	(User & src);
 
-		const String		get_username		(void) const;
-		const std::vector<bool>	get_mode			(void) const;
-		bool					get_specific_mode	(UserMode mode) const;
-		const String		get_realname		(void) const;
+		const String				get_username		(void) const;
+		const std::vector<bool>		get_mode			(void) const;
+		bool						get_specific_mode	(UserMode mode) const;
+		const String				get_realname		(void) const;
 
 		void	set_username		(String username);
 		void	set_mode			(String mode);

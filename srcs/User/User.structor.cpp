@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:35:05 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/27 20:40:16 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/28 00:08:46 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,10 @@ User:: User	(String	nickname
 
 User:: User	(User const & src)
 	:Client()
+	,_username(src._username)
+	,_mode(src._mode)
+	,_realname(src._realname)
 {
-	(void)src;
 	std::cout	<< "User cpy constructor."
 				<< std::endl;
 }
