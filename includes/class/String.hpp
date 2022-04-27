@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 00:16:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/27 14:39:35 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 15:19:29 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,47 +133,7 @@ class String
 
 
 
-		bool 	operator==	(const String & lhs
-							,const String & rhs);
-		bool 	operator==	(const char * lhs
-							,const String & rhs);
-		bool 	operator==	(const String & lhs
-							,const char * rhs);
 
-		bool 	operator!=	(const String & lhs
-							,const String & rhs);
-		bool 	operator!=	(const char * lhs
-							,const String & rhs);
-		bool 	operator!=	(const String & lhs
-							,const char * rhs);
-
-		bool 	operator<	(const String & lhs
-							,const String & rhs);
-		bool 	operator<	(const char * lhs
-							,const String & rhs);
-		bool 	operator<	(const String & lhs
-							,const char * rhs);
-
-		bool 	operator<=	(const String & lhs
-							,const String & rhs);
-		bool 	operator<=	(const char * lhs
-							,const String & rhs);
-		bool 	operator<=	(const String & lhs
-							,const char * rhs);
-
-		bool 	operator>	(const String & lhs
-							,const String & rhs);
-		bool 	operator>	(const char * lhs
-							,const String & rhs);
-		bool 	operator>	(const String & lhs
-							,const char * rhs);
-
-		bool 	operator>=	(const String & lhs
-							,const String & rhs);
-		bool 	operator>=	(const char * lhs
-							,const String & rhs);
-		bool 	operator>=	(const String & lhs
-							,const char * rhs);
 		*/
 
 	private:
@@ -184,6 +144,47 @@ class String
 		std::string		_out_of_range	(size_t pos
 										,size_t this_size) const;
 };
+bool 	operator==	(const String & lhs
+					,const String & rhs);
+bool 	operator==	(const char * lhs
+					,const String & rhs);
+bool 	operator==	(const String & lhs
+					,const char * rhs);
+
+bool 	operator!=	(const String & lhs
+					,const String & rhs);
+bool 	operator!=	(const char * lhs
+					,const String & rhs);
+bool 	operator!=	(const String & lhs
+					,const char * rhs);
+
+bool 	operator<	(const String & lhs
+					,const String & rhs);
+bool 	operator<	(const char * lhs
+					,const String & rhs);
+bool 	operator<	(const String & lhs
+					,const char * rhs);
+
+bool 	operator<=	(const String & lhs
+					,const String & rhs);
+bool 	operator<=	(const char * lhs
+					,const String & rhs);
+bool 	operator<=	(const String & lhs
+					,const char * rhs);
+
+bool 	operator>	(const String & lhs
+					,const String & rhs);
+bool 	operator>	(const char * lhs
+					,const String & rhs);
+bool 	operator>	(const String & lhs
+					,const char * rhs);
+
+bool 	operator>=	(const String & lhs
+					,const String & rhs);
+bool 	operator>=	(const char * lhs
+					,const String & rhs);
+bool 	operator>=	(const String & lhs
+					,const char * rhs);
 
 #endif
 

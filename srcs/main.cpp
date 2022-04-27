@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:23:38 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/27 14:54:04 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 15:15:03 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,37 +26,25 @@ int	main	(__attribute((unused)) int argc
 					c("bbb");
 		char		d[] = "abcdeg";
 
-		try
-		{
-			std::cout	<< a.compare(0, 6, d, 4)
+		if (d < b)
+			std::cout	<< "a == b"
 						<< std::endl;
-		}
-		catch (const std::out_of_range & err)
-		{
-			std::cout	<< "t1 : "
-						<< err.what()
+		else
+			std::cout	<< "a != b"
 						<< std::endl;
-		}
-
 	}
 	{
-		String	a("abcdefg"),
+		String	a("abcdefgh"),
 				b("b"),
 				c("bbb");
 		char		d[] = "abcdeg";
 
-		try
-		{
-			std::cout	<< a.compare(0, 6, d, 4)
+		if (d < b)
+			std::cout	<< "a == b"
 						<< std::endl;
-		}
-		catch (const std::out_of_range & err)
-		{
-			std::cout	<< "t1 : "
-						<< err.what()
+		else
+			std::cout	<< "a != b"
 						<< std::endl;
-		}
-	
 	}
 	return (0);
 
