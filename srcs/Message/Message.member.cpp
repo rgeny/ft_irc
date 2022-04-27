@@ -6,48 +6,50 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/26 19:24:09 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/27 20:48:04 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Message.hpp"
 
-std::string	Message::_set_msg_base	(std::string code) const
+String	Message::_set_msg_base	(String code) const
 {
-	std::string	msg	= ":"
-					+ this->_servername
-					+ " "
-					+ code
-					+ " ";
+	String	msg	= ":"
+				+ this->_servername
+				+ " "
+				+ code
+				+ " ";
 	return (msg);
 }
 
-std::string	Message::_set_msg_base	(std::string sender, std::string code, std::string target) const
+String	Message::_set_msg_base	(String sender
+								,String code
+								,String target) const
 {
-	std::string	msg	= ":"
-					+ sender
-					+ " "
-					+ code
-					+ " "
-					+ target;
+	String	msg	= ":"
+				+ sender
+				+ " "
+				+ code
+				+ " "
+				+ target;
 	return (msg);
 }
 
-std::string	Message::_set_reply_base	(std::string code) const
+String	Message::_set_reply_base	(String code) const
 {
-	std::string	msg	= this->_set_msg_base(code);
+	String	msg	= this->_set_msg_base(code);
 
-	std::string	nickname = (*this->_users_it)->get_nickname();
+	String	nickname = (*this->_users_it)->get_nickname();
 	msg += (nickname == DFL_NICKNAME) ? "* " : nickname + " ";
 	return (msg);
 }
 
-std::string	Message::_set_reply_base	(std::string code
-										,std::string receiver) const
+String	Message::_set_reply_base	(String code
+									,String receiver) const
 {
-	std::string	msg	= this->_set_msg_base(code)
-					+ receiver
-					+ " ";
+	String	msg	= this->_set_msg_base(code)
+				+ receiver
+				+ " ";
 	return (msg);
 }
 
@@ -60,15 +62,15 @@ std::string	Message::_set_reply_base	(std::string code
 
 //
 //
-//void	Message::add_arg	(std::string arg)
+//void	Message::add_arg	(String arg)
 //{
 //	this->_msg_args.push_back(arg);
 //}
 //
-//std::string const	Message::forge	(std::string msg_code)
+//String const	Message::forge	(String msg_code)
 //{
-//	std::string content = _get_msg(msg_code, _msg_args);
-//	std::string	msg = ":";
+//	String content = _get_msg(msg_code, _msg_args);
+//	String	msg = ":";
 //
 //	if (!this->_sender.empty())
 //		this->_sender.clear();
@@ -92,28 +94,28 @@ std::string	Message::_set_reply_base	(std::string code
 //	return (msg);
 //}
 //
-//std::string		Message::_get_msg	(std::string & msg_code
-//									,std::vector<std::string> & args)
+//String		Message::_get_msg	(String & msg_code
+//									,std::vector<String> & args)
 //{
-//	std::string		msg_template	= this->_msg_list[msg_code];
+//	String		msg_template	= this->_msg_list[msg_code];
 //	return (_replace_tags(msg_template, args));
 //}
 //
-//std::string		Message::_replace_tags	(std::string msg_template
-//										,std::vector<std::string> & args)
+//String		Message::_replace_tags	(String msg_template
+//										,std::vector<String> & args)
 //{
 //	int		position_tag = 0;
 //	size_t	pos_opentag;
 //	size_t	pos_closetag;
 //	size_t	tag_len;
 //
-//	for (std::vector<std::string>::iterator it = args.begin(); it < args.end(); it++)
+//	for (std::vector<String>::iterator it = args.begin(); it < args.end(); it++)
 //	{
 //		pos_opentag = msg_template.find("<", position_tag);
-//		if (pos_opentag != std::string::npos)
+//		if (pos_opentag != String::npos)
 //		{
 //			pos_closetag = msg_template.find(">", pos_opentag + 1);
-//			if (pos_closetag != std::string::npos)
+//			if (pos_closetag != String::npos)
 //			{
 //				tag_len = pos_closetag - pos_opentag + 1;
 //				msg_template = msg_template.replace(pos_opentag, tag_len, *it);

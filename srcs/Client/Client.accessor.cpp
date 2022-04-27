@@ -6,18 +6,18 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:56:10 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/26 12:44:16 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/27 20:35:32 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Client.hpp"
 
-const std::string &	Client::get_nickname	(void) const
+const String &	Client::get_nickname	(void) const
 {
 	return (this->_nickname);
 }
 
-bool	Client::set_nickname	(std::string nickname)
+bool	Client::set_nickname	(String nickname)
 {
 	char	c = nickname[0];
 

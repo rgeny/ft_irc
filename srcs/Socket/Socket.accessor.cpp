@@ -6,13 +6,9 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:58:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/10 17:48:14 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 20:39:41 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Socket.hpp"
 
-//const SOCKET &	Socket::get_socket	(void) const
-//{
-//	return (this->_socket);
-//}

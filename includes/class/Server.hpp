@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/26 12:44:42 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/27 20:40:56 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class Server
 	public:
 		typedef int							SOCKET;
 
-		Server	(std::string	password
+		Server	(String	password
 				,SOCKET			port = PORT);
 		~Server	(void);
 

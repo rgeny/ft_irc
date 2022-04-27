@@ -6,15 +6,15 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 11:13:11 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 11:52:54 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 20:36:12 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Data.hpp"
 
-Data:: Data	(std::string password
-			,std::string servername
-			,std::string hostname)
+Data:: Data	(String password
+			,String servername
+			,String hostname)
 	:_password(password)
 	,_servername(servername)
 	,_hostname(hostname)

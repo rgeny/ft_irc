@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:42:06 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/25 12:58:46 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 20:37:38 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	check_nbr_of_arguments(int argc)
 		throw wrong_number_of_arguments();
 }
 
-void	check_port_argument(const std::string & str)
+void	check_port_argument(const String & str)
 {
 	int port = atoi(str.c_str());
 
@@ -31,7 +31,7 @@ void	check_port_argument(const std::string & str)
 	}
 }
 
-void	check_password_argument(const std::string & str)
+void	check_password_argument(const String & str)
 {
 	if (str == "")
 		throw wrong_password_argument();

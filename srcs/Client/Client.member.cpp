@@ -6,13 +6,13 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:57:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/24 08:47:46 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 20:35:38 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Client.hpp"
 
-void	Client::add_to_queue	(std::string & msg)
+void	Client::add_to_queue	(String & msg)
 {
 	if (!this->be_disconnected)
 		this->_msg_queue.push(msg);
@@ -30,7 +30,7 @@ int		Client::send	(void)
 					<< std::endl;
 	else
 	{
-		std::string &	msg = this->_msg_queue.front();
+		String &	msg = this->_msg_queue.front();
 		int	ret = this->Socket::send(msg);
 		this->_msg_queue.pop();
 		return (ret);
@@ -38,7 +38,7 @@ int		Client::send	(void)
 	return (-1);
 }
 
-int		Client::receive	(std::string & msg)
+int		Client::receive	(String & msg)
 {
 	time_t		cur_time	= time(NULL);
 	time_t &	msg_timer	= this->_msg_timer;

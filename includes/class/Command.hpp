@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/26 18:36:35 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 20:27:47 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class Command
 {
 	public:
 		typedef e_error (Command::*CommandPointer)	(void);
-		typedef std::map<std::string, CommandPointer>	CmdsFct;
+		typedef std::map<String, CommandPointer>	CmdsFct;
 
 		Command		(void);
 		Command		(Command & src);
@@ -49,7 +49,7 @@ class Command
 		bool	_get_user_type		(void);
 		void	_parse				(void);
 		void	_check_cmd			(void);
-		bool	_nick_already_used	(std::string & nickname) const;
+		bool	_nick_already_used	(String & nickname) const;
 
 		//User Command
 		e_error		_pass			(void);

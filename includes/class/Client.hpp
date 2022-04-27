@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:43:21 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 21:26:36 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 20:41:05 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,25 @@ class Client
 		bool	be_disconnected;
 
 		Client	(void);
-		Client	(std::string nickname);
+		Client	(String nickname);
 		Client	(Client & src);
 		~Client	(void);
 
 		Client &	operator=	(Client & src);
 
-		const std::string &	get_nickname	(void) const;
-		bool				set_nickname	(std::string nickname);
+		const String &	get_nickname	(void) const;
+		bool				set_nickname	(String nickname);
 		bool				get_passwd_is_sent	(void) const;
 		void				set_passwd_is_sent	(bool new_val);
 
-		void	add_to_queue		(std::string & msg);
+		void	add_to_queue		(String & msg);
 		bool	is_empty_msg_queue	(void) const;
-		int		receive				(std::string & msg);
+		int		receive				(String & msg);
 		int		send				(void);
 
 	private:
-		std::string				_nickname;
-		std::queue<std::string>	_msg_queue;
+		String				_nickname;
+		std::queue<String>	_msg_queue;
 		time_t					_msg_timer;
 		bool					_passwd_is_sent;
 };

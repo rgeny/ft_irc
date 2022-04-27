@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 10:50:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/26 18:28:46 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 20:26:36 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,24 @@
 # include "User.hpp"
 # include "Channel.hpp"
 # include "Historical.hpp"
+# include "String.hpp"
 
 class Data
 {
 	public:
-		typedef std::vector<User *>						USERS_LIST;
-		typedef USERS_LIST::iterator					USERS_IT;
-		typedef std::map<std::string, Channel *>		CHANS_LIST;
-		typedef CHANS_LIST::iterator					CHANS_IT;
-		typedef std::map<User *, time_t>				TMP_USERS;
-		typedef TMP_USERS::iterator						TMP_USERS_IT;
-		typedef std::vector<std::string>				MSG;
-		typedef std::vector<MSG>						MSGS_LIST;
-		typedef MSGS_LIST::iterator						MSGS_IT;
+		typedef std::vector<User *>				USERS_LIST;
+		typedef USERS_LIST::iterator			USERS_IT;
+		typedef std::map<String, Channel *>		CHANS_LIST;
+		typedef CHANS_LIST::iterator			CHANS_IT;
+		typedef std::map<User *, time_t>		TMP_USERS;
+		typedef TMP_USERS::iterator				TMP_USERS_IT;
+		typedef std::vector<String>				MSG;
+		typedef std::vector<MSG>				MSGS_LIST;
+		typedef MSGS_LIST::iterator				MSGS_IT;
 
-		Data	(std::string password = DFL_PASSWD
-				,std::string servername = DFL_SERVERNAME
-				,std::string hostname = DFL_HOSTNAME);
+		Data	(String password = DFL_PASSWD
+				,String servername = DFL_SERVERNAME
+				,String hostname = DFL_HOSTNAME);
 		Data	(Data & src);
 		~Data	(void);
 
@@ -62,15 +63,15 @@ class Data
 //		TMP_USERS_IT	_tmp_users_ite;
 
 		// Client message being processed
-		std::string		_msg;
-		MSGS_LIST		_msgs;
-		MSGS_IT			_msgs_it;
-		MSGS_IT			_msgs_ite;
+		String		_msg;
+		MSGS_LIST	_msgs;
+		MSGS_IT		_msgs_it;
+		MSGS_IT		_msgs_ite;
 
 		// Server data
-		std::string		_password;
-		std::string		_servername;
-		std::string		_hostname;
+		String		_password;
+		String		_servername;
+		String		_hostname;
 		Historical		_historical;
 
 		void	_delete_users	(void);

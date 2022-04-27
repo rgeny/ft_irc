@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 10:33:57 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/21 11:57:26 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 21:08:51 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,27 @@
 
 # include <iostream>
 
+# include "String.hpp"
+
 class HistoricalNode
 {
 	public:
-		HistoricalNode	(std::string last
-						,std::string actual);
+		HistoricalNode	(String last
+						,String actual);
 		HistoricalNode	(HistoricalNode & src);
 		~HistoricalNode	(void);
 
 		HistoricalNode &	operator=	(HistoricalNode & src);
 
-		const std::string &	get_last		(void) const;
-		const std::string &	get_actual		(void) const;
+		const String &	get_last		(void) const;
+		const String &	get_actual		(void) const;
 		const time_t &		get_timestamp	(void) const;
 
 		bool		nickname_is_available	(void) const;
 
 	private:
-		const std::string	_last;
-		const std::string	_actual;
+		const String	_last;
+		const String	_actual;
 		const time_t		_timestamp;
 
 		HistoricalNode	(void);

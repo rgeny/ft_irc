@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:35:05 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/26 12:42:34 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/27 20:40:16 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ User:: User	(void)
 				<< std::endl;
 }
 
-User:: User	(std::string	nickname
-			,std::string	username
-			,std::string	mode
-			,std::string	realname)
+User:: User	(String	nickname
+			,String	username
+			,String	mode
+			,String	realname)
 	:Client(nickname)
 	,_username(username)
 	,_realname(realname)

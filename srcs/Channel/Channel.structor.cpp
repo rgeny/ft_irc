@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:19:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/24 15:10:45 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/27 21:13:41 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ Channel::Channel	(void)
 				<< std::endl;
 }
 
-Channel::Channel(std::string &name
-				,std::string password)
+Channel::Channel(String &name
+				,String password)
 	:_name(name)
 	,_password(password)
 {
 }
 
-// Channel::Channel(std::string 	const & name
-// 				,std::string 	const & topic
+// Channel::Channel(String 	const & name
+// 				,String 	const & topic
 // 				,std::vector<bool> 	const & mode
-// 				,std::string 	const & password
+// 				,String 	const & password
 // 				,std::size_t 	const & limit
 // 				,bool			const & is_safe
 // 				,int			const &	reop_delay

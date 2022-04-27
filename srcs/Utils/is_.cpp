@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 21:53:06 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/21 20:02:00 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 20:37:28 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool	is_hexdigit	(char c)
 			|| isdigit(c));
 }
 
-bool	is_number	(const std::string & str)
+bool	is_number	(const String & str)
 {
-	return (str.find_first_not_of("0123456789") == std::string::npos);
+	return (str.find_first_not_of("0123456789") == String::npos);
 }

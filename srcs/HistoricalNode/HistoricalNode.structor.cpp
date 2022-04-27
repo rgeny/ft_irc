@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 10:29:45 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/21 10:57:36 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 20:39:20 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ HistoricalNode:: HistoricalNode	(void)
 				<< std::endl;
 }
 
-HistoricalNode:: HistoricalNode	(std::string last
-								,std::string actual)
+HistoricalNode:: HistoricalNode	(String last
+								,String actual)
 	:_last(last)
 	,_actual(actual)
 	,_timestamp(time(NULL))

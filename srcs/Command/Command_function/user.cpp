@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 04:31:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/26 18:31:16 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 20:30:04 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ e_error		Command::_user	(void)
 			cur_user.set_username((*this->_msgs_it)[1]);
 		
 			//tmp
-			std::string	tmp;
+			String	tmp;
 			size_t	size = (*this->_msgs_it).size();
 			for (size_t i = 4; i < size; i++)
 				tmp += (*this->_msgs_it)[i];

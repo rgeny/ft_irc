@@ -6,14 +6,14 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 11:05:09 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 17:29:36 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 20:36:26 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Historical.hpp"
 
-void	Historical::new_node	(std::string last
-								,std::string actual)
+void	Historical::new_node	(String last
+								,String actual)
 {
 	this->_rm_obsolete_history();
 
@@ -21,7 +21,7 @@ void	Historical::new_node	(std::string last
 		this->_historical.push_back(new HistoricalNode(last, actual));
 }
 
-std::string	Historical::find_actual	(std::string nickname)
+String	Historical::find_actual	(String nickname)
 {
 	this->_rm_obsolete_history();
 
@@ -37,7 +37,7 @@ std::string	Historical::find_actual	(std::string nickname)
 	return (nickname);
 }
 
-bool	Historical::nick_is_lock	(std::string & nickname)
+bool	Historical::nick_is_lock	(String & nickname)
 {
 	this->_rm_obsolete_history();
 

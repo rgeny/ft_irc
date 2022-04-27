@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/27 11:58:16 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/27 21:11:10 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 # define MESSAGE_HPP
 
 # include <iostream>
-# include <string>
 # include <map>
 # include "defines.hpp"
 # include "Data.hpp"
+# include "String.hpp"
 
 # include "e_error.hpp"
 
@@ -25,7 +25,7 @@ class Message
 	:virtual protected Data
 {
 	public:
-		typedef std::map<e_error, std::string>	MsgError;
+		typedef std::map<e_error, String>	MsgError;
 		typedef MsgError::const_iterator		MsgError_it;
 
 		Message		(void);
@@ -34,11 +34,11 @@ class Message
 
 		Message & operator=(Message const & rhs);
 
-//		void	set_sender		(std::string sender);
-//		void	set_receiver	(std::string receiver);
+//		void	set_sender		(String sender);
+//		void	set_receiver	(String receiver);
 
-//		void				add_arg			(std::string arg);
-//		std::string const	forge			(std::string msg_code);
+//		void				add_arg			(String arg);
+//		String const	forge			(String msg_code);
 
 	protected:
 		//error reply
@@ -67,28 +67,28 @@ class Message
 
 		void	_init_msg_error	(void);
 
-		std::string	_set_msg_base	(std::string code) const;
-		std::string	_set_msg_base	(std::string sender, std::string code, std::string target) const;
+		String	_set_msg_base	(String code) const;
+		String	_set_msg_base	(String sender, String code, String target) const;
 
-		std::string	_set_reply_base	(std::string code) const;
-		std::string	_set_reply_base	(std::string code
-									,std::string receiver) const;
-//		std::string	set_msg_base	(std::string receiver) const;
-
-
+		String	_set_reply_base	(String code) const;
+		String	_set_reply_base	(String code
+									,String receiver) const;
+//		String	set_msg_base	(String receiver) const;
 
 
-//		static std::map<std::string, std::string>	_msg_list;
+
+
+//		static std::map<String, String>	_msg_list;
 //
-//		std::string					_sender;
-//		std::string 				_receiver;
-//		std::vector<std::string>	_msg_args;
+//		String					_sender;
+//		String 				_receiver;
+//		std::vector<String>	_msg_args;
 //
 //
-//		std::string		_get_msg		(std::string & msg_code
-//										,std::vector<std::string> & args);
-//		std::string		_replace_tags	(std::string msg_template
-//										,std::vector<std::string> &	args);
+//		String		_get_msg		(String & msg_code
+//										,std::vector<String> & args);
+//		String		_replace_tags	(String msg_template
+//										,std::vector<String> &	args);
 //		void			_clear_data		(void);
 //		void			_init_msg_list	(void);
 };

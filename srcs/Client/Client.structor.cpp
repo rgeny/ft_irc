@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:45:06 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 21:28:29 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 20:35:48 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Client:: Client	(void)
 				<< std::endl;
 }
 
-Client:: Client	(std::string nickname)
+Client:: Client	(String nickname)
 	:Socket()
 	,be_disconnected(false)
 	,_nickname(nickname)

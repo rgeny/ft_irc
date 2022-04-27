@@ -6,14 +6,14 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:06:01 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/26 12:42:48 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/04/27 20:30:36 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Server.hpp"
 
-Server:: Server	(std::string	password
-				,SOCKET			port)
+Server:: Server	(String	password
+				,SOCKET	port)
 	:Socket(port)
 	,Data(password)
 	,Message()

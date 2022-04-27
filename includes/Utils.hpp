@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 21:36:35 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/26 18:29:47 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/27 20:42:31 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,18 @@
 # include <cerrno>
 # include <cstring>
 # include <cstdlib>
-# include "colors.hpp"
 
-int		print_error	(std::string err);
+# include "colors.hpp"
+# include "String.hpp"
+
+int		print_error	(String err);
 
 bool	is_special	(char c);
 bool	is_hexdigit	(char c);
-bool	is_number	(const std::string & str);
+bool	is_number	(const String & str);
 
-std::vector<std::string>	split	(std::string str
-									,std::string delimiter);
-std::string					case_proof	(std::string str);
-bool 						check_chan_name(std::string name);
+std::vector<String>		split	(String str
+								,String delimiter);
+String				case_proof	(String str);
+bool 					check_chan_name(String name);
 #endif

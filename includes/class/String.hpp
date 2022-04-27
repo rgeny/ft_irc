@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 00:16:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/27 17:10:44 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 21:17:16 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ class String
 		String		(const String & str
 					,size_t pos
 					,size_t len = std::string::npos);
+		String		(const std::string & str);
 		String		(const char * s);
 		String		(const char * s
 					,size_t n);

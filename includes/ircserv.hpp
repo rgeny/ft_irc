@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:46:14 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/24 13:46:14 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 20:42:27 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@
 # include "Utils.hpp"
 
 void	check_nbr_of_arguments	(int argc);
-void	check_port_argument		(const std::string & str);
-void	check_password_argument	(const std::string & str);
+void	check_port_argument		(const String & str);
+void	check_password_argument	(const String & str);
 
 /*
 **  TEMPLATES
 */
 template <typename T>
-void	print_variable	(std::string color
-						,std::string txt
+void	print_variable	(String color
+						,String txt
 						,T var
-						,std::string reset)
+						,String reset)
 {
 	std::cout   << color
 				<< txt

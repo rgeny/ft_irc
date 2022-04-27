@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:14:15 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/26 19:37:12 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/27 20:40:30 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,15 @@ typedef enum
 class Channel
 {
 	public:
-		typedef std::map<std::string, User *> CHAN_USER_LIST;
+		typedef std::map<String, User *> CHAN_USER_LIST;
 
 	private:
 		Channel();
-		std::string 		_name;
-		std::string			_topic;
+		String 		_name;
+		String			_topic;
 		CHAN_USER_LIST		_chan_user_list;
 		std::vector<bool>	_mode;
-		std::string			_password;
+		String			_password;
 		size_t				_limit;
 		time_t				_creation;
 		bool				_is_safe;
@@ -82,12 +82,12 @@ class Channel
 
 	
 	public:
-		Channel(std::string &name,
-				std::string password);
-		// Channel(std::string const &	name,
-		// 		std::string const & tocomgit spic,
+		Channel(String &name,
+				String password);
+		// Channel(String const &	name,
+		// 		String const & tocomgit spic,
 		// 		std::vector<bool> const & mode,
-		// 		std::string const & password,
+		// 		String const & password,
 		// 		std::size_t const & limit,
 		// 		bool		const & is_safe,
 		// 		int			const &	reop_delay

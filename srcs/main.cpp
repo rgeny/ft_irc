@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:23:38 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/27 17:26:35 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 20:36:43 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int	main	(__attribute((unused)) int argc
 	try
 	{
 		int	port;
-		std::string	password;
+		String	password;
 
 		check_nbr_of_arguments(argc);
-		check_port_argument(std::string(argv[1]));
-		check_password_argument(std::string(argv[2]));
+		check_port_argument(String(argv[1]));
+		check_password_argument(String(argv[2]));
 		print_variable(BOLD MAGENTA, "ft_irc started", "", RESET);
 		port = atoi(argv[1]);
 		password = argv[2];

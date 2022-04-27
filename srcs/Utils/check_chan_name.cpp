@@ -6,13 +6,13 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 18:27:58 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/27 12:16:09 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/27 20:37:22 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Utils.hpp"
 
-bool has_forbidden_char(std::string name)
+bool has_forbidden_char(String name)
 {
     for (size_t i = 0; i < name.length(); i++)
         if (name[i] == 7 || name[i] == ',')
@@ -20,7 +20,7 @@ bool has_forbidden_char(std::string name)
     return (false);
 }
 
-bool check_chan_name(std::string name)
+bool check_chan_name(String name)
 {
     if (name.length() > 50)
         return (false);

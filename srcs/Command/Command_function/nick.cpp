@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 04:31:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/26 18:29:53 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 20:29:45 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 e_error		Command::_nick	(void)
 {
 	MSG &	msg = (*this->_msgs_it);
-	std::string	oldest_nickname = (*this->_users_it)->get_nickname();
+	String	oldest_nickname = (*this->_users_it)->get_nickname();
 
 	if (!(*this->_users_it)->get_passwd_is_sent())
 		return (this->_err_passwdmismatch());

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 15:41:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 21:10:01 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 20:34:22 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 e_error	Message::_err_passwdmismatch	(void) const
 {
-	std::string	msg	= this->_set_reply_base(ERR_PASSWDMISMATCH)
-					+ ":incorrect password\r\n";
+	String	msg	= this->_set_reply_base(ERR_PASSWDMISMATCH)
+				+ ":incorrect password\r\n";
 	(*this->_users_it)->add_to_queue(msg);
 	return (ERROR_BAD_PASSWD);
 }

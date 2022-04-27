@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:52:03 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/23 16:29:57 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 20:41:30 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ class Socket
 		void	add_in_fds	(fd_set * fds) const;
 		int		select		(fd_set * rfds
 							,fd_set * wfds);
-		int		receive		(std::string & str) const;
-		int		send		(std::string & msg) const;
+		int		receive		(String & str) const;
+		int		send		(String & msg) const;
 		bool	is_set		(fd_set * fds) const;
 
 	private:

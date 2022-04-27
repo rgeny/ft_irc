@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/27 17:27:55 by rgeny            ###   ########.fr        #
+#    Updated: 2022/04/27 21:09:02 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ DEL_DIR				= rm -rf
 VERSION				= -std=c++98
 
 CC					= c++
-COMPILE_FLAG		= $(DEPS_FLAG) $(VERSION) -g #-Wall -Werror -Wextra
+COMPILE_FLAG		= $(DEPS_FLAG) $(VERSION) -g -Wall -Werror -Wextra
 DEPS_FLAG			= -MMD
 INCLUDES_FLAG		= $(addprefix -I ,	$(INCLUDES_DIR) \
 										$(CLASS_DIR) \

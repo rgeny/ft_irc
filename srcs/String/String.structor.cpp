@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 01:00:24 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/27 03:23:10 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 21:18:08 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,14 @@ String:: String	(const String & str
 	:std::string(str, pos, len)
 {
 	std::cout	<< "String substring constructor."
+				<< std::endl;
+	this->_init_case_off();
+}
+
+String:: String	(const std::string & str)
+	:std::string(str)
+{
+	std::cout	<< "String from std::string constructor."
 				<< std::endl;
 	this->_init_case_off();
 }
