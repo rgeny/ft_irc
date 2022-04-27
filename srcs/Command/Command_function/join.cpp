@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/27 16:25:27 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/27 18:21:49 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,13 @@ e_error	Command::_join	(void)
 			this->_chans[case_proof((*this->_msgs_it)[1])] = new Channel((*this->_msgs_it)[1], "");
 			_chans_it = this->_chans.find(case_proof((*this->_msgs_it)[1]));
 			(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), 2);
-			
 		}
+		else
+			(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), 0);
 		tmp = &(*_chans_it).second->get_chan_user_list();
 		(*tmp)[(*_users_it)->get_nickname()] = *_users_it;
-		for (Channel::CHAN_USER_LIST::iterator it = tmp->begin(); it != tmp->end(); it++)
-			std::cout << (*it).second->get_nickname() << std::endl;
+		// for (Channel::CHAN_USER_LIST::iterator it = tmp->begin(); it != tmp->end(); it++)
+		// 	std::cout << (*it).second->get_nickname() << std::endl;
 		return (this->_cmd_join());
 	}
 	return (SUCCESS);
