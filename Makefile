@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/27 02:40:02 by rgeny            ###   ########.fr        #
+#    Updated: 2022/04/27 17:25:50 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,7 +100,13 @@ SRCS				= $(addsuffix .cpp,				main \
 						$(addprefix Data,			$(DEFAULT_FILES)) \
 						$(addprefix Channel,		$(DEFAULT_FILES)) \
 						$(addprefix String,			$(DEFAULT_FILES) \
-													.compare) \
+													.compare \
+													.find \
+													.rfind \
+													.find_first_of \
+													.find_last_of \
+													.find_first_not_of \
+													.find_last_not_of ) \
 													init_case_off)
 OBJS				= $(patsubst %.cpp, $(OBJS_DIR)%.o, $(SRCS))
 DEPS				= $(OBJS:.o=.d)

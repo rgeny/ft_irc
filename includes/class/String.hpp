@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 00:16:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/27 15:19:29 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 17:10:44 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,12 @@ class String
 						,const char * s
 						,size_t n) const;
 
-
-		/* todo
-
-
 		size_t	find	(const String & str
 						,size_t pos = 0) const;
 		size_t	find	(const char * s
 						,size_t pos = 0) const;
 		size_t	find	(const char * s
-						,size_t pos = 0
+						,size_t pos
 						,size_t n) const;
 		size_t	find	(char c
 						,size_t pos = 0) const;
@@ -110,7 +106,7 @@ class String
 								,size_t n) const;
 		size_t	find_last_of	(char c
 								,size_t pos = npos) const;
-
+		
 		size_t	find_first_not_of	(const String & str
 									,size_t pos = 0) const;
 		size_t	find_first_not_of	(const char * s
@@ -130,11 +126,6 @@ class String
 									,size_t n) const;
 		size_t	find_last_not_of	(char c
 									,size_t pos = npos) const;
-
-
-
-
-		*/
 
 	private:
 		static std::vector<unsigned char>	 _case_off;

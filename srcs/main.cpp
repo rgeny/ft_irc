@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:23:38 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/27 15:15:03 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 17:26:35 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,41 +20,6 @@
 int	main	(__attribute((unused)) int argc
 			,__attribute((unused)) char ** argv)
 {
-	{
-		std::string	a("abcdefg"),
-					b("b"),
-					c("bbb");
-		char		d[] = "abcdeg";
-
-		if (d < b)
-			std::cout	<< "a == b"
-						<< std::endl;
-		else
-			std::cout	<< "a != b"
-						<< std::endl;
-	}
-	{
-		String	a("abcdefgh"),
-				b("b"),
-				c("bbb");
-		char		d[] = "abcdeg";
-
-		if (d < b)
-			std::cout	<< "a == b"
-						<< std::endl;
-		else
-			std::cout	<< "a != b"
-						<< std::endl;
-	}
-	return (0);
-
-
-
-
-
-
-
-
 	try
 	{
 		int	port;
