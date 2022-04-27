@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:14:15 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/26 19:37:12 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/27 16:06:18 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ class Channel
 		Channel & operator=(Channel const & rhs);
 		~Channel();
 		CHAN_USER_LIST & get_chan_user_list();
+		std::string& get_chan_name();
 
 };
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   User.accessor.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 18:04:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/12 18:43:38 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 16:27:07 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,22 @@ void	User::set_specific_mode	(UserMode mode
 void	User::set_realname		(std::string realname)
 {
 	this->_realname = realname;
+}
+
+void	User::set_chan_usermode	(std::string chan
+							,int mode)
+{
+	std::vector<bool> tmp_vb(3, 0);
+	int i = 2;
+	while (i >= 0)
+	{
+		tmp_vb[2 - i] = mode >> i;
+		i--;
+	}
+
+	if (this->_chan_usermode.find(chan) == _chan_usermode.end())
+	{
+		this->_chan_usermode[chan] = tmp_vb;
+	}
+
 }
