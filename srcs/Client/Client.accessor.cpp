@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:56:10 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/27 20:35:32 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 23:56:19 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	Client::set_nickname	(String nickname)
 	{
 		return (false);
 	}
-	for (std::size_t i = 1; i < 8 && i < nickname.size(); i++)
+	for (size_t i = 1; i < 8 && i < nickname.size(); i++)
 	{
 		c = nickname[i];
 		if (!isalnum(c)
