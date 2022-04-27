@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/27 21:09:02 by rgeny            ###   ########.fr        #
+#    Updated: 2022/04/27 21:26:24 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,6 @@ SRCS				= $(addsuffix .cpp,				main \
 													check_arguments \
 													is_ \
 													split \
-													case_proof \
 													check_chan_name \
 													print_error \
 						$(addprefix Socket,			$(DEFAULT_FILES)) \
