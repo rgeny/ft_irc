@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:52:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/29 16:46:49 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/29 16:50:23 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,21 @@ S <-   :irc.example.com MODE #test +nt
 S <-   :irc.example.com 353 dan = #test :@dan
 S <-   :irc.example.com 366 dan #test :End of /NAMES list.
 */
+
+	Channel::CHAN_USER_LIST *tmp = NULL;
 	String	msg	= this->_set_msg_base((*_users_it)->get_nickname() + "!" + (*_users_it)->get_username() + "@" + this->_hostname, JOIN, ":" + this->_cmd[1])
 					+ "\r\n";
 	(*this->_users_it)->add_to_queue(msg);
+	for (Channel::CHAN_USER_LIST::iterator it = ((*_chans_it).second)->get_chan_user_list().begin(); it != ((*_chans_it).second)->get_chan_user_list().end(); it++)
+	{
+		String	msg	= this->_set_msg_base((*_users_it)->get_nickname() + "!" + (*_users_it)->get_username() + "@" + this->_hostname, JOIN, ":" + this->_cmd[1])
+					+ "\r\n";
+		(*it).second->add_to_queue(msg);
+	}
 	msg	= this->_set_msg_base(this->_hostname, MODE, this->_cmd[1] + " +nt")
 					+ "\r\n";
 	(*this->_users_it)->add_to_queue(msg);
 	String name_list;
-	Channel::CHAN_USER_LIST *tmp = NULL;
 	tmp = &(*_chans_it).second->get_chan_user_list();
 	for (Channel::CHAN_USER_LIST::iterator it = tmp->begin(); it != tmp->end(); it++)
 	{
