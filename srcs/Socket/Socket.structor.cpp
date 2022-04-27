@@ -6,15 +6,16 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:55:06 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/12 18:30:47 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 22:14:45 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Socket.hpp"
 
-Socket::SOCKET	Socket::_srv_socket	= SOCKET_ERROR;
-Socket::TIMEVAL	Socket::_timeout	= { 0, 100 };
-Socket::SOCKET	Socket::_max		= SOCKET_ERROR;
+Socket::SOCKET						Socket::_srv_socket	= SOCKET_ERROR;
+Socket::TIMEVAL						Socket::_timeout	= { 0, 100 };
+Socket::SOCKET						Socket::_max		= SOCKET_ERROR;
+std::map<Socket::SOCKET, size_t>	Socket::_socket_list;
 
 Socket:: Socket	(int port)
 {

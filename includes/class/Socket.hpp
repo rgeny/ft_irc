@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:52:03 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/27 20:41:30 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 22:14:52 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <errno.h>
 # include <arpa/inet.h>
 # include <string>
+# include <map>
 
 # include "Exceptions.hpp"
 # include "Utils.hpp"
@@ -49,10 +50,11 @@ class Socket
 		bool	is_set		(fd_set * fds) const;
 
 	private:
-		SOCKET			_socket;
-		static SOCKET	_srv_socket;
-		static TIMEVAL	_timeout;
-		static SOCKET	_max;
+		SOCKET							_socket;
+		static SOCKET					_srv_socket;
+		static TIMEVAL					_timeout;
+		static SOCKET					_max;
+		static std::map<SOCKET, size_t>	_socket_list;
 
 		Socket	(const Socket & src);
 
