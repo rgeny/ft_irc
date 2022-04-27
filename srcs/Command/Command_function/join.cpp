@@ -6,11 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/04/27 12:12:16 by abesombe         ###   ########.fr       */
-=======
-/*   Updated: 2022/04/27 11:56:53 by abesombe         ###   ########.fr       */
->>>>>>> 1st channel created and confirmed
+/*   Updated: 2022/04/27 12:17:05 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
