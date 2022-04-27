@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:52:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/29 16:45:29 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/29 16:46:49 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ S <-   :irc.example.com 366 dan #test :End of /NAMES list.
 	tmp = &(*_chans_it).second->get_chan_user_list();
 	for (Channel::CHAN_USER_LIST::iterator it = tmp->begin(); it != tmp->end(); it++)
 	{
-		std::cout << (*it).second->get_nickname() << std::endl;
+		std::cout << "Users in this channel: " << (*it).second->get_nickname() << std::endl;
 		if (it != tmp->begin())
 			name_list += " ";
-		// if ((((*it).second)->get_chan_usermode[this->_cmd[1]])[1] == true)
-		// 	name_list += "@";
+		if ((*it).second->get_chan_usermode(this->_cmd[1])[1] == true)
+			name_list += "@";
 		name_list += (*it).second->get_nickname();
 	}
 	msg	= this->_set_msg_base(this->_hostname, "353 " + (*this->_users_it)->get_nickname() + " =", this->_cmd[1] + " :" + name_list)

@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/29 16:41:36 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/29 16:46:09 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,12 @@ e_error	Command::_join	(void)
 			_chans_it = this->_chans.find(this->_cmd[1]);
 			(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), 2);
 		}
+		else
+			(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), 0);
 		tmp = &(*_chans_it).second->get_chan_user_list();
 		(*tmp)[(*_users_it)->get_nickname()] = *_users_it;
-		for (Channel::CHAN_USER_LIST::iterator it = tmp->begin(); it != tmp->end(); it++)
-			std::cout << (*it).second->get_nickname() << std::endl;
+		// for (Channel::CHAN_USER_LIST::iterator it = tmp->begin(); it != tmp->end(); it++)
+		// 	std::cout << (*it).second->get_nickname() << std::endl;
 		return (this->_cmd_join());
 	}
 	return (SUCCESS);
