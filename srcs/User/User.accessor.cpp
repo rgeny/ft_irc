@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 18:04:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/29 16:39:40 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/29 16:42:15 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,9 @@ void	User::set_chan_usermode	(String chan
 		this->_chan_usermode[chan] = tmp_vb;
 	}
 
+}
+
+std::vector<bool> User::get_chan_usermode(String chan_name)
+{
+	return (_chan_usermode[chan_name]);
 }

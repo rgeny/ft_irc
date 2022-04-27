@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:04:52 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/29 16:37:44 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/29 16:45:02 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ class User
 		const std::vector<bool>		get_mode			(void) const;
 		bool						get_specific_mode	(UserMode mode) const;
 		const String				get_realname		(void) const;
+		std::vector<bool> 			get_chan_usermode	(String chan_name);
 
 		void	set_username		(String username);
 		void	set_mode			(String mode);
