@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/26 19:04:27 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/27 11:56:53 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ e_error	Command::_join	(std::vector<std::string> & cmd)
 		tmp = &(*_chans_it).second->get_chan_user_list();
 		(*tmp)[(*_users_it)->get_nickname()] = *_users_it;
 		for (Channel::CHAN_USER_LIST::iterator it = tmp->begin(); it != tmp->end(); it++)
-		std::cout << (*it).second->get_nickname() << std::endl;
+			std::cout << (*it).second->get_nickname() << std::endl;
+		return (this->_cmd_join());
 	}
 	return (SUCCESS);
 }

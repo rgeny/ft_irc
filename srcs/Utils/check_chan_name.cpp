@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 18:27:58 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/26 18:35:40 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/27 12:02:20 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ bool has_forbidden_char(std::string name)
     for (size_t i = 0; i < name.length(); i++)
         if (name[i] == 7 || name[i] == ',')
             return (true);
+    return (false);
 }
 
 bool check_chan_name(std::string name)
