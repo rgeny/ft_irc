@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/27 21:37:19 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 21:54:56 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ e_error	Command::_join	(void)
 		return (this->_err_needmoreparams());
 	else
 	{
-		if (check_chan_name((*this)._msgs_it[0][1]) == false || check_chan_name((*this)._msgs_it[0][1]))
+		if (check_chan_name((*this)._msgs_it[0][1]) == false || check_chan_name((*this)._msgs_it[0][1]) == false)
 			//check_chan_name(case_proof((*this)._msgs_it[0][1])) == false)
 			return (ERROR_CONTINUE);
 		Channel::CHAN_USER_LIST *tmp = NULL;
