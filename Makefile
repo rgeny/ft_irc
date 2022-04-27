@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/26 17:30:58 by rgeny            ###   ########.fr        #
+#    Updated: 2022/04/27 02:40:02 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,12 +44,13 @@ HISTORICALNODE_DIR	= $(SRCS_DIR)HistoricalNode/
 HISTORICAL_DIR		= $(SRCS_DIR)Historical/
 DATA_DIR			= $(SRCS_DIR)Data/
 CHANNEL_DIR			= $(SRCS_DIR)Channel/
+STRING_DIR			= $(SRCS_DIR)String/
 
 VPATH				= $(SRCS_DIR) $(SOCKET_DIR) $(SERVER_DIR) $(CLIENT_DIR)
 VPATH				+=$(USER_DIR) $(UTILS_DIR) $(COMMAND_DIR) $(MESSAGE_DIR)
 VPATH				+=$(HISTORICALNODE_DIR) $(HISTORICAL_DIR) $(COMMAND_FCT_DIR)
 VPATH				+=$(DATA_DIR) $(ERROR_MSG_DIR) $(REPLY_MSG_DIR) $(CMD_MSG_DIR)
-VPATH				+=$(CHANNEL_DIR)
+VPATH				+=$(CHANNEL_DIR) $(STRING_DIR)
 
 ifndef ARG
 	ARG = 6697 abc
@@ -97,7 +98,10 @@ SRCS				= $(addsuffix .cpp,				main \
 						$(addprefix HistoricalNode,	$(DEFAULT_FILES)) \
 						$(addprefix Historical,		$(DEFAULT_FILES)) \
 						$(addprefix Data,			$(DEFAULT_FILES)) \
-						$(addprefix Channel,		$(DEFAULT_FILES)))
+						$(addprefix Channel,		$(DEFAULT_FILES)) \
+						$(addprefix String,			$(DEFAULT_FILES) \
+													.compare) \
+													init_case_off)
 OBJS				= $(patsubst %.cpp, $(OBJS_DIR)%.o, $(SRCS))
 DEPS				= $(OBJS:.o=.d)
 

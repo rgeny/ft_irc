@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:23:38 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/25 12:44:50 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 14:54:04 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,58 @@
 #include "Server.hpp"
 #include "User.hpp"
 
+#include "String.hpp"
+
 int	main	(__attribute((unused)) int argc
 			,__attribute((unused)) char ** argv)
 {
+	{
+		std::string	a("abcdefg"),
+					b("b"),
+					c("bbb");
+		char		d[] = "abcdeg";
+
+		try
+		{
+			std::cout	<< a.compare(0, 6, d, 4)
+						<< std::endl;
+		}
+		catch (const std::out_of_range & err)
+		{
+			std::cout	<< "t1 : "
+						<< err.what()
+						<< std::endl;
+		}
+
+	}
+	{
+		String	a("abcdefg"),
+				b("b"),
+				c("bbb");
+		char		d[] = "abcdeg";
+
+		try
+		{
+			std::cout	<< a.compare(0, 6, d, 4)
+						<< std::endl;
+		}
+		catch (const std::out_of_range & err)
+		{
+			std::cout	<< "t1 : "
+						<< err.what()
+						<< std::endl;
+		}
+	
+	}
+	return (0);
+
+
+
+
+
+
+
+
 	try
 	{
 		int	port;
