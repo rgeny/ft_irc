@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/26 18:28:55 by abesombe         ###   ########.fr        #
+#    Updated: 2022/04/27 11:58:52 by abesombe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,6 +83,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													\
 													cmd_pong \
 													cmd_error \
+													cmd_join \
 													\
 						$(addprefix Command,		$(DEFAULT_FILES)) \
 													init_cmd_fct \

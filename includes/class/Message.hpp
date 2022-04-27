@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/26 19:24:39 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/27 11:58:16 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ class Message
 
 		//command reply
 		e_error	_cmd_pong				(void) const;
+		e_error	_cmd_join				(void) const;
 		e_error	_cmd_error				(e_error code) const;
 	
 
@@ -67,7 +68,7 @@ class Message
 		void	_init_msg_error	(void);
 
 		std::string	_set_msg_base	(std::string code) const;
-		std::string	Message::_set_msg_base	(std::string sender, std::string code, std::string target) const;
+		std::string	_set_msg_base	(std::string sender, std::string code, std::string target) const;
 
 		std::string	_set_reply_base	(std::string code) const;
 		std::string	_set_reply_base	(std::string code
