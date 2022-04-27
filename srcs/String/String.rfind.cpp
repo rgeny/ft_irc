@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 17:23:16 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/27 17:26:06 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/27 20:18:32 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,7 @@ size_t	String::rfind	(const char * s
 						,size_t pos
 						,size_t n) const
 {
-	size_t	s_size		= strlen(s),
-			this_size	= std::min(this->size(), pos);
+	size_t	this_size	= std::min(this->size(), pos);
 
 	if (this_size > 0 && this_size != pos)
 		this_size--;
