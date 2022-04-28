@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/28 11:26:48 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/28 11:30:57 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ class Server
 		void	_check_fds		(void);
 		void	_new_user		(void);
 		void	_del_user		(void);
+		bool	_check_tmp_user	(void);
+		void	_read_user_msg	(void);
 };
 
 std::ostream &	operator<<	(std::ostream & os
