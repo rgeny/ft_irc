@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/27 20:27:47 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/28 11:55:12 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,21 @@ class Command
 
 		bool			_is_user;
 
-//		Command	(void);
-
 		bool	_get_user_type		(void);
 		void	_parse				(void);
 		void	_check_cmd			(void);
 		bool	_nick_already_used	(String & nickname) const;
 
-		//User Command
+//		User Command
 		e_error		_pass			(void);
 		e_error		_nick			(void);
 		e_error		_user			(void);
 		e_error		_quit			(void);
 	
-		//Channel Command
+//		Channel Command
 		e_error		_join			(void);
 
-		//Other Command
+//		Other Command
 		e_error		_ping			(void);
 
 		void	_init_cmd_fct	(void);

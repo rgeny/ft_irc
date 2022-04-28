@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/28 11:29:52 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/28 11:52:16 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,6 @@ class Message
 		~Message	(void);
 
 		Message & operator=(Message const & rhs);
-
-//		void	set_sender		(String sender);
-//		void	set_receiver	(String receiver);
-
-//		void				add_arg			(String arg);
-//		String const	forge			(String msg_code);
 
 	protected:
 		//error reply
@@ -68,32 +62,16 @@ class Message
 		void	_init_msg_error	(void);
 
 		String	_set_msg_base	(String code) const;
+		String	_set_msg_base	(String code
+								,String receiver) const;
 		String	_set_msg_base	(String sender, String code, String target) const;
 
 		String	_set_reply_base	(String code) const;
 		String	_set_reply_base	(String code
-									,String receiver) const;
+								,String receiver) const;
+
+		String	_set_sender		(void) const;
 //		String	set_msg_base	(String receiver) const;
-
-
-
-
-//		static std::map<String, String>	_msg_list;
-//
-//		String					_sender;
-//		String 				_receiver;
-//		std::vector<String>	_msg_args;
-//
-//
-//		String		_get_msg		(String & msg_code
-//										,std::vector<String> & args);
-//		String		_replace_tags	(String msg_template
-//										,std::vector<String> &	args);
-//		void			_clear_data		(void);
-//		void			_init_msg_list	(void);
 };
-//
-//std::ostream &	operator<<	(std::ostream & o
-//							,Message const & instance);
 
 #endif

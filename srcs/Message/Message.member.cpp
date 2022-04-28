@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/28 11:29:54 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/28 11:53:05 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,21 @@ String	Message::_set_msg_base	(String code) const
 				+ " "
 				+ code
 				+ " ";
+	return (msg);
+}
+
+String	Message::_set_msg_base	(String code
+								,String receiver) const
+{
+	String	msg	= ":";
+	if (receiver == (*this->_users_it)->get_nickname())
+		msg	+= this->_servername;
+	else
+		msg	+= this->_set_sender();
+	msg	+= " "
+		+ code
+		+ " "
+		+ receiver;
 	return (msg);
 }
 
@@ -53,6 +68,15 @@ String	Message::_set_reply_base	(String code
 	return (msg);
 }
 
+String	Message::_set_sender	(void) const
+{
+	String	sender	= (*this->_users_it)->get_nickname()
+					+ "!"
+					+ (*this->_users_it)->get_username()
+					+ "@"
+					+ this->_servername;
+	return (sender);
+}
 
 
 
@@ -60,79 +84,7 @@ String	Message::_set_reply_base	(String code
 
 
 
-//
-//
-//void	Message::add_arg	(String arg)
-//{
-//	this->_msg_args.push_back(arg);
-//}
-//
-//String const	Message::forge	(String msg_code)
-//{
-//	String content = _get_msg(msg_code, _msg_args);
-//	String	msg = ":";
-//
-//	if (!this->_sender.empty())
-//		this->_sender.clear();
-//	else
-//		msg += this->_servername;
-//
-//	msg += " "
-//		+ msg_code
-//		+ " ";
-//
-//	if (!this->_receiver.empty())
-//	{
-//		msg	+=	this->_receiver
-//			+	" ";
-//	}
-//
-//	msg += content
-//		+ "\r\n";
-//
-//	this->_clear_data();
-//	return (msg);
-//}
-//
-//String		Message::_get_msg	(String & msg_code
-//									,std::vector<String> & args)
-//{
-//	String		msg_template	= this->_msg_list[msg_code];
-//	return (_replace_tags(msg_template, args));
-//}
-//
-//String		Message::_replace_tags	(String msg_template
-//										,std::vector<String> & args)
-//{
-//	int		position_tag = 0;
-//	size_t	pos_opentag;
-//	size_t	pos_closetag;
-//	size_t	tag_len;
-//
-//	for (std::vector<String>::iterator it = args.begin(); it < args.end(); it++)
-//	{
-//		pos_opentag = msg_template.find("<", position_tag);
-//		if (pos_opentag != String::npos)
-//		{
-//			pos_closetag = msg_template.find(">", pos_opentag + 1);
-//			if (pos_closetag != String::npos)
-//			{
-//				tag_len = pos_closetag - pos_opentag + 1;
-//				msg_template = msg_template.replace(pos_opentag, tag_len, *it);
-//				position_tag = pos_opentag + (*it).length();
-//			}
-//		}
-//	}
-//	return (msg_template);
-//}
-//
-//void	Message::_clear_data	(void)
-//{
-//	this->_sender.clear();
-//	this->_receiver.clear();
-//	this->_msg_args.clear();
-//}
-//
+
 //void	Message::_init_msg_list	(void)
 //{
 //	if (Message::_msg_list.size() == 0)
