@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/27 21:11:10 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/28 11:07:32 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ class Message
 		//command reply
 		e_error	_cmd_pong				(void) const;
 		e_error	_cmd_join				(void) const;
-		e_error	_cmd_error				(e_error code) const;
+		e_error	_cmd_error				(e_error code);
 	
 
 	private:

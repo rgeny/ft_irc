@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 20:18:15 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/28 11:25:56 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,50 +56,48 @@ void	Server::_check_fds		(void)
 	{
 		if ((*it)->is_set(&this->_wfds))
 			(*it)->send();
-		else if ((*it)->be_disconnected)
-			this->_del_user(it);
+		else if (this->_check_tmp_user())
+			this->_del_user();
 		else if ((*it)->is_set(&this->_rfds))
-			this->_read_user_msg(it);
-		else
-			this->_check_tmp_user(it);
+			this->_read_user_msg();
 	}
 }
 
 void	Server::_new_user	(void)
 {
 	User *	new_user = new User;
-	this->_tmp_users[new_user] = time(NULL);
+	this->_tmp_users[new_user] = time(NULL) + TIME_TO_CONNECT;
 	this->_users.push_back(new_user);
-	
 }
 
-void	Server::_del_user		(USERS_IT & it)
+void	Server::_del_user		(void)
 {
-	delete (*it);
-	this->_tmp_users.erase(*it);
-	this->_users.erase(it);
+	delete (*this->_users_it);
+	this->_tmp_users.erase(*this->_users_it);
+	this->_users.erase(this->_users_it);
 }
 
-void	Server::_check_tmp_user	(USERS_IT & it)
+bool	Server::_check_tmp_user	(void)
 {
 	TMP_USERS &	tmp_users	= this->_tmp_users;
 	time_t		cur_time	= time(NULL);
 
-	if (tmp_users.find(*it) != tmp_users.end())
+	if (tmp_users.find(*this->_users_it) != tmp_users.end())
 	{
-		if ((*it)->co_is_complete())
-			this->_tmp_users.erase(*it);
-		else if (this->_tmp_users[*it] + DFL_TIMEOUT <= cur_time)
-			this->_del_user(it);
+		if (this->_tmp_users[*this->_users_it] < cur_time)
+			return (true);
+		else if ((*this->_users_it)->co_is_complete())
+			this->_tmp_users.erase(*this->_users_it);
 	}
+	return (false);
 }
 
-void	Server::_read_user_msg	(USERS_IT & it)
+void	Server::_read_user_msg	(void)
 {
-	int	n = (*it)->receive(this->_msg);
+	int	n = (*this->_users_it)->receive(this->_msg);
 
 	if (n == 0)
-		this->_del_user(it);
+		this->_del_user();
 	else if (n > 0)
 	{
 		if (this->_msg.compare(END_OF_MSG) != 0)
