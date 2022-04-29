@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/27 21:26:24 by rgeny            ###   ########.fr        #
+#    Updated: 2022/04/29 19:24:30 by abesombe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,15 +78,20 @@ SRCS				= $(addsuffix .cpp,				main \
 													err_alreadyregistred \
 													err_noorigin \
 													err_nosuchserver \
+													err_nosuchnick \
+													err_nosuchchannel \
+													err_usersdontmatch\
 													\
 													rpl_welcome \
 													\
 													cmd_pong \
 													cmd_error \
 													cmd_join \
+													cmd_mode \
 													\
 						$(addprefix Command,		$(DEFAULT_FILES)) \
 													init_cmd_fct \
+													mode \
 													nick \
 													ping \
 													user \

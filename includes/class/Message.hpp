@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/28 11:52:16 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/29 19:05:52 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ class Message
 		e_error	_err_alreadyregistred	(void) const;
 		e_error	_err_noorigin			(void) const;
 		e_error	_err_nosuchserver		(void) const;
+		e_error	_err_nosuchchannel		(void) const;
+		e_error	_err_nosuchnick			(void) const;
+		e_error	_err_usersdontmatch		(void) const;
 
 		//reply
 		e_error	_rpl_welcome			(void) const;
@@ -54,7 +57,7 @@ class Message
 		e_error	_cmd_pong				(void) const;
 		e_error	_cmd_join				(void) const;
 		e_error	_cmd_error				(e_error code);
-	
+		e_error	_cmd_mode				(void) const;
 
 	private:
 		MsgError	_msg_error;

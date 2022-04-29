@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 21:36:35 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/29 04:23:15 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/29 18:10:44 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ std::vector<String>		split	(String str
 								,String delimiter);
 std::queue<String>		qsplit	(String str
 								,String delimiter);
-String				case_proof	(String str);
+String					case_proof	(String str);
 bool 					check_chan_name(String name);
+bool 					has_begin_hashtag(String name);
+
 #endif

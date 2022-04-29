@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cmd_fct.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 12:48:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/26 17:10:20 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/29 19:54:24 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	Command::_init_cmd_fct	(void)
 		Command::_cmds_fct[PING]		= &Command::_ping;
 		Command::_cmds_fct[JOIN]		= &Command::_join;
 		Command::_cmds_fct[QUIT]		= &Command::_quit;
+		Command::_cmds_fct[MODE]		= &Command::_mode;
 	}
 }
 //		Command::_cmds_fct[ADMIN]		= &Command::_admin;
@@ -44,7 +45,7 @@ void	Command::_init_cmd_fct	(void)
 //		Command::_cmds_fct[LINKS]		= &Command::_links;
 //		Command::_cmds_fct[LIST]		= &Command::_list;
 //		Command::_cmds_fct[LUSERS]		= &Command::_lusers;
-//		Command::_cmds_fct[MODE]		= &Command::_mode;
+
 //		Command::_cmds_fct[MOTD]		= &Command::_motd;
 //		Command::_cmds_fct[NAMES]		= &Command::_names;
 //		Command::_cmds_fct[NAMESX]		= &Command::_namesx;

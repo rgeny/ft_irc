@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Channel.member.cpp                                 :+:      :+:    :+:   */
+/*   err_usersdontmatch.cpp                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/22 17:37:12 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/29 19:31:10 by abesombe         ###   ########.fr       */
+/*   Created: 2022/04/29 18:21:35 by abesombe          #+#    #+#             */
+/*   Updated: 2022/04/29 19:56:40 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Channel.hpp"
+#include "Message.hpp"
 
-// bool Channel::chan_exist(String chan_name) const
-// {
-//     if (_chans.find(chan_name) == _chans.end())
-//         return (false);
-//     return (true);
-// }
-
-// bool Channel::user_exist_in_chan(String nickname) const
-// {
-//     if (_chan_user_list.find(nickname) == _chan_user_list.end())
-//         return (false);
-//     return (true);
-// }
+e_error	Message::_err_usersdontmatch	(void) const
+{
+	String	msg	= this->_set_reply_base (ERR_USERSDONTMATCH)
+				+ ":Can't change mode for other users\r\n";
+	(*this->_users_it)->add_to_queue(msg);
+	return (ERROR_CONTINUE);
+}

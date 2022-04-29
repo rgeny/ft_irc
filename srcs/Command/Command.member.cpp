@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.member.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/29 05:59:46 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/29 19:31:27 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,11 @@ bool	Command::_nick_already_used	(String & nickname) const
 			return (true);
 	}
 	return (false);
+}
+
+bool 	Command::chan_exist(String chan_name) const
+{
+    if (_chans.find(chan_name) == _chans.end())
+        return (false);
+    return (true);
 }

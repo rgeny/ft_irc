@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/28 11:55:12 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/29 19:31:33 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ class Command
 		Command &	operator=	(Command & src);
 
 		void	main		(void);
+		bool 	chan_exist(String) const;
+		// bool 	user_exist_in_chan(String nickname) const;
 
 	private:
 		static CmdsFct		_cmds_fct;
@@ -49,6 +51,7 @@ class Command
 		void	_check_cmd			(void);
 		bool	_nick_already_used	(String & nickname) const;
 
+
 //		User Command
 		e_error		_pass			(void);
 		e_error		_nick			(void);
@@ -57,6 +60,9 @@ class Command
 	
 //		Channel Command
 		e_error		_join			(void);
+
+//		User/Channel Command
+		e_error		_mode			(void);
 
 //		Other Command
 		e_error		_ping			(void);

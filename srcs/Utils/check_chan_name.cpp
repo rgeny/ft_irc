@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 18:27:58 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/27 20:37:22 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/29 18:58:25 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,11 @@ bool check_chan_name(String name)
     if (has_forbidden_char(name) == true)
         return (false);
     return (true);
+}
+
+bool has_begin_hashtag(String name)
+{
+    if (name[0] == '#')
+        return (true);
+    return (false);
 }

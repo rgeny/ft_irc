@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:14:15 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/29 16:54:31 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/29 19:25:05 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ class Channel
 
 	private:
 		Channel();
-		String 		_name;
-		String			_topic;
+		String 				_name;
+		String				_topic;
 		CHAN_USER_LIST		_chan_user_list;
 		std::vector<bool>	_mode;
-		String			_password;
+		String				_password;
 		size_t				_limit;
 		time_t				_creation;
 		bool				_is_safe;
@@ -97,6 +97,8 @@ class Channel
 		~Channel();
 		CHAN_USER_LIST & get_chan_user_list();
 		std::string& get_chan_name();
+		bool chan_exist(String) const;
+		// bool user_exist_in_chan(String nickname) const;
 
 };
 
