@@ -6,13 +6,13 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:41:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/25 21:20:55 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/29 06:21:51 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Command.hpp"
 
-Command::CmdsFct	Command::_cmds_fct;
+Command::CMD_FCT	Command::_cmds_fct;
 
 Command:: Command	(void)
 	:Data()

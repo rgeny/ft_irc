@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/28 11:55:12 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/29 06:21:10 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class Command
 {
 	public:
 		typedef e_error (Command::*CommandPointer)	(void);
-		typedef std::map<String, CommandPointer>	CmdsFct;
+		typedef std::map<String, CommandPointer>	CMD_FCT;
 
 		Command		(void);
 		Command		(Command & src);
@@ -40,9 +40,9 @@ class Command
 		void	main		(void);
 
 	private:
-		static CmdsFct		_cmds_fct;
+		static CMD_FCT		_cmds_fct;
 
-		bool			_is_user;
+		bool	_is_user;
 
 		bool	_get_user_type		(void);
 		void	_parse				(void);

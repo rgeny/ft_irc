@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/29 05:59:46 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/29 06:22:01 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void	Command::_parse	(void)
 
 void	Command::_check_cmd	(void)
 {
-//	CmdsFct::iterator	it = this->_cmds_fct.find((*this->_msgs_it)[0]);
-	CmdsFct::iterator	it = this->_cmds_fct.find(this->_cmd[0]);
+//	CMD_FCT::iterator	it = this->_cmds_fct.find((*this->_msgs_it)[0]);
+	CMD_FCT::iterator	it = this->_cmds_fct.find(this->_cmd[0]);
 
 	if (it != this->_cmds_fct.end())
 	{
