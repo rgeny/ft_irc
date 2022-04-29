@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/28 11:25:56 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/29 05:22:28 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,12 @@ void	Server::_check_fds		(void)
 			(*it)->send();
 		else if (this->_check_tmp_user())
 			this->_del_user();
-		else if ((*it)->is_set(&this->_rfds))
+		else if ((*it)->is_set(&this->_rfds)
+				|| !(*it)->is_empty_recv_queue())
+		{
 			this->_read_user_msg();
+		}
+		this->_msg.clear();
 	}
 }
 

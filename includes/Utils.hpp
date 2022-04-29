@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 21:36:35 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/27 20:42:31 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/29 04:23:15 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <cerrno>
 # include <cstring>
 # include <cstdlib>
+# include <queue>
 
 # include "colors.hpp"
 # include "String.hpp"
@@ -31,6 +32,8 @@ bool	is_hexdigit	(char c);
 bool	is_number	(const String & str);
 
 std::vector<String>		split	(String str
+								,String delimiter);
+std::queue<String>		qsplit	(String str
 								,String delimiter);
 String				case_proof	(String str);
 bool 					check_chan_name(String name);

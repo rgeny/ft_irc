@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:43:21 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/27 20:41:05 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/29 04:36:24 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,18 @@ class Client
 		void	add_to_queue		(String & msg);
 		bool	is_empty_msg_queue	(void) const;
 		int		receive				(String & msg);
+		bool	is_empty_recv_queue	(void) const;
 		int		send				(void);
 
 	private:
 		String				_nickname;
+		std::queue<String>	_recv_queue;
+		String				_recv_buf;
 		std::queue<String>	_msg_queue;
-		time_t					_msg_timer;
-		bool					_passwd_is_sent;
+		time_t				_msg_timer;
+		bool				_passwd_is_sent;
+
+		int		_get_next_msg	(String & msg);
 };
 
 std::ostream &	operator<<	(std::ostream & os

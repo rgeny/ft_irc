@@ -6,13 +6,15 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:52:03 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/27 22:20:40 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/29 04:32:51 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SOCKET_HPP
 # define SOCKET_HPP
 # define SOCKET_ERROR -1
+# define RECV_ERROR -1
+# define SEND_ERROR -1
 # define PORT 6697
 # define BUF_SIZE 513
 # define QUEUE 42
@@ -23,7 +25,6 @@
 # include <sys/socket.h>
 # include <errno.h>
 # include <arpa/inet.h>
-# include <string>
 # include <map>
 
 # include "Exceptions.hpp"

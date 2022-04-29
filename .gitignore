@@ -6,3 +6,4 @@ client
 test
 test/*
 test.cpp
+tmp

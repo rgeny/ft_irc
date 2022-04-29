@@ -6,13 +6,13 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/28 11:30:57 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/29 03:52:54 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SERVER_HPP
 # define SERVER_HPP
-# define TIME_TO_CONNECT 15
+# define TIME_TO_CONNECT 15000
 
 # include <iostream>
 # include <string>
