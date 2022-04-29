@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/29 06:22:01 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/29 06:22:56 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,6 @@ void	Command::main	(void)
 	this->_is_user = this->_get_user_type();
 	this->_parse();
 	this->_check_cmd();
-//	MSGS_LIST &	msgs	= this->_msgs;
-//	MSGS_IT &	it		= this->_msgs_it;
-//	MSGS_IT &	ite 	= this->_msgs_ite;
-//
-//	it = msgs.begin();
-//	ite = msgs.end();
-//
-//	while (it != ite)
-//	{
-//		this->_check_cmd();
-//		it++;
-//	}
 }
 
 bool	Command::_get_user_type	(void)
@@ -48,22 +36,10 @@ bool	Command::_get_user_type	(void)
 void	Command::_parse	(void)
 {
 	this->_cmd = split(this->_msg, " ");
-
-//	std::vector<String>	tmp = split(this->_msg, "\r\n");
-//
-//	this->_msgs.clear();
-//	std::vector<String>::iterator	it = tmp.begin(),
-//									ite = tmp.end();
-//	while (it != ite)
-//	{
-//		this->_msgs.push_back(split(*it, " "));
-//		it++;
-//	}
 }
 
 void	Command::_check_cmd	(void)
 {
-//	CMD_FCT::iterator	it = this->_cmds_fct.find((*this->_msgs_it)[0]);
 	CMD_FCT::iterator	it = this->_cmds_fct.find(this->_cmd[0]);
 
 	if (it != this->_cmds_fct.end())

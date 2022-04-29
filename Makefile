@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/27 21:26:24 by rgeny            ###   ########.fr        #
+#    Updated: 2022/04/29 06:45:50 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,9 @@ CLIENT_DIR			= $(SRCS_DIR)Client/
 USER_DIR			= $(SRCS_DIR)User/
 UTILS_DIR			= $(SRCS_DIR)Utils/
 COMMAND_DIR			= $(SRCS_DIR)Command/
-COMMAND_FCT_DIR		= $(COMMAND_DIR)Command_function/
+USER_CMD_DIR		= $(COMMAND_DIR)user_cmd/
+CHANNEL_CMD_DIR		= $(COMMAND_DIR)channel_cmd/
+OTHER_CMD_DIR		= $(COMMAND_DIR)other_cmd/
 MESSAGE_DIR			= $(SRCS_DIR)Message/
 ERROR_MSG_DIR		= $(MESSAGE_DIR)error_msg/
 REPLY_MSG_DIR		= $(MESSAGE_DIR)reply_msg/
@@ -46,11 +48,12 @@ DATA_DIR			= $(SRCS_DIR)Data/
 CHANNEL_DIR			= $(SRCS_DIR)Channel/
 STRING_DIR			= $(SRCS_DIR)String/
 
-VPATH				= $(SRCS_DIR) $(SOCKET_DIR) $(SERVER_DIR) $(CLIENT_DIR)
-VPATH				+=$(USER_DIR) $(UTILS_DIR) $(COMMAND_DIR) $(MESSAGE_DIR)
-VPATH				+=$(HISTORICALNODE_DIR) $(HISTORICAL_DIR) $(COMMAND_FCT_DIR)
-VPATH				+=$(DATA_DIR) $(ERROR_MSG_DIR) $(REPLY_MSG_DIR) $(CMD_MSG_DIR)
-VPATH				+=$(CHANNEL_DIR) $(STRING_DIR)
+VPATH	= $(SRCS_DIR) $(SOCKET_DIR) $(SERVER_DIR) $(CLIENT_DIR)
+VPATH	+=$(USER_DIR) $(UTILS_DIR) $(COMMAND_DIR) $(USER_CMD_DIR)
+VPATH	+=$(CHANNEL_CMD_DIR) $(OTHER_CMD_DIR) $(MESSAGE_DIR)
+VPATH	+=$(ERROR_MSG_DIR) $(REPLY_MSG_DIR) $(CMD_MSG_DIR)
+VPATH	+=$(HISTORICALNODE_DIR) $(HISTORICAL_DIR) $(DATA_DIR)
+VPATH	+=$(CHANNEL_DIR) $(STRING_DIR)
 
 ifndef ARG
 	ARG = 6697 abc
