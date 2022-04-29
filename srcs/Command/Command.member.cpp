@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/29 06:22:56 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/29 13:21:19 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	Command::_get_user_type	(void)
 
 void	Command::_parse	(void)
 {
-	this->_cmd = split(this->_msg, " ");
+	this->_split_msg();
 }
 
 void	Command::_check_cmd	(void)
@@ -59,4 +59,24 @@ bool	Command::_nick_already_used	(String & nickname) const
 			return (true);
 	}
 	return (false);
+}
+
+void	Command::_split_msg	(void)
+{
+	this->_cmd.clear();
+	char	delimiter = ' ';
+
+	if (this->_msg[0] == ':')
+		this->_msg.erase(0, this->_msg.find(delimiter) + 1);
+
+	size_t	pos	= this->_msg.find(delimiter);
+	while (pos != String::npos
+			&& this->_msg[0] != ':')
+	{
+		this->_cmd.push_back(this->_msg.substr(0, pos));
+		this->_msg.erase(0, pos + 1);
+		pos	= this->_msg.find(delimiter);
+	}
+	this->_cmd.push_back(this->_msg);
+	this->_msg.clear();
 }

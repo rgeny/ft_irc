@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/29 06:21:10 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/29 07:23:27 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ class Command
 		void	_check_cmd			(void);
 		bool	_nick_already_used	(String & nickname) const;
 
+
+		void	_init_cmd_fct	(void);
+		void	_split_msg		(void);
+
 //		User Command
 		e_error		_pass			(void);
 		e_error		_nick			(void);
@@ -61,7 +65,6 @@ class Command
 //		Other Command
 		e_error		_ping			(void);
 
-		void	_init_cmd_fct	(void);
 };
 
 std::ostream &	operator<<	(std::ostream & os
