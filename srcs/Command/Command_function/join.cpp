@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/27 21:54:56 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/29 06:08:47 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 e_error	Command::_join	(void)
 {
-	if (((*this)._msgs_it)->size() < 2)
+	if (this->_cmd.size() < 2)
 		return (this->_err_needmoreparams());
 	else
 	{
-		if (check_chan_name((*this)._msgs_it[0][1]) == false || check_chan_name((*this)._msgs_it[0][1]) == false)
+		if (check_chan_name(this->_cmd[1]) == false || check_chan_name(this->_cmd[1]) == false)
 			//check_chan_name(case_proof((*this)._msgs_it[0][1])) == false)
 			return (ERROR_CONTINUE);
 		Channel::CHAN_USER_LIST *tmp = NULL;
-		if ((_chans_it = this->_chans.find((*this)._msgs_it[0][1])) == _chans.end())
+		if ((_chans_it = this->_chans.find(this->_cmd[1])) == _chans.end())
 		{
-			this->_chans[(*this)._msgs_it[0][1]] = new Channel((*this)._msgs_it[0][1], "");
-			_chans_it = this->_chans.find((*this)._msgs_it[0][1]);
+			this->_chans[this->_cmd[1]] = new Channel(this->_cmd[1], "");
+			_chans_it = this->_chans.find(this->_cmd[1]);
 		}
 		tmp = &(*_chans_it).second->get_chan_user_list();
 		(*tmp)[(*_users_it)->get_nickname()] = *_users_it;

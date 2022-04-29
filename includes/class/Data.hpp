@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 10:50:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/27 20:26:36 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/29 05:55:46 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ class Data
 		typedef CHANS_LIST::iterator			CHANS_IT;
 		typedef std::map<User *, time_t>		TMP_USERS;
 		typedef TMP_USERS::iterator				TMP_USERS_IT;
-		typedef std::vector<String>				MSG;
-		typedef std::vector<MSG>				MSGS_LIST;
-		typedef MSGS_LIST::iterator				MSGS_IT;
+		typedef std::vector<String>				CMD;
+//		typedef std::vector<MSG>				MSGS_LIST;
+//		typedef MSGS_LIST::iterator				MSGS_IT;
 
 		Data	(String password = DFL_PASSWD
 				,String servername = DFL_SERVERNAME
@@ -64,9 +64,10 @@ class Data
 
 		// Client message being processed
 		String		_msg;
-		MSGS_LIST	_msgs;
-		MSGS_IT		_msgs_it;
-		MSGS_IT		_msgs_ite;
+		CMD			_cmd;
+//		MSGS_LIST	_msgs;
+//		MSGS_IT		_msgs_it;
+//		MSGS_IT		_msgs_ite;
 
 		// Server data
 		String		_password;
