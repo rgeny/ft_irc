@@ -64,6 +64,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													split \
 													check_chan_name \
 													print_error \
+													print_server_name \
 						$(addprefix Socket,			$(DEFAULT_FILES)) \
 						$(addprefix Message,		$(DEFAULT_FILES)) \
 													init_msg_error \

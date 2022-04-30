@@ -28,9 +28,10 @@ int	main	(__attribute((unused)) int argc
 		check_nbr_of_arguments(argc);
 		check_port_argument(String(argv[1]));
 		check_password_argument(String(argv[2]));
-		print_variable(BOLD MAGENTA, "ft_irc started", "", RESET);
+		print_server_name();
 		port = atoi(argv[1]);
 		password = argv[2];
+
 		Server	serv (password, port);
 
 		serv.main();

@@ -36,7 +36,8 @@ std::vector<String>		split	(String str
 std::queue<String>		qsplit	(String str
 								,String delimiter);
 String					case_proof	(String str);
-bool 					check_chan_name(String name);
-bool 					has_begin_hashtag(String name);
+bool					check_chan_name(String name);
+bool					has_begin_hashtag(String name);
+void					print_server_name(void);
 
 #endif
