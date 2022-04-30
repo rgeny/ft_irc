@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:14:15 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/29 19:25:05 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/30 20:34:35 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,10 @@ class Channel
 		~Channel();
 		CHAN_USER_LIST & get_chan_user_list();
 		std::string& get_chan_name();
+		String &get_topic();
 		bool chan_exist(String) const;
+		void	set_topic(String topic);
+		bool has_topic();
 		// bool user_exist_in_chan(String nickname) const;
 
 };

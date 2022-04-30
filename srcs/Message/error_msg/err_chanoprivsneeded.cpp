@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Channel.member.cpp                                 :+:      :+:    :+:   */
+/*   err_chanoprivsneeded.cpp                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/22 17:37:12 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/30 20:35:39 by ayzapata         ###   ########.fr       */
+/*   Created: 2022/04/30 20:21:59 by ayzapata          #+#    #+#             */
+/*   Updated: 2022/04/30 21:26:02 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Channel.hpp"
+#include "Message.hpp"
 
-bool Channel::has_topic()
+e_error	Message::_err_chanoprivsneeded	(void) const
 {
-    if (get_topic().empty() == true)
-        return (false);
-    return (true);
+	String	msg	= this->_set_reply_base(ERR_CHANOPRIVSNEEDED) + (*_chans_it).second->get_chan_name() +
+				+ " :You do not have access to change the topic on this channel\r\n";
+	(*this->_users_it)->add_to_queue(msg);
+	return (ERROR_CONTINUE);
 }

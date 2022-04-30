@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_join.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:52:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/29 16:53:19 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/04/30 21:06:01 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,27 @@ e_error	Message::_cmd_join	(void) const
 C  ->  JOIN #test
 S <-   :dan!~d@0::1 JOIN #test
 S <-   :irc.example.com MODE #test +nt
+S <-   :irc.example.com 332 alice #test :This is my cool channel! https://irc.com
+S <-   :irc.example.com 333 alice #test dan!~d@localhost 1547691506
 S <-   :irc.example.com 353 dan = #test :@dan
 S <-   :irc.example.com 366 dan #test :End of /NAMES list.
 */
 	Channel::CHAN_USER_LIST *tmp = NULL;
-	String	msg	= this->_set_msg_base((*_users_it)->get_nickname() + "!" + (*_users_it)->get_username() + "@" + this->_hostname, JOIN, ":" + this->_cmd[1])
-					+ "\r\n";
+	String	msg	= this->_set_msg_base((*_users_it)->get_nickname() 
+									+ "!"
+									+ (*_users_it)->get_username()
+									+ "@"
+									+ this->_hostname, JOIN, ":"
+									+ this->_cmd[1])
+									+ "\r\n";
 	(*this->_users_it)->add_to_queue(msg);
 	for (Channel::CHAN_USER_LIST::iterator it = ((*_chans_it).second)->get_chan_user_list().begin(); it != ((*_chans_it).second)->get_chan_user_list().end(); it++)
 	{
-		String	msg	= this->_set_msg_base((*_users_it)->get_nickname() + "!" + (*_users_it)->get_username() + "@" + this->_hostname, JOIN, ":" + this->_cmd[1])
-					+ "\r\n";
+		String	msg	= this->_set_msg_base((*_users_it)->get_nickname()
+										+ "!" + (*_users_it)->get_username()
+										+ "@" + this->_hostname, JOIN, ":"
+										+ this->_cmd[1])
+										+ "\r\n";
 		(*it).second->add_to_queue(msg);
 	}
 	msg	= this->_set_msg_base(this->_hostname, MODE, this->_cmd[1] + " +nt")
@@ -46,11 +56,23 @@ S <-   :irc.example.com 366 dan #test :End of /NAMES list.
 			name_list += "@";
 		name_list += (*it).second->get_nickname();
 	}
-	msg	= this->_set_msg_base(this->_hostname, "353 " + (*this->_users_it)->get_nickname() + " =", this->_cmd[1] + " :" + name_list)
-					+ "\r\n";
+	if ((*_chans_it).second->has_topic())
+	{
+		msg	= this->_set_msg_base(this->_hostname, "332 " + (*this->_users_it)->get_nickname() + " " + this->_cmd[1]
+						, 
+						(*_chans_it).second->get_topic())
+						+ "\r\n";
+		(*this->_users_it)->add_to_queue(msg);
+	}
+	msg	= this->_set_msg_base(this->_hostname, "353 " + (*this->_users_it)->get_nickname()
+							+ " =", this->_cmd[1] + " :"
+							+ name_list)
+							+ "\r\n";
 	(*this->_users_it)->add_to_queue(msg);
-	msg	= this->_set_msg_base(this->_hostname, "366 " + (*this->_users_it)->get_nickname(), this->_cmd[1] + " :End of /NAMES list.")
-					+ "\r\n";
+	msg	= this->_set_msg_base(this->_hostname, "366 "
+							+ (*this->_users_it)->get_nickname(), this->_cmd[1]
+							+ " :End of /NAMES list.")
+							+ "\r\n";
 	(*this->_users_it)->add_to_queue(msg);
 	return (SUCCESS);
 }

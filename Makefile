@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
+#    By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/04/29 19:24:30 by abesombe         ###   ########.fr        #
+#    Updated: 2022/04/30 20:23:40 by ayzapata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,8 @@ SRCS				= $(addsuffix .cpp,				main \
 													err_nosuchserver \
 													err_nosuchnick \
 													err_nosuchchannel \
-													err_usersdontmatch\
+													err_usersdontmatch \
+													err_chanoprivsneeded \
 													\
 													rpl_welcome \
 													\
@@ -89,9 +90,11 @@ SRCS				= $(addsuffix .cpp,				main \
 													cmd_error \
 													cmd_join \
 													cmd_mode \
+													cmd_topic \
 													\
 						$(addprefix Command,		$(DEFAULT_FILES)) \
 													init_cmd_fct \
+													topic \
 													mode \
 													nick \
 													ping \
