@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:52:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/30 21:06:01 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/01 18:58:25 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ S <-   :irc.example.com 366 dan #test :End of /NAMES list.
 		std::cout << "Users in this channel: " << (*it).second->get_nickname() << std::endl;
 		if (it != tmp->begin())
 			name_list += " ";
-		if ((*it).second->get_chan_usermode(this->_cmd[1])[1] == true)
+		if ((*it).second->get_chan_usermode_vec(this->_cmd[1])[1] == true)
 			name_list += "@";
 		name_list += (*it).second->get_nickname();
 	}

@@ -6,7 +6,7 @@
 #    By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/05/01 17:08:15 by ayzapata         ###   ########.fr        #
+#    Updated: 2022/05/01 18:41:03 by ayzapata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,6 +95,8 @@ SRCS				= $(addsuffix .cpp,				main \
 													cmd_topic_request \
 													cmd_time \
 													cmd_info \
+													cmd_part \
+													cmd_part_reason \
 													\
 						$(addprefix Command,		$(DEFAULT_FILES)) \
 													init_cmd_fct \
@@ -105,6 +107,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													nick \
 													ping \
 													user \
+													part \
 													pass \
 													join \
 													quit \

@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/01 17:08:37 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/01 18:27:30 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ class Message
 		e_error	_cmd_mode				(void) const;
 		e_error	_cmd_topic				(void) const;
 		e_error	_cmd_topic_request		(void) const;
+		e_error	_cmd_part				(void) const;
+		e_error	_cmd_part_reason		(void) const;
 
 	private:
 		MsgError	_msg_error;

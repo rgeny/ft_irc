@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/01 14:54:56 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/01 18:19:57 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ class Command
 //		Channel Command
 		e_error		_join			(void);
 		e_error		_topic			(void);
+		e_error		_part			(void);
 
 //		User/Channel Command
 		e_error		_mode			(void);

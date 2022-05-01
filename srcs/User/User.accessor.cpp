@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   User.accessor.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 18:04:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/29 16:51:53 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/01 19:05:28 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,13 @@ void	User::set_chan_usermode	(String chan
 
 }
 
-std::vector<bool> User::get_chan_usermode(String chan_name)
+std::vector<bool> User::get_chan_usermode_vec(String chan_name)
 {
 	return (_chan_usermode[chan_name]);
+}
+
+
+User::CHAN_USERMODE & User::get_chan_usermode( void )
+{
+	return (_chan_usermode);
 }

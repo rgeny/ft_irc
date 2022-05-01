@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   User.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:04:52 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/29 16:54:21 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/01 19:05:20 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,14 @@ class User
 		~User	(void);
 
 		User &	operator=	(User & src);
-
+		
+		typedef std::map<String, std::vector<bool> > 	CHAN_USERMODE;
 		const String				get_username		(void) const;
 		const std::vector<bool>		get_mode			(void) const;
 		bool						get_specific_mode	(UserMode mode) const;
 		const String				get_realname		(void) const;
-		std::vector<bool> 			get_chan_usermode	(String chan_name);
+		std::vector<bool> 			get_chan_usermode_vec	(String chan_name);
+		CHAN_USERMODE &				get_chan_usermode	(void);
 
 		void	set_username		(String username);
 		void	set_mode			(String mode);
@@ -94,7 +96,7 @@ class User
 		String									_username;
 		std::vector<bool>						_mode;
 		String									_realname;
-		std::map<String, std::vector<bool> >	_chan_usermode;
+		CHAN_USERMODE							_chan_usermode;
 };
 
 std::ostream &	operator<<	(std::ostream & os
