@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 12:48:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/01 14:03:59 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/01 14:50:43 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	Command::_init_cmd_fct	(void)
 		Command::_cmds_fct[MODE]		= &Command::_mode;
 		Command::_cmds_fct[TOPIC]		= &Command::_topic;
 		Command::_cmds_fct[TIME]		= &Command::_time;
+		Command::_cmds_fct[INFO]		= &Command::_info;
 	}
 }
 //		Command::_cmds_fct[ADMIN]		= &Command::_admin;
@@ -36,7 +37,6 @@ void	Command::_init_cmd_fct	(void)
 //		Command::_cmds_fct[DIE]			= &Command::_die;
 //		Command::_cmds_fct[ENCAP]		= &Command::_encap;
 //		Command::_cmds_fct[ERROR]		= &Command::_error;
-//		Command::_cmds_fct[INFO]		= &Command::_info;
 //		Command::_cmds_fct[INVITE]		= &Command::_invite;
 //		Command::_cmds_fct[ISON]		= &Command::_ison;
 //		Command::_cmds_fct[KICK]		= &Command::_kick;
@@ -55,7 +55,6 @@ void	Command::_init_cmd_fct	(void)
 //		Command::_cmds_fct[PONG]		= &Command::_pong;
 //		Command::_cmds_fct[PRIVMSG]		= &Command::_privmsg;
 //		Command::_cmds_fct[REHASH]		= &Command::_rehash;
-//		Command::_cmds_fct[RULES]		= &Command::_rules;
 //		Command::_cmds_fct[SERVER]		= &Command::_server;
 //		Command::_cmds_fct[SERVICE]		= &Command::_service;
 //		Command::_cmds_fct[SERVLIST]	= &Command::_servlist;
@@ -72,6 +71,5 @@ void	Command::_init_cmd_fct	(void)
 //		Command::_cmds_fct[USERS]		= &Command::_users;
 //		Command::_cmds_fct[VERSION]		= &Command::_version;
 //		Command::_cmds_fct[WALLOPS]		= &Command::_wallops;
-//		Command::_cmds_fct[WATCH]		= &Command::_watch;
 //		Command::_cmds_fct[WHO]			= &Command::_who;
 //		Command::_cmds_fct[WHOIS]		= &Command::_whois;

@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/01 14:24:45 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/01 15:11:00 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,22 @@ String	Message::_set_msg_base	(String sender
 				+ target
 				+ " "
 				+ ctime(&time);
+	return (msg);
+}
+
+String	Message::_set_msg_base	(String sender
+								,String code
+								,String target
+								,String txt) const
+{
+	String	msg	= ":"
+				+ sender
+				+ " "
+				+ code
+				+ " "
+				+ target
+				+ " "
+				+ txt;
 	return (msg);
 }
 
