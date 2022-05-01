@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/30 19:38:44 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/01 14:19:55 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ class Command
 
 //		Other Command
 		e_error		_ping			(void);
+		e_error		_time			(void);
 
 		void	_init_cmd_fct	(void);
 };

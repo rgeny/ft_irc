@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/30 20:23:24 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/01 14:20:34 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ class Message
 
 		//reply
 		e_error	_rpl_welcome			(void) const;
+		
+		e_error	_cmd_time				(void) const;
 
 		//command reply
 		e_error	_cmd_pong				(void) const;
@@ -69,8 +71,15 @@ class Message
 		String	_set_msg_base	(String code) const;
 		String	_set_msg_base	(String code
 								,String receiver) const;
-		String	_set_msg_base	(String sender, String code, String target) const;
+		String	_set_msg_base	(String sender
+								,String code
+								,String target) const;
 
+		String	_set_msg_base	(String sender
+								,String code
+								,String target
+								,time_t time) const;
+								
 		String	_set_reply_base	(String code) const;
 		String	_set_reply_base	(String code
 								,String receiver) const;

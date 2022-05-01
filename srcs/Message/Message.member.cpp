@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Message.member.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/28 11:53:05 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/01 14:24:45 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,22 @@ String	Message::_set_msg_base	(String sender
 				+ code
 				+ " "
 				+ target;
+	return (msg);
+}
+
+String	Message::_set_msg_base	(String sender
+								,String code
+								,String target
+								,time_t time) const
+{
+	String	msg	= ":"
+				+ sender
+				+ " "
+				+ code
+				+ " "
+				+ target
+				+ " "
+				+ ctime(&time);
 	return (msg);
 }
 

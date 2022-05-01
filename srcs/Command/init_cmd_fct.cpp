@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 12:48:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/30 17:07:58 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/01 14:03:59 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	Command::_init_cmd_fct	(void)
 		Command::_cmds_fct[QUIT]		= &Command::_quit;
 		Command::_cmds_fct[MODE]		= &Command::_mode;
 		Command::_cmds_fct[TOPIC]		= &Command::_topic;
+		Command::_cmds_fct[TIME]		= &Command::_time;
 	}
 }
 //		Command::_cmds_fct[ADMIN]		= &Command::_admin;
@@ -35,11 +36,9 @@ void	Command::_init_cmd_fct	(void)
 //		Command::_cmds_fct[DIE]			= &Command::_die;
 //		Command::_cmds_fct[ENCAP]		= &Command::_encap;
 //		Command::_cmds_fct[ERROR]		= &Command::_error;
-//		Command::_cmds_fct[HELP]		= &Command::_help;
 //		Command::_cmds_fct[INFO]		= &Command::_info;
 //		Command::_cmds_fct[INVITE]		= &Command::_invite;
 //		Command::_cmds_fct[ISON]		= &Command::_ison;
-//		Command::_cmds_fct[JOIN]		= &Command::_join;
 //		Command::_cmds_fct[KICK]		= &Command::_kick;
 //		Command::_cmds_fct[KILL]		= &Command::_kill;
 //		Command::_cmds_fct[KNOCK]		= &Command::_knock;
@@ -66,8 +65,6 @@ void	Command::_init_cmd_fct	(void)
 //		Command::_cmds_fct[SILENCE]		= &Command::_silence;
 //		Command::_cmds_fct[STATS]		= &Command::_stats;
 //		Command::_cmds_fct[SUMMON]		= &Command::_summon;
-//		Command::_cmds_fct[TIME]		= &Command::_time;
-//		Command::_cmds_fct[TOPIC]		= &Command::_topic;
 //		Command::_cmds_fct[TRACE]		= &Command::_trace;
 //		Command::_cmds_fct[UHNAMES]		= &Command::_uhnames;
 //		Command::_cmds_fct[USERHOST]	= &Command::_userhost;
