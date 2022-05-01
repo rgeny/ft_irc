@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 17:08:30 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/30 20:24:28 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/01 16:09:43 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,14 @@ e_error	Command::_topic	(void)
 					else
 						return (_err_chanoprivsneeded());
 				}
-				else
-					if (is_operator((*_users_it)->get_nickname(), *(*this->_chans_it).second))
-						(*this->_chans_it).second->set_topic("");
-					else
-						return (_err_chanoprivsneeded());
-					
-				
+				else if (this->_cmd.size() == 2)
+				{
+					// if (is_operator((*_users_it)->get_nickname(), *(*this->_chans_it).second))
+					// 	(*this->_chans_it).second->set_topic("");
+					// else
+					// 	return (_err_chanoprivsneeded());
+					return (this->_cmd_topic_request());
+				}
 			}
 		}
 		return (this->_cmd_topic());
