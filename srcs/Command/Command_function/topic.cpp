@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 17:08:30 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/01 16:09:43 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/01 17:10:44 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ e_error	Command::_topic	(void)
 				this->_chans_it = (this->_chans.find(_cmd[1]));
 				if (this->_cmd.size() > 2)
 				{
+					if (user_exist_in_chan(*(*this->_chans_it).second, (*_users_it)->get_nickname()) == false)
+						return (_err_notonchannel());
 					String tmp;
 					for (std::vector<String>::iterator it = _cmd.begin() + 2, ite = _cmd.end(); it != ite; it++)
 					{

@@ -6,7 +6,7 @@
 #    By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/05/01 16:13:48 by ayzapata         ###   ########.fr        #
+#    Updated: 2022/05/01 17:08:15 by ayzapata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,6 +81,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													err_nosuchserver \
 													err_nosuchnick \
 													err_nosuchchannel \
+													err_notonchannel \
 													err_usersdontmatch \
 													err_chanoprivsneeded \
 													\

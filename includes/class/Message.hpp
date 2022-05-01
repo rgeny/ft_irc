@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/01 16:13:27 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/01 17:08:37 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ class Message
 		e_error	_err_noorigin			(void) const;
 		e_error	_err_nosuchserver		(void) const;
 		e_error	_err_nosuchchannel		(void) const;
+		e_error	_err_notonchannel		(void) const;
 		e_error	_err_nosuchnick			(void) const;
 		e_error	_err_usersdontmatch		(void) const;
 		e_error	_err_chanoprivsneeded	(void) const;
