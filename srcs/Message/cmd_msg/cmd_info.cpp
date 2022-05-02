@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 14:03:00 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/01 15:27:05 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/02 10:51:36 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ e_error	Message::_cmd_info	(void) const
                                     , ""
                                     , ":End of /INFO list.")
                                     + "\r\n";
-        (*this->_users_it)->add_to_queue(msg);
+    (*this->_users_it)->add_to_queue(msg);
 	return (SUCCESS);
 }

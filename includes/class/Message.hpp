@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/01 18:27:30 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/02 10:32:38 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ class Message
 		
 		e_error	_cmd_time				(void) const;
 		e_error	_cmd_info				(void) const;
+		e_error	_cmd_motd				(void) const;
 
 		//command reply
 		e_error	_cmd_pong				(void) const;

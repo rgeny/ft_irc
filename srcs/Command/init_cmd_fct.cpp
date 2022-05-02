@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 12:48:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/01 18:44:42 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/02 10:39:59 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	Command::_init_cmd_fct	(void)
 		Command::_cmds_fct[TIME]		= &Command::_time;
 		Command::_cmds_fct[INFO]		= &Command::_info;
 		Command::_cmds_fct[PART]		= &Command::_part;
+		Command::_cmds_fct[MOTD]		= &Command::_motd;
 	}
 }
 //		Command::_cmds_fct[ADMIN]		= &Command::_admin;
@@ -47,7 +48,6 @@ void	Command::_init_cmd_fct	(void)
 //		Command::_cmds_fct[LIST]		= &Command::_list;
 //		Command::_cmds_fct[LUSERS]		= &Command::_lusers;
 
-//		Command::_cmds_fct[MOTD]		= &Command::_motd;
 //		Command::_cmds_fct[NAMES]		= &Command::_names;
 //		Command::_cmds_fct[NAMESX]		= &Command::_namesx;
 //		Command::_cmds_fct[NOTICE]		= &Command::_notice;
