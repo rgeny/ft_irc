@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/02 15:55:31 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/02 17:16:48 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,4 +147,20 @@ String	Command::concat_last_args(size_t start_index)
 		}
 	}
 	return (c_str);
+}
+
+void Command::leave_all (void)
+{
+	std::cout << "Current user: " << (*_users_it)->get_nickname() << std::endl;
+	User::CHAN_USERMODE & chan_usermode = (*_users_it)->get_chan_usermode();
+	for (User::CHAN_USERMODE::iterator it = chan_usermode.begin(), ite = chan_usermode.end(); it != ite; it++)
+	{
+		_cmd.clear();
+		_cmd.push_back("part");
+		_cmd.push_back((*it).first);
+		_cmd.push_back(":Left");
+		_cmd.push_back("all");
+		_cmd.push_back("channels");
+		_part();
+	}	
 }

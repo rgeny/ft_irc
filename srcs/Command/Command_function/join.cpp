@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/30 20:11:55 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/02 16:34:29 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,28 @@ e_error	Command::_join	(void)
 		return (this->_err_needmoreparams());
 	else
 	{
-		if (check_chan_name(this->_cmd[1]) == false || check_chan_name(this->_cmd[1]) == false)
-			return (ERROR_CONTINUE);
-		Channel::CHAN_USER_LIST *tmp = NULL;
-		this->_chans_it = this->_chans.find(this->_cmd[1]);
-		if (this->_chans_it == _chans.end())
-		{
-			this->_chans[this->_cmd[1]] = new Channel(this->_cmd[1], "");
-			_chans_it = this->_chans.find(this->_cmd[1]);
-			(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), 2);
-		}
+		if (_cmd[1] == "#0")
+			leave_all();
 		else
-			(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), 0);
-		tmp = &(*_chans_it).second->get_chan_user_list();
-		(*tmp)[(*_users_it)->get_nickname()] = *_users_it;
-		// for (Channel::CHAN_USER_LIST::iterator it = tmp->begin(); it != tmp->end(); it++)
-		// 	std::cout << (*it).second->get_nickname() << std::endl;
-		return (this->_cmd_join());
+		{
+			if (check_chan_name(this->_cmd[1]) == false || check_chan_name(this->_cmd[1]) == false)
+				return (ERROR_CONTINUE);
+			Channel::CHAN_USER_LIST *tmp = NULL;
+			this->_chans_it = this->_chans.find(this->_cmd[1]);
+			if (this->_chans_it == _chans.end())
+			{
+				this->_chans[this->_cmd[1]] = new Channel(this->_cmd[1], "");
+				_chans_it = this->_chans.find(this->_cmd[1]);
+				(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), 2);
+			}
+			else
+				(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), 0);
+			tmp = &(*_chans_it).second->get_chan_user_list();
+			(*tmp)[(*_users_it)->get_nickname()] = *_users_it;
+			// for (Channel::CHAN_USER_LIST::iterator it = tmp->begin(); it != tmp->end(); it++)
+			// 	std::cout << (*it).second->get_nickname() << std::endl;
+			return (this->_cmd_join());
+		}
 	}
 	return (SUCCESS);
 }
