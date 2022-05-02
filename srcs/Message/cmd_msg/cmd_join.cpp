@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:52:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/01 18:58:25 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/02 13:01:45 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ S <-   :irc.example.com 366 dan #test :End of /NAMES list.
 									+ "!"
 									+ (*_users_it)->get_username()
 									+ "@"
-									+ this->_hostname, JOIN, ":"
+									+ (*_users_it)->get_host(), JOIN, ":"
 									+ this->_cmd[1])
 									+ "\r\n";
 	(*this->_users_it)->add_to_queue(msg);
@@ -37,7 +37,7 @@ S <-   :irc.example.com 366 dan #test :End of /NAMES list.
 	{
 		String	msg	= this->_set_msg_base((*_users_it)->get_nickname()
 										+ "!" + (*_users_it)->get_username()
-										+ "@" + this->_hostname, JOIN, ":"
+										+ "@" + (*_users_it)->get_host(), JOIN, ":"
 										+ this->_cmd[1])
 										+ "\r\n";
 		(*it).second->add_to_queue(msg);

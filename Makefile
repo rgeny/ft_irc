@@ -6,7 +6,7 @@
 #    By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/05/02 10:33:36 by ayzapata         ###   ########.fr        #
+#    Updated: 2022/05/02 12:01:45 by ayzapata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,9 +98,11 @@ SRCS				= $(addsuffix .cpp,				main \
 													cmd_part \
 													cmd_part_reason \
 													cmd_motd \
+													cmd_userhost \
 													\
 						$(addprefix Command,		$(DEFAULT_FILES)) \
 													init_cmd_fct \
+													userhost \
 													motd \
 													info \
 													time \

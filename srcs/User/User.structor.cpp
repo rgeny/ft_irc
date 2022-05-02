@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:35:05 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/28 00:08:46 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/02 13:00:03 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 User:: User	(void)
 	:_username(DFL_USERNAME)
 	,_realname(DFL_REALNAME)
+	,_host("10.13.2.14")
 {
 	this->_mode.resize(8);
 	for (int i = 0; i < 8; i++)
@@ -30,6 +31,7 @@ User:: User	(String	nickname
 	:Client(nickname)
 	,_username(username)
 	,_realname(realname)
+	,_host("10.13.2.14")
 {
 	(void)mode;
 
@@ -45,6 +47,7 @@ User:: User	(User const & src)
 	,_username(src._username)
 	,_mode(src._mode)
 	,_realname(src._realname)
+	, _host("10.13.2.14")
 {
 	std::cout	<< "User cpy constructor."
 				<< std::endl;

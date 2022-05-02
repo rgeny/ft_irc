@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/01 18:58:25 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/02 14:48:48 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,25 @@ bool 	Command::is_operator(String nickname, Channel &chan)
 	}
 	else
 		return (false);
+}
+
+bool 	Command::user_exist(String nickname) const
+{
+	// for (Data::USERS_IT it = this->_users.begin(), ite = _users.end(); it!= ite; it++)
+	for (size_t i = 0; i < _users.size(); i++)
+	{
+		if (_users[i]->get_nickname() == nickname)
+			return (true);
+	}
+    return (false);
+}
+
+User *Command::get_user(String nickname)
+{
+	for (size_t i = 0; i < _users.size(); i++)
+	{
+		if (_users[i]->get_nickname() == nickname)
+			return (_users[i]);
+	}
+    return (NULL);
 }

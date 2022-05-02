@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/02 10:33:10 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/02 14:42:26 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ class Command
 		void	main		(void);
 		bool 	chan_exist	(String) const;
 		bool 	user_exist_in_chan(Channel &chan, String nickname) const;
+		bool 	user_exist(String nickname) const;
 		bool 	is_operator(String nickname, Channel &chan);
+		User*	get_user(String nickname);
 
 	private:
 		static CmdsFct		_cmds_fct;
@@ -72,6 +74,7 @@ class Command
 		e_error		_time			(void);
 		e_error		_info			(void);
 		e_error		_motd			(void);
+		e_error		_userhost		(void);
 
 		void	_init_cmd_fct	(void);
 };

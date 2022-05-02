@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 18:04:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/01 19:05:28 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/02 13:00:51 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 const String		User::get_username	(void) const
 {
 	return (this->_username);
+}
+
+const String		User::get_host	(void) const
+{
+	return (this->_host);
 }
 
 const std::vector<bool>	User::get_mode		(void) const

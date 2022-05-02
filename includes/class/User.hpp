@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:04:52 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/01 19:05:20 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/02 13:01:15 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ class User
 		
 		typedef std::map<String, std::vector<bool> > 	CHAN_USERMODE;
 		const String				get_username		(void) const;
+		const String				get_host			(void) const;
 		const std::vector<bool>		get_mode			(void) const;
 		bool						get_specific_mode	(UserMode mode) const;
 		const String				get_realname		(void) const;
@@ -97,6 +98,7 @@ class User
 		std::vector<bool>						_mode;
 		String									_realname;
 		CHAN_USERMODE							_chan_usermode;
+		String									_host;
 };
 
 std::ostream &	operator<<	(std::ostream & os
