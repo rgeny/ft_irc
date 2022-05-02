@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/02 14:46:54 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/02 16:02:08 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,8 @@ class Message
 		e_error	_cmd_join				(void) const;
 		e_error	_cmd_error				(e_error code);
 		e_error	_cmd_mode				(void) const;
-		e_error	_cmd_topic				(void) const;
-		e_error	_cmd_topic_request		(void) const;
-		e_error	_cmd_part				(void) const;
-		e_error	_cmd_part_reason		(void) const;
+		e_error	_cmd_topic				(int choice) const;
+		e_error	_cmd_part				(String reason) const;
 		e_error	_cmd_userhost			(String userhost_list) const;
 
 	private:

@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/02 14:48:48 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/02 15:55:31 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,4 +131,20 @@ User *Command::get_user(String nickname)
 			return (_users[i]);
 	}
     return (NULL);
+}
+
+String	Command::concat_last_args(size_t start_index)
+{
+	String c_str;
+	
+	if (start_index < _cmd.size())
+	{
+		for (CMD::iterator it = _cmd.begin() + start_index; it != _cmd.end(); it++)
+		{
+			if (it != _cmd.begin() + start_index)
+				c_str += " ";
+			c_str += *it;
+		}
+	}
+	return (c_str);
 }

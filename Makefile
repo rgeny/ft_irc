@@ -6,7 +6,7 @@
 #    By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/05/02 12:01:45 by ayzapata         ###   ########.fr        #
+#    Updated: 2022/05/02 15:45:36 by ayzapata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,11 +92,9 @@ SRCS				= $(addsuffix .cpp,				main \
 													cmd_join \
 													cmd_mode \
 													cmd_topic \
-													cmd_topic_request \
 													cmd_time \
 													cmd_info \
 													cmd_part \
-													cmd_part_reason \
 													cmd_motd \
 													cmd_userhost \
 													\
