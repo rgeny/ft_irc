@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 14:03:00 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/02 10:57:25 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/02 11:23:33 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,19 @@ static const char *motd[] = {
 "",
 NULL };
 
-
 e_error	Message::_cmd_motd	(void) const
 {
     String  msg;
-    msg	= this->_set_msg_base(this->_hostname, "375 "
+    msg	= this->_set_msg_base(this->_servername, "375 "
                             + (*this->_users_it)->get_nickname()
                             + " "
                             , ""
-                            , this->_hostname + " Message of the Day")
+                            , this->_servername + " Message of the Day")
                             + "\r\n";
     (*this->_users_it)->add_to_queue(msg);
     for (size_t i = 0; ::motd[i]; ++i)
     {
-        msg	= this->_set_msg_base(this->_hostname, "372 "
+        msg	= this->_set_msg_base(this->_servername, "372 "
                                     + (*this->_users_it)->get_nickname()
                                     + " "
                                     , ""
@@ -49,7 +48,7 @@ e_error	Message::_cmd_motd	(void) const
                                     + "\r\n";
         (*this->_users_it)->add_to_queue(msg);
     }
-    msg	= this->_set_msg_base(this->_hostname, "376 "
+    msg	= this->_set_msg_base(this->_servername, "376 "
                             + (*this->_users_it)->get_nickname()
                             + " "
                             , ""
