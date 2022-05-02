@@ -6,7 +6,7 @@
 #    By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/05/02 15:45:36 by ayzapata         ###   ########.fr        #
+#    Updated: 2022/05/02 18:43:21 by ayzapata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,7 @@ SRCS				= $(addsuffix .cpp,				main \
 						$(addprefix Message,		$(DEFAULT_FILES)) \
 													init_msg_error \
 													\
+													err_badchanmask \
 													err_passwdmismatch \
 													err_nonicknamegiven \
 													err_nicknameinuse \

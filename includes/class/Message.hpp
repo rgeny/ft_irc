@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/02 16:02:08 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/02 18:47:26 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ class Message
 	protected:
 		//error reply
 		e_error	_err_passwdmismatch		(void) const;
+		e_error	_err_badchanmask		(void) const;
 		e_error	_err_nonicknamegiven	(void) const;
 		e_error	_err_nicknameinuse		(void) const;
 		e_error	_err_unavailresource	(void) const;

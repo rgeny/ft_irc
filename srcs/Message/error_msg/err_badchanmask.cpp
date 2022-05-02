@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   err_chanoprivsneeded.cpp                           :+:      :+:    :+:   */
+/*   err_badchanmask.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/30 20:21:59 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/02 18:40:56 by ayzapata         ###   ########.fr       */
+/*   Created: 2022/04/25 17:22:17 by rgeny             #+#    #+#             */
+/*   Updated: 2022/05/02 18:54:26 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Message.hpp"
 
-e_error	Message::_err_chanoprivsneeded	(void) const
+e_error	Message::_err_badchanmask	(void) const
 {
-	String	msg	= this->_set_reply_base(ERR_CHANOPRIVSNEEDED) 
-				+ (*_chans_it).second->get_chan_name()
-				+ " :You do not have access to change the topic on this channel\r\n";
+	String	msg	= this->_set_reply_base (ERR_BADCHANMASK)
+				+ "0 :Invalid channel name\r\n";
 	(*this->_users_it)->add_to_queue(msg);
 	return (ERROR_CONTINUE);
 }

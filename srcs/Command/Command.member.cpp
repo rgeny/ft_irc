@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/02 17:16:48 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/02 19:00:30 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,14 +153,20 @@ void Command::leave_all (void)
 {
 	std::cout << "Current user: " << (*_users_it)->get_nickname() << std::endl;
 	User::CHAN_USERMODE & chan_usermode = (*_users_it)->get_chan_usermode();
-	for (User::CHAN_USERMODE::iterator it = chan_usermode.begin(), ite = chan_usermode.end(); it != ite; it++)
+	if (chan_usermode.size() == 0)
+		_err_badchanmask();
+	else if (chan_usermode.size() > 0)
 	{
-		_cmd.clear();
-		_cmd.push_back("part");
-		_cmd.push_back((*it).first);
-		_cmd.push_back(":Left");
-		_cmd.push_back("all");
-		_cmd.push_back("channels");
-		_part();
-	}	
+		for (User::CHAN_USERMODE::iterator it = chan_usermode.begin(), ite = chan_usermode.end()--; it != ite; it++)
+		{
+			std::cout << "Is active in this channel: " << it->first << std::endl;
+			_cmd.clear();
+			_cmd.push_back("part");
+			_cmd.push_back((*it).first);
+			_cmd.push_back(":Left");
+			_cmd.push_back("all");
+			_cmd.push_back("channels");
+			_part();
+		}	
+	}
 }
