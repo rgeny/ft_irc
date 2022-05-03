@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_kick.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:21:42 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/03 16:42:06 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/03 23:28:52 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,23 @@ dan kicking a user that does not exist, and a user that isn’t on the channel
 
 e_error	Message::_cmd_kick	(String reason) const
 {
-    (void)reason;
+	String	msg	= this->_set_msg_base((*_users_it)->get_nickname() 
+									+ "!"
+									+ (*_users_it)->get_username()
+									+ "@"
+									+ (*_users_it)->get_host(), String(KICK)
+                                    + " "
+                                    + _cmd[1] 
+                                    + " " 
+                                    + _cmd[2], 
+                                    (reason != ":" ? reason : ""))
+									+ "\r\n";
+	(*this->_users_it)->add_to_queue(msg);
+
+	for (Channel::CHAN_USER_LIST::iterator it = ((*_chans_it).second)->get_chan_user_list().begin(); it != ((*_chans_it).second)->get_chan_user_list().end(); it++)
+	{
+        if (it->second != *_users_it)
+		    (*it).second->add_to_queue(msg);
+	}
     	return (SUCCESS);
 }
