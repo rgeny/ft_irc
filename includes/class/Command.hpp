@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/02 16:22:08 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/03 11:44:15 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ class Command
 		User*	get_user(String nickname);
 		String	concat_last_args(size_t start_index);
 		void	leave_all (void);
+		void 	join_process(String chan_name);
 
 	private:
 		static CmdsFct		_cmds_fct;

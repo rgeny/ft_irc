@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/03 10:38:36 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/03 11:48:07 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,22 @@ S <-   :irc.example.com 353 dan = #test :@dan
 S <-   :irc.example.com 366 dan #test :End of /NAMES list.
 */
 
+void Command::join_process(String chan_name)
+{
+	Channel::CHAN_USER_LIST *tmp = NULL;
+	this->_chans_it = this->_chans.find(chan_name);
+	if (this->_chans_it == _chans.end())
+	{
+		this->_chans[chan_name] = new Channel(chan_name, "");
+		_chans_it = this->_chans.find(chan_name);
+		(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), 2);
+	}
+	else
+		(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), 0);
+	tmp = &(*_chans_it).second->get_chan_user_list();
+	(*tmp)[(*_users_it)->get_nickname()] = *_users_it;
+}
+
 e_error	Command::_join	(void)
 {
 	if (this->_cmd.size() < 2)
@@ -45,23 +61,32 @@ e_error	Command::_join	(void)
 		}
 		else
 		{
-			if (check_chan_name(this->_cmd[1]) == false || check_chan_name(this->_cmd[1]) == false)
-				return (ERROR_CONTINUE);
-			Channel::CHAN_USER_LIST *tmp = NULL;
-			this->_chans_it = this->_chans.find(this->_cmd[1]);
-			if (this->_chans_it == _chans.end())
+			std::vector<String> chan_list;
+			std::vector<String> password_list;
+			chan_list = split(this->_cmd[1], ",");
+			if (_cmd.size() > 2)
+				password_list = split(this->_cmd[2], ",");
+			if (chan_list.size() == 1)
 			{
-				this->_chans[this->_cmd[1]] = new Channel(this->_cmd[1], "");
-				_chans_it = this->_chans.find(this->_cmd[1]);
-				(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), 2);
+				if (check_chan_name(this->_cmd[1]) == false || check_chan_name(this->_cmd[1]) == false)
+					return (ERROR_CONTINUE);
+				join_process(_cmd[1]);
+				return (this->_cmd_join());
 			}
-			else
-				(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), 0);
-			tmp = &(*_chans_it).second->get_chan_user_list();
-			(*tmp)[(*_users_it)->get_nickname()] = *_users_it;
-			// for (Channel::CHAN_USER_LIST::iterator it = tmp->begin(); it != tmp->end(); it++)
-			// 	std::cout << (*it).second->get_nickname() << std::endl;
-			return (this->_cmd_join());
+			else if (chan_list.size() > 1)
+			{
+				for (std::vector<String>::iterator it = chan_list.begin(), ite = chan_list.end(); it != ite; it++)
+				{
+					_cmd[1] = *it;	
+					if (check_chan_name(this->_cmd[1]) == false || check_chan_name(this->_cmd[1]) == false)
+						return (ERROR_CONTINUE);
+					join_process(_cmd[1]);
+					if (it != ite - 1)
+						this->_cmd_join();
+					else
+						return (this->_cmd_join());
+				}
+			}
 		}
 	}
 	return (SUCCESS);
