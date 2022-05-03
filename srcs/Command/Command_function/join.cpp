@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/02 19:12:36 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/03 10:38:36 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,8 @@ e_error	Command::_join	(void)
 		return (this->_err_needmoreparams());
 	else
 	{
-		if (_cmd[1] == "0")
+		if (_cmd[1] == "#0")
 		{
-			std::cout << "I AM HEREEEEEE\n";
 			leave_all();
 		}
 		else

@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/02 19:00:30 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/03 11:01:05 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,9 +157,14 @@ void Command::leave_all (void)
 		_err_badchanmask();
 	else if (chan_usermode.size() > 0)
 	{
-		for (User::CHAN_USERMODE::iterator it = chan_usermode.begin(), ite = chan_usermode.end()--; it != ite; it++)
+		// for (User::CHAN_USERMODE::iterator it = chan_usermode.begin(), ite = chan_usermode.end(); it != ite; it++)
+		// {
+		// 	std::cout << "Chan listed in Chan_usermode: " << it->first << std::endl;
+		// }
+		User::CHAN_USERMODE::iterator it = chan_usermode.begin();
+		User::CHAN_USERMODE::iterator ite = chan_usermode.end();
+		while (it != ite)
 		{
-			std::cout << "Is active in this channel: " << it->first << std::endl;
 			_cmd.clear();
 			_cmd.push_back("part");
 			_cmd.push_back((*it).first);
@@ -167,6 +172,32 @@ void Command::leave_all (void)
 			_cmd.push_back("all");
 			_cmd.push_back("channels");
 			_part();
-		}	
+			it = chan_usermode.begin();
+			ite = chan_usermode.end();
+		}
+
+
+		
+		// for (User::CHAN_USERMODE::iterator it = chan_usermode.begin(); it != ite; it++)
+		// {
+		// 	std::cout << "Is active in this channel: " << it->first << std::endl;
+		// 	_cmd.clear();
+		// 	_cmd.push_back("part");
+		// 	_cmd.push_back((*it).first);
+		// 	_cmd.push_back(":Left");
+		// 	_cmd.push_back("all");
+		// 	_cmd.push_back("channels");
+		// 	_part();
+		// }
+		// User::CHAN_USERMODE::iterator it = chan_usermode.begin();
+		// std::cout << "Is active in this channel: " << it->first << std::endl;
+		// _cmd.clear();
+		// _cmd.push_back("part");
+		// _cmd.push_back((*it).first);
+		// _cmd.push_back(":Left");
+		// _cmd.push_back("all");
+		// _cmd.push_back("channels");
+		// _part();
+		_err_badchanmask();
 	}
 }
