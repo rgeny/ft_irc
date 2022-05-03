@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/03 15:48:13 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/03 17:21:16 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,38 +42,41 @@ class Message
 
 	protected:
 		//error reply
-		e_error	_err_passwdmismatch		(void) const;
+		e_error	_err_alreadyregistred	(void) const;
 		e_error	_err_badchanmask		(void) const;
-		e_error	_err_nonicknamegiven	(void) const;
-		e_error	_err_nicknameinuse		(void) const;
-		e_error	_err_unavailresource	(void) const;
-		e_error	_err_restricted			(void) const;
+		e_error	_err_chanoprivsneeded	(void) const;
 		e_error	_err_erroneusnickname	(void) const;
 		e_error	_err_needmoreparams		(void) const;
-		e_error	_err_alreadyregistred	(void) const;
+		e_error	_err_nicknameinuse		(void) const;
+		e_error	_err_nonicknamegiven	(void) const;
 		e_error	_err_noorigin			(void) const;
-		e_error	_err_nosuchserver		(void) const;
 		e_error	_err_nosuchchannel		(void) const;
-		e_error	_err_notonchannel		(void) const;
 		e_error	_err_nosuchnick			(void) const;
+		e_error	_err_nosuchserver		(void) const;
+		e_error	_err_notonchannel		(void) const;
+		e_error	_err_passwdmismatch		(void) const;
+		e_error	_err_restricted			(void) const;
+		e_error	_err_unavailresource	(void) const;
 		e_error	_err_usersdontmatch		(void) const;
-		e_error	_err_chanoprivsneeded	(void) const;
+		e_error	_err_usernotinchannel	(void) const;
 
 		//reply
 		e_error	_rpl_welcome			(void) const;
 		
-		e_error	_cmd_time				(void) const;
+
 		e_error	_cmd_info				(void) const;
 		e_error	_cmd_motd				(void) const;
+		e_error	_cmd_time				(void) const;
 
 		//command reply
+		e_error	_cmd_error				(e_error code);
+		e_error	_cmd_join				(void) const;
+		e_error	_cmd_kick				(String reason) const;
+		e_error	_cmd_mode				(void) const;
+		e_error	_cmd_part				(String reason) const;
 		e_error	_cmd_pong				(void) const;
 		e_error	_cmd_privmsg			(String chat_msg) const;
-		e_error	_cmd_join				(void) const;
-		e_error	_cmd_error				(e_error code);
-		e_error	_cmd_mode				(void) const;
 		e_error	_cmd_topic				(int choice) const;
-		e_error	_cmd_part				(String reason) const;
 		e_error	_cmd_userhost			(String userhost_list) const;
 
 	private:

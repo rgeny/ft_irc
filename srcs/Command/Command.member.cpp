@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/03 14:10:08 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/03 17:34:29 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ bool 	Command::chan_exist(String chan_name) const
 
 bool 	Command::user_exist_in_chan(Channel &chan, String nickname) const
 {
-    if (chan.get_chan_user_list().find(nickname) == chan.get_chan_user_list().end())
+    if ((chan.get_chan_user_list()).find(nickname) == (chan.get_chan_user_list()).end())
         return (false);
     return (true);
 }

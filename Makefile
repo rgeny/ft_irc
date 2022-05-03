@@ -6,7 +6,7 @@
 #    By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/05/03 12:51:57 by ayzapata         ###   ########.fr        #
+#    Updated: 2022/05/03 17:13:59 by ayzapata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,53 +69,56 @@ SRCS				= $(addsuffix .cpp,				main \
 						$(addprefix Message,		$(DEFAULT_FILES)) \
 													init_msg_error \
 													\
+													err_alreadyregistred \
 													err_badchanmask \
-													err_passwdmismatch \
-													err_nonicknamegiven \
-													err_nicknameinuse \
-													err_unavailresource \
-													err_restricted \
+													err_chanoprivsneeded \
 													err_erroneusnickname \
 													err_needmoreparams \
-													err_alreadyregistred \
+													err_nicknameinuse \
+													err_nonicknamegiven \
 													err_noorigin \
-													err_nosuchserver \
-													err_nosuchnick \
 													err_nosuchchannel \
+													err_nosuchnick \
+													err_nosuchserver \
 													err_notonchannel \
+													err_passwdmismatch \
+													err_restricted \
+													err_unavailresource \
+													err_usernotinchannel \
 													err_usersdontmatch \
-													err_chanoprivsneeded \
 													\
 													rpl_welcome \
 													\
-													cmd_pong \
 													cmd_error \
-													cmd_join \
-													cmd_mode \
-													cmd_topic \
-													cmd_time \
 													cmd_info \
-													cmd_part \
+													cmd_join \
+													cmd_kick \
+													cmd_mode \
 													cmd_motd \
-													cmd_userhost \
+													cmd_part \
+													cmd_pong \
 													cmd_privmsg \
+													cmd_time \
+													cmd_topic \
+													cmd_userhost \
 													\
 						$(addprefix Command,		$(DEFAULT_FILES)) \
 													init_cmd_fct \
-													userhost \
-													motd \
 													info \
-													time \
-													topic \
+													join \
+													kick \
 													mode \
+													motd \
 													nick \
-													ping \
-													user \
 													part \
 													pass \
-													join \
-													quit \
+													ping \
 													privmsg \
+													quit \
+													time \
+													topic \
+													user \
+													userhost \
 						$(addprefix Server,			$(DEFAULT_FILES)) \
 						$(addprefix Client,			$(DEFAULT_FILES)) \
 						$(addprefix User,			$(DEFAULT_FILES)) \
