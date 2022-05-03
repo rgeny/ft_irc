@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   kick.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:22:23 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/03 17:26:47 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/03 20:34:09 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,17 @@ e_error	Command::_kick	(void)
 	else
 	{
         if (chan_exist(_cmd[1]) == false)
-            return (this->_err_nosuchchannel());
-        this->_chans_it = this->_chans.find(_cmd[1]);
-		if (is_operator((*_users_it)->get_nickname(), *(*this->_chans_it).second) == false)
-            return (this->_err_chanoprivsneeded());
-        Channel cur_chan = *(*_chans_it).second;
+            return (_err_nosuchchannel());  
+        _chans_it = _chans.find(_cmd[1]);
+
+		if (is_operator((*_users_it)->get_nickname(), *_chans_it->second) == false)
+            return (_err_chanoprivsneeded());
         if (user_exist(_cmd[2]) == false)
-             return (this->_err_nosuchnick());       
-        if (user_exist_in_chan(cur_chan, _cmd[2]) == false)
-            return (this->_err_usernotinchannel());
-        return (this->_cmd_kick(""));
+             return (_err_nosuchnick());
+        std::cout << "cur_chan: " << _chans_it->second->get_chan_name() << std::endl;   
+        if (user_exist_in_chan(*_chans_it->second, _cmd[2]) == false)
+            return (_err_usernotinchannel());
+        return (_cmd_kick(""));
         //ERR_NOSUCHNICK. If the user to be kicked exists but is not on the channel, the chanop is sent ERR_USERNOTINCHANNEL. And if the channel does not exist, ERR_NOSUCHCHANNEL is returned.
     }
     return (SUCCESS);
