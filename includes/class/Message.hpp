@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/02 18:47:26 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/03 15:48:13 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include "defines.hpp"
 # include "Data.hpp"
 # include "String.hpp"
+# include "User.hpp"
+# include "Channel.hpp"
 
 # include "e_error.hpp"
 
@@ -33,6 +35,10 @@ class Message
 		~Message	(void);
 
 		Message & operator=(Message const & rhs);
+		User*	get_user(String nickname) const;
+		bool 	user_exist(String nickname) const;
+		// Channel	*chan_exist	(String) const;
+		bool	chan_exist	(String) const;
 
 	protected:
 		//error reply
@@ -62,6 +68,7 @@ class Message
 
 		//command reply
 		e_error	_cmd_pong				(void) const;
+		e_error	_cmd_privmsg			(String chat_msg) const;
 		e_error	_cmd_join				(void) const;
 		e_error	_cmd_error				(e_error code);
 		e_error	_cmd_mode				(void) const;

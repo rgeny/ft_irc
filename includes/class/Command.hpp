@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/03 11:44:15 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/03 14:07:33 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ class Command
 
 //		User/Channel Command
 		e_error		_mode			(void);
+		e_error		_privmsg		(void);
 
 //		Other Command
 		e_error		_ping			(void);

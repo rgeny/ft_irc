@@ -6,7 +6,7 @@
 #    By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/05/02 18:43:21 by ayzapata         ###   ########.fr        #
+#    Updated: 2022/05/03 12:51:57 by ayzapata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,6 +98,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													cmd_part \
 													cmd_motd \
 													cmd_userhost \
+													cmd_privmsg \
 													\
 						$(addprefix Command,		$(DEFAULT_FILES)) \
 													init_cmd_fct \
@@ -114,6 +115,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													pass \
 													join \
 													quit \
+													privmsg \
 						$(addprefix Server,			$(DEFAULT_FILES)) \
 						$(addprefix Client,			$(DEFAULT_FILES)) \
 						$(addprefix User,			$(DEFAULT_FILES)) \

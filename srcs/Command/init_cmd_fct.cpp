@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 12:48:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/02 11:58:00 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/03 12:44:13 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	Command::_init_cmd_fct	(void)
 		Command::_cmds_fct[PART]		= &Command::_part;
 		Command::_cmds_fct[MOTD]		= &Command::_motd;
 		Command::_cmds_fct[USERHOST]	= &Command::_userhost;
+		Command::_cmds_fct[PRIVMSG]		= &Command::_privmsg;
 	}
 }
 //		Command::_cmds_fct[ADMIN]		= &Command::_admin;
@@ -55,7 +56,7 @@ void	Command::_init_cmd_fct	(void)
 //		Command::_cmds_fct[OPER]		= &Command::_oper;
 
 //		Command::_cmds_fct[PONG]		= &Command::_pong;
-//		Command::_cmds_fct[PRIVMSG]		= &Command::_privmsg;
+
 //		Command::_cmds_fct[REHASH]		= &Command::_rehash;
 //		Command::_cmds_fct[SERVER]		= &Command::_server;
 //		Command::_cmds_fct[SERVICE]		= &Command::_service;

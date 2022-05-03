@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/01 15:11:00 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/03 15:47:55 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,11 +111,52 @@ String	Message::_set_sender	(void) const
 }
 
 
+bool 	Message::user_exist(String nickname) const
+{
+	// for (Data::USERS_IT it = this->_users.begin(), ite = _users.end(); it!= ite; it++)
+	for (size_t i = 0; i < _users.size(); i++)
+	{
+		if (_users[i]->get_nickname() == nickname)
+			return (true);
+	}
+    return (false);
+}
+
+// User *Message::get_user(String nickname)
+// {
+// 	for (USERS_LIST::iterator it = _users.begin(), ite = _users.end(); it != ite; it++)
+// 	{
+// 		if (it->get_nickname() == nickname)
+// 				return (&(*it));
+// 	}
+// 	return (NULL);
+// }
+
+User *Message::get_user(String nickname) const
+{
+	for (size_t i = 0; i < _users.size(); i++)
+	{
+		if (_users[i]->get_nickname() == nickname)
+			return (_users[i]);
+	}
+    return (NULL);
+}
 
 
+bool 	Message::chan_exist(String chan_name) const
+{
+    if (_chans.find(chan_name) == _chans.end())
+        return (false);
+    return (true);
+}
 
-
-
+// Channel*	Message::chan_exist(String chan_name) const
+// {
+// 	CHANS_LIST::iterator it = const_cast<CHANS_LIST::iterator>(_chans.find(chan_name)); //*************** BOUM ****************//
+//     if (it != _chans.end())
+//         return (it->second);
+//     return (NULL);
+// }
 
 //void	Message::_init_msg_list	(void)
 //{
