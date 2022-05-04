@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Message.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/03 17:21:16 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/04 11:17:43 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ class Message
 		//command reply
 		e_error	_cmd_error				(e_error code);
 		e_error	_cmd_join				(void) const;
-		e_error	_cmd_kick				(String reason) const;
+		e_error	_cmd_kick				(String reason, String kicked) const;
 		e_error	_cmd_mode				(void) const;
 		e_error	_cmd_part				(String reason) const;
 		e_error	_cmd_pong				(void) const;
