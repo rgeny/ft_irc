@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 17:08:30 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/02 16:01:37 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/04 21:49:16 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ e_error	Command::_topic	(void)
 		}
 		else 
 		{
-			if (chan_exist(_cmd[1]) == false)
+			if (this->_chan_exist(_cmd[1]) == false)
 				return (this->_err_nosuchchannel());
 			else
 			{

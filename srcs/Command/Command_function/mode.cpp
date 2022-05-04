@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/04 18:54:01 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/04 21:52:01 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int Command::apply_mode(String target)
 
 	if (has_begin_hashtag(this->_cmd[1]))
 	{
-		if (!chan_exist(_cmd[1]))
+		if (!this->_chan_exist(_cmd[1]))
 			return(_err_nosuchchannel());
 		// if (_cmd[2][0] != '-' && _cmd[2][0] != '+')
 		// {
@@ -68,7 +68,7 @@ int Command::apply_mode(String target)
 			{
 				String usermodes = "aiwroOsv";
 				previous_state = (*this->_users_it)->get_specific_mode(usermodes.find(_cmd[2][i]));
-				get_user(target)->set_specific_mode(usermodes.find(_cmd[2][i]), add);
+				this->_get_user(target)->set_specific_mode(usermodes.find(_cmd[2][i]), add);
 				if (previous_state != (*this->_users_it)->get_specific_mode(usermodes.find(_cmd[2][i])))
 					modified = 99;
 			}
@@ -133,7 +133,7 @@ e_error	Command::_mode	(void)
         }
         else 
         {
-            if (chan_exist(_cmd[1]) == false)
+            if (this->_chan_exist(_cmd[1]) == false)
                 return (this->_err_nosuchchannel());
 			if (_cmd.size() == 3)
 			{

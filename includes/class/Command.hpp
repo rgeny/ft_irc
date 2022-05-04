@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/04 16:19:08 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/04 21:47:47 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,8 @@ class Command
 		Command &	operator=	(Command & src);
 
 		void	main		(void);
-		bool 	chan_exist	(String) const;
 		bool 	user_exist_in_chan(Channel &chan, String nickname) const;
-		bool 	user_exist(String nickname) const;
 		bool 	is_operator(String nickname, Channel &chan);
-		User*	get_user(String nickname);
 		String	concat_last_args(size_t start_index);
 		void	leave_all (void);
 		void 	join_process(String chan_name);

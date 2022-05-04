@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 18:13:29 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/04 11:04:28 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/04 21:48:20 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ e_error		Command::_part	(void)
 		}
 		else 
 		{
-			if (chan_exist(_cmd[1]) == false)
+			if (this->_chan_exist(_cmd[1]) == false)
 				return (this->_err_nosuchchannel());
 			else
 			{

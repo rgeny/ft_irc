@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/03 17:34:29 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/04 21:47:44 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,6 @@ void	Command::main	(void)
 	this->_is_user = this->_get_user_type();
 	this->_parse();
 	this->_check_cmd();
-//	MSGS_LIST &	msgs	= this->_msgs;
-//	MSGS_IT &	it		= this->_msgs_it;
-//	MSGS_IT &	ite 	= this->_msgs_ite;
-//
-//	it = msgs.begin();
-//	ite = msgs.end();
-//
-//	while (it != ite)
-//	{
-//		this->_check_cmd();
-//		it++;
-//	}
 }
 
 bool	Command::_get_user_type	(void)
@@ -48,22 +36,10 @@ bool	Command::_get_user_type	(void)
 void	Command::_parse	(void)
 {
 	this->_cmd = split(this->_msg, " ");
-
-//	std::vector<String>	tmp = split(this->_msg, "\r\n");
-//
-//	this->_msgs.clear();
-//	std::vector<String>::iterator	it = tmp.begin(),
-//									ite = tmp.end();
-//	while (it != ite)
-//	{
-//		this->_msgs.push_back(split(*it, " "));
-//		it++;
-//	}
 }
 
 void	Command::_check_cmd	(void)
 {
-//	CmdsFct::iterator	it = this->_cmds_fct.find((*this->_msgs_it)[0]);
 	CmdsFct::iterator	it = this->_cmds_fct.find(this->_cmd[0]);
 
 	if (it != this->_cmds_fct.end())
@@ -85,14 +61,6 @@ bool	Command::_nick_already_used	(String & nickname) const
 	return (false);
 }
 
-bool 	Command::chan_exist(String chan_name) const
-{
-    if (_chans.find(chan_name) == _chans.end())
-        return (false);
-    return (true);
-}
-
-
 bool 	Command::user_exist_in_chan(Channel &chan, String nickname) const
 {
     if ((chan.get_chan_user_list()).find(nickname) == (chan.get_chan_user_list()).end())
@@ -111,28 +79,6 @@ bool 	Command::is_operator(String nickname, Channel &chan)
 	else
 		return (false);
 }
-
-bool 	Command::user_exist(String nickname) const
-{
-	// for (Data::USERS_IT it = this->_users.begin(), ite = _users.end(); it!= ite; it++)
-	for (size_t i = 0; i < _users.size(); i++)
-	{
-		if (_users[i]->get_nickname() == nickname)
-			return (true);
-	}
-    return (false);
-}
-
-User *Command::get_user(String nickname)
-{
-	for (size_t i = 0; i < _users.size(); i++)
-	{
-		if (_users[i]->get_nickname() == nickname)
-			return (_users[i]);
-	}
-    return (NULL);
-}
-
 
 String	Command::concat_last_args(size_t start_index)
 {
