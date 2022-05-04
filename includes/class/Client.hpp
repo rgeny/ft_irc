@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:43:21 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/04 15:10:31 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/04 20:54:58 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ class Client
 	:public Socket
 {
 	public:
-		bool	be_disconnected;
-
 		Client	(void);
 		Client	(String nickname);
 		Client	(Client & src);

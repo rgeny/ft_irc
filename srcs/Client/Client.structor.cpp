@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:45:06 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/04 15:11:32 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/04 20:55:08 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 Client:: Client	(void)
 	:Socket()
-	,be_disconnected(false)
 	,_nickname(DFL_NICKNAME)
 	,_msg_timer(time(NULL))
 	,_passwd_is_sent(false)
@@ -27,7 +26,6 @@ Client:: Client	(void)
 
 Client:: Client	(String nickname)
 	:Socket()
-	,be_disconnected(false)
 	,_nickname(nickname)
 	,_msg_timer(time(NULL))
 	,_passwd_is_sent(false)
@@ -40,7 +38,6 @@ Client:: Client	(String nickname)
 
 Client:: Client	(Client & src)
 	:Socket()
-	,be_disconnected(src.be_disconnected)
 	,_nickname(src._nickname)
 	,_msg_queue(src._msg_queue)
 	,_msg_timer(time(NULL))
