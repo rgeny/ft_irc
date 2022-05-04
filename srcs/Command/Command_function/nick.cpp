@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   nick.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 04:31:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/04 01:08:40 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/04/29 06:06:52 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ e_error		Command::_nick	(void)
 	{
 		return (this->_err_unavailresource());
 	}
-	else if ((*this->_users_it)->get_specific_mode(CHANMODE_r))
+	else if ((*this->_users_it)->get_specific_mode(USERMODE_r))
 		return (this->_err_restricted());
 	else if ((*this->_users_it)->set_nickname(this->_cmd[1]) == false)
 		return (this->_err_erroneusnickname());

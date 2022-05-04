@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_info.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 14:03:00 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/03 23:44:59 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/02 10:51:36 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static const char *info[] = {
 "",
 "42 Project : ft_irc => ircserv",
 "",
-"Based on RFC 2811-2812",
+"Based on RFC 2812",
 "",
 "This program is free software: you can redistribute it and/or modify",
 "it under the terms of the GNU General Public License as published by",

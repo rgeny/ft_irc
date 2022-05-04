@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   User.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:04:52 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/04 01:08:40 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/02 13:01:15 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ typedef enum
 	USERMODE_a,
 	USERMODE_i,
 	USERMODE_w,
-	CHANMODE_r,
+	USERMODE_r,
 	USERMODE_o,
 	USERMODE_O,
-	CHANMODE_s,
+	USERMODE_s,
 	USERMODE_v,
 }	UserMode;
 
