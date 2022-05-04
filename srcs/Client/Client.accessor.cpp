@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:56:10 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/27 23:56:19 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/04 14:55:23 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,9 @@ bool	Client::get_passwd_is_sent	(void) const
 void	Client::set_passwd_is_sent	(bool new_val)
 {
 	this->_passwd_is_sent = new_val;
+}
+
+time_t	Client::get_t_last_msg	(void) const
+{
+	return (this->_t_last_msg);
 }
