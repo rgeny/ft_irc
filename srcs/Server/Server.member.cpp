@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/29 05:22:28 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/04 15:30:46 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	Server::main			(void)
 			this->_new_user();
 		else
 			this->_check_fds();
+		this->_ping_user();
 	}
 }
 
@@ -90,8 +91,11 @@ bool	Server::_check_tmp_user	(void)
 	{
 		if (this->_tmp_users[*this->_users_it] < cur_time)
 			return (true);
-		else if ((*this->_users_it)->co_is_complete())
+		else if ((*this->_users_it)->reason == TIMEOUT_CO
+				&& (*this->_users_it)->co_is_complete())
+		{
 			this->_tmp_users.erase(*this->_users_it);
+		}
 	}
 	return (false);
 }
@@ -106,5 +110,27 @@ void	Server::_read_user_msg	(void)
 	{
 		if (this->_msg.compare(END_OF_MSG) != 0)
 			this->Command::main();
+	}
+}
+
+void	Server::_ping_user	(void)
+{
+	USERS_LIST &	users = this->_users;
+	USERS_IT &		it = this->_users_it;
+	USERS_IT &		ite = this->_users_ite;
+	time_t			cur_time = time(NULL);
+
+	for (it = users.begin(), ite = users.end(); it != ite; it++)
+	{
+		if (this->_tmp_users.find(*it) == this->_tmp_users.end()
+			&& (*it)->get_t_last_msg() + TIME_FOR_PING < cur_time)
+		{
+			(*it)->reason = TIMEOUT_PING;
+			this->_tmp_users[*it] = cur_time + TIME_TO_PONG;
+			String	msg	= "PING "
+						+ this->_servername
+						+ "\r\n";
+			(*it)->add_to_queue(msg);
+		}
 	}
 }

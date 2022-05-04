@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/05/04 14:26:45 by abesombe         ###   ########.fr        #
+#    Updated: 2022/05/04 15:39:00 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,6 +121,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													topic \
 													user \
 													userhost \
+													pong \
 						$(addprefix Server,			$(DEFAULT_FILES)) \
 						$(addprefix Client,			$(DEFAULT_FILES)) \
 						$(addprefix User,			$(DEFAULT_FILES)) \

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:43:21 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/29 04:36:24 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/04 15:10:31 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 # include <queue>
 # include "Socket.hpp"
 # include "Utils.hpp"
+
+enum timeout
+{
+	TIMEOUT_CO,
+	TIMEOUT_PING
+};
 
 class Client
 	:public Socket
@@ -38,6 +44,7 @@ class Client
 		bool				set_nickname	(String nickname);
 		bool				get_passwd_is_sent	(void) const;
 		void				set_passwd_is_sent	(bool new_val);
+		time_t				get_t_last_msg	(void) const;
 
 		void	add_to_queue		(String & msg);
 		bool	is_empty_msg_queue	(void) const;
@@ -52,8 +59,12 @@ class Client
 		std::queue<String>	_msg_queue;
 		time_t				_msg_timer;
 		bool				_passwd_is_sent;
+		time_t				_t_last_msg;
 
 		int		_get_next_msg	(String & msg);
+
+	public:
+		timeout				reason;
 };
 
 std::ostream &	operator<<	(std::ostream & os
