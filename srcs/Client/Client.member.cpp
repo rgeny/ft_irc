@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:57:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/29 05:47:07 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/04 14:57:09 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int		Client::receive	(String & msg)
 	if (msg_timer < cur_time)
 		msg_timer = cur_time;
 	msg_timer += MSG_PENALIZE_TIME;
+	this->_t_last_msg = cur_time;
 
 	return (ret);
 }
