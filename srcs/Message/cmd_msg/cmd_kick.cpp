@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:21:42 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/04 11:17:15 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/04 21:23:09 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,6 @@ e_error	Message::_cmd_kick	(String reason, String kicked) const
         if (it->second != *_users_it)
 		    (*it).second->add_to_queue(msg);
 	}
-	get_user(kicked)->add_to_queue(msg);
-    	return (SUCCESS);
+	this->_get_user(kicked)->add_to_queue(msg);
+	return (SUCCESS);
 }

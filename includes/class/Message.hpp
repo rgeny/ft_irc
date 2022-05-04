@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/04 18:41:27 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/04 21:24:06 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,6 @@ class Message
 		~Message	(void);
 
 		Message & operator=(Message const & rhs);
-		User*	get_user(String nickname) const;
-		bool 	user_exist(String nickname) const;
-		// Channel	*chan_exist	(String) const;
-		bool	chan_exist	(String) const;
 
 	protected:
 		//error reply
@@ -67,12 +63,6 @@ class Message
 		e_error	_rpl_creationtime		(void) const;
 		e_error	_rpl_welcome			(void) const;
 
-		
-
-		e_error	_cmd_info				(void) const;
-		e_error	_cmd_motd				(void) const;
-		e_error	_cmd_time				(void) const;
-
 		//command reply
 		e_error	_cmd_error				(e_error code);
 		e_error	_cmd_join				(void) const;
@@ -83,6 +73,9 @@ class Message
 		e_error	_cmd_privmsg			(String chat_msg) const;
 		e_error	_cmd_topic				(int choice) const;
 		e_error	_cmd_userhost			(String userhost_list) const;
+		e_error	_cmd_info				(void) const;
+		e_error	_cmd_motd				(void) const;
+		e_error	_cmd_time				(void) const;
 
 	private:
 		MsgError	_msg_error;
@@ -111,7 +104,6 @@ class Message
 								,String receiver) const;
 
 		String	_set_sender		(void) const;
-//		String	set_msg_base	(String receiver) const;
 };
 
 #endif

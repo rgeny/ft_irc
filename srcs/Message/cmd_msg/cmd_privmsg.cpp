@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 12:52:23 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/03 16:21:24 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/04 21:23:25 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ e_error	Message::_cmd_privmsg	(String chat_msg) const
                                         + (*_users_it)->get_host(), PRIVMSG, current_target + " "
                                         + chat_msg)
                                         + "\r\n";
-        if (current_target[0] != '#' && user_exist(current_target))
-            get_user(current_target)->add_to_queue(msg);
+        if (current_target[0] != '#' && this->_user_exist(current_target))
+            this->_get_user(current_target)->add_to_queue(msg);
         else if (current_target[0] == '#')
         {
             Channel *current_chan = NULL;
-            if (chan_exist(current_target) == true)
+            if (this->_chan_exist(current_target) == true)
                 current_chan = _chans.find(current_target)->second;
             if (current_chan != NULL)
             {
