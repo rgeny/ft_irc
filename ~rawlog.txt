@@ -1,0 +1,219 @@
+<< CAP LS
+<< NICK Chichi
+<< USER abesombe abesombe chat.freenode.net :Alexandre BESOMBES
+>> :*.freenode.net NOTICE * :*** Looking up your ident...
+>> :*.freenode.net NOTICE * :*** Looking up your hostname...
+>> :*.freenode.net NOTICE * :*** Could not resolve your hostname: Nameserver failure; using your IP address (62.210.34.237) instead.
+>> :*.freenode.net CAP * LS :account-notify account-tag away-notify batch cap-notify chghost draft/relaymsg echo-message extended-join inspircd.org/poison inspircd.org/standard-replies invite-notify labeled-response message-tags multi-prefix sasl server-time setname userhost-in-names 
+<< CAP REQ :multi-prefix
+>> PING :MoYHRtSnUo
+<< PONG :MoYHRtSnUo
+>> :*.freenode.net CAP Chichi ACK :multi-prefix
+<< CAP END
+>> :*.freenode.net NOTICE Chichi :*** Ident lookup timed out, using ~abesombe instead.
+>> :*.freenode.net 001 Chichi :Welcome to the freenode IRC Network Chichi!~abesombe@62.210.34.237
+<< MODE Chichi +i
+>> :*.freenode.net 002 Chichi :Your host is *.freenode.net, running version InspIRCd-3
+>> :*.freenode.net 003 Chichi :This server was created 23:06:04 Apr 20 2022
+>> :*.freenode.net 004 Chichi *.freenode.net InspIRCd-3 BDHILRSTWcdghikorswxz ABCDEFIJKLMNOPQRSTUWXYZbcdefhijklmnoprstuvwz :BEFIJLWXYZbdefhjklovw
+>> :*.freenode.net 005 Chichi ACCEPT=30 AWAYLEN=200 BOT=B CALLERID=g CASEMAPPING=ascii CHANLIMIT=#:20 CHANMODES=IXZbew,k,BEFJLWdfjl,ACDKMNOPQRSTUcimnprstuz CHANNELLEN=64 CHANTYPES=# ELIST=CMNTU ESILENCE=CcdiNnPpTtx EXCEPTS=e :are supported by this server
+>> :*.freenode.net 005 Chichi EXTBAN=,ACNOQRSTUacjmnpruwz HOSTLEN=64 INVEX=I KEYLEN=32 KICKLEN=255 LINELEN=512 MAXLIST=I:100,X:100,b:100,e:100,w:100 MAXTARGETS=20 MODES=20 MONITOR=30 NAMELEN=128 NAMESX NETWORK=freenode :are supported by this server
+>> :*.freenode.net 005 Chichi NICKLEN=30 PREFIX=(Yohv)!@%+ REMOVE SAFELIST SECURELIST=60 SILENCE=32 STATUSMSG=!@%+ TOPICLEN=390 UHNAMES USERIP USERLEN=10 USERMODES=,,s,BDHILRSTWcdghikorwxz VBANLIST :are supported by this server
+>> :*.freenode.net 005 Chichi VLIST=b WATCH=32 WHOX :are supported by this server
+>> :*.freenode.net 251 Chichi :There are 21 users and 10705 invisible on 9 servers
+>> :*.freenode.net 252 Chichi 9 :operator(s) online
+>> :*.freenode.net 253 Chichi 23 :unknown connections
+>> :*.freenode.net 254 Chichi 14283 :channels formed
+>> :*.freenode.net 255 Chichi :I have 2342 clients and 1 servers
+>> :*.freenode.net 265 Chichi :Current local users: 2342  Max: 2361
+>> :*.freenode.net 266 Chichi :Current global users: 10726  Max: 10771
+>> :*.freenode.net 375 Chichi :*.freenode.net message of the day
+>> :*.freenode.net 372 Chichi :  Hello, World!
+>> :*.freenode.net 372 Chichi : 
+>> :*.freenode.net 372 Chichi :  Welcome to the
+>> :*.freenode.net 372 Chichi :          __                               _
+>> :*.freenode.net 372 Chichi :         / _|_ __ ___  ___ _ __   ___   __| | ___
+>> :*.freenode.net 372 Chichi :        | |_| '__/ _ \/ _ \ '_ \ / _ \ / _` |/ _ \
+>> :*.freenode.net 372 Chichi :        |  _| | |  __/  __/ | | | (_) | (_| |  __/
+>> :*.freenode.net 372 Chichi :        |_| |_|  \___|\___|_| |_|\___/ \__,_|\___|
+>> :*.freenode.net 372 Chichi :                                   AUTONOMOUS ZONE
+>> :*.freenode.net 372 Chichi : 
+>> :*.freenode.net 372 Chichi :  Connect to us on:
+>> :*.freenode.net 372 Chichi : 
+>> :*.freenode.net 372 Chichi :  Hostname: irc.freenode.net / chat.freenode.net
+>> :*.freenode.net 372 Chichi :  Plaintext: 6660-6669
+>> :*.freenode.net 372 Chichi :  TLS/SSL: 6697,7000,7070
+>> :*.freenode.net 372 Chichi :  Webchat: https://webchat.freenode.net
+>> :*.freenode.net 372 Chichi : 
+>> :*.freenode.net 372 Chichi :  By connecting to freenode you indicate that you have read and accept our
+>> :*.freenode.net 372 Chichi :  policies and guidelines as set out on https://freenode.net and agree to
+>> :*.freenode.net 372 Chichi :  be scanned for an open proxy.
+>> :*.freenode.net 372 Chichi : 
+>> :*.freenode.net 372 Chichi :  If you are looking for assistance, please try:
+>> :*.freenode.net 372 Chichi : 
+>> :*.freenode.net 372 Chichi :  #help                    - Help with general IRC and Services.
+>> :*.freenode.net 372 Chichi :  #chanhelp                - Help with channels and channel services.
+>> :*.freenode.net 372 Chichi :  #IRC                     - Help with the IRC.com by freenode app.
+>> :*.freenode.net 372 Chichi : 
+>> :*.freenode.net 372 Chichi :  Checkout some of our communities and services:
+>> :*.freenode.net 372 Chichi : 
+>> :*.freenode.net 372 Chichi :  #freenode-bbs            - BBS [https://bbs.freenode.net/]
+>> :*.freenode.net 372 Chichi :  #freenode-bbs-discussion - BBS Discussion
+>> :*.freenode.net 372 Chichi :  #freenode-jobs           - Jobs [https://jobs.freenode.net/]
+>> :*.freenode.net 372 Chichi :  #freenode                - Chat about freenode.
+>> :*.freenode.net 372 Chichi :  #anonchan                - Chat anonymously.
+>> :*.freenode.net 372 Chichi : 
+>> :*.freenode.net 372 Chichi :  Type /join #<channel>
+>> :*.freenode.net 372 Chichi : 
+>> :*.freenode.net 372 Chichi :  Thank you for using freenode!
+>> :*.freenode.net 376 Chichi :End of message of the day.
+>> :*.freenode.net 396 Chichi freenode-42q.tkf.6vib9m.IP :is now your displayed host
+>> :Chichi!~abesombe@freenode-42q.tkf.6vib9m.IP MODE Chichi :+wRix
+>> :*.freenode.net NOTICE Chichi :*** You are connected to chat.freenode.net using TLS (SSL) cipher 'TLSv1.3-TLS_AES_256_GCM_SHA384'
+<< JOIN #aaaa
+>> :*.freenode.net 474 Chichi #aaaa :Cannot join channel (you're banned)
+<< PING *.freenode.net
+>> :*.freenode.net PONG *.freenode.net :*.freenode.net
+--> lag pong
+<< JOIN #aaaaa
+>> :Chichi!~abesombe@freenode-42q.tkf.6vib9m.IP JOIN :#aaaaa
+>> :*.freenode.net 353 Chichi = #aaaaa :@Chichi
+>> :*.freenode.net 366 Chichi #aaaaa :End of /NAMES list.
+<< MODE #aaaaa
+>> :*.freenode.net 324 Chichi #aaaaa :+nt
+--> chanquery mode
+<< WHO #aaaaa
+>> :*.freenode.net 329 Chichi #aaaaa :1651670975
+--> event 329
+>> :*.freenode.net 352 Chichi #aaaaa ~abesombe freenode-42q.tkf.6vib9m.IP *.freenode.net Chichi H@s :0 Alexandre BESOMBES
+--> silent event who
+>> :*.freenode.net 315 Chichi #aaaaa :End of /WHO list.
+--> chanquery who end
+<< MODE #aaaaa b
+>> :*.freenode.net 368 Chichi #aaaaa :End of channel ban list
+--> chanquery ban end
+<< MODE #aaaab +m
+>> :*.freenode.net 403 Chichi #aaaab :No such channel
+<< PING *.freenode.net
+>> :*.freenode.net PONG *.freenode.net :*.freenode.net
+--> lag pong
+<< MODE #aaaab +v
+>> :*.freenode.net 403 Chichi #aaaab :No such channel
+<< MODE #aaaaa +v
+>> :*.freenode.net 696 Chichi #aaaaa v * :You must specify a parameter for the voice mode. Syntax: <nick>.
+<< PING *.freenode.net
+>> :*.freenode.net PONG *.freenode.net :*.freenode.net
+--> lag pong
+<< CAP LS
+<< NICK Chichi
+<< USER abesombe abesombe chat.freenode.net :Alexandre BESOMBES
+>> :*.freenode.net NOTICE * :*** Looking up your ident...
+>> :*.freenode.net NOTICE * :*** Looking up your hostname...
+>> :*.freenode.net NOTICE * :*** Could not resolve your hostname: Nameserver failure; using your IP address (62.210.34.237) instead.
+>> :*.freenode.net CAP * LS :account-notify account-tag away-notify batch cap-notify chghost draft/relaymsg echo-message extended-join inspircd.org/poison inspircd.org/standard-replies invite-notify labeled-response message-tags multi-prefix sasl server-time setname userhost-in-names 
+<< CAP REQ :multi-prefix
+>> PING :MoYHRtSnUo
+<< PONG :MoYHRtSnUo
+>> :*.freenode.net CAP Chichi ACK :multi-prefix
+<< CAP END
+>> :*.freenode.net NOTICE Chichi :*** Ident lookup timed out, using ~abesombe instead.
+>> :*.freenode.net 001 Chichi :Welcome to the freenode IRC Network Chichi!~abesombe@62.210.34.237
+<< MODE Chichi +i
+>> :*.freenode.net 002 Chichi :Your host is *.freenode.net, running version InspIRCd-3
+>> :*.freenode.net 003 Chichi :This server was created 23:06:04 Apr 20 2022
+>> :*.freenode.net 004 Chichi *.freenode.net InspIRCd-3 BDHILRSTWcdghikorswxz ABCDEFIJKLMNOPQRSTUWXYZbcdefhijklmnoprstuvwz :BEFIJLWXYZbdefhjklovw
+>> :*.freenode.net 005 Chichi ACCEPT=30 AWAYLEN=200 BOT=B CALLERID=g CASEMAPPING=ascii CHANLIMIT=#:20 CHANMODES=IXZbew,k,BEFJLWdfjl,ACDKMNOPQRSTUcimnprstuz CHANNELLEN=64 CHANTYPES=# ELIST=CMNTU ESILENCE=CcdiNnPpTtx EXCEPTS=e :are supported by this server
+>> :*.freenode.net 005 Chichi EXTBAN=,ACNOQRSTUacjmnpruwz HOSTLEN=64 INVEX=I KEYLEN=32 KICKLEN=255 LINELEN=512 MAXLIST=I:100,X:100,b:100,e:100,w:100 MAXTARGETS=20 MODES=20 MONITOR=30 NAMELEN=128 NAMESX NETWORK=freenode :are supported by this server
+>> :*.freenode.net 005 Chichi NICKLEN=30 PREFIX=(Yohv)!@%+ REMOVE SAFELIST SECURELIST=60 SILENCE=32 STATUSMSG=!@%+ TOPICLEN=390 UHNAMES USERIP USERLEN=10 USERMODES=,,s,BDHILRSTWcdghikorwxz VBANLIST :are supported by this server
+>> :*.freenode.net 005 Chichi VLIST=b WATCH=32 WHOX :are supported by this server
+>> :*.freenode.net 251 Chichi :There are 21 users and 10705 invisible on 9 servers
+>> :*.freenode.net 252 Chichi 9 :operator(s) online
+>> :*.freenode.net 253 Chichi 23 :unknown connections
+>> :*.freenode.net 254 Chichi 14283 :channels formed
+>> :*.freenode.net 255 Chichi :I have 2342 clients and 1 servers
+>> :*.freenode.net 265 Chichi :Current local users: 2342  Max: 2361
+>> :*.freenode.net 266 Chichi :Current global users: 10726  Max: 10771
+>> :*.freenode.net 375 Chichi :*.freenode.net message of the day
+>> :*.freenode.net 372 Chichi :  Hello, World!
+>> :*.freenode.net 372 Chichi : 
+>> :*.freenode.net 372 Chichi :  Welcome to the
+>> :*.freenode.net 372 Chichi :          __                               _
+>> :*.freenode.net 372 Chichi :         / _|_ __ ___  ___ _ __   ___   __| | ___
+>> :*.freenode.net 372 Chichi :        | |_| '__/ _ \/ _ \ '_ \ / _ \ / _` |/ _ \
+>> :*.freenode.net 372 Chichi :        |  _| | |  __/  __/ | | | (_) | (_| |  __/
+>> :*.freenode.net 372 Chichi :        |_| |_|  \___|\___|_| |_|\___/ \__,_|\___|
+>> :*.freenode.net 372 Chichi :                                   AUTONOMOUS ZONE
+>> :*.freenode.net 372 Chichi : 
+>> :*.freenode.net 372 Chichi :  Connect to us on:
+>> :*.freenode.net 372 Chichi : 
+>> :*.freenode.net 372 Chichi :  Hostname: irc.freenode.net / chat.freenode.net
+>> :*.freenode.net 372 Chichi :  Plaintext: 6660-6669
+>> :*.freenode.net 372 Chichi :  TLS/SSL: 6697,7000,7070
+>> :*.freenode.net 372 Chichi :  Webchat: https://webchat.freenode.net
+>> :*.freenode.net 372 Chichi : 
+>> :*.freenode.net 372 Chichi :  By connecting to freenode you indicate that you have read and accept our
+>> :*.freenode.net 372 Chichi :  policies and guidelines as set out on https://freenode.net and agree to
+>> :*.freenode.net 372 Chichi :  be scanned for an open proxy.
+>> :*.freenode.net 372 Chichi : 
+>> :*.freenode.net 372 Chichi :  If you are looking for assistance, please try:
+>> :*.freenode.net 372 Chichi : 
+>> :*.freenode.net 372 Chichi :  #help                    - Help with general IRC and Services.
+>> :*.freenode.net 372 Chichi :  #chanhelp                - Help with channels and channel services.
+>> :*.freenode.net 372 Chichi :  #IRC                     - Help with the IRC.com by freenode app.
+>> :*.freenode.net 372 Chichi : 
+>> :*.freenode.net 372 Chichi :  Checkout some of our communities and services:
+>> :*.freenode.net 372 Chichi : 
+>> :*.freenode.net 372 Chichi :  #freenode-bbs            - BBS [https://bbs.freenode.net/]
+>> :*.freenode.net 372 Chichi :  #freenode-bbs-discussion - BBS Discussion
+>> :*.freenode.net 372 Chichi :  #freenode-jobs           - Jobs [https://jobs.freenode.net/]
+>> :*.freenode.net 372 Chichi :  #freenode                - Chat about freenode.
+>> :*.freenode.net 372 Chichi :  #anonchan                - Chat anonymously.
+>> :*.freenode.net 372 Chichi : 
+>> :*.freenode.net 372 Chichi :  Type /join #<channel>
+>> :*.freenode.net 372 Chichi : 
+>> :*.freenode.net 372 Chichi :  Thank you for using freenode!
+>> :*.freenode.net 376 Chichi :End of message of the day.
+>> :*.freenode.net 396 Chichi freenode-42q.tkf.6vib9m.IP :is now your displayed host
+>> :Chichi!~abesombe@freenode-42q.tkf.6vib9m.IP MODE Chichi :+wRix
+>> :*.freenode.net NOTICE Chichi :*** You are connected to chat.freenode.net using TLS (SSL) cipher 'TLSv1.3-TLS_AES_256_GCM_SHA384'
+<< JOIN #aaaa
+>> :*.freenode.net 474 Chichi #aaaa :Cannot join channel (you're banned)
+<< PING *.freenode.net
+>> :*.freenode.net PONG *.freenode.net :*.freenode.net
+--> lag pong
+<< JOIN #aaaaa
+>> :Chichi!~abesombe@freenode-42q.tkf.6vib9m.IP JOIN :#aaaaa
+>> :*.freenode.net 353 Chichi = #aaaaa :@Chichi
+>> :*.freenode.net 366 Chichi #aaaaa :End of /NAMES list.
+<< MODE #aaaaa
+>> :*.freenode.net 324 Chichi #aaaaa :+nt
+--> chanquery mode
+<< WHO #aaaaa
+>> :*.freenode.net 329 Chichi #aaaaa :1651670975
+--> event 329
+>> :*.freenode.net 352 Chichi #aaaaa ~abesombe freenode-42q.tkf.6vib9m.IP *.freenode.net Chichi H@s :0 Alexandre BESOMBES
+--> silent event who
+>> :*.freenode.net 315 Chichi #aaaaa :End of /WHO list.
+--> chanquery who end
+<< MODE #aaaaa b
+>> :*.freenode.net 368 Chichi #aaaaa :End of channel ban list
+--> chanquery ban end
+<< MODE #aaaab +m
+>> :*.freenode.net 403 Chichi #aaaab :No such channel
+<< PING *.freenode.net
+>> :*.freenode.net PONG *.freenode.net :*.freenode.net
+--> lag pong
+<< MODE #aaaab +v
+>> :*.freenode.net 403 Chichi #aaaab :No such channel
+<< MODE #aaaaa +v
+>> :*.freenode.net 696 Chichi #aaaaa v * :You must specify a parameter for the voice mode. Syntax: <nick>.
+<< PING *.freenode.net
+>> :*.freenode.net PONG *.freenode.net :*.freenode.net
+--> lag pong
+<< PING *.freenode.net
+>> :*.freenode.net PONG *.freenode.net :*.freenode.net
+--> lag pong
+<< PING *.freenode.net
+>> :*.freenode.net PONG *.freenode.net :*.freenode.net
+--> lag pong
+<< QUIT :leaving

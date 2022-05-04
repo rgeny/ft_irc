@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/04 15:08:35 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/04 15:52:51 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,22 @@ int Command::apply_mode(String target)
 	else if (_cmd[2][0] == '-')
 		add = false;
 	
+	// if (!has_begin_hashtag(this->_cmd[1]))
+	// {
+	// 	if (!user_exist(_cmd[1]))
+	// 		return(_err_nosuchnick());
+		// }
+	if (has_begin_hashtag(this->_cmd[1]))
+	{
+		if (!chan_exist(_cmd[1]))
+			return(_err_nosuchchannel());
+		if (_cmd[2][0] != '-' && _cmd[2][0] != '+')	
+			
+		// if (!user_exist(_cmd[1]))
+		// 	return(_err_nosuchnick());
+		
+	}
+
 	while (i < size_modestr)
 	{
 		if (mode_type(_cmd[2][i]))
@@ -70,6 +86,8 @@ int Command::apply_mode(String target)
 
 e_error	Command::_mode	(void)
 {
+	int ret;
+	
 	if (this->_cmd.size() < 2)
 		return (this->_err_needmoreparams());
 	else
@@ -79,7 +97,7 @@ e_error	Command::_mode	(void)
         {
             if (_cmd[1] != (*_users_it)->get_nickname())
                 return (this->_err_usersdontmatch());
-			int ret = apply_mode(_cmd[1]);
+			ret = apply_mode(_cmd[1]);
 			if (ret == MODE_MODIFIED)
 				return (this->_cmd_mode());
 			return (SUCCESS);
@@ -88,9 +106,21 @@ e_error	Command::_mode	(void)
         {
             if (chan_exist(_cmd[1]) == false)
                 return (this->_err_nosuchchannel());
-			if ()
+			if (_cmd.size() == 3)
+			{
+				ret = apply_mode(_cmd[1]);
+				if (ret == MODE_MODIFIED)
+					return (this->_cmd_mode());
+				return (SUCCESS);
+			}
         }
 
+
+		// MODE Chichi +i
+		// MODE #aaa +b 62.234.20.10
+		// MODE #aaa +v Chichi
+		// MODE #aaa +im
+		
 		// if (check_chan_name(this->_cmd[1]) == false || check_chan_name(this->_cmd[1]) == false)
 		// 	return (ERROR_CONTINUE);
 		// Channel::CHAN_USER_LIST *tmp = NULL;
