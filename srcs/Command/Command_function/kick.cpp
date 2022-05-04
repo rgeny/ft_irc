@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:22:23 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/04 11:18:08 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/04 11:24:27 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ e_error	Command::_kick (void)
             return (_err_chanoprivsneeded());
         if (user_exist(_cmd[2]) == false)
              return (_err_nosuchnick());
-        std::cout << "cur_chan: " << _chans_it->second->get_chan_name() << std::endl;   
         if (user_exist_in_chan(*_chans_it->second, _cmd[2]) == false)
             return (_err_usernotinchannel());
         String reason = concat_last_args(3);

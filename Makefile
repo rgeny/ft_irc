@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+         #
+#    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/05/03 17:13:59 by ayzapata         ###   ########.fr        #
+#    Updated: 2022/05/04 13:09:51 by abesombe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,6 +86,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													err_unavailresource \
 													err_usernotinchannel \
 													err_usersdontmatch \
+													err_noprivileges \
 													\
 													rpl_welcome \
 													\

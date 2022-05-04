@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   msg.hpp                                            :+:      :+:    :+:   */
+/*   err_noprivileges.cpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/24 13:14:40 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/04 13:26:00 by abesombe         ###   ########.fr       */
+/*   Created: 2022/05/04 13:05:00 by abesombe          #+#    #+#             */
+/*   Updated: 2022/05/04 13:19:17 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MSG_HPP
-# define MSG_HPP
+#include "Message.hpp"
 
-# define END_OF_MSG "\r\n"
-# define WELCOME_MSG "Welcome to the Internet Relay Network "
-# define MODE_MODIFIED 99
-
-#endif
-
+e_error	Message::_err_noprivileges	(String reason) const
+{
+	String	msg	= this->_set_reply_base (ERR_NOPRIVILEGES)
+				+ this->_cmd[1]
+				+ " :"
+                + reason
+                + "\r\n";
+	(*this->_users_it)->add_to_queue(msg);
+	return (ERROR_CONTINUE);
+}

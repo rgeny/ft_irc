@@ -6,11 +6,64 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/29 19:40:54 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/04 13:27:22 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Command.hpp"
+
+int Command::mode_type(char mode)
+{
+	String modes_list = "iswoOpsitnmlbvk"; // => 0 if unknown mode OovaimnqpsrtklbeI
+	String usermodes_list = "iswoO"; // 1
+	String channelmodes_list = "psitnmlbvk"; // 2
+	if (modes_list.find(mode) == String::npos)
+		return (0);
+	if (usermodes_list.find(mode) == String::npos)
+		return (2);
+	return (1);
+}
+
+int Command::apply_mode(String target)
+{
+	size_t 	size_modestr = _cmd[2].length();
+	size_t 	i = 1;
+	bool	add = false;
+	int		modified = 0;
+	if (_cmd[2][0] == '+')
+		add = true;
+	else if (_cmd[2][0] == '-')
+		add = false;
+	
+	while (i < size_modestr)
+	{
+		if (mode_type(_cmd[2][i]))
+		{
+			if (_cmd[2][i] == 'o')
+				return (_err_noprivileges("Permission Denied - Only operators may set user mode o"));
+			bool previous_state;
+			if (mode_type(_cmd[2][i]) == 1)
+			{
+				String usermodes = "aiwroOsv";
+				previous_state = (*this->_users_it)->get_specific_mode(usermodes.find(_cmd[2][i]));
+				get_user(target)->set_specific_mode(usermodes.find(_cmd[2][i]), add);
+				if (previous_state != (*this->_users_it)->get_specific_mode(usermodes.find(_cmd[2][i])))
+					modified = 99;
+			}
+			std::cout << "USER MODES [i-s-w-o]: ["
+			<< (*this->_users_it)->get_specific_mode(USERMODE_i) 
+			<< "-" 
+			<< (*this->_users_it)->get_specific_mode(USERMODE_s) 
+			<< "-" 
+			<< (*this->_users_it)->get_specific_mode(USERMODE_w) 
+			<< "-" 
+			<< (*this->_users_it)->get_specific_mode(USERMODE_o) 
+			<< "]\n";
+		}
+		i++;
+	}
+	return (modified);
+}
 
 e_error	Command::_mode	(void)
 {
@@ -23,6 +76,10 @@ e_error	Command::_mode	(void)
         {
             if (_cmd[1] != (*_users_it)->get_nickname())
                 return (this->_err_usersdontmatch());
+			int ret = apply_mode(_cmd[1]);
+			if (ret == MODE_MODIFIED)
+				return (this->_cmd_mode());
+			return (SUCCESS);
         }
         else 
         {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/03 16:23:47 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/04 12:27:01 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ class Command
 		String	concat_last_args(size_t start_index);
 		void	leave_all (void);
 		void 	join_process(String chan_name);
+		int		mode_type(char mode);
+		int		apply_mode(String target);
 
 	private:
 		static CmdsFct		_cmds_fct;

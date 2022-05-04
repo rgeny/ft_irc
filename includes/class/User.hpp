@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   User.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:04:52 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/02 13:01:15 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/04 11:55:57 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef enum
 	USERMODE_O,
 	USERMODE_s,
 	USERMODE_v,
+	
 }	UserMode;
 
 /*
@@ -79,6 +80,7 @@ class User
 		const String				get_host			(void) const;
 		const std::vector<bool>		get_mode			(void) const;
 		bool						get_specific_mode	(UserMode mode) const;
+		bool						get_specific_mode	(size_t mode) const;
 		const String				get_realname		(void) const;
 		std::vector<bool> 			get_chan_usermode_vec	(String chan_name);
 		CHAN_USERMODE &				get_chan_usermode	(void);
@@ -86,6 +88,8 @@ class User
 		void	set_username		(String username);
 		void	set_mode			(String mode);
 		void	set_specific_mode	(UserMode mode
+									,bool val);
+		void	set_specific_mode	(size_t mode
 									,bool val);
 		void	set_chan_usermode	(String chan_name
 									,int mode);

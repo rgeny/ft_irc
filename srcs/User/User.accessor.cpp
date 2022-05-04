@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   User.accessor.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 18:04:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/02 13:00:51 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/04 11:56:31 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ bool	User::get_specific_mode	(UserMode mode) const
 	return (this->_mode[mode]);
 }
 
+bool	User::get_specific_mode	(size_t mode) const
+{
+	return (this->_mode[mode]);
+}
+
 const String	User::get_realname	(void) const
 {
 	return (this->_realname);
@@ -49,6 +54,12 @@ void	User::set_mode	(String mode)
 }
 
 void	User::set_specific_mode		(UserMode mode
+									,bool val)
+{
+	this->_mode[mode] = val;
+}
+
+void	User::set_specific_mode		(size_t mode
 									,bool val)
 {
 	this->_mode[mode] = val;
