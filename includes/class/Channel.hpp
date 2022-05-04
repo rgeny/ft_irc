@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:14:15 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/04 11:34:49 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/04 17:06:15 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef enum
 	CHANMODE_b,
 	CHANMODE_e,
 	CHANMODE_I,	
+	
 }	ChanMode;
 
         // O - give "channel creator" status;
@@ -95,9 +96,15 @@ class Channel
 		CHAN_USER_LIST & get_chan_user_list();
 		std::string& get_chan_name();
 		String &get_topic();
-		bool chan_exist(String) const;
+		bool 	chan_exist(String) const;
 		void	set_topic(String topic);
-		bool has_topic();
+		bool 	has_topic();
+		void	set_specific_mode (ChanMode mode, bool val);
+		void	set_specific_mode (size_t mode, bool val);
+		bool	get_specific_mode	(ChanMode mode) const;
+		bool	get_specific_mode	(size_t mode) const;
+
+
 		// bool user_exist_in_chan(String nickname) const;
 
 };

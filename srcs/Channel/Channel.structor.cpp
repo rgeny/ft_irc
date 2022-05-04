@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.structor.cpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:19:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/04/27 21:13:41 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/04 17:07:34 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ Channel::Channel(String &name
 	:_name(name)
 	,_password(password)
 {
+	std::cout	<< "Channel Param constructor."
+				<< std::endl;
+	this->_mode.resize(16);
+	for (int i = 0; i < 16; i++)
+		this->_mode[i] = false;
 }
 
 // Channel::Channel(String 	const & name

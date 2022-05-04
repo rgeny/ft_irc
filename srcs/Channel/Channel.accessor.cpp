@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.accessor.cpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 17:37:04 by abesombe          #+#    #+#             */
-/*   Updated: 2022/04/30 20:34:50 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/04 16:53:06 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,3 +32,26 @@ String & Channel::get_topic()
     return (_topic);    
 }
 
+
+void	Channel::set_specific_mode		(ChanMode mode
+									    ,bool val)
+{
+	this->_mode[mode] = val;
+}
+
+void	Channel::set_specific_mode		(size_t mode
+									    ,bool val)
+{
+	this->_mode[mode] = val;
+}
+
+bool	Channel::get_specific_mode	(ChanMode mode) const
+{
+	return (this->_mode[mode]);
+}
+
+bool	Channel::get_specific_mode	(size_t mode) const
+{
+    std::cout << "spec mode requested? " << mode << std::endl;
+	return (this->_mode[mode]);
+}
