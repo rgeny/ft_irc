@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:45:06 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/27 23:48:23 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/04 15:11:32 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ Client:: Client	(void)
 	,_nickname(DFL_NICKNAME)
 	,_msg_timer(time(NULL))
 	,_passwd_is_sent(false)
+	,_t_last_msg(time(NULL))
+	,reason(TIMEOUT_CO)
 {
 	std::cout	<< "Client dfl constructor."
 				<< std::endl;
@@ -29,6 +31,8 @@ Client:: Client	(String nickname)
 	,_nickname(nickname)
 	,_msg_timer(time(NULL))
 	,_passwd_is_sent(false)
+	,_t_last_msg(time(NULL))
+	,reason(TIMEOUT_CO)
 {
 	std::cout	<< "Client parameter constructor."
 				<< std::endl;
@@ -41,6 +45,8 @@ Client:: Client	(Client & src)
 	,_msg_queue(src._msg_queue)
 	,_msg_timer(time(NULL))
 	,_passwd_is_sent(src._passwd_is_sent)
+	,_t_last_msg(time(NULL))
+	,reason(src.reason)
 {
 	std::cout	<< "Client cpy constructor."
 				<< std::endl;

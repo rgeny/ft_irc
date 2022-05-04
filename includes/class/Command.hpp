@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/04 12:27:01 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/04 15:32:05 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ class Command
 		e_error		_info			(void);
 		e_error		_motd			(void);
 		e_error		_userhost		(void);
+		e_error		_pong			(void);
 
 		void	_init_cmd_fct	(void);
 };
@@ -116,7 +117,6 @@ std::ostream &	operator<<	(std::ostream & os
 // e_error		_notice		(void);
 // e_error		_oper		(void);
 // e_error		_part		(void);
-// e_error		_pong		(void);
 // e_error		_privmsg	(void);
 // e_error		_rehash		(void);
 // e_error		_rules		(void);
