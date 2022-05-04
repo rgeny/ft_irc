@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   return_code.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 13:13:28 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/24 13:14:09 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/04 18:44:15 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@
 # define RPL_LISTEND			"323"
 # define RPL_CHANNELMODEIS		"324"
 # define RPL_UNIQOPIS			"325"
+# define RPL_CREATIONTIME		"329"
 # define RPL_NOTOPIC			"331"
 # define RPL_TOPIC				"332"
 # define RPL_INVITING			"341"

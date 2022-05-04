@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 17:37:04 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/04 16:53:06 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/04 18:44:41 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,16 @@ Channel::CHAN_USER_LIST & Channel::get_chan_user_list()
 std::string& Channel::get_chan_name()
 {
     return (_name);
+}
+
+time_t Channel::get_creation() const
+{
+    return (_creation);
+}
+
+Channel::MODE_VEC Channel::get_mode() const
+{
+    return (_mode);
 }
 
 void	Channel::set_topic(String topic)

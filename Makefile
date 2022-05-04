@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/05/04 15:39:00 by rgeny            ###   ########.fr        #
+#    Updated: 2022/05/04 18:41:41 by abesombe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,6 +89,8 @@ SRCS				= $(addsuffix .cpp,				main \
 													err_usernotinchannel \
 													err_usersdontmatch \
 													\
+													rpl_channelmodeis \
+													rpl_creationtime \
 													rpl_welcome \
 													\
 													cmd_error \

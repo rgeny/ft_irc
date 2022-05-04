@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:14:15 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/04 17:06:15 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/04 18:44:35 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,15 @@ typedef enum
 class Channel
 {
 	public:
-		typedef std::map<String, User *> CHAN_USER_LIST;
+		typedef std::map<String, User *>	CHAN_USER_LIST;
+		typedef std::vector<bool>			MODE_VEC;
 
 	private:
 		Channel();
 		String 				_name;
 		String				_topic;
 		CHAN_USER_LIST		_chan_user_list;
-		std::vector<bool>	_mode;
+		MODE_VEC			_mode;
 		String				_password;
 		size_t				_limit;
 		time_t				_creation;
@@ -96,6 +97,7 @@ class Channel
 		CHAN_USER_LIST & get_chan_user_list();
 		std::string& get_chan_name();
 		String &get_topic();
+		time_t 	get_creation() const;
 		bool 	chan_exist(String) const;
 		void	set_topic(String topic);
 		bool 	has_topic();
@@ -103,6 +105,8 @@ class Channel
 		void	set_specific_mode (size_t mode, bool val);
 		bool	get_specific_mode	(ChanMode mode) const;
 		bool	get_specific_mode	(size_t mode) const;
+		MODE_VEC get_mode() const;
+		String	get_mode_string(void);
 
 
 		// bool user_exist_in_chan(String nickname) const;

@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/04 14:22:29 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/04 18:41:27 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ class Message
 		e_error	_err_noprivileges		(String reason) const;
 
 		//reply
+		e_error	_rpl_channelmodeis		(void) const;
+		e_error	_rpl_creationtime		(void) const;
 		e_error	_rpl_welcome			(void) const;
+
 		
 
 		e_error	_cmd_info				(void) const;

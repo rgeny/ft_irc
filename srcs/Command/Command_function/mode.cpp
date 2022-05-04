@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/04 17:10:28 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/04 18:54:01 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,11 @@ e_error	Command::_mode	(void)
 	
 	if (this->_cmd.size() < 2)
 		return (this->_err_needmoreparams());
+	else if (this->_cmd.size() == 2)
+	{
+		_rpl_channelmodeis();
+		return (_rpl_creationtime());
+	}
 	else
 	{
         std::cout << "I am in MODE\n";

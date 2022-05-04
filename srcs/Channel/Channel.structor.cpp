@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:19:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/04 17:07:34 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/04 19:05:44 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@ Channel::Channel(String &name
 	:_name(name)
 	,_password(password)
 {
+	// this->_creation = time(0);
+	time(&this->_creation);
 	std::cout	<< "Channel Param constructor."
 				<< std::endl;
-	this->_mode.resize(16);
-	for (int i = 0; i < 16; i++)
+	this->_mode.resize(14);
+	for (int i = 0; i < 14; i++)
 		this->_mode[i] = false;
 }
 
