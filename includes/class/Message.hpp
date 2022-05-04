@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/04 13:19:46 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/04 14:22:29 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ class Message
 		e_error	_err_notonchannel		(void) const;
 		e_error	_err_passwdmismatch		(void) const;
 		e_error	_err_restricted			(void) const;
+		e_error	_err_umodeunknownflag	(String failed, String reason) const;
 		e_error	_err_unavailresource	(void) const;
 		e_error	_err_usersdontmatch		(void) const;
 		e_error	_err_usernotinchannel	(void) const;

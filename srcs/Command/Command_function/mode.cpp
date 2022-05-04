@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/04 13:27:22 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/04 15:08:35 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int Command::mode_type(char mode)
 {
-	String modes_list = "iswoOpsitnmlbvk"; // => 0 if unknown mode OovaimnqpsrtklbeI
-	String usermodes_list = "iswoO"; // 1
+	String modes_list = "aiswoOpstnmlbvk"; // => 0 if unknown mode OovaimnqpsrtklbeI
+	String usermodes_list = "aiwroOsv"; // 1
 	String channelmodes_list = "psitnmlbvk"; // 2
 	if (modes_list.find(mode) == String::npos)
 		return (0);
@@ -30,6 +30,7 @@ int Command::apply_mode(String target)
 	size_t 	i = 1;
 	bool	add = false;
 	int		modified = 0;
+	std::cout << "I am in APPLY_MODE\n";
 	if (_cmd[2][0] == '+')
 		add = true;
 	else if (_cmd[2][0] == '-')
@@ -41,6 +42,8 @@ int Command::apply_mode(String target)
 		{
 			if (_cmd[2][i] == 'o')
 				return (_err_noprivileges("Permission Denied - Only operators may set user mode o"));
+			else if (String("asOv").find(_cmd[2][i]) != String::npos)
+				return (_err_umodeunknownflag(String(1, _cmd[2][i]), "is not a recognised user mode"));
 			bool previous_state;
 			if (mode_type(_cmd[2][i]) == 1)
 			{
@@ -84,8 +87,8 @@ e_error	Command::_mode	(void)
         else 
         {
             if (chan_exist(_cmd[1]) == false)
-            // if ((*_chans_it).second->chan_exist(_cmd[1]) == false)
                 return (this->_err_nosuchchannel());
+			if ()
         }
 
 		// if (check_chan_name(this->_cmd[1]) == false || check_chan_name(this->_cmd[1]) == false)
