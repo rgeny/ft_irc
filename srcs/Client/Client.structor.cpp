@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 12:45:06 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/04 20:55:08 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/04 21:34:17 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ Client:: Client	(String nickname)
 Client:: Client	(Client & src)
 	:Socket()
 	,_nickname(src._nickname)
-	,_msg_queue(src._msg_queue)
+	,_send_queue(src._send_queue)
 	,_msg_timer(time(NULL))
 	,_passwd_is_sent(src._passwd_is_sent)
 	,_t_last_msg(time(NULL))

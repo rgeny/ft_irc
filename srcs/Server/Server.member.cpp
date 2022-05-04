@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/04 15:30:46 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/04 21:35:09 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	Server::_init_fds		(void)
 	for (it = users.begin(), ite = users.end(); it != ite; it++)
 	{
 		(*it)->add_in_fds(&this->_rfds);
-		if (!(*it)->is_empty_msg_queue())
+		if (!(*it)->is_empty_send_queue())
 			(*it)->add_in_fds(&this->_wfds);
 	}
 }

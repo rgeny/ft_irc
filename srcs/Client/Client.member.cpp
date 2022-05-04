@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:57:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/04 20:56:06 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/04 21:34:31 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 
 void	Client::add_to_queue	(String & msg)
 {
-	this->_msg_queue.push(msg);
+	this->_send_queue.push(msg);
 }
 
-bool	Client::is_empty_msg_queue	(void) const
+bool	Client::is_empty_send_queue	(void) const
 {
-	return (this->_msg_queue.empty());
+	return (this->_send_queue.empty());
 }
 
 int		Client::send	(void)
 {
-	if (this->_msg_queue.empty())
+	if (this->_send_queue.empty())
 		std::cout	<< "Queue is empty, clients can't send a msg."
 					<< std::endl;
 	else
 	{
-		String &	msg = this->_msg_queue.front();
+		String &	msg = this->_send_queue.front();
 		int	ret = this->Socket::send(msg);
-		this->_msg_queue.pop();
+		this->_send_queue.pop();
 		return (ret);
 	}
 	return (SEND_ERROR);
