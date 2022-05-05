@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   privmsg.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 12:44:29 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/03 13:51:35 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/05 11:05:45 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,20 @@ The PRIVMSG command is used to send private messages between users, as well as t
 e_error	Command::_privmsg	(void)
 {
     if (this->_cmd.size() < 3)
-		return (this->_err_needmoreparams());
-	else
-	{
-        String msg = concat_last_args(2);
-        return (this->_cmd_privmsg(msg));
-    }
+      return (this->_err_needmoreparams());
+    else
+    {
+        if (has_begin_hashtag(this->_cmd[1]))
+        {
+          if (!this->_chan_exist(_cmd[1]))
+			      return(_err_nosuchchannel());
+          bool moderated = _chans[_cmd[1]]->get_specific_mode(CHANMODE_m);
+          bool voice = (*_users_it)->get_specific_mode(USERMODE_v);
+          if ((is_operator((*_users_it)->get_nickname(), *_chans_it->second) == false) && moderated == true && voice == false)
+            return (_err_cannotsendtochan("You cannot send messages to this channel whilst the +m (moderated) mode is set."));
+        }
+          String msg = concat_last_args(2);
+          return (this->_cmd_privmsg(msg));
+      }
     return (SUCCESS);
 }
