@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.member.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/05 10:26:56 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/05 14:23:26 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ bool 	Command::is_operator(String nickname, Channel &chan)
 {
 	if (user_exist_in_chan(chan, nickname) == true)
 	{
-		if (((*_users_it)->get_chan_usermode_vec(chan.get_chan_name()))[1] == true)
+		if (((*_users_it)->get_chan_usermode_vec(chan.get_chan_name()))[USERMODE_o] == true)
 			return (true);
 		return (false);
 	}

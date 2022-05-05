@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 18:04:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/05 13:03:18 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/05 15:27:20 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,20 @@ void	User::set_chan_usermode	(String chan
 							, UserMode mode
 							, bool val)
 {
-	if (this->_chan_usermode.find(chan) == _chan_usermode.end())
-	{
-		std::cout	<< "t1\n";
+		// std::cout	<< "t1\n";
 		MODE_VEC & mode_vec = _chan_usermode[chan];
 		mode_vec.resize(8);
 		mode_vec[mode] = val;
-	}
+}
+
+void	User::set_chan_usermode	(String chan
+							, size_t mode
+							, bool val)
+{
+		// std::cout	<< "t1\n";
+		MODE_VEC & mode_vec = _chan_usermode[chan];
+		mode_vec.resize(8);
+		mode_vec[mode] = val;
 }
 
 std::vector<bool> User::get_chan_usermode_vec(String chan_name)

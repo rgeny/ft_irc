@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/05 12:49:10 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/05 16:08:05 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ int Command::apply_mode(String target)
 	bool	add = true;
 	int		modified = 0;
 	std::cout << "I am in APPLY_MODE\n";
-	if (_cmd[2][0] == '+')
-		add = true;
-	else if (_cmd[2][0] == '-')
-		add = false;
+	// if (_cmd[2][0] == '+')
+	// 	add = true;
+	// else if (_cmd[2][0] == '-')
+	// 	add = false;
 
 	if (has_begin_hashtag(this->_cmd[1]))
 	{
@@ -62,6 +62,18 @@ int Command::apply_mode(String target)
 		User *target_user = NULL;
 		if (mode_type(_cmd[2][i])) // MODE EXISTS
 		{
+			if (_cmd[2][i] == '+')
+			{
+				add = true;
+				i++;
+				continue;
+			}
+			else if (_cmd[2][i] == '-')
+			{
+				add = false;
+				i++;
+				continue;
+			}
 			if (_cmd[2][i] == 'o' && _cmd.size() == 3)
 				return (_err_noprivileges("Permission Denied - Only operators may set user mode o"));
 			else if (String("asOv").find(_cmd[2][i]) != String::npos && _cmd.size() == 3)
@@ -84,14 +96,19 @@ int Command::apply_mode(String target)
 				{
 					if ((_cmd[2][i] == 'o' || _cmd[2][i] == 'v') &&_cmd.size() > 3)
 					{
+						std::cout << "Update modes 'o' ou 'v' sur une target" << std::endl;
 						if (this->_user_exist(_cmd[3]) == false)
 							return (_err_nosuchnick());
 						if (user_exist_in_chan(*_chans_it->second, _cmd[3]) == false)
 							return (_err_usernotinchannel());
 						target_user = _get_user(_cmd[3]);
-						previous_state = target_user->get_specific_mode(usermodes.find(_cmd[2][i]));
-						target_user->set_specific_mode(usermodes.find(_cmd[2][i]), add);
-						if (previous_state != target_user->get_specific_mode(usermodes.find(_cmd[2][i])))
+						// std::cout << "Target_user: " << target_user->get_nickname() << std::endl;
+						// std::cout << "index in MODE_VEC: " << usermodes.find(_cmd[2][i]) << " - add = " << add << std::endl;
+						previous_state = target_user->get_chan_usermode_vec(_cmd[1])[usermodes.find(_cmd[2][i])];
+						// std::cout << "previous_state: " << previous_state << std::endl;
+						target_user->set_chan_usermode(_cmd[1], usermodes.find(_cmd[2][i]), add);
+						// std::cout << "state_afterwards: " << previous_state << std::endl;
+						if (previous_state != target_user->get_chan_usermode_vec(_cmd[1])[usermodes.find(_cmd[2][i])])
 							modified = 99;
 					}
 					else
@@ -101,29 +118,31 @@ int Command::apply_mode(String target)
 						if (previous_state != (*this->_chans_it).second->get_specific_mode(chanmodes.find(_cmd[2][i])))
 							modified = 99;
 					}
+					// o et v sont dans chan_usermode
+					// w, O et i sont dans user_mode
 					std::cout << "USER MODES current_user [o|w|O|i|v]: ["					
-					<< (*_users_it)->get_specific_mode(USERMODE_o)
+					<< (*_users_it)->get_chan_usermode_vec(this->_cmd[1])[USERMODE_o]
 					<< "|" 
 					<< (*_users_it)->get_specific_mode(USERMODE_w) 
 					<< "|" 
-					<< (*_users_it)->get_specific_mode(USERMODE_O) 
+					<< (*_users_it)->get_chan_usermode_vec(this->_cmd[1])[USERMODE_O]
 					<< "|" 
 					<< (*_users_it)->get_specific_mode(USERMODE_i) 
 					<< "|" 
-					<< (*_users_it)->get_specific_mode(USERMODE_v)
+					<< (*_users_it)->get_chan_usermode_vec(this->_cmd[1])[USERMODE_v]
 					<< "]\n";
 					if (target_user)
 					{
 						std::cout << "USER MODES target_user [o|w|O|i|v]: ["
-						<< target_user->get_specific_mode(USERMODE_o)
+						<< target_user->get_chan_usermode_vec(this->_cmd[1])[USERMODE_o]
 						<< "|" 
 						<< target_user->get_specific_mode(USERMODE_w) 
 						<< "|" 
-						<< target_user->get_specific_mode(USERMODE_O) 
+						<< target_user->get_chan_usermode_vec(this->_cmd[1])[USERMODE_O]
 						<< "|" 
 						<< target_user->get_specific_mode(USERMODE_i) 
 						<< "|" 
-						<< target_user->get_specific_mode(USERMODE_v)
+						<< target_user->get_chan_usermode_vec(this->_cmd[1])[USERMODE_v]
 						<< "]\n";
 					}
 				}

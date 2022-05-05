@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:04:52 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/05 12:57:34 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/05 15:27:50 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,9 @@ class User
 									,bool val);
 		void	set_chan_usermode	(String chan_name
 									,UserMode mode
+									,bool val);
+		void	set_chan_usermode	(String chan_name
+									,size_t mode
 									,bool val);
 		void	set_realname		(String realname);
 

@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/05 12:47:55 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/05 15:16:46 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,18 @@ void Command::join_process(String chan_name)
 		// (*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), 2);
 	}
 	else
+	{
+		std::cout << "Je set le nouveau user en regular user" << std::endl;
 		(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), USERMODE_o, false);
+	}
 	tmp = &(*_chans_it).second->get_chan_user_list();
 	(*tmp)[(*_users_it)->get_nickname()] = *_users_it;
 }
+
+// USER => usermode(i, w,)
+// 	 => chan_usermode MAP<chan_name, MODE_VEC>
+// 	 <#aa, <0,1,0,0,1,0,1,0,0> > chan_usermode[#aa] = MODE_VEC;
+// 	 <#bb, <1,0,1,0,0,0,0,0,0> >
 
 e_error	Command::_join	(void)
 {
