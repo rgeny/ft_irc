@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/05 16:08:05 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/05 17:51:14 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,61 +31,34 @@ int Command::apply_mode(String target)
 	bool	add = true;
 	int		modified = 0;
 	std::cout << "I am in APPLY_MODE\n";
-	// if (_cmd[2][0] == '+')
-	// 	add = true;
-	// else if (_cmd[2][0] == '-')
-	// 	add = false;
-
-	if (has_begin_hashtag(this->_cmd[1]))
-	{
-		if (!this->_chan_exist(_cmd[1]))
-			return(_err_nosuchchannel());
-		// if (_cmd[2][0] != '-' && _cmd[2][0] != '+')
-		// {
-		// 	if (_cmd.size() < 4)
-		// 	{
-				
-		// 	}
-		// 	// if (!user_exist(_cmd[2]))
-		// 	// 	return(_err_nosuchnick());
-		// }
-			
-		// if (!user_exist(_cmd[1]))
-		// 	return(_err_nosuchnick());
-		
-	}
+	if (_cmd[2][0] == '+')
+		add = true;
+	else if (_cmd[2][0] == '-')
+		add = false;
 
 	while (i < size_modestr)
 	{
 		String usermodes = "aiwroOsv";
 		String chanmodes = "aimnqpsrtklbeIov";
 		User *target_user = NULL;
+		std::cout << "char[" << i << "] is being analyzed for mode changes\n";
 		if (mode_type(_cmd[2][i])) // MODE EXISTS
 		{
-			if (_cmd[2][i] == '+')
-			{
-				add = true;
-				i++;
-				continue;
-			}
-			else if (_cmd[2][i] == '-')
-			{
-				add = false;
-				i++;
-				continue;
-			}
+			std::cout << "char is a " << _cmd[2][i] << "\n";
 			if (_cmd[2][i] == 'o' && _cmd.size() == 3)
 				return (_err_noprivileges("Permission Denied - Only operators may set user mode o"));
-			else if (String("asOv").find(_cmd[2][i]) != String::npos && _cmd.size() == 3)
+			else if (!has_begin_hashtag(this->_cmd[1]) && String("asOv").find(_cmd[2][i]) != String::npos && _cmd.size() == 3)
 				return (_err_umodeunknownflag(String(1, _cmd[2][i]), "is not a recognised user mode"));
 			bool previous_state = false;
 			if (mode_type(_cmd[2][i]) == 1 && !has_begin_hashtag(this->_cmd[1])) // USER MODE
 			{
-
 				previous_state = (*this->_users_it)->get_specific_mode(usermodes.find(_cmd[2][i]));
 				this->_get_user(target)->set_specific_mode(usermodes.find(_cmd[2][i]), add);
 				if (previous_state != (*this->_users_it)->get_specific_mode(usermodes.find(_cmd[2][i])))
-					modified = 99;
+				{
+					modified = USER_MODE_MODIFIED;
+					std::cout << "USER MODE UPDATED\n";
+				}
 			}
 			else if (mode_type(_cmd[2][i])) // CHANNEL MODE
 			{
@@ -109,14 +82,21 @@ int Command::apply_mode(String target)
 						target_user->set_chan_usermode(_cmd[1], usermodes.find(_cmd[2][i]), add);
 						// std::cout << "state_afterwards: " << previous_state << std::endl;
 						if (previous_state != target_user->get_chan_usermode_vec(_cmd[1])[usermodes.find(_cmd[2][i])])
-							modified = 99;
+						{
+							modified = CHAN_MODE_MODIFIED;
+							std::cout << "CHAN MODE UPDATED\n";
+						}
 					}
 					else
 					{
 						previous_state = (*this->_chans_it).second->get_specific_mode(chanmodes.find(_cmd[2][i]));
+						std::cout << "previous_state: " << previous_state << std::endl;
 						_chans[target]->set_specific_mode(chanmodes.find(_cmd[2][i]), add);
 						if (previous_state != (*this->_chans_it).second->get_specific_mode(chanmodes.find(_cmd[2][i])))
-							modified = 99;
+						{
+							modified = CHAN_MODE_MODIFIED;
+							std::cout << "CHAN MODE UPDATED\n";
+						}
 					}
 					// o et v sont dans chan_usermode
 					// w, O et i sont dans user_mode
@@ -175,6 +155,16 @@ int Command::apply_mode(String target)
 
 			}
 		}
+		else if (_cmd[2][i] == '+')
+		{
+			std::cout << "char is a +\n";
+			add = true;
+		}
+		else if (_cmd[2][i] == '-')
+		{
+			std::cout << "char is a -\n";
+			add = false;
+		}
 		i++;
 	}
 	return (modified);
@@ -191,31 +181,18 @@ e_error	Command::_mode	(void)
 		_rpl_channelmodeis();
 		return (_rpl_creationtime());
 	}
-	else
+	else if (this->_cmd.size() >= 3)
 	{
         std::cout << "I am in MODE\n";
-        if (!has_begin_hashtag(this->_cmd[1]))
-        {
-            if (_cmd[1] != (*_users_it)->get_nickname())
-                return (this->_err_usersdontmatch());
-			ret = apply_mode(_cmd[1]);
-			if (ret == MODE_MODIFIED)
-				return (this->_cmd_mode(0));
-			return (SUCCESS);
-        }
-        else 
-        {
-            if (this->_chan_exist(_cmd[1]) == false)
-                return (this->_err_nosuchchannel());
-			if (_cmd.size() >= 3)
-			{
-				ret = apply_mode(_cmd[1]);
-				if (ret == MODE_MODIFIED)
-					return (this->_cmd_mode(1));
-				return (SUCCESS);
-			}
-        }
-
+		if ((!has_begin_hashtag(this->_cmd[1])) && (_cmd[1] != (*_users_it)->get_nickname()))
+			return (this->_err_usersdontmatch());
+		if ((has_begin_hashtag(this->_cmd[1])) && this->_chan_exist(_cmd[1]) == false)
+			return (this->_err_nosuchchannel());
+		ret = apply_mode(_cmd[1]);
+		if (ret == CHAN_MODE_MODIFIED)
+			return (this->_cmd_mode(1));
+		else if (ret == USER_MODE_MODIFIED)
+			return (this->_cmd_mode(0));
 	}
 	return (SUCCESS);
 }

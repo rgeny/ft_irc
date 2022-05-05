@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 13:14:40 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/04 13:26:00 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/05 17:28:22 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # define END_OF_MSG "\r\n"
 # define WELCOME_MSG "Welcome to the Internet Relay Network "
-# define MODE_MODIFIED 99
+# define USER_MODE_MODIFIED 98
+# define CHAN_MODE_MODIFIED 99
 
 #endif
 
