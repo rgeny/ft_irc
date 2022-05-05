@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 20:49:15 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/28 11:15:59 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/05 10:13:25 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,5 @@ e_error	Message::_cmd_error	(e_error code)
 	msg += (*it).second;
 	cur_user.add_to_queue(msg);
 	this->_tmp_users[&cur_user] = 0;
-//	cur_user.be_disconnected = true;
 	return (code);
 }

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 16:00:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/26 18:42:32 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/05 10:08:27 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ enum e_error
 	ERROR_PING_TIMEOUT,
 	ERROR_REGISTRATION_TIMEOUT,
 	ERROR_CLIENT_EXITED,
-	ERROR_SERVER_EXITED
+	ERROR_SERVER_EXITED,
+	ERROR_BAD_PREFIX
 };
 
 #endif

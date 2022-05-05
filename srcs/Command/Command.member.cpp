@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/04 21:47:44 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/05 10:12:58 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,20 @@ void	Command::_parse	(void)
 
 void	Command::_check_cmd	(void)
 {
+	if (this->_cmd[0][0] == ':')
+	{
+		String &	first_word = this->_cmd[0];
+		String	 	sub = first_word.substr(1, first_word.size());
+		if ((*this->_users_it)->get_nickname() != sub)
+		{
+			this->_tmp_users[*this->_users_it] = 0;
+			this->_cmd_error(ERROR_BAD_PREFIX);
+			return ;
+		}
+		this->_cmd.erase(this->_cmd.begin());
+	}
+
+
 	CmdsFct::iterator	it = this->_cmds_fct.find(this->_cmd[0]);
 
 	if (it != this->_cmds_fct.end())
@@ -104,10 +118,6 @@ void Command::leave_all (void)
 		_err_badchanmask();
 	else if (chan_usermode.size() > 0)
 	{
-		// for (User::CHAN_USERMODE::iterator it = chan_usermode.begin(), ite = chan_usermode.end(); it != ite; it++)
-		// {
-		// 	std::cout << "Chan listed in Chan_usermode: " << it->first << std::endl;
-		// }
 		User::CHAN_USERMODE::iterator it = chan_usermode.begin();
 		User::CHAN_USERMODE::iterator ite = chan_usermode.end();
 		while (it != ite)
@@ -122,29 +132,6 @@ void Command::leave_all (void)
 			it = chan_usermode.begin();
 			ite = chan_usermode.end();
 		}
-
-
-		
-		// for (User::CHAN_USERMODE::iterator it = chan_usermode.begin(); it != ite; it++)
-		// {
-		// 	std::cout << "Is active in this channel: " << it->first << std::endl;
-		// 	_cmd.clear();
-		// 	_cmd.push_back("part");
-		// 	_cmd.push_back((*it).first);
-		// 	_cmd.push_back(":Left");
-		// 	_cmd.push_back("all");
-		// 	_cmd.push_back("channels");
-		// 	_part();
-		// }
-		// User::CHAN_USERMODE::iterator it = chan_usermode.begin();
-		// std::cout << "Is active in this channel: " << it->first << std::endl;
-		// _cmd.clear();
-		// _cmd.push_back("part");
-		// _cmd.push_back((*it).first);
-		// _cmd.push_back(":Left");
-		// _cmd.push_back("all");
-		// _cmd.push_back("channels");
-		// _part();
 		_err_badchanmask();
 	}
 }
