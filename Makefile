@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/05/06 11:07:45 by abesombe         ###   ########.fr        #
+#    Updated: 2022/05/06 14:59:52 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -143,6 +143,7 @@ SRCS				= $(addsuffix .cpp,				main \
 						$(addprefix HistoricalNode,	$(DEFAULT_FILES)) \
 						$(addprefix Historical,		$(DEFAULT_FILES)) \
 						$(addprefix Data,			$(DEFAULT_FILES)) \
+													expand \
 						$(addprefix Channel,		$(DEFAULT_FILES)) \
 						$(addprefix String,			$(DEFAULT_FILES) \
 													.compare \
