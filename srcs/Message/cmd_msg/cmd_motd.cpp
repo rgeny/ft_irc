@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 14:03:00 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/02 11:23:33 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/05 14:37:16 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static const char *motd[] = {
 "",
 "Welcome to MajinBooIRC",
 "",
-"          (｡◝‿◜｡)       ",
+"          \033[35m(｡◝‿◜｡)\033[0m       ",
 "",
 "Type /join #<channel>",
 "",

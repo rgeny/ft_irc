@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/05 14:22:00 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/05 14:36:10 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ bool	Server::_check_tmp_user	(void)
 			this->_rpl_yourhost();
 			this->_rpl_created();
 			this->_rpl_myinfo();
+			this->_cmd_motd();
 			this->_tmp_users.erase(*this->_users_it);
 		}
 	}
