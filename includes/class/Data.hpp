@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 10:50:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/05 10:23:00 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/05 12:19:35 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 # define DFL_HOSTNAME "127.0.0.1"
 # define DFL_SERVERNAME "MajinBoo"
 # define DFL_PASSWD "w8dfrgz4htjydwW48W4WWd4dw"
+# define SERVER_VER "0210"
 
+# include <ctime>
 # include <iostream>
 # include <string>
 # include <vector>
 # include <map>
+
 # include "User.hpp"
 # include "Channel.hpp"
 # include "Historical.hpp"
@@ -66,6 +69,7 @@ class Data
 		String		_password;
 		String		_servername;
 		String		_hostname;
+		String		_created_date;
 		Historical	_historical;
 
 		User *	_get_user	(String nickname) const;
