@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/04 21:24:06 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/05 11:04:28 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ class Message
 		//error reply
 		e_error	_err_alreadyregistred	(void) const;
 		e_error	_err_badchanmask		(void) const;
+		e_error	_err_cannotsendtochan	(String reason) const;
 		e_error	_err_chanoprivsneeded	(void) const;
 		e_error	_err_erroneusnickname	(void) const;
 		e_error	_err_needmoreparams		(void) const;
@@ -67,7 +68,7 @@ class Message
 		e_error	_cmd_error				(e_error code);
 		e_error	_cmd_join				(void) const;
 		e_error	_cmd_kick				(String reason, String kicked) const;
-		e_error	_cmd_mode				(void) const;
+		e_error	_cmd_mode				(int broadcast) const;
 		e_error	_cmd_part				(String reason) const;
 		e_error	_cmd_pong				(void) const;
 		e_error	_cmd_privmsg			(String chat_msg) const;

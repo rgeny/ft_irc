@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Data.structor.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 11:13:11 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/27 20:36:12 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/05 10:22:36 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ Data::~Data	(void)
 	std::cout	<< "Data destructor."
 				<< std::endl;
 	this->_delete_users();
+	this->_delete_channels();
 }
 

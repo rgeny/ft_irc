@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/05/04 18:41:41 by abesombe         ###   ########.fr        #
+#    Updated: 2022/05/05 11:04:02 by abesombe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,6 +71,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													\
 													err_alreadyregistred \
 													err_badchanmask \
+													err_cannotsendtochan \
 													err_chanoprivsneeded \
 													err_erroneusnickname \
 													err_needmoreparams \

@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/04 21:52:01 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/05 10:47:16 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int Command::mode_type(char mode)
 {
 	String modes_list = "aiswoOpstnmlbvk"; // => 0 if unknown mode OovaimnqpsrtklbeI
 	String usermodes_list = "aiwroOsv"; // 1
-	String channelmodes_list = "psitnmlbvk"; // 2
+	String channelmodes_list = "aimnqpsrtklbeI"; // 2
 	if (modes_list.find(mode) == String::npos)
 		return (0);
 	if (usermodes_list.find(mode) == String::npos)
@@ -88,8 +88,8 @@ int Command::apply_mode(String target)
 			if (_chans.size() > 0)
 			{
 			// std::cout << "cur_chan: " << (*this->_chans_it).second->get_chan_name() << std::endl;				
-			std::cout << "CHAN MODES [p|s|i|t|n|b]: ["
-			<< (*this->_chans_it).second->get_specific_mode(CHANMODE_p) 
+			std::cout << "CHAN MODES [p|s|i|t|n|m|l|b|k]: ["
+			<< (*this->_chans_it).second->get_specific_mode(CHANMODE_p)
 			<< "|" 
 			<< (*this->_chans_it).second->get_specific_mode(CHANMODE_s) 
 			<< "|" 
@@ -97,10 +97,17 @@ int Command::apply_mode(String target)
 			<< "|" 
 			<< (*this->_chans_it).second->get_specific_mode(CHANMODE_t) 
 			<< "|" 
-			<< (*this->_chans_it).second->get_specific_mode(CHANMODE_n) 
+			<< (*this->_chans_it).second->get_specific_mode(CHANMODE_n)
 			<< "|" 
-			<< (*this->_chans_it).second->get_specific_mode(CHANMODE_b) 
+			<< (*this->_chans_it).second->get_specific_mode(CHANMODE_m) 
+			<< "|" 
+			<< (*this->_chans_it).second->get_specific_mode(CHANMODE_l) 
+			<< "|" 
+			<< (*this->_chans_it).second->get_specific_mode(CHANMODE_b)
+			<< "|" 
+			<< (*this->_chans_it).second->get_specific_mode(CHANMODE_k) 
 			<< "]\n";
+
 			}
 		}
 		i++;
@@ -128,7 +135,7 @@ e_error	Command::_mode	(void)
                 return (this->_err_usersdontmatch());
 			ret = apply_mode(_cmd[1]);
 			if (ret == MODE_MODIFIED)
-				return (this->_cmd_mode());
+				return (this->_cmd_mode(0));
 			return (SUCCESS);
         }
         else 
@@ -139,7 +146,7 @@ e_error	Command::_mode	(void)
 			{
 				ret = apply_mode(_cmd[1]);
 				if (ret == MODE_MODIFIED)
-					return (this->_cmd_mode());
+					return (this->_cmd_mode(1));
 				return (SUCCESS);
 			}
         }
@@ -166,7 +173,7 @@ e_error	Command::_mode	(void)
 		// (*tmp)[(*_users_it)->get_nickname()] = *_users_it;
 		// // for (Channel::CHAN_USER_LIST::iterator it = tmp->begin(); it != tmp->end(); it++)
 		// // 	std::cout << (*it).second->get_nickname() << std::endl;
-		return (this->_cmd_mode());
+		// return (this->_cmd_mode());
 	}
 	return (SUCCESS);
 }
