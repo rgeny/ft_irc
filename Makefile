@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/05/05 12:17:06 by rgeny            ###   ########.fr        #
+#    Updated: 2022/05/05 14:24:31 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,6 +95,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													rpl_welcome \
 													rpl_yourhost \
 													rpl_created \
+													rpl_myinfo \
 													\
 													cmd_error \
 													cmd_info \
