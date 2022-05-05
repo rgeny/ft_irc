@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/05/05 20:51:11 by abesombe         ###   ########.fr        #
+#    Updated: 2022/05/06 01:33:52 by abesombe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,6 +76,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													err_channelisfull \
 													err_chanoprivsneeded \
 													err_erroneusnickname \
+													err_inviteonlychan \
 													err_needmoreparams \
 													err_nicknameinuse \
 													err_nonicknamegiven \
@@ -101,6 +102,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													\
 													cmd_error \
 													cmd_info \
+													cmd_invite \
 													cmd_join \
 													cmd_kick \
 													cmd_mode \
@@ -115,6 +117,7 @@ SRCS				= $(addsuffix .cpp,				main \
 						$(addprefix Command,		$(DEFAULT_FILES)) \
 													init_cmd_fct \
 													info \
+													invite \
 													join \
 													kick \
 													mode \

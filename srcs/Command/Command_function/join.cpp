@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/05 21:04:45 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 01:33:23 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ S <-   :irc.example.com 366 dan #test :End of /NAMES list.
 int  Command::join_process(String chan_name)
 {
 	Channel::CHAN_USER_LIST *tmp = NULL;
+	Channel::CHAN_INVITE_LIST *chan_invite_list = NULL;
 	bool is_key_set;
 	bool is_limit_set;
+	bool inviteonly_set;
 	this->_chans_it = this->_chans.find(chan_name);
 
 	if (this->_chans_it == _chans.end())
@@ -55,14 +57,23 @@ int  Command::join_process(String chan_name)
 	{
 		is_key_set = (*this->_chans_it).second->get_specific_mode(CHANMODE_k);
 		is_limit_set = (*this->_chans_it).second->get_specific_mode(CHANMODE_l);
+		inviteonly_set = (*this->_chans_it).second->get_specific_mode(CHANMODE_i);
 		
 		if (!is_key_set)
 		{
 			tmp = &(*_chans_it).second->get_chan_user_list();
+			chan_invite_list = &(*_chans_it).second->get_chan_invite_list();
 			if (is_limit_set && (*this->_chans_it).second->get_limit() < tmp->size() + 1)
 				return (_err_channelisfull());
-			std::cout << "Je set le nouveau user en regular user" << std::endl;
-			(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), USERMODE_o, false);
+			if (inviteonly_set && chan_invite_list->find((*_users_it)->get_nickname()) != chan_invite_list->end())
+			{
+				std::cout << "Je set le nouveau user en regular user" << std::endl;
+				(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), USERMODE_o, false);
+			}
+			else if (inviteonly_set && chan_invite_list->find((*_users_it)->get_nickname()) == chan_invite_list->end())
+			{
+				return (_err_inviteonlychan());
+			}
 		}
 		else if ((*this->_chans_it).second->get_key() == _cmd[2])
 		{

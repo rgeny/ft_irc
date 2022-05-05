@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/05 20:50:56 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 01:31:43 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ class Message
 		e_error	_err_channelisfull		(void) const;
 		e_error	_err_chanoprivsneeded	(String reason = "You must be a channel operator") const;
 		e_error	_err_erroneusnickname	(void) const;
+		e_error	_err_inviteonlychan		(void) const;		
 		e_error	_err_needmoreparams		(String reason = "Not enough parameters") const;
 		e_error	_err_nicknameinuse		(void) const;
 		e_error	_err_nonicknamegiven	(void) const;
@@ -71,6 +72,7 @@ class Message
 
 		//command reply
 		e_error	_cmd_error				(e_error code);
+		e_error	_cmd_invite				(void) const;
 		e_error	_cmd_join				(void) const;
 		e_error	_cmd_kick				(String reason, String kicked) const;
 		e_error	_cmd_mode				(int broadcast) const;

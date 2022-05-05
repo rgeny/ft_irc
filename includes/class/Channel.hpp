@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:14:15 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/05 21:09:24 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 01:19:33 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ class Channel
 {
 	public:
 		typedef std::map<String, User *>	CHAN_USER_LIST;
+		typedef std::map<String, User *>	CHAN_INVITE_LIST;
 		typedef std::vector<bool>			MODE_VEC;
 
 	private:
@@ -72,6 +73,7 @@ class Channel
 		String 				_name;
 		String				_topic;
 		CHAN_USER_LIST		_chan_user_list;
+		CHAN_INVITE_LIST	_chan_invite_list;
 		MODE_VEC			_mode;
 		String				_password;
 		size_t				_limit;
@@ -95,6 +97,7 @@ class Channel
 		Channel & operator=(Channel const & rhs);
 		~Channel();
 		CHAN_USER_LIST & get_chan_user_list();
+		CHAN_INVITE_LIST & get_chan_invite_list();
 		std::string& get_chan_name();
 		String &get_topic();
 		time_t 	get_creation() const;

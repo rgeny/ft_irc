@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 17:37:04 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/05 21:09:38 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 00:31:34 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 Channel::CHAN_USER_LIST & Channel::get_chan_user_list()
 {
     return (_chan_user_list);
+}
+
+Channel::CHAN_INVITE_LIST & Channel::get_chan_invite_list()
+{
+    return (_chan_invite_list);
 }
 
 std::string& Channel::get_chan_name()

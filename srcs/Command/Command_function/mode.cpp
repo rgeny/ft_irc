@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/05 21:07:35 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 00:25:05 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int Command::apply_mode(String target)
 					{
 						bool is_key_set = (*this->_chans_it).second->get_specific_mode(CHANMODE_k);
 						bool is_limit_set = (*this->_chans_it).second->get_specific_mode(CHANMODE_l);
+						
 
 						// MODE "k"
 						if (_cmd[2][i] == 'k' && add == true && is_key_set == false)
@@ -137,6 +138,7 @@ int Command::apply_mode(String target)
 							i++;
 							continue;
 						}
+				
 						previous_state = (*this->_chans_it).second->get_specific_mode(chanmodes.find(_cmd[2][i]));
 						std::cout << "previous_state: " << previous_state << std::endl;
 						_chans[target]->set_specific_mode(chanmodes.find(_cmd[2][i]), add);

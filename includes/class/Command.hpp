@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/05 19:34:01 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 01:21:07 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ class Command
 		e_error		_topic			(void);
 		e_error		_part			(void);
 		e_error		_kick			(void);		
+		e_error		_invite			(void);		
 
 //		User/Channel Command
 		e_error		_mode			(void);

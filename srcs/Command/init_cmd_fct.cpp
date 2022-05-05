@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cmd_fct.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 12:48:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/04 15:31:38 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/06 01:07:28 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void	Command::_init_cmd_fct	(void)
 {
 	if (Command::_cmds_fct.size() == 0)
 	{
+
 		Command::_cmds_fct[INFO]		= &Command::_info;
+		Command::_cmds_fct[INVITE]		= &Command::_invite;
 		Command::_cmds_fct[JOIN]		= &Command::_join;
 		Command::_cmds_fct[KICK]		= &Command::_kick;
 		Command::_cmds_fct[MODE]		= &Command::_mode;
@@ -43,7 +45,7 @@ void	Command::_init_cmd_fct	(void)
 //		Command::_cmds_fct[DIE]			= &Command::_die;
 //		Command::_cmds_fct[ENCAP]		= &Command::_encap;
 //		Command::_cmds_fct[ERROR]		= &Command::_error;
-//		Command::_cmds_fct[INVITE]		= &Command::_invite;
+
 //		Command::_cmds_fct[ISON]		= &Command::_ison;
 
 //		Command::_cmds_fct[KILL]		= &Command::_kill;
