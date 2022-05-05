@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_join.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:52:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/03 11:37:36 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/05 13:05:15 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ S <-   :irc.example.com 366 dan #test :End of /NAMES list.
 		std::cout << "Users in this channel: " << (*it).second->get_nickname() << std::endl;
 		if (it != tmp->begin())
 			name_list += " ";
-		if ((*it).second->get_chan_usermode_vec(this->_cmd[1])[1] == true)
+		if ((*it).second->get_chan_usermode_vec(this->_cmd[1])[USERMODE_o] == true)
 			name_list += "@";
 		name_list += (*it).second->get_nickname();
 	}

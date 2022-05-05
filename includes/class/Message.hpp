@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/05 11:04:28 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/05 11:24:55 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ class Message
 		e_error	_err_alreadyregistred	(void) const;
 		e_error	_err_badchanmask		(void) const;
 		e_error	_err_cannotsendtochan	(String reason) const;
-		e_error	_err_chanoprivsneeded	(void) const;
+		e_error	_err_chanoprivsneeded	(String reason = "You must be a channel operator") const;
 		e_error	_err_erroneusnickname	(void) const;
 		e_error	_err_needmoreparams		(void) const;
 		e_error	_err_nicknameinuse		(void) const;

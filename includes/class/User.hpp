@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:04:52 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/04 11:55:57 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/05 12:57:34 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ class User
 		~User	(void);
 
 		User &	operator=	(User & src);
-		
-		typedef std::map<String, std::vector<bool> > 	CHAN_USERMODE;
+		typedef std::vector<bool>						MODE_VEC;
+		typedef std::map<String, MODE_VEC > 			CHAN_USERMODE;
 		const String				get_username		(void) const;
 		const String				get_host			(void) const;
 		const std::vector<bool>		get_mode			(void) const;
@@ -92,7 +92,8 @@ class User
 		void	set_specific_mode	(size_t mode
 									,bool val);
 		void	set_chan_usermode	(String chan_name
-									,int mode);
+									,UserMode mode
+									,bool val);
 		void	set_realname		(String realname);
 
 		bool	co_is_complete	(void) const;

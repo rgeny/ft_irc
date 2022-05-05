@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/04 18:35:31 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/05 12:47:55 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,12 @@ void Command::join_process(String chan_name)
 		this->_chans[chan_name] = new Channel(chan_name, "");
 		_chans_it = this->_chans.find(chan_name);
 		(*_chans_it->second).set_specific_mode(CHANMODE_n, true);
-		(*_chans_it->second).set_specific_mode(CHANMODE_t, true);		
-		(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), 2);
+		(*_chans_it->second).set_specific_mode(CHANMODE_t, true);	
+		(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), USERMODE_o, true);	
+		// (*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), 2);
 	}
 	else
-		(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), 0);
+		(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), USERMODE_o, false);
 	tmp = &(*_chans_it).second->get_chan_user_list();
 	(*tmp)[(*_users_it)->get_nickname()] = *_users_it;
 }

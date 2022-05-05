@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/05 10:47:16 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/05 12:49:10 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int Command::mode_type(char mode)
 {
 	String modes_list = "aiswoOpstnmlbvk"; // => 0 if unknown mode OovaimnqpsrtklbeI
 	String usermodes_list = "aiwroOsv"; // 1
-	String channelmodes_list = "aimnqpsrtklbeI"; // 2
+	String channelmodes_list = "aimnqpsrtklbeIov"; // 2
 	if (modes_list.find(mode) == String::npos)
 		return (0);
 	if (usermodes_list.find(mode) == String::npos)
@@ -57,32 +57,78 @@ int Command::apply_mode(String target)
 
 	while (i < size_modestr)
 	{
-		if (mode_type(_cmd[2][i]))
+		String usermodes = "aiwroOsv";
+		String chanmodes = "aimnqpsrtklbeIov";
+		User *target_user = NULL;
+		if (mode_type(_cmd[2][i])) // MODE EXISTS
 		{
-			if (_cmd[2][i] == 'o')
+			if (_cmd[2][i] == 'o' && _cmd.size() == 3)
 				return (_err_noprivileges("Permission Denied - Only operators may set user mode o"));
-			else if (String("asOv").find(_cmd[2][i]) != String::npos)
+			else if (String("asOv").find(_cmd[2][i]) != String::npos && _cmd.size() == 3)
 				return (_err_umodeunknownflag(String(1, _cmd[2][i]), "is not a recognised user mode"));
 			bool previous_state = false;
-			if (mode_type(_cmd[2][i]) == 1 && !has_begin_hashtag(this->_cmd[1])) // USER
+			if (mode_type(_cmd[2][i]) == 1 && !has_begin_hashtag(this->_cmd[1])) // USER MODE
 			{
-				String usermodes = "aiwroOsv";
+
 				previous_state = (*this->_users_it)->get_specific_mode(usermodes.find(_cmd[2][i]));
 				this->_get_user(target)->set_specific_mode(usermodes.find(_cmd[2][i]), add);
 				if (previous_state != (*this->_users_it)->get_specific_mode(usermodes.find(_cmd[2][i])))
 					modified = 99;
 			}
-			else if (mode_type(_cmd[2][i]) == 2) // CHANNEL
+			else if (mode_type(_cmd[2][i])) // CHANNEL MODE
 			{
-				String chanmodes = "aimnqpsrtklbeI";
+
 				std::cout << "Nb of channels: " << _chans.size() << std::endl;
-				if (_chans.size() > 0)
+				bool chan_operator = is_operator((*_users_it)->get_nickname(), *_chans_it->second);
+				if (_chans.size() > 0 && chan_operator == true)
 				{
-					previous_state = (*this->_chans_it).second->get_specific_mode(chanmodes.find(_cmd[2][i]));
-					_chans[target]->set_specific_mode(chanmodes.find(_cmd[2][i]), add);
-					if (previous_state != (*this->_chans_it).second->get_specific_mode(chanmodes.find(_cmd[2][i])))
-						modified = 99;
+					if ((_cmd[2][i] == 'o' || _cmd[2][i] == 'v') &&_cmd.size() > 3)
+					{
+						if (this->_user_exist(_cmd[3]) == false)
+							return (_err_nosuchnick());
+						if (user_exist_in_chan(*_chans_it->second, _cmd[3]) == false)
+							return (_err_usernotinchannel());
+						target_user = _get_user(_cmd[3]);
+						previous_state = target_user->get_specific_mode(usermodes.find(_cmd[2][i]));
+						target_user->set_specific_mode(usermodes.find(_cmd[2][i]), add);
+						if (previous_state != target_user->get_specific_mode(usermodes.find(_cmd[2][i])))
+							modified = 99;
+					}
+					else
+					{
+						previous_state = (*this->_chans_it).second->get_specific_mode(chanmodes.find(_cmd[2][i]));
+						_chans[target]->set_specific_mode(chanmodes.find(_cmd[2][i]), add);
+						if (previous_state != (*this->_chans_it).second->get_specific_mode(chanmodes.find(_cmd[2][i])))
+							modified = 99;
+					}
+					std::cout << "USER MODES current_user [o|w|O|i|v]: ["					
+					<< (*_users_it)->get_specific_mode(USERMODE_o)
+					<< "|" 
+					<< (*_users_it)->get_specific_mode(USERMODE_w) 
+					<< "|" 
+					<< (*_users_it)->get_specific_mode(USERMODE_O) 
+					<< "|" 
+					<< (*_users_it)->get_specific_mode(USERMODE_i) 
+					<< "|" 
+					<< (*_users_it)->get_specific_mode(USERMODE_v)
+					<< "]\n";
+					if (target_user)
+					{
+						std::cout << "USER MODES target_user [o|w|O|i|v]: ["
+						<< target_user->get_specific_mode(USERMODE_o)
+						<< "|" 
+						<< target_user->get_specific_mode(USERMODE_w) 
+						<< "|" 
+						<< target_user->get_specific_mode(USERMODE_O) 
+						<< "|" 
+						<< target_user->get_specific_mode(USERMODE_i) 
+						<< "|" 
+						<< target_user->get_specific_mode(USERMODE_v)
+						<< "]\n";
+					}
 				}
+				else if (_chans.size() > 0 && chan_operator == false)
+					return (_err_chanoprivsneeded("You must have channel halfop access or above to set channel mode m"));
 			}
 
 			if (_chans.size() > 0)
@@ -142,7 +188,7 @@ e_error	Command::_mode	(void)
         {
             if (this->_chan_exist(_cmd[1]) == false)
                 return (this->_err_nosuchchannel());
-			if (_cmd.size() == 3)
+			if (_cmd.size() >= 3)
 			{
 				ret = apply_mode(_cmd[1]);
 				if (ret == MODE_MODIFIED)
@@ -151,29 +197,6 @@ e_error	Command::_mode	(void)
 			}
         }
 
-
-		// MODE Chichi +i
-		// MODE #aaa +b 62.234.20.10
-		// MODE #aaa +v Chichi
-		// MODE #aaa +im
-		
-		// if (check_chan_name(this->_cmd[1]) == false || check_chan_name(this->_cmd[1]) == false)
-		// 	return (ERROR_CONTINUE);
-		// Channel::CHAN_USER_LIST *tmp = NULL;
-		// this->_chans_it = this->_chans.find(this->_cmd[1]);
-		// if (this->_chans_it == _chans.end())
-		// {
-		// 	this->_chans[this->_cmd[1]] = new Channel(this->_cmd[1], "");
-		// 	_chans_it = this->_chans.find(this->_cmd[1]);
-		// 	(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), 2);
-		// }
-		// else
-		// 	(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), 0);
-		// tmp = &(*_chans_it).second->get_chan_user_list();
-		// (*tmp)[(*_users_it)->get_nickname()] = *_users_it;
-		// // for (Channel::CHAN_USER_LIST::iterator it = tmp->begin(); it != tmp->end(); it++)
-		// // 	std::cout << (*it).second->get_nickname() << std::endl;
-		// return (this->_cmd_mode());
 	}
 	return (SUCCESS);
 }
