@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/05/04 18:41:41 by abesombe         ###   ########.fr        #
+#    Updated: 2022/05/05 11:23:14 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,6 +92,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													rpl_channelmodeis \
 													rpl_creationtime \
 													rpl_welcome \
+													rpl_yourhost \
 													\
 													cmd_error \
 													cmd_info \

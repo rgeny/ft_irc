@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 10:50:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/04 21:24:50 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/05 11:26:37 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define DFL_HOSTNAME "127.0.0.1"
 # define DFL_SERVERNAME "MajinBoo"
 # define DFL_PASSWD "w8dfrgz4htjydwW48W4WWd4dw"
+# define SERVER_VER "0210"
 
 # include <iostream>
 # include <string>

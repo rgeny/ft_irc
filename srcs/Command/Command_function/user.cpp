@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 04:31:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/29 06:07:35 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/05 11:10:36 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,12 @@ e_error		Command::_user	(void)
 						<< tmp
 						<< "\n";
 			cur_user.set_realname(tmp);
-
-			return (this->_rpl_welcome());
+			
+//			this->_rpl_welcome();
+//			this->_rpl_yourhost();
+//			this->_rpl_created();
+//			this->_rpl_myinfo();
+//			return (this->_rpl_lcome());
 		}
 		return (SUCCESS);
 	}
