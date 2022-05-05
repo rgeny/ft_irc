@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 17:37:04 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/05 12:27:44 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/05 18:40:26 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,17 @@ String & Channel::get_topic()
 {
     return (_topic);    
 }
+
+void	Channel::set_key(String key)
+{
+    this->_password = key;
+}
+
+String & Channel::get_key()
+{
+    return (_password);    
+}
+
 
 
 void	Channel::set_specific_mode		(ChanMode mode

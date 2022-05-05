@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:14:15 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/04 18:44:35 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/05 18:40:59 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ class Channel
 		time_t 	get_creation() const;
 		bool 	chan_exist(String) const;
 		void	set_topic(String topic);
+		void	set_key(String key);
+		String &get_key();
 		bool 	has_topic();
 		void	set_specific_mode (ChanMode mode, bool val);
 		void	set_specific_mode (size_t mode, bool val);

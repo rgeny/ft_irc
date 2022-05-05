@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/05 10:24:38 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/05 19:34:01 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ class Command
 		bool 	is_operator(String nickname, Channel &chan);
 		String	concat_last_args(size_t start_index);
 		void	leave_all (void);
-		void 	join_process(String chan_name);
+		int 	join_process(String chan_name);
 		int		mode_type(char mode);
 		int		apply_mode(String target);
 

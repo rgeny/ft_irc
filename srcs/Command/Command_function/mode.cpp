@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/05 17:51:14 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/05 19:16:33 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,28 @@ int Command::apply_mode(String target)
 					}
 					else
 					{
+						bool is_key_set = (*this->_chans_it).second->get_specific_mode(CHANMODE_k);
+						if (_cmd[2][i] == 'k' && add == true && is_key_set == false)
+						{ 
+							// std::cout << "I am in +k mode request\n";
+							if (_cmd.size() < 4)
+								return (this->_err_needmoreparams("k * You must specify a parameter for the key mode. Syntax: <key>."));
+							(*_chans_it).second->set_key(_cmd[3]);
+						}
+						else if (_cmd[2][i] == 'k' && add == true && is_key_set == true)
+						{
+							i++;
+							continue;	
+						}
+						else if (_cmd[2][i] == 'k' && add == false && is_key_set == true)
+						{
+							(*_chans_it).second->set_key("");
+						}
+						else if (_cmd[2][i] == 'k' && add == false && is_key_set == false)
+						{
+							i++;
+							continue;
+						}
 						previous_state = (*this->_chans_it).second->get_specific_mode(chanmodes.find(_cmd[2][i]));
 						std::cout << "previous_state: " << previous_state << std::endl;
 						_chans[target]->set_specific_mode(chanmodes.find(_cmd[2][i]), add);
@@ -130,7 +152,7 @@ int Command::apply_mode(String target)
 					return (_err_chanoprivsneeded("You must have channel halfop access or above to set channel mode m"));
 			}
 
-			if (_chans.size() > 0)
+			if (_chans_it != _chans.end() && (*_chans_it).second)
 			{
 			// std::cout << "cur_chan: " << (*this->_chans_it).second->get_chan_name() << std::endl;				
 			std::cout << "CHAN MODES [p|s|i|t|n|m|l|b|k]: ["
@@ -188,6 +210,8 @@ e_error	Command::_mode	(void)
 			return (this->_err_usersdontmatch());
 		if ((has_begin_hashtag(this->_cmd[1])) && this->_chan_exist(_cmd[1]) == false)
 			return (this->_err_nosuchchannel());
+		else
+			_chans_it = _chans.find(_cmd[1]);
 		ret = apply_mode(_cmd[1]);
 		if (ret == CHAN_MODE_MODIFIED)
 			return (this->_cmd_mode(1));

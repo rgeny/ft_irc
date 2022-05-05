@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/05 15:16:46 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/05 20:02:47 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@ S <-   :irc.example.com 353 dan = #test :@dan
 S <-   :irc.example.com 366 dan #test :End of /NAMES list.
 */
 
-void Command::join_process(String chan_name)
+int  Command::join_process(String chan_name)
 {
 	Channel::CHAN_USER_LIST *tmp = NULL;
+	bool is_key_set;
 	this->_chans_it = this->_chans.find(chan_name);
 	if (this->_chans_it == _chans.end())
 	{
@@ -46,13 +47,24 @@ void Command::join_process(String chan_name)
 		(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), USERMODE_o, true);	
 		// (*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), 2);
 	}
-	else
+	else 
 	{
-		std::cout << "Je set le nouveau user en regular user" << std::endl;
-		(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), USERMODE_o, false);
+		is_key_set = (*this->_chans_it).second->get_specific_mode(CHANMODE_k);
+		if (!is_key_set)
+		{
+			std::cout << "Je set le nouveau user en regular user" << std::endl;
+			(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), USERMODE_o, false);
+		}
+		else if ((*this->_chans_it).second->get_key() == _cmd[2])
+		{
+			(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), USERMODE_o, false);
+		}
+		else if ((*this->_chans_it).second->get_key() != _cmd[2])
+			return (_err_badchannelkey());
 	}
 	tmp = &(*_chans_it).second->get_chan_user_list();
 	(*tmp)[(*_users_it)->get_nickname()] = *_users_it;
+	return (SUCCESS);
 }
 
 // USER => usermode(i, w,)
@@ -81,8 +93,8 @@ e_error	Command::_join	(void)
 			{
 				if (check_chan_name(this->_cmd[1]) == false || check_chan_name(this->_cmd[1]) == false)
 					return (ERROR_CONTINUE);
-				join_process(_cmd[1]);
-				return (this->_cmd_join());
+				if (join_process(_cmd[1]) != ERROR_CONTINUE)
+					return (this->_cmd_join());
 			}
 			else if (chan_list.size() > 1)
 			{
