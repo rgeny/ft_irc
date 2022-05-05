@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:14:15 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/05 18:40:59 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/05 21:09:24 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,9 @@ class Channel
 		void	set_topic(String topic);
 		void	set_key(String key);
 		String &get_key();
+		void	set_limit(String limit);
+		void	set_limit(size_t limit);
+		size_t &  get_limit();
 		bool 	has_topic();
 		void	set_specific_mode (ChanMode mode, bool val);
 		void	set_specific_mode (size_t mode, bool val);

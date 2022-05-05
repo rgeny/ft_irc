@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/05 19:16:33 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/05 21:07:35 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,9 @@ int Command::apply_mode(String target)
 					else
 					{
 						bool is_key_set = (*this->_chans_it).second->get_specific_mode(CHANMODE_k);
+						bool is_limit_set = (*this->_chans_it).second->get_specific_mode(CHANMODE_l);
+
+						// MODE "k"
 						if (_cmd[2][i] == 'k' && add == true && is_key_set == false)
 						{ 
 							// std::cout << "I am in +k mode request\n";
@@ -107,6 +110,29 @@ int Command::apply_mode(String target)
 							(*_chans_it).second->set_key("");
 						}
 						else if (_cmd[2][i] == 'k' && add == false && is_key_set == false)
+						{
+							i++;
+							continue;
+						}
+
+						// MODE "l"
+						
+						if (_cmd[2][i] == 'l' && add == true && is_limit_set == false)
+						{
+							if (_cmd.size() < 4)
+								return (this->_err_needmoreparams("l * You must specify a parameter for the limit mode. Syntax: <limit>."));
+							(*_chans_it).second->set_limit(_cmd[3]);
+						}
+						else if (_cmd[2][i] == 'l' && add == true && is_limit_set == true)
+						{
+							i++;
+							continue;	
+						}
+						else if (_cmd[2][i] == 'l' && add == false && is_limit_set == true)
+						{
+							(*_chans_it).second->set_limit(0);
+						}
+						else if (_cmd[2][i] == 'l' && add == false && is_limit_set == false)
 						{
 							i++;
 							continue;

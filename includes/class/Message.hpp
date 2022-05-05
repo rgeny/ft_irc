@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/05 19:29:51 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/05 20:50:56 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ class Message
 		e_error	_err_badchanmask		(void) const;
 		e_error	_err_badchannelkey		(void) const;
 		e_error	_err_cannotsendtochan	(String reason) const;
+		e_error	_err_channelisfull		(void) const;
 		e_error	_err_chanoprivsneeded	(String reason = "You must be a channel operator") const;
 		e_error	_err_erroneusnickname	(void) const;
 		e_error	_err_needmoreparams		(String reason = "Not enough parameters") const;

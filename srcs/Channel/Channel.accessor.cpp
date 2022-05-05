@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 17:37:04 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/05 18:40:26 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/05 21:09:38 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,21 @@ String & Channel::get_key()
     return (_password);    
 }
 
+void	Channel::set_limit(String limit)
+{
+    this->_limit = strtol(limit.c_str(), NULL, 10);
+}
 
+
+void	Channel::set_limit(size_t limit)
+{
+    this->_limit = limit;
+}
+
+size_t& Channel::get_limit()
+{
+    return (_limit);
+}
 
 void	Channel::set_specific_mode		(ChanMode mode
 									    ,bool val)

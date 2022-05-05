@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/05 20:02:47 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/05 21:04:45 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ int  Command::join_process(String chan_name)
 {
 	Channel::CHAN_USER_LIST *tmp = NULL;
 	bool is_key_set;
+	bool is_limit_set;
 	this->_chans_it = this->_chans.find(chan_name);
+
 	if (this->_chans_it == _chans.end())
 	{
 		this->_chans[chan_name] = new Channel(chan_name, "");
@@ -46,12 +48,19 @@ int  Command::join_process(String chan_name)
 		(*_chans_it->second).set_specific_mode(CHANMODE_t, true);	
 		(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), USERMODE_o, true);	
 		// (*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), 2);
+		// ADD USER TO CHAN_USER_LIST
+
 	}
 	else 
 	{
 		is_key_set = (*this->_chans_it).second->get_specific_mode(CHANMODE_k);
+		is_limit_set = (*this->_chans_it).second->get_specific_mode(CHANMODE_l);
+		
 		if (!is_key_set)
 		{
+			tmp = &(*_chans_it).second->get_chan_user_list();
+			if (is_limit_set && (*this->_chans_it).second->get_limit() < tmp->size() + 1)
+				return (_err_channelisfull());
 			std::cout << "Je set le nouveau user en regular user" << std::endl;
 			(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), USERMODE_o, false);
 		}
@@ -61,9 +70,11 @@ int  Command::join_process(String chan_name)
 		}
 		else if ((*this->_chans_it).second->get_key() != _cmd[2])
 			return (_err_badchannelkey());
+		// ADD USER TO CHAN_USER_LIST
 	}
 	tmp = &(*_chans_it).second->get_chan_user_list();
 	(*tmp)[(*_users_it)->get_nickname()] = *_users_it;
+
 	return (SUCCESS);
 }
 
@@ -86,6 +97,7 @@ e_error	Command::_join	(void)
 		{
 			std::vector<String> chan_list;
 			std::vector<String> password_list;
+
 			chan_list = split(this->_cmd[1], ",");
 			if (_cmd.size() > 2)
 				password_list = split(this->_cmd[2], ",");
