@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/05 12:07:05 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/05 12:09:26 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ class Message
 		e_error	_rpl_creationtime		(void) const;
 		e_error	_rpl_welcome			(void) const;
 		e_error	_rpl_yourhost			(void) const;
+		e_error	_rpl_created			(void) const;
 
 		//command reply
 		e_error	_cmd_error				(e_error code);
