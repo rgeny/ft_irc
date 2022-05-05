@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/05 10:12:58 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/05 10:26:56 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,8 @@ void	Command::_parse	(void)
 
 void	Command::_check_cmd	(void)
 {
-	if (this->_cmd[0][0] == ':')
-	{
-		String &	first_word = this->_cmd[0];
-		String	 	sub = first_word.substr(1, first_word.size());
-		if ((*this->_users_it)->get_nickname() != sub)
-		{
-			this->_tmp_users[*this->_users_it] = 0;
-			this->_cmd_error(ERROR_BAD_PREFIX);
-			return ;
-		}
-		this->_cmd.erase(this->_cmd.begin());
-	}
-
+	if (!this->_check_prefix())
+		return ;
 
 	CmdsFct::iterator	it = this->_cmds_fct.find(this->_cmd[0]);
 
@@ -61,6 +50,23 @@ void	Command::_check_cmd	(void)
 		e_error	error = (this->*(it->second))();
 		this->_cmd_error(error);
 	}
+}
+
+bool	Command::_check_prefix	(void)
+{
+	if (this->_cmd[0][0] == ':')
+	{
+		String &	first_word = this->_cmd[0];
+		String		sub = first_word.substr(1, first_word.size());
+
+		if((*this->_users_it)->get_nickname() != sub)
+		{
+			this->_cmd_error(ERROR_BAD_PREFIX);
+			return (false);
+		}
+		this->_cmd.erase(this->_cmd.begin());
+	}
+	return (true);
 }
 
 bool	Command::_nick_already_used	(String & nickname) const

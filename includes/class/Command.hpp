@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/04 21:47:47 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/05 10:24:38 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ class Command
 		bool	_get_user_type		(void);
 		void	_parse				(void);
 		void	_check_cmd			(void);
+		bool	_check_prefix		(void);
 		bool	_nick_already_used	(String & nickname) const;
 
 
