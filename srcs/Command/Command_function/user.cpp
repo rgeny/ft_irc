@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 04:31:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/05 11:10:36 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/06 18:11:46 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 e_error		Command::_user	(void)
 {
-	if ((*this->_users_it)->get_nickname() != "anonymous")
-	{
+	// if ((*this->_users_it)->get_nickname() != "anonymous")
+	// {
 		if (this->_cmd.size() > 4)
 		{
 			User & cur_user = *(*this->_users_it);
@@ -32,14 +32,8 @@ e_error		Command::_user	(void)
 						<< tmp
 						<< "\n";
 			cur_user.set_realname(tmp);
-			
-//			this->_rpl_welcome();
-//			this->_rpl_yourhost();
-//			this->_rpl_created();
-//			this->_rpl_myinfo();
-//			return (this->_rpl_lcome());
 		}
 		return (SUCCESS);
-	}
+	// }
 	return (ERROR_CONTINUE);
 }

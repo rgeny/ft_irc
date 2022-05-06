@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/06 17:40:12 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 18:34:25 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,11 +142,21 @@ int Command::apply_mode(String target)
 
 						// MODE "b"
 						std::cout << "b: _cmd.size(): " << _cmd.size() << std::endl;
+						size_t count_mode_letters = 0;
+						for (size_t i = 0 ; i < _cmd[2].size(); i++)
+						{
+							if (_cmd[2][i] != '+' && _cmd[2][i] != '-')
+								count_mode_letters++;
+						}
+							
 						if (_cmd[2][i] == 'b' && add == true && _cmd.size() < 4)
 						{
 							if (chan_ban_list->size() > 0)
 								_rpl_banlist();
-							_rpl_endofbanlist();
+							if (count_mode_letters > 1)
+								_rpl_endofbanlist();
+							else
+								return (_rpl_endofbanlist());
 						}
 						else if (_cmd[2][i] == 'b' && add == true && _cmd.size() > 3)
 						{
@@ -171,6 +181,7 @@ int Command::apply_mode(String target)
 							modified = CHAN_MODE_MODIFIED;
 							std::cout << "CHAN MODE UPDATED\n";
 						}
+						_chans[target]->set_specific_mode(chanmodes.find(_cmd[2][i]), false);
 					}
 					// o et v sont dans chan_usermode
 					// w, O et i sont dans user_mode
