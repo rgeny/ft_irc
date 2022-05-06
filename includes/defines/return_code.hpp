@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 13:13:28 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/04 18:44:15 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 15:27:06 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@
 # define ERR_NOTOPLEVEL			"413"
 # define ERR_WILDTOPLEVEL		"414"
 # define ERR_BADMASK			"415"
+# define ERR_TOOMANYMATCHES		"416"
 # define ERR_UNKNOWNCOMMAND		"421"
 # define ERR_NOMOTD				"422"
 # define ERR_NOADMININFO		"423"

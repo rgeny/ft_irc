@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/05/06 14:59:52 by rgeny            ###   ########.fr        #
+#    Updated: 2022/05/06 15:25:54 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,6 +92,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													err_unavailresource \
 													err_usernotinchannel \
 													err_usersdontmatch \
+													err_toomanymatches \
 													\
 													rpl_channelmodeis \
 													rpl_creationtime \
@@ -137,6 +138,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													user \
 													userhost \
 													pong \
+													list \
 						$(addprefix Server,			$(DEFAULT_FILES)) \
 						$(addprefix Client,			$(DEFAULT_FILES)) \
 						$(addprefix User,			$(DEFAULT_FILES)) \
