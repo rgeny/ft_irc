@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/06 18:34:25 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 19:25:48 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,8 +172,8 @@ int Command::apply_mode(String target)
 							}
 						}
 
-						if (_cmd[2][i] != 'b')
-							previous_state = (*this->_chans_it).second->get_specific_mode(chanmodes.find(_cmd[2][i]));
+
+						previous_state = (*this->_chans_it).second->get_specific_mode(chanmodes.find(_cmd[2][i]));
 						std::cout << "previous_state: " << previous_state << std::endl;
 						_chans[target]->set_specific_mode(chanmodes.find(_cmd[2][i]), add);
 						if (previous_state != (*this->_chans_it).second->get_specific_mode(chanmodes.find(_cmd[2][i])))
@@ -181,7 +181,8 @@ int Command::apply_mode(String target)
 							modified = CHAN_MODE_MODIFIED;
 							std::cout << "CHAN MODE UPDATED\n";
 						}
-						_chans[target]->set_specific_mode(chanmodes.find(_cmd[2][i]), false);
+						if (_cmd[2][i] == 'b')
+							_chans[target]->set_specific_mode(chanmodes.find(_cmd[2][i]), false);
 					}
 					// o et v sont dans chan_usermode
 					// w, O et i sont dans user_mode

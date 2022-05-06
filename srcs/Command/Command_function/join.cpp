@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/06 17:50:22 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 19:29:03 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ int  Command::join_process(String chan_name)
 		inviteonly_set = (*this->_chans_it).second->get_specific_mode(CHANMODE_i);
 		chan_ban_list = &(*this->_chans_it).second->get_chan_ban_list();
 		is_on_ban_list = (chan_ban_list->find((*_users_it)->get_nickname()) != chan_ban_list->end());
+
 		std::cout << "is_on_ban_list? " << is_on_ban_list << std::endl;
+	
 		
 		if (!is_key_set)
 		{
@@ -79,6 +81,10 @@ int  Command::join_process(String chan_name)
 			else if (inviteonly_set && chan_invite_list->find((*_users_it)->get_nickname()) == chan_invite_list->end())
 			{
 				return (_err_inviteonlychan());
+			}
+			else if (is_on_ban_list && chan_invite_list->find((*_users_it)->get_nickname()) != chan_invite_list->end())
+			{
+				(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), USERMODE_o, false);
 			}
 			else if (!inviteonly_set && is_on_ban_list)
 			{
