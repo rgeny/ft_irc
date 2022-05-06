@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:09:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/06 15:03:47 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/06 19:31:11 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ bool	Data::_is_valid_name	(String::iterator & it_word
 								,String::iterator & it_dir
 								,String::iterator & ite_dir
 								,size_t & i
-								,bool escape)
+								,bool & escape)
 {
 	size_t	j = 0;
 
@@ -58,6 +58,12 @@ bool	Data::_is_valid_name	(String::iterator & it_word
 				&& *(it_word + i + j) != '\\')
 			|| escape))
 	{
+		if (*(it_word + i + j) == '*'
+			|| *(it_word + i + j) == '?'
+			|| *(it_word + i + j) == '\\')
+		{
+			escape = false;
+		}
 		if (*(it_word + i + j) != *(it_dir + i + j))
 			return (false);
 		j++;
@@ -88,7 +94,7 @@ bool	Data::_expand_cmp	(String & word
 	while ((it_word + i) != ite_word
 			|| (it_dir + i) != ite_dir)
 	{
-		if (*(it_word + i) == '\\' && (it_word + i + 1) != ite_word)
+		if (!escape && *(it_word + i) == '\\' && (it_word + i + 1) != ite_word)
 		{
 			escape = true;
 			it_word++;
