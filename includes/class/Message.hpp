@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/06 17:14:46 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 18:05:59 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ class Message
 		e_error	_err_usersdontmatch		(void) const;
 		e_error	_err_usernotinchannel	(void) const;
 		e_error	_err_noprivileges		(String reason) const;
+		e_error	_err_toomanymatches		(void) const;
 
 		//reply
 		e_error	_rpl_banlist			(void) const;		
@@ -93,7 +94,7 @@ class Message
 		e_error	_cmd_motd				(void) const;
 		e_error	_cmd_time				(void) const;
 
-	private:
+//	private:
 		MsgError	_msg_error;
 
 		void	_init_msg_error	(void);
