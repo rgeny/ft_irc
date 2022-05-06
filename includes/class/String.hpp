@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 00:16:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/27 21:17:16 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/06 19:15:46 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,12 +129,13 @@ class String
 									,size_t pos = npos) const;
 
 	private:
-		static std::vector<unsigned char>	 _case_off;
+		typedef std::vector<unsigned char>	CASE_OFF_TYPE;
+		static CASE_OFF_TYPE	 			_case_off;
 
-		static void		_init_case_off	(void);
-		unsigned char	_cast	(char c) const;
-		std::string		_out_of_range	(size_t pos
-										,size_t this_size) const;
+		static CASE_OFF_TYPE	_init_case_off	(void);
+		unsigned char			_cast	(char c) const;
+		std::string				_out_of_range	(size_t pos
+												,size_t this_size) const;
 };
 bool 	operator==	(const String & lhs
 					,const String & rhs);

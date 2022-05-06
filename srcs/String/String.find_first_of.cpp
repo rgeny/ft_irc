@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 17:23:03 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/27 17:23:11 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/06 19:06:25 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,13 @@
 size_t	String::find_first_of	(const String & str
 								,size_t pos) const
 {
-	size_t	str_size	= str.size(),
-			this_size	= this->size();
-
-	for (; pos < this_size; pos++)
-	{
-		for (size_t j = 0; j < str_size; j++)
-		{
-			if (this->_cast((*this)[pos]) == this->_cast(str[j]))
-				return (pos);
-		}
-	}
-	return (std::string::npos);
+	return (this->find_first_of(str.c_str(), pos, str.size()));
 }
 
 size_t	String::find_first_of	(const char * s
 								,size_t pos) const
 {
-	size_t	s_size		= strlen(s),
-			this_size	= this->size();
-
-	for (;pos < this_size; pos++)
-	{
-		for (size_t j = 0; j < s_size; j++)
-		{
-			if (this->_cast((*this)[pos]) == this->_cast(s[j]))
-				return (pos);
-		}
-	}
-	return (std::string::npos);
+	return (this->find_first_of(s, pos, strlen(s)));
 }
 
 
@@ -68,12 +46,6 @@ size_t	String::find_first_of	(const char * s
 size_t	String::find_first_of	(char c
 								,size_t pos) const
 {
-	size_t	this_size	= this->size();
-
-	for (; pos < this_size; pos++)
-	{
-		if (this->_cast((*this)[pos]) == this->_cast(c))
-			return (pos);
-	}
-	return (std::string::npos);
+	String	tmp(1, c);
+	return (this->find_first_of(tmp.c_str(), 0, 1));
 }
