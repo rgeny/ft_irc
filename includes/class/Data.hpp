@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 10:50:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/05 22:17:50 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/06 15:04:22 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ class Data
 		bool	_user_exist	(String nickname) const;
 		bool	_chan_exist	(String name) const;
 
-		std::vector<String>	_expand_mask	(String word);
-
+		std::vector<String>	_expand_mask	(String name);
+		std::vector<String> _find_chan		(String name);
 
 	private:
 		void	_delete_users	(void);

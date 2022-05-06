@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:09:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/05 22:22:33 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/06 15:03:47 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,6 @@ bool	Data::_expand_cmp	(String & word
 
 std::vector<String>	Data::_expand_mask	(String name)
 {
-	(void)name;
 	std::vector<String>	expand;
 	this->_fill_vector(expand);
 
@@ -139,4 +138,19 @@ std::vector<String>	Data::_expand_mask	(String name)
 	}
 
 	return (expand);
+}
+
+std::vector<String> Data::_find_chan	(String name)
+{
+	std::vector<String>	expand;
+	this->_add_chans(expand);
+
+	for (std::vector<String>::iterator it = expand.begin(), ite = expand.end(); it != ite; it++)
+	{
+		if (!this->_expand_cmp(name, *it))
+			expand.erase(it);
+	}
+
+	return (expand);
+
 }
