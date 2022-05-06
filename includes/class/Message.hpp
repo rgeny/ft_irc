@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/06 11:07:22 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 17:14:46 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ class Message
 		e_error	_err_alreadyregistred	(void) const;
 		e_error	_err_badchanmask		(void) const;
 		e_error	_err_badchannelkey		(void) const;
+		e_error	_err_banlistfull		(void) const;
+		e_error	_err_bannedfromchan		(void) const;
 		e_error	_err_cannotsendtochan	(String reason) const;
 		e_error	_err_channelisfull		(void) const;
 		e_error	_err_chanoprivsneeded	(String reason = "You must be a channel operator") const;
@@ -63,16 +65,18 @@ class Message
 		e_error	_err_noprivileges		(String reason) const;
 
 		//reply
+		e_error	_rpl_banlist			(void) const;		
 		e_error	_rpl_channelmodeis		(void) const;
-		e_error	_rpl_creationtime		(void) const;
-		e_error	_rpl_inviting			(void) const;
-		e_error	_rpl_welcome			(void) const;
-		e_error	_rpl_yourhost			(void) const;
 		e_error	_rpl_created			(void) const;
+		e_error	_rpl_creationtime		(void) const;
+		e_error	_rpl_endofbanlist		(void) const;	
+		e_error	_rpl_inviting			(void) const;
 		e_error	_rpl_myinfo				(void) const;
+		e_error	_rpl_notopic			(void) const;
 		e_error	_rpl_topic				(void) const;
 		e_error	_rpl_topicwhotime		(void) const;
-		e_error	_rpl_notopic			(void) const;
+		e_error	_rpl_yourhost			(void) const;
+		e_error	_rpl_welcome			(void) const;
 
 		//command reply
 		e_error	_cmd_error				(e_error code);

@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/06 00:25:05 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 17:40:12 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int Command::apply_mode(String target)
 			}
 			else if (mode_type(_cmd[2][i])) // CHANNEL MODE
 			{
-
+				Channel::CHAN_BAN_LIST *chan_ban_list = NULL;
 				std::cout << "Nb of channels: " << _chans.size() << std::endl;
 				bool chan_operator = is_operator((*_users_it)->get_nickname(), *_chans_it->second);
 				if (_chans.size() > 0 && chan_operator == true)
@@ -91,7 +91,8 @@ int Command::apply_mode(String target)
 					{
 						bool is_key_set = (*this->_chans_it).second->get_specific_mode(CHANMODE_k);
 						bool is_limit_set = (*this->_chans_it).second->get_specific_mode(CHANMODE_l);
-						
+						chan_ban_list = &(*_chans_it).second->get_chan_ban_list();
+						// bool is_ban_set = (*this->_chans_it).second->get_specific_mode(CHANMODE_b);
 
 						// MODE "k"
 						if (_cmd[2][i] == 'k' && add == true && is_key_set == false)
@@ -138,8 +139,31 @@ int Command::apply_mode(String target)
 							i++;
 							continue;
 						}
-				
-						previous_state = (*this->_chans_it).second->get_specific_mode(chanmodes.find(_cmd[2][i]));
+
+						// MODE "b"
+						std::cout << "b: _cmd.size(): " << _cmd.size() << std::endl;
+						if (_cmd[2][i] == 'b' && add == true && _cmd.size() < 4)
+						{
+							if (chan_ban_list->size() > 0)
+								_rpl_banlist();
+							_rpl_endofbanlist();
+						}
+						else if (_cmd[2][i] == 'b' && add == true && _cmd.size() > 3)
+						{
+							if (!chan_operator)
+							    return (_err_chanoprivsneeded());
+							if (chan_ban_list->size() >= CHAN_BAN_LIST_MAX_SIZE)
+								return (_err_banlistfull());
+							if (chan_ban_list->find(_cmd[3]) == chan_ban_list->end())
+							{
+								Channel::PAIR_BAN_CREATORNAME_TIME bpair = std::make_pair(*_users_it, time(0));
+								chan_ban_list->insert(std::make_pair(_cmd[3], bpair));
+								_cmd[3] = _cmd[3] + "!*@*";
+							}
+						}
+
+						if (_cmd[2][i] != 'b')
+							previous_state = (*this->_chans_it).second->get_specific_mode(chanmodes.find(_cmd[2][i]));
 						std::cout << "previous_state: " << previous_state << std::endl;
 						_chans[target]->set_specific_mode(chanmodes.find(_cmd[2][i]), add);
 						if (previous_state != (*this->_chans_it).second->get_specific_mode(chanmodes.find(_cmd[2][i])))

@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/06 10:57:42 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 17:50:22 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@ int  Command::join_process(String chan_name)
 {
 	Channel::CHAN_USER_LIST *tmp = NULL;
 	Channel::CHAN_INVITE_LIST *chan_invite_list = NULL;
+	Channel::CHAN_BAN_LIST *chan_ban_list = NULL;
 	bool is_key_set;
 	bool is_limit_set;
 	bool inviteonly_set;
+	bool is_on_ban_list;
 	this->_chans_it = this->_chans.find(chan_name);
 
 	if (this->_chans_it == _chans.end())
@@ -48,8 +50,8 @@ int  Command::join_process(String chan_name)
 		_chans_it = this->_chans.find(chan_name);
 		(*_chans_it->second).set_specific_mode(CHANMODE_n, true);
 		(*_chans_it->second).set_specific_mode(CHANMODE_t, true);	
+		// OPERATOR USER
 		(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), USERMODE_o, true);	
-		// (*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), 2);
 		// ADD USER TO CHAN_USER_LIST
 
 	}
@@ -58,6 +60,9 @@ int  Command::join_process(String chan_name)
 		is_key_set = (*this->_chans_it).second->get_specific_mode(CHANMODE_k);
 		is_limit_set = (*this->_chans_it).second->get_specific_mode(CHANMODE_l);
 		inviteonly_set = (*this->_chans_it).second->get_specific_mode(CHANMODE_i);
+		chan_ban_list = &(*this->_chans_it).second->get_chan_ban_list();
+		is_on_ban_list = (chan_ban_list->find((*_users_it)->get_nickname()) != chan_ban_list->end());
+		std::cout << "is_on_ban_list? " << is_on_ban_list << std::endl;
 		
 		if (!is_key_set)
 		{
@@ -67,7 +72,7 @@ int  Command::join_process(String chan_name)
 				return (_err_channelisfull());
 			if (inviteonly_set && chan_invite_list->find((*_users_it)->get_nickname()) != chan_invite_list->end())
 			{
-				std::cout << "Je set le nouveau user en regular user" << std::endl;
+				// REGULAR USER
 				(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), USERMODE_o, false);
 				(*chan_invite_list).erase((*_users_it)->get_nickname());
 			}
@@ -75,7 +80,11 @@ int  Command::join_process(String chan_name)
 			{
 				return (_err_inviteonlychan());
 			}
-			else if (!inviteonly_set)
+			else if (!inviteonly_set && is_on_ban_list)
+			{
+				return (_err_bannedfromchan());
+			}
+			else if (!inviteonly_set && !is_on_ban_list)
 			{
 				(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), USERMODE_o, false);
 			}
@@ -86,7 +95,6 @@ int  Command::join_process(String chan_name)
 		}
 		else if ((*this->_chans_it).second->get_key() != _cmd[2])
 			return (_err_badchannelkey());
-		// ADD USER TO CHAN_USER_LIST
 	}
 	tmp = &(*_chans_it).second->get_chan_user_list();
 	(*tmp)[(*_users_it)->get_nickname()] = *_users_it;

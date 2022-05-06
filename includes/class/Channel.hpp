@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:14:15 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/06 11:20:32 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 14:58:06 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,9 @@ class Channel
 {
 	public:
 		typedef std::map<String, User *>	CHAN_USER_LIST;
+		typedef std::pair<User *, time_t>	PAIR_BAN_CREATORNAME_TIME;
 		typedef std::map<String, User *>	CHAN_INVITE_LIST;
+		typedef std::map<String, PAIR_BAN_CREATORNAME_TIME>	CHAN_BAN_LIST;
 		typedef std::vector<bool>			MODE_VEC;
 
 	private:
@@ -76,6 +78,7 @@ class Channel
 		time_t				_topic_creation_time;
 		CHAN_USER_LIST		_chan_user_list;
 		CHAN_INVITE_LIST	_chan_invite_list;
+		CHAN_BAN_LIST		_chan_ban_list;
 		MODE_VEC			_mode;
 		String				_password;
 		size_t				_limit;
@@ -100,6 +103,7 @@ class Channel
 		~Channel();
 		CHAN_USER_LIST & get_chan_user_list();
 		CHAN_INVITE_LIST & get_chan_invite_list();
+		CHAN_BAN_LIST & get_chan_ban_list();
 		std::string& get_chan_name();
 		String &get_topic();
 		time_t &get_topic_creation_time();

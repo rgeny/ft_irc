@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 18:56:04 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/06 10:24:25 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 16:58:13 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,34 +17,20 @@
 e_error	Message::_cmd_mode	(int broadcast) const
 {
 	String	msg;
-	// if (user_chan == 1) // Complex USER in CHANNEL
-	// {
-		// :dan!d@127.0.0.1 MODE #aa Krilin :+mv
+	String  part1 = (_cmd.size() > 3 ? _cmd[2] + "" : ":" + _cmd[2]);
+	String 	part2 = (_cmd.size() > 3 ? " :" + _cmd[3] : "");
+	String  final_part = part1 + part2;
 		
-		msg	= this->_set_msg_base((*_users_it)->get_nickname()
+	msg	= this->_set_msg_base((*_users_it)->get_nickname()
 										+ "!" + (*_users_it)->get_username()
 										+ "@"
 										+ this->_hostname, 
 										this->_cmd[0] 
 										+ " " 
 										+ this->_cmd[1]
-										, ":" + _cmd[2] + (_cmd.size() > 3? " " + _cmd[3] : ""))
+										, final_part )
 										+ "\r\n";
 
-	// }
-	// else if (user_chan == 2) // Single USER ou CHANNEL
-	// {
-	// 	// :dan!d@127.0.0.1 MODE #aa :+t
-
-	// 	msg	= this->_set_msg_base((*_users_it)->get_nickname()
-	// 									+ "!" + (*_users_it)->get_username()
-	// 									+ "@"
-	// 									+ this->_hostname, 
-	// 									this->_cmd[0] 
-	// 									+ " " 
-	// 									+ this->_cmd[1], ":" + _cmd[2])
-	// 									+ "\r\n";
-	// }
 	(*this->_users_it)->add_to_queue(msg);
 	if (broadcast == 1)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   User.structor.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:35:05 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/02 13:00:03 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/06 12:18:08 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 User:: User	(void)
 	:_username(DFL_USERNAME)
 	,_realname(DFL_REALNAME)
-	,_host("10.13.2.14")
+	,_host("127.0.0.1")
 {
 	this->_mode.resize(8);
 	for (int i = 0; i < 8; i++)
@@ -31,7 +31,7 @@ User:: User	(String	nickname
 	:Client(nickname)
 	,_username(username)
 	,_realname(realname)
-	,_host("10.13.2.14")
+	,_host("127.0.0.1")
 {
 	(void)mode;
 
@@ -47,7 +47,7 @@ User:: User	(User const & src)
 	,_username(src._username)
 	,_mode(src._mode)
 	,_realname(src._realname)
-	, _host("10.13.2.14")
+	, _host("127.0.0.1")
 {
 	std::cout	<< "User cpy constructor."
 				<< std::endl;

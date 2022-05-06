@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/05/06 11:07:45 by abesombe         ###   ########.fr        #
+#    Updated: 2022/05/06 17:15:14 by abesombe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,8 @@ SRCS				= $(addsuffix .cpp,				main \
 													err_alreadyregistred \
 													err_badchanmask \
 													err_badchannelkey \
+													err_banlistfull \
+													err_bannedfromchan \
 													err_cannotsendtochan \
 													err_channelisfull \
 													err_chanoprivsneeded \
@@ -93,16 +95,18 @@ SRCS				= $(addsuffix .cpp,				main \
 													err_usernotinchannel \
 													err_usersdontmatch \
 													\
+													rpl_banlist \
 													rpl_channelmodeis \
-													rpl_creationtime \
-													rpl_inviting \
-													rpl_welcome \
-													rpl_yourhost \
 													rpl_created \
+													rpl_creationtime \
+													rpl_endofbanlist \
+													rpl_inviting \
 													rpl_myinfo \
+													rpl_notopic \
 													rpl_topic \
 													rpl_topicwhotime \
-													rpl_notopic \
+													rpl_welcome \
+													rpl_yourhost \
 													\
 													cmd_error \
 													cmd_info \

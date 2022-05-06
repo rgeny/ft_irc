@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   msg.hpp                                            :+:      :+:    :+:   */
+/*   err_bannedfromchan.cpp                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/24 13:14:40 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/06 13:32:49 by abesombe         ###   ########.fr       */
+/*   Created: 2022/05/06 17:13:54 by abesombe          #+#    #+#             */
+/*   Updated: 2022/05/06 17:14:27 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MSG_HPP
-# define MSG_HPP
+#include "Message.hpp"
 
-# define END_OF_MSG "\r\n"
-# define WELCOME_MSG "Welcome to the Internet Relay Network "
-# define USER_MODE_MODIFIED 98
-# define CHAN_MODE_MODIFIED 99
-# define CHAN_BAN_LIST_MAX_SIZE 3
-
-#endif
+e_error	Message::_err_bannedfromchan	(void) const
+{
+	String	msg	= this->_set_reply_base (ERR_BANNEDFROMCHAN)
+				+ _cmd[1] + " :Cannot join channel (you're banned)\r\n";
+	(*this->_users_it)->add_to_queue(msg);
+	return (ERROR_CONTINUE);
+}
 
