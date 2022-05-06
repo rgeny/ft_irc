@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   topic.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 17:08:30 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/04 21:49:16 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/06 11:16:35 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,11 @@ e_error	Command::_topic	(void)
 					}
 					std::cout << "TMP: " << tmp << std::endl;
 					if (is_operator((*_users_it)->get_nickname(), *(*this->_chans_it).second))
+					{
 						(*this->_chans_it).second->set_topic(tmp);
+						(*this->_chans_it).second->set_topic_creation_time(time(0));
+						(*this->_chans_it).second->set_topic_creator(*_users_it);
+					}
 					else
 						return (_err_chanoprivsneeded());
 				}

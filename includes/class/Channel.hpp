@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:14:15 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/06 01:19:33 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 11:20:32 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ class Channel
 		Channel();
 		String 				_name;
 		String				_topic;
+		User*				_topic_creator;
+		time_t				_topic_creation_time;
 		CHAN_USER_LIST		_chan_user_list;
 		CHAN_INVITE_LIST	_chan_invite_list;
 		MODE_VEC			_mode;
@@ -100,9 +102,13 @@ class Channel
 		CHAN_INVITE_LIST & get_chan_invite_list();
 		std::string& get_chan_name();
 		String &get_topic();
+		time_t &get_topic_creation_time();
+		User *	get_topic_creator();
 		time_t 	get_creation() const;
 		bool 	chan_exist(String) const;
 		void	set_topic(String topic);
+		void	set_topic_creator(User *creator);
+		void	set_topic_creation_time(time_t creation_time);
 		void	set_key(String key);
 		String &get_key();
 		void	set_limit(String limit);

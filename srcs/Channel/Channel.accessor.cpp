@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 17:37:04 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/06 00:31:34 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 11:20:09 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,24 @@ bool	Channel::get_specific_mode	(ChanMode mode) const
 bool	Channel::get_specific_mode	(size_t mode) const
 {
 	return (this->_mode[mode]);
+}
+
+void	Channel::set_topic_creator(User *creator)
+{
+    this->_topic_creator = creator;
+}
+
+void	Channel::set_topic_creation_time(time_t creation_time)
+{
+    this->_topic_creation_time = creation_time;
+}
+
+User *  Channel::get_topic_creator()
+{
+    return (_topic_creator);    
+}
+
+time_t & Channel::get_topic_creation_time()
+{
+    return (_topic_creation_time);    
 }
