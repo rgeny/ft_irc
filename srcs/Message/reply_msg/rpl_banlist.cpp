@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 13:38:08 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/06 16:54:20 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 19:53:44 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,27 +71,6 @@ e_error	Message::_rpl_banlist	(void) const
             + "\r\n";
         (*this->_users_it)->add_to_queue(msg);
     }
-        
-        // for (Channel::CHAN_BAN_LIST::iterator it = chan_blist.begin(), ite = chan_blist.end(); it != ite; it++)
-        // {
-        //     sorted_list_of_bans.push_back(it);
-        // }
-        // for (std::vector<Channel::CHAN_BAN_LIST::iterator>::iterator it)
-        // creation_time = ((*it).second).second;
-        // std::stringstream    tmp;
-        // tmp << creation_time;
-        // String    ban_creation_time(tmp.str());
-        // String    ban_creator = (*it).second.first->get_nickname();
-        // String    ban_mask = (*it).first;
-        // msg	= this->_set_reply_base(RPL_BANLIST)
-        //     + (*_chans_it).second->get_chan_name()
-        //     + " "
-        //     + ban_mask + "!*@*"
-        //     + " "
-        //     + ban_creator
-        //     + " :"
-        //     + ban_creation_time
-        //     + "\r\n";
 
 	return (SUCCESS);
 }

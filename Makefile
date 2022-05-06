@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/05/06 18:06:11 by abesombe         ###   ########.fr        #
+#    Updated: 2022/05/06 19:57:44 by abesombe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,6 +102,8 @@ SRCS				= $(addsuffix .cpp,				main \
 													rpl_creationtime \
 													rpl_endofbanlist \
 													rpl_inviting \
+													rpl_list \
+													rpl_listend \
 													rpl_myinfo \
 													rpl_notopic \
 													rpl_topic \

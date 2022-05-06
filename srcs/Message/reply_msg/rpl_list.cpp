@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   e_error.hpp                                        :+:      :+:    :+:   */
+/*   rpl_list.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/25 16:00:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/06 19:44:34 by abesombe         ###   ########.fr       */
+/*   Created: 2022/05/06 19:53:59 by abesombe          #+#    #+#             */
+/*   Updated: 2022/05/06 20:34:44 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef E_ERROR_HPP
-# define E_ERROR_HPP
+#include "Message.hpp"
 
-enum e_error
+e_error	Message::_rpl_list	(std::vector<String> list) const
 {
-	SUCCESS,
-	ERROR_CONTINUE,
-	ERROR_KILL,
-	ERROR_BAD_PASSWD,
-	ERROR_PING_REPLY,
-	ERROR_PING_TIMEOUT,
-	ERROR_REGISTRATION_TIMEOUT,
-	ERROR_CLIENT_EXITED,
-	ERROR_SERVER_EXITED,
-	ERROR_BAD_PREFIX
-};
+    // User &	cur_user	= *(*this->_users_it);
+	for (std::vector<String>::iterator it = list.begin(), ite = list.end(); it != ite; it++)
+	{
+        String	msg	= this->_set_reply_base(RPL_LIST)
+                + *it
+				+ "\r\n";
 
-#endif
-
+	    (*_users_it)->add_to_queue(msg);
+    }
+    return (SUCCESS);
+}

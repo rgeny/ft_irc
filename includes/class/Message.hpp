@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/06 18:05:59 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 20:19:13 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ class Message
 		e_error	_rpl_creationtime		(void) const;
 		e_error	_rpl_endofbanlist		(void) const;	
 		e_error	_rpl_inviting			(void) const;
+		e_error	_rpl_list				(std::vector<String> list) const;
+		e_error	_rpl_listend			(void) const;
 		e_error	_rpl_myinfo				(void) const;
 		e_error	_rpl_notopic			(void) const;
 		e_error	_rpl_topic				(void) const;

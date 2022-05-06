@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 01:09:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/06 10:44:27 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 20:20:44 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,6 @@
 
 e_error	Message::_cmd_invite	(void) const
 {
-	// String	msg	= this->_set_msg_base((*_users_it)->get_nickname() 
-	// 								+ "!"
-	// 								+ (*_users_it)->get_username()
-	// 								+ "@"
-	// 								+ (*_users_it)->get_host(), String(INVITE)
-    //                                 + " "
-    //                                 + _cmd[1] 
-    //                                 + " " 
-    //                                 + _cmd[2], 
-    //                                 ": inviting " + _cmd[1] + " to " + _cmd[2])  
-	// 								+ "\r\n";
-
-
-	// (*this->_users_it)->add_to_queue(msg);
-
     _rpl_inviting();
     String msg	= this->_set_msg_base((*_users_it)->get_nickname() 
                                         + "!"
