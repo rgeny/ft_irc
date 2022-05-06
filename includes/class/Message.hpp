@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/06 01:31:43 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 10:43:15 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ class Message
 		//reply
 		e_error	_rpl_channelmodeis		(void) const;
 		e_error	_rpl_creationtime		(void) const;
+		e_error	_rpl_inviting			(void) const;
 		e_error	_rpl_welcome			(void) const;
 		e_error	_rpl_yourhost			(void) const;
 		e_error	_rpl_created			(void) const;

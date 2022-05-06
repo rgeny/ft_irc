@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 00:32:23 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/06 01:32:42 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 10:28:41 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ The PRIVMSG command is used to send private messages between users, as well as t
 e_error	Command::_invite	(void)
 {
   	Channel::CHAN_INVITE_LIST *chan_invite_list = NULL;
+    String target = _cmd[1];
     String cur_user = (*_users_it)->get_nickname();
     if (this->_cmd.size() < 3)
       return (this->_err_needmoreparams());
@@ -33,6 +34,6 @@ e_error	Command::_invite	(void)
 		if (is_operator(cur_user, *_chans_it->second) == false)
             return (_err_chanoprivsneeded());
     chan_invite_list = &(*_chans_it).second->get_chan_invite_list();
-	  (*chan_invite_list)[cur_user] = _get_user(_cmd[1]);
+	  (*chan_invite_list)[target] = _get_user(target);
     return (_cmd_invite());
 }

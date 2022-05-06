@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 18:56:04 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/05 16:09:04 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 10:24:25 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ e_error	Message::_cmd_mode	(int broadcast) const
 										this->_cmd[0] 
 										+ " " 
 										+ this->_cmd[1]
-										, ":" + _cmd[2] + (!_cmd[3].empty()? " " + _cmd[3] : ""))
+										, ":" + _cmd[2] + (_cmd.size() > 3? " " + _cmd[3] : ""))
 										+ "\r\n";
 
 	// }

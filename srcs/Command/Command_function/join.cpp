@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/06 01:33:23 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 10:30:37 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int  Command::join_process(String chan_name)
 			{
 				std::cout << "Je set le nouveau user en regular user" << std::endl;
 				(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), USERMODE_o, false);
+				(*chan_invite_list).erase((*_users_it)->get_nickname());
 			}
 			else if (inviteonly_set && chan_invite_list->find((*_users_it)->get_nickname()) == chan_invite_list->end())
 			{
