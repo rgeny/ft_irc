@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 17:08:30 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/06 11:16:35 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 11:40:37 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ e_error	Command::_topic	(void)
 						tmp = tmp + *it;
 					}
 					std::cout << "TMP: " << tmp << std::endl;
-					if (is_operator((*_users_it)->get_nickname(), *(*this->_chans_it).second))
+					bool is_topic_blocked = (*this->_chans_it).second->get_specific_mode(CHANMODE_t);
+					if (is_operator((*_users_it)->get_nickname(), *(*this->_chans_it).second) || (is_topic_blocked == false))
 					{
 						(*this->_chans_it).second->set_topic(tmp);
 						(*this->_chans_it).second->set_topic_creation_time(time(0));
