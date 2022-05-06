@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 12:44:29 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/05 17:59:06 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/06 12:06:08 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ The PRIVMSG command is used to send private messages between users, as well as t
 
 e_error	Command::_privmsg	(void)
 {
+  bool voice = false;
     if (this->_cmd.size() < 3)
       return (this->_err_needmoreparams());
     else
@@ -29,10 +30,20 @@ e_error	Command::_privmsg	(void)
           if (!this->_chan_exist(_cmd[1]))
 			      return(_err_nosuchchannel());
           bool moderated = _chans[_cmd[1]]->get_specific_mode(CHANMODE_m);
-          bool voice = (*_users_it)->get_chan_usermode_vec(this->_cmd[1])[USERMODE_v];
+          Channel cur_chan = *(*_chans_it).second;
+          if (user_exist_in_chan(cur_chan, _cmd[1]))
+             voice = (*_users_it)->get_chan_usermode_vec(this->_cmd[1])[USERMODE_v];
           bool chan_operator = is_operator((*_users_it)->get_nickname(), *_chans_it->second);
-          if (chan_operator == false && moderated == true && voice == false)
+          bool n_activated = _chans[_cmd[1]]->get_specific_mode(CHANMODE_n);
+          if (chan_operator == false && moderated == true && voice == false) 
             return (_err_cannotsendtochan("You cannot send messages to this channel whilst the +m (moderated) mode is set."));
+          if (n_activated == true)
+            return (_err_cannotsendtochan("You cannot send external messages to this channel whilst the +n (noextmsg) mode is set."));
+        }
+        else if (!has_begin_hashtag(this->_cmd[1]))
+        {
+          if (this->_user_exist(_cmd[1]) == false)
+            return (_err_nosuchnick());
         }
           String msg = concat_last_args(2);
           return (this->_cmd_privmsg(msg));
