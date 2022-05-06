@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_privmsg.cpp                                    :+:      :+:    :+:   */
+/*   cmd_notice.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/03 12:52:23 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/06 20:48:08 by abesombe         ###   ########.fr       */
+/*   Created: 2022/05/06 20:47:10 by abesombe          #+#    #+#             */
+/*   Updated: 2022/05/06 20:48:13 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Message.hpp"
 #include "Channel.hpp"
 
-e_error	Message::_cmd_privmsg	(String chat_msg) const
+e_error	Message::_cmd_notice	(String chat_msg) const
 {
-/*
-    # :amy!amychan@foo.bar.com PRIVMSG rory :hello comment vas-tu?
-*/
+
     std::vector<String> target_list;
     target_list = split(this->_cmd[1], ",");
-	// Channel::CHAN_USER_LIST *tmp = NULL;
     for (std::vector<String>::iterator it = target_list.begin(), ite = target_list.end(); it != ite; it++)
     {
         String current_target = *it;
@@ -28,7 +25,7 @@ e_error	Message::_cmd_privmsg	(String chat_msg) const
                                         + "!"
                                         + (*_users_it)->get_username()
                                         + "@"
-                                        + (*_users_it)->get_host(), PRIVMSG, current_target + " "
+                                        + (*_users_it)->get_host(), NOTICE, current_target + " "
                                         + chat_msg)
                                         + "\r\n";
         if (current_target[0] != '#' && this->_user_exist(current_target))

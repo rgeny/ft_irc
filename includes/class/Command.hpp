@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/06 15:08:56 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/06 20:49:02 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ class Command
 //		User/Channel Command
 		e_error		_mode			(void);
 		e_error		_privmsg		(void);
+		e_error		_notice			(void);
 
 //		Other Command
 		e_error		_ping			(void);

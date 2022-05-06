@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/05/06 19:57:44 by abesombe         ###   ########.fr        #
+#    Updated: 2022/05/06 20:48:40 by abesombe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,6 +118,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													cmd_kick \
 													cmd_mode \
 													cmd_motd \
+													cmd_notice \
 													cmd_part \
 													cmd_pong \
 													cmd_privmsg \
@@ -134,6 +135,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													mode \
 													motd \
 													nick \
+													notice \
 													part \
 													pass \
 													ping \
