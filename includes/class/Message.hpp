@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/10 21:45:26 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/10 22:13:21 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,20 +87,21 @@ class Message
 		e_error	_rpl_luserme			(void) const;
 
 		//command reply
-		e_error	_cmd_error				(e_error code);
-		e_error	_cmd_invite				(void) const;
-		e_error	_cmd_join				(void) const;
-		e_error	_cmd_kick				(String reason, String kicked) const;
-		e_error	_cmd_mode				(int broadcast) const;
-		e_error	_cmd_notice				(String chat_msg) const;
-		e_error	_cmd_part				(String reason) const;
-		e_error	_cmd_pong				(void) const;
-		e_error	_cmd_privmsg			(String chat_msg) const;
-		e_error	_cmd_topic				(int choice) const;
-		e_error	_cmd_userhost			(String userhost_list) const;
-		e_error	_cmd_info				(void) const;
-		e_error	_cmd_motd				(void) const;
-		e_error	_cmd_time				(void) const;
+		e_error	_cmd_error		(e_error code);
+		e_error	_cmd_invite		(void) const;
+		e_error	_cmd_join		(void) const;
+		e_error	_cmd_kick		(String reason, String kicked) const;
+		e_error	_cmd_mode		(int broadcast) const;
+		e_error	_cmd_notice		(String chat_msg) const;
+		e_error	_cmd_part		(String reason) const;
+		e_error	_cmd_pong		(void) const;
+		e_error	_cmd_privmsg	(String chat_msg) const;
+		e_error	_cmd_topic		(int choice) const;
+		e_error	_cmd_userhost	(String userhost_list) const;
+		e_error	_cmd_info		(void) const;
+		e_error	_cmd_motd		(void) const;
+		e_error	_cmd_time		(void) const;
+		e_error	_cmd_nick		(String & oldest) const;
 
 //	private:
 		MsgError	_msg_error;
@@ -129,6 +130,7 @@ class Message
 								,String receiver) const;
 
 		String	_set_sender		(void) const;
+		String	_set_sender		(String oldest) const;
 };
 
 #endif

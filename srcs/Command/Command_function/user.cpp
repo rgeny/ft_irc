@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 04:31:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/10 21:59:11 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/10 22:05:16 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 e_error		Command::_user	(void)
 {
-	if (!(*this->_users_it)->get_passwd_is_send())
+	if (!(*this->_users_it)->get_passwd_is_sent())
 		return (this->_err_passwdmismatch());
 	else if (this->_cmd.size() > 4)
 	{

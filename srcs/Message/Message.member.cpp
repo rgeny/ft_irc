@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/04 21:26:34 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/10 22:14:03 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,17 @@ String	Message::_set_sender	(void) const
 					+ this->_servername;
 	return (sender);
 }
+
+String	Message::_set_sender	(String oldest) const
+{
+	String	sender	= oldest
+					+ "!"
+					+ (*this->_users_it)->get_username()
+					+ "@"
+					+ this->_servername;
+	return (sender);
+}
+
 
 //void	Message::_init_msg_list	(void)
 //{
