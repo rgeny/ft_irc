@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 00:16:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/06 19:15:46 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/10 15:27:43 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,13 @@ class String
 		unsigned char			_cast	(char c) const;
 		std::string				_out_of_range	(size_t pos
 												,size_t this_size) const;
+		bool					_is_valid_name	(size_t i
+												,size_t len
+												,const String & str
+												,size_t j
+												,size_t & k
+												,size_t sublen
+												,size_t & l) const;
 };
 bool 	operator==	(const String & lhs
 					,const String & rhs);
