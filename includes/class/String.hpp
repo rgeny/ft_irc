@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 00:16:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/10 15:27:43 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/10 17:21:12 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include <vector>
 # include <algorithm>
 # include <cstring>
+
+# include "Utils.hpp"
 
 class String
 	:public std::string

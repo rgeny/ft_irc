@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 21:36:35 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/29 18:10:44 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/10 17:22:32 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,14 @@
 # include "colors.hpp"
 # include "String.hpp"
 
+class String;
+
 int		print_error	(String err);
 
 bool	is_special	(char c);
 bool	is_hexdigit	(char c);
 bool	is_number	(const String & str);
+bool	is_mask		(char c);
 
 std::vector<String>		split	(String str
 								,String delimiter);

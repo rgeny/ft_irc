@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:23:38 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/06 19:18:06 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/10 17:36:47 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,34 +17,9 @@
 
 #include "String.hpp"
 
-int		ac;
-char **	av;
-
-#define VALUE "abcdef"
-
-template<class T>
-void	test	(__attribute((unused)) T s)
-{
-	T	t(av[ac - 1]);
-
-	std::cout	<< s.find_last_of('b', 4)
-				<< std::endl;
-}
-
-
 int	main	(__attribute((unused)) int argc
 			,__attribute((unused)) char ** argv)
 {
-//	ac = argc;
-//	av = argv;
-//
-//	String			a(VALUE);
-//	std::string		b(VALUE);
-//
-//	test(a);
-//	test(b);
-
-
 	try
 	{
 		int	port;
