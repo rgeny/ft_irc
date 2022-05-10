@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/10 19:09:45 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/10 21:36:04 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,27 @@ bool	Command::_get_user_type	(void)
 
 void	Command::_parse	(void)
 {
-	this->_cmd = split(this->_msg, " ");
+	static String const	delimiter(" ");
+	String &			str = this->_msg;
+
+	this->_cmd.clear();
+	for (size_t pos = str.find(delimiter);
+		 	pos != String::npos
+			&& str[0] != ':';
+		 pos = str.find(delimiter))
+	{
+		if (pos > 0)
+			this->_cmd.push_back(str.substr(0, pos));
+		this->_msg.erase(0, pos + delimiter.size());
+	}
+	if (!str.empty())
+	{
+		if (str[0] == ':')
+			this->_cmd.push_back(str.substr(1, str.size()));
+		else
+			this->_cmd.push_back(str);
+	}
+	str.clear();
 }
 
 void	Command::_check_cmd	(void)
