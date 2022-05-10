@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/06 20:49:02 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/10 19:26:35 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,8 @@ class Command
 		int		mode_type(char mode);
 		int		apply_mode(String target);
 
-	private:
-		static CmdsFct		_cmds_fct;
+	protected:
 
-		bool			_is_user;
-
-		bool	_get_user_type		(void);
-		void	_parse				(void);
-		void	_check_cmd			(void);
-		bool	_check_prefix		(void);
-		bool	_nick_already_used	(String & nickname) const;
 
 
 //		User Command
@@ -63,6 +55,7 @@ class Command
 		e_error		_nick			(void);
 		e_error		_user			(void);
 		e_error		_quit			(void);
+		e_error		_lusers			(void);
 	
 //		Channel Command
 		e_error		_join			(void);
@@ -85,6 +78,16 @@ class Command
 		e_error		_userhost		(void);
 		e_error		_pong			(void);
 
+	private:
+		static CmdsFct		_cmds_fct;
+
+		bool			_is_user;
+
+		bool	_get_user_type		(void);
+		void	_parse				(void);
+		void	_check_cmd			(void);
+		bool	_check_prefix		(void);
+		bool	_nick_already_used	(String & nickname) const;
 		void	_init_cmd_fct	(void);
 };
 

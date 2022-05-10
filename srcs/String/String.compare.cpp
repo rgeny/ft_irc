@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 01:41:40 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/10 17:36:04 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/10 19:18:27 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	String::_is_valid_name	(size_t i
 								,size_t sublen
 								,size_t & l) const
 {
-	for (l = 0; (i + k + l) < l && (l == 0 || is_mask((*this)[i + k + l])); l++)
+	for (l = 0; (i + k + l) < len && (l == 0 || !is_mask((*this)[i + k + l])); l++)
 	{
 		if (this->_cast((*this)[i + k + l]) != this->_cast(str[j + k + l]))
 			return (false);
@@ -56,7 +56,7 @@ int	String::compare	(size_t pos
 	len = std::min(len + pos, this->size());
 	sublen = std::min(sublen + subpos, str.size());
 
-	for (size_t i = pos, j = subpos, k = 0, l = 0; i + k < len || j + k < sublen;)
+	for (size_t i = pos, j = subpos, k = 0, l = 0; (i + k) < len || (j + k) < sublen;)
 	{
 		if ((i + k) < len
 			&& (*this)[i + k] == '\\')

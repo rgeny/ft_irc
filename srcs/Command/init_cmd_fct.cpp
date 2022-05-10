@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 12:48:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/06 20:46:15 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/10 18:56:45 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	Command::_init_cmd_fct	(void)
 		Command::_cmds_fct[USERHOST]	= &Command::_userhost;
 		Command::_cmds_fct[PONG]		= &Command::_pong;
 		Command::_cmds_fct[LIST]		= &Command::_list;
+		Command::_cmds_fct[LUSERS]		= &Command::_lusers;
 	}
 }
 

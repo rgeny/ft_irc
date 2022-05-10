@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 14:03:00 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/05 17:59:02 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/10 19:20:25 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ e_error	Message::_cmd_motd	(void) const
                             + (*this->_users_it)->get_nickname()
                             + " "
                             , ""
-                            , this->_servername + " Message of the Day")
+                            , this->_servername + "Message of the Day")
                             + "\r\n";
     (*this->_users_it)->add_to_queue(msg);
     for (size_t i = 0; ::motd[i]; ++i)

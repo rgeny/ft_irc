@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/05/10 14:20:28 by rgeny            ###   ########.fr        #
+#    Updated: 2022/05/10 19:47:00 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,6 +110,10 @@ SRCS				= $(addsuffix .cpp,				main \
 													rpl_topicwhotime \
 													rpl_welcome \
 													rpl_yourhost \
+													rpl_luserclient \
+													rpl_luserop \
+													rpl_luserchannels \
+													rpl_luserme \
 													\
 													cmd_error \
 													cmd_info \
@@ -147,6 +151,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													userhost \
 													pong \
 													list \
+													lusers \
 						$(addprefix Server,			$(DEFAULT_FILES)) \
 						$(addprefix Client,			$(DEFAULT_FILES)) \
 						$(addprefix User,			$(DEFAULT_FILES)) \

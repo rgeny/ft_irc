@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 10:50:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/10 14:17:14 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/10 19:47:59 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,9 @@ class Data
 
 		User *	_get_user	(String nickname) const;
 
+		size_t	_count_users	(void) const;
+		size_t	_count_services	(void) const;
+		size_t	_count_operator	(void) const;
 		bool	_user_exist	(String nickname) const;
 		bool	_chan_exist	(String name) const;
 
@@ -89,14 +92,6 @@ class Data
 		void	_fill_vector	(std::vector<String> & expand);
 		void	_add_users		(std::vector<String> & expand);
 		void	_add_chans		(std::vector<String> & expand);
-
-		bool	_expand_cmp	(String & msg
-							,String & to_cmp);
-		bool	_is_valid_name	(String::iterator & it_word
-								,String::iterator & ite_word
-								,String::iterator & it_dir
-								,String::iterator & ite_dir
-								,size_t & i);
 };
 
 #endif

@@ -6,11 +6,32 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 11:22:06 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/05 10:25:38 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/10 19:32:30 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Data.hpp"
+
+size_t	Data::_count_users	(void) const
+{
+	return (this->_users.size());
+}
+
+size_t	Data::_count_services	(void) const
+{
+	return (0);
+}
+
+size_t	Data::_count_operator	(void) const
+{
+	size_t	ope = 0;
+	for (size_t i = 0, size = this->_users.size(); i < size; i++)
+	{
+		if (this->_users[i]->get_specific_mode(USERMODE_o) == true)
+			ope++;
+	}
+	return (ope);
+}
 
 bool	Data::_user_exist	(String nickname) const
 {

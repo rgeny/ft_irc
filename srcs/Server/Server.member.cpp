@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/05 14:39:21 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/10 19:25:03 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,12 @@ bool	Server::_check_tmp_user	(void)
 		else if ((*this->_users_it)->reason == TIMEOUT_CO
 				&& (*this->_users_it)->co_is_complete())
 		{
+			this->_cmd.clear();
 			this->_rpl_welcome();
 			this->_rpl_yourhost();
 			this->_rpl_created();
 			this->_rpl_myinfo();
+			this->_lusers();
 			this->_cmd_motd();
 			this->_tmp_users.erase(*this->_users_it);
 		}

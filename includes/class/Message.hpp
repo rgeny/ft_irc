@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/06 20:49:25 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/10 19:54:18 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,10 @@ class Message
 		e_error	_rpl_topicwhotime		(void) const;
 		e_error	_rpl_yourhost			(void) const;
 		e_error	_rpl_welcome			(void) const;
+		e_error	_rpl_luserclient		(void) const;
+		e_error	_rpl_luserop			(void) const;
+		e_error	_rpl_luserchannels		(void) const;
+		e_error	_rpl_luserme			(void) const;
 
 		//command reply
 		e_error	_cmd_error				(e_error code);

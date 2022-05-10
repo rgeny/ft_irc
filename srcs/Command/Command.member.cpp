@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/05 22:29:40 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/10 19:09:45 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,6 @@ bool	Command::_get_user_type	(void)
 void	Command::_parse	(void)
 {
 	this->_cmd = split(this->_msg, " ");
-	
-//	for (size_t i = 0; i < this->_cmd.size(); i++)
-//	{
-//		std::vector<String>	expand = this->_expand_mask(this->_cmd[i]);
-//		if (expand.size() > 0)
-//			std::cout	<< this->_cmd[i]
-//						<< " become :"
-//						<< std::endl;
-//		for (size_t j = 0; j < expand.size(); j++)
-//			std::cout	<< expand[j]
-//						<< std::endl;
-//		if (expand.size() > 0)
-//			std::cout	<< std::endl;
-//	}
 }
 
 void	Command::_check_cmd	(void)
@@ -58,6 +44,12 @@ void	Command::_check_cmd	(void)
 		return ;
 
 	CmdsFct::iterator	it = this->_cmds_fct.find(this->_cmd[0]);
+
+	for (size_t i = 0; i < this->_cmd.size(); i++)
+	{
+		std::cout	<< this->_cmd[i]
+					<< std::endl;
+	}
 
 	if (it != this->_cmds_fct.end())
 	{
