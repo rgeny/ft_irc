@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 17:22:47 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/06 19:10:15 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/10 14:34:45 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ size_t	String::find_last_of	(const char * s
 	{
 		for (size_t j = 0; j < s_size; j++)
 		{
-			if (this->_cast((*this)[i]) == this->_cast(s[j]))
+			if (this->compare(i, 1,s + j, 1) == 0)
 				return (i);
 		}
 	}

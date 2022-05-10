@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 01:00:24 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/06 19:17:14 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/10 14:35:19 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ String:: String	(void)
 {
 //	std::cout	<< "String dfl constructor."
 //				<< std::endl;
-//	this->_init_case_off();
 }
 
 String:: String	(const String & src)
@@ -27,7 +26,6 @@ String:: String	(const String & src)
 {
 //	std::cout	<< "String cpy constructor."
 //				<< std::endl;
-//	this->_init_case_off();
 }
 
 String:: String	(const String & str
@@ -37,7 +35,6 @@ String:: String	(const String & str
 {
 //	std::cout	<< "String substring constructor."
 //				<< std::endl;
-//	this->_init_case_off();
 }
 
 String:: String	(const std::string & str)
@@ -45,7 +42,6 @@ String:: String	(const std::string & str)
 {
 //	std::cout	<< "String from std::string constructor."
 //				<< std::endl;
-//	this->_init_case_off();
 }
 
 String:: String	(const char * s)
@@ -53,7 +49,6 @@ String:: String	(const char * s)
 {
 //	std::cout	<< "String from c-string constructor."
 //				<< std::endl;
-//	this->_init_case_off();
 }
 
 String:: String	(const char * s
@@ -62,7 +57,6 @@ String:: String	(const char * s
 {
 //	std::cout	<< "String from sequence constructor."
 //				<< std::endl;
-//	this->_init_case_off();
 }
 
 String:: String	(size_t n
@@ -71,7 +65,6 @@ String:: String	(size_t n
 {
 //	std::cout	<< "String fill constructor."
 //				<< std::endl;
-//	this->_init_case_off();
 }
 
 String::~String	(void)

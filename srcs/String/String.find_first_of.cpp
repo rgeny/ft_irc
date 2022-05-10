@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 17:23:03 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/06 19:06:25 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/10 14:28:08 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ size_t	String::find_first_of	(const char * s
 	{
 		for (size_t j = 0; j < s_size; j++)
 		{
-			if (this->_cast((*this)[pos]) == this->_cast(s[j]))
+			if (this->compare(pos, 1, s + j, 1) == 0)
 				return (pos);
 		}
 	}
@@ -47,5 +47,5 @@ size_t	String::find_first_of	(char c
 								,size_t pos) const
 {
 	String	tmp(1, c);
-	return (this->find_first_of(tmp.c_str(), 0, 1));
+	return (this->find_first_of(tmp.c_str(), pos, 1));
 }
