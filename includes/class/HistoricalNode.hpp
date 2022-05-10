@@ -6,13 +6,13 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 10:33:57 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/27 21:08:51 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/10 21:05:07 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HISTORICALNODE_HPP
 # define HISTORICALNODE_HPP
-# define NICKNAME_DOWNTIME 5
+# define NICKNAME_DOWNTIME 60
 
 # include <iostream>
 
