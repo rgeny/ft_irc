@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:09:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/06 19:31:11 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/10 14:18:52 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ bool	Data::_is_valid_name	(String::iterator & it_word
 								,String::iterator & ite_word
 								,String::iterator & it_dir
 								,String::iterator & ite_dir
-								,size_t & i
-								,bool & escape)
+								,size_t & i)
 {
 	size_t	j = 0;
 
@@ -56,14 +55,8 @@ bool	Data::_is_valid_name	(String::iterator & it_word
 			&& ((*(it_word + i + j) != '*'
 				&& *(it_word + i + j) != '?'
 				&& *(it_word + i + j) != '\\')
-			|| escape))
+			|| j == 0))
 	{
-		if (*(it_word + i + j) == '*'
-			|| *(it_word + i + j) == '?'
-			|| *(it_word + i + j) == '\\')
-		{
-			escape = false;
-		}
 		if (*(it_word + i + j) != *(it_dir + i + j))
 			return (false);
 		j++;
@@ -114,7 +107,7 @@ bool	Data::_expand_cmp	(String & word
 		else if (asterisk == true)
 		{
 			while ((it_dir + i) != ite_dir
-					&& !this->_is_valid_name(it_word, ite_word, it_dir, ite_dir, i, escape))
+					&& !this->_is_valid_name(it_word, ite_word, it_dir, ite_dir, i))
 			{
 				it_dir++;
 			}
@@ -123,7 +116,7 @@ bool	Data::_expand_cmp	(String & word
 		}
 		else
 		{
-			if (!this->_is_valid_name(it_word, ite_word, it_dir, ite_dir, i, escape))
+			if (!this->_is_valid_name(it_word, ite_word, it_dir, ite_dir, i))
 				return (false);
 			escape = false;
 		}

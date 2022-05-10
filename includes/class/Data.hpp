@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 10:50:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/06 19:30:03 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/10 14:17:14 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,7 @@ class Data
 								,String::iterator & ite_word
 								,String::iterator & it_dir
 								,String::iterator & ite_dir
-								,size_t & i
-								,bool & escape);
+								,size_t & i);
 };
 
 #endif
