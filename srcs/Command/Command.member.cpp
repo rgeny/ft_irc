@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/10 21:36:04 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/10 21:46:31 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void	Command::_check_cmd	(void)
 		e_error	error = (this->*(it->second))();
 		this->_cmd_error(error);
 	}
+	else
+		this->_err_unknowncommand();
 }
 
 bool	Command::_check_prefix	(void)

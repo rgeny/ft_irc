@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/05/10 19:47:00 by rgeny            ###   ########.fr        #
+#    Updated: 2022/05/10 21:45:46 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,6 +95,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													err_usernotinchannel \
 													err_usersdontmatch \
 													err_toomanymatches \
+													err_unknowncommand \
 													\
 													rpl_banlist \
 													rpl_channelmodeis \

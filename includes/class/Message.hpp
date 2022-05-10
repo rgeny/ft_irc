@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/10 19:54:18 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/10 21:45:26 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ class Message
 		e_error	_err_usernotinchannel	(void) const;
 		e_error	_err_noprivileges		(String reason) const;
 		e_error	_err_toomanymatches		(void) const;
+		e_error	_err_unknowncommand		(void) const;
 
 		//reply
 		e_error	_rpl_banlist			(void) const;		
