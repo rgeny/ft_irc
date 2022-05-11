@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/10 21:06:27 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/11 18:10:40 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,26 @@ void	Server::_new_user	(void)
 
 void	Server::_del_user		(void)
 {
-	this->_historical.new_node(DFL_NICKNAME, (*this->_users_it)->get_nickname());
+	String	nickname	= (*this->_users_it)->get_nickname();
+	
+	this->_historical.new_node(DFL_NICKNAME, nickname);
+
+	for (CHANS_IT it = this->_chans.begin();
+		!this->_chans.empty() && it != this->_chans.end();)
+	{
+		Channel::CHAN_USER_LIST &	list = (*it).second->get_chan_user_list();
+
+		list.erase(nickname);
+
+		if (list.empty())
+		{
+			delete (*it).second;
+			this->_chans.erase(it);
+		}
+		else
+			it++;
+	}
+
 	delete (*this->_users_it);
 	this->_tmp_users.erase(*this->_users_it);
 	this->_users.erase(this->_users_it);

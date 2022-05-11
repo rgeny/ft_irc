@@ -6,15 +6,15 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:53:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/11 16:39:17 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/11 16:40:31 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SERVER_HPP
 # define SERVER_HPP
 # define TIME_TO_CONNECT 60
-# define TIME_FOR_PING 60
-# define TIME_TO_PONG 60
+# define TIME_FOR_PING 600
+# define TIME_TO_PONG 600
 
 # include <iostream>
 # include <string>

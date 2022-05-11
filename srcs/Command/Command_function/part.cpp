@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 18:13:29 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/04 21:48:20 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/11 18:07:23 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,16 @@ e_error		Command::_part	(void)
                 User::CHAN_USERMODE & chan_usermode = (*_users_it)->get_chan_usermode();
                 chan_usermode.erase(_chans_it->first);
 
-                if (tmp->size() < 1)
-                    _chans.erase((*_chans_it).first);
 				String reason;
 				if (this->_cmd.size() > 2)
 					reason = concat_last_args(2);
-                return (this->_cmd_part(reason));
+                e_error	to_return	= this->_cmd_part(reason);
+                if (tmp->size() < 1)
+				{
+					delete ((*this->_chans_it).second);
+                    _chans.erase((*_chans_it).first);
+				}
+				return (to_return);
 			}
 		}
 	}
