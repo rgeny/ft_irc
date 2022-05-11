@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 10:50:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/11 13:55:22 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/11 14:31:53 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,10 @@ class Data
 		std::vector<String> _find_chan		(String name);
 
 	private:
+		static std::map<String, std::string>	_ope_list;
+
+		static std::map<String, std::string>	_init_ope_list	(void);
+
 		void	_delete_users	(void);
 		void	_delete_channels	(void);
 

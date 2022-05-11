@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 11:22:06 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/10 19:32:30 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/11 14:28:43 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,15 @@ void	Data::_delete_channels	(void)
 {
 	for (CHANS_IT it = this->_chans.begin(), ite = this->_chans.end(); it != ite; it++)
 		delete (it->second);
+}
+
+std::map<String, std::string>	Data::_init_ope_list	(void)
+{
+	std::map<String, std::string>	ope_list;
+
+	ope_list["Ayzapata"] = "aTaPaZyA";
+	ope_list["Abesombes"] = "SeBmOsEbA";
+	ope_list["Rgeny"] = "YnEgR";
+
+	return (ope_list);
 }
