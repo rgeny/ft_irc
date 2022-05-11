@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 04:31:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/10 22:05:16 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/11 14:12:37 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,18 @@ e_error		Command::_user	(void)
 		User & cur_user = *(*this->_users_it);
 
 		cur_user.set_username(this->_cmd[1]);
-	
-		//tmp
-		String	tmp;
-		size_t	size = this->_cmd.size();
-		for (size_t i = 4; i < size; i++)
-			tmp += this->_cmd[i];
-		//fin tmp
-		std::cout	<< "realname : "
-					<< tmp
-					<< "\n";
-		cur_user.set_realname(tmp);
+
+		if (is_number(this->_cmd[2]))
+		{
+			long	n = strtol(this->_cmd[2].c_str(), NULL, 10);
+			if (n != LONG_MAX && n != LONG_MIN)
+			{
+				cur_user.set_specific_mode(USERMODE_w, (n & 0x2) == 0x2);
+				cur_user.set_specific_mode(USERMODE_i, (n & 0x4) == 0x4);
+			}
+		}
+
+		cur_user.set_realname(this->_cmd[4]);
 	}
 	return (SUCCESS);
 }
