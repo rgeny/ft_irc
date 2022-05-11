@@ -6,9 +6,11 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:23:38 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/10 19:18:45 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/11 18:57:03 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <csignal>
 
 #include "ircserv.hpp"
 #include "Socket.hpp"
@@ -22,6 +24,7 @@ int	main	(__attribute((unused)) int argc
 {
 	try
 	{
+		signal(SIGINT, SIG_IGN);
 		int	port;
 		String	password;
 
