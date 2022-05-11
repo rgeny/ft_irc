@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:13:14 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/29 06:07:45 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/11 13:56:07 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ e_error		Command::_pass	(void)
 	else if (static_cast<User *>((*this->_users_it))->co_is_complete())
 		return (this->_err_alreadyregistred());
 
-	(*this->_users_it)->set_passwd_is_sent(this->_password == this->_cmd[1]);
+	(*this->_users_it)->set_passwd_is_sent(this->_password == this->_cmd[1].c_str());
 	if ((*this->_users_it)->get_passwd_is_sent())
 		return (SUCCESS);
 	return (ERROR_CONTINUE);

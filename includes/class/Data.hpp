@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 10:50:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/10 19:47:59 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/11 13:55:22 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ class Data
 		CMD			_cmd;
 
 		// Server data
-		String		_password;
+		std::string	_password;
 		String		_servername;
 		String		_hostname;
 		String		_created_date;
