@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 11:22:06 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/11 14:28:43 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/11 15:02:31 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void	Data::_delete_channels	(void)
 		delete (it->second);
 }
 
-std::map<String, std::string>	Data::_init_ope_list	(void)
+Data::OPE_TYPE	Data::_init_ope_list	(void)
 {
-	std::map<String, std::string>	ope_list;
+	Data::OPE_TYPE	ope_list;
 
 	ope_list["Ayzapata"] = "aTaPaZyA";
 	ope_list["Abesombes"] = "SeBmOsEbA";

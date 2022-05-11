@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/05/10 22:04:06 by rgeny            ###   ########.fr        #
+#    Updated: 2022/05/11 15:21:13 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,15 @@ SRCS				= $(addsuffix .cpp,				main \
 													check_chan_name \
 													print_error \
 													print_server_name \
+						$(addprefix String,			$(DEFAULT_FILES) \
+													.compare \
+													.find \
+													.rfind \
+													.find_first_of \
+													.find_last_of \
+													.find_first_not_of \
+													.find_last_not_of ) \
+													init_case_off \
 						$(addprefix Socket,			$(DEFAULT_FILES)) \
 						$(addprefix Message,		$(DEFAULT_FILES)) \
 													init_msg_error \
@@ -96,6 +105,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													err_usersdontmatch \
 													err_toomanymatches \
 													err_unknowncommand \
+													err_nooperhost \
 													\
 													rpl_banlist \
 													rpl_channelmodeis \
@@ -115,6 +125,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													rpl_luserop \
 													rpl_luserchannels \
 													rpl_luserme \
+													rpl_youreoper \
 													\
 													cmd_error \
 													cmd_info \
@@ -154,6 +165,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													pong \
 													list \
 													lusers \
+													oper \
 						$(addprefix Server,			$(DEFAULT_FILES)) \
 						$(addprefix Client,			$(DEFAULT_FILES)) \
 						$(addprefix User,			$(DEFAULT_FILES)) \
@@ -161,16 +173,7 @@ SRCS				= $(addsuffix .cpp,				main \
 						$(addprefix Historical,		$(DEFAULT_FILES)) \
 						$(addprefix Data,			$(DEFAULT_FILES)) \
 													expand \
-						$(addprefix Channel,		$(DEFAULT_FILES)) \
-						$(addprefix String,			$(DEFAULT_FILES) \
-													.compare \
-													.find \
-													.rfind \
-													.find_first_of \
-													.find_last_of \
-													.find_first_not_of \
-													.find_last_not_of ) \
-													init_case_off)
+						$(addprefix Channel,		$(DEFAULT_FILES)))
 OBJS				= $(patsubst %.cpp, $(OBJS_DIR)%.o, $(SRCS))
 DEPS				= $(OBJS:.o=.d)
 

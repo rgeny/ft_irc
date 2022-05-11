@@ -6,13 +6,13 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 11:13:11 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/11 14:30:53 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/11 14:36:53 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Data.hpp"
 
-std::map<String, std::string>	Data::_ope_list = Data::_init_ope_list();
+Data::OPE_TYPE	Data::_ope_list = Data::_init_ope_list();
 
 Data:: Data	(String password
 			,String servername

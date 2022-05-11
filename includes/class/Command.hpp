@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/11 14:12:55 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/11 14:35:08 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ class Command
 		e_error		_user			(void);
 		e_error		_quit			(void);
 		e_error		_lusers			(void);
+		e_error		_oper			(void);
 	
 //		Channel Command
 		e_error		_join			(void);
