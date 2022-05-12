@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/10 21:46:31 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/12 14:21:15 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	Command::_get_user_type	(void)
 
 void	Command::_parse	(void)
 {
-	static String const	delimiter(" ");
+	static std::string const	delimiter(" ");
 	String &			str = this->_msg;
 
 	this->_cmd.clear();
