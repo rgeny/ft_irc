@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/05/11 15:21:13 by rgeny            ###   ########.fr        #
+#    Updated: 2022/05/12 15:15:11 by abesombe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,10 +112,12 @@ SRCS				= $(addsuffix .cpp,				main \
 													rpl_created \
 													rpl_creationtime \
 													rpl_endofbanlist \
+													rpl_endofnames \
 													rpl_inviting \
 													rpl_list \
 													rpl_listend \
 													rpl_myinfo \
+													rpl_namreply \
 													rpl_notopic \
 													rpl_topic \
 													rpl_topicwhotime \
@@ -149,23 +151,25 @@ SRCS				= $(addsuffix .cpp,				main \
 													invite \
 													join \
 													kick \
+													list \
+													lusers \
 													mode \
 													motd \
+													names \
 													nick \
 													notice \
+													oper \
 													part \
 													pass \
 													ping \
+													pong \
 													privmsg \
 													quit \
 													time \
 													topic \
 													user \
 													userhost \
-													pong \
-													list \
-													lusers \
-													oper \
+													\
 						$(addprefix Server,			$(DEFAULT_FILES)) \
 						$(addprefix Client,			$(DEFAULT_FILES)) \
 						$(addprefix User,			$(DEFAULT_FILES)) \

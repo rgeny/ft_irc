@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   err_badchannelkey.cpp                              :+:      :+:    :+:   */
+/*   rpl_endofnames.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/05 19:30:51 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/12 14:07:37 by abesombe         ###   ########.fr       */
+/*   Created: 2022/05/06 13:38:05 by abesombe          #+#    #+#             */
+/*   Updated: 2022/05/12 23:30:00 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Message.hpp"
 
-e_error	Message::_err_badchannelkey	(void) const
+e_error	Message::_rpl_endofnames	(void) const
 {
-	String	msg	= this->_set_reply_base (ERR_BADCHANNELKEY)
-				+ _cmd[1] + " :Cannot join channel (incorrect channel key)\r\n";
+	// User *cur_user = (*this->_users_it);
+	String	msg	= this->_set_reply_base(RPL_ENDOFNAMES)
+                + (*_chans_it).second->get_chan_name()
+				+ " :End of /NAMES list."
+				+ "\r\n";
+	// String msg	= this->_set_msg_base("", "366 "
+	// 						+ cur_user->get_nickname(), this->_cmd[1]
+	// 						+ " :End of /NAMES list.")
+	// 						+ "\r\n";
 	(*this->_users_it)->add_to_queue(msg);
-	return (ERROR_CONTINUE);
+	return (SUCCESS);
 }
-

@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:14:15 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/06 14:58:06 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/12 17:32:27 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ class Channel
 		bool	get_specific_mode	(size_t mode) const;
 		MODE_VEC get_mode() const;
 		String	get_mode_string(void);
+		String	get_name_list(int access_level);
 
 
 		// bool user_exist_in_chan(String nickname) const;

@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 12:48:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/11 15:41:21 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/12 14:20:27 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	Command::_init_cmd_fct	(void)
 		Command::_cmds_fct[KICK]		= &Command::_kick;
 		Command::_cmds_fct[MODE]		= &Command::_mode;
 		Command::_cmds_fct[MOTD]		= &Command::_motd;
+		Command::_cmds_fct[NAMES]		= &Command::_names;
 		Command::_cmds_fct[NICK]		= &Command::_nick;
 		Command::_cmds_fct[NOTICE]		= &Command::_notice;
 		Command::_cmds_fct[PART]		= &Command::_part;

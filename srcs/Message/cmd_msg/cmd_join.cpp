@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:52:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/06 11:27:45 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/12 15:15:54 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,8 @@ S <-   :irc.example.com 366 dan #test :End of /NAMES list.
 		_rpl_topic();
 		_rpl_topicwhotime();
 	}
-	msg	= this->_set_msg_base(this->_hostname, "353 " + (*this->_users_it)->get_nickname()
-							+ " =", this->_cmd[1] + " :"
-							+ name_list)
-							+ "\r\n";
-	(*this->_users_it)->add_to_queue(msg);
-	msg	= this->_set_msg_base(this->_hostname, "366 "
-							+ (*this->_users_it)->get_nickname(), this->_cmd[1]
-							+ " :End of /NAMES list.")
-							+ "\r\n";
-	(*this->_users_it)->add_to_queue(msg);
+
+	_rpl_namreply(name_list);
+	_rpl_endofnames();
 	return (SUCCESS);
 }

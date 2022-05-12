@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/06 19:25:48 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/12 17:48:20 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int Command::apply_mode(String target)
 				{
 					modified = USER_MODE_MODIFIED;
 					std::cout << "USER MODE UPDATED\n";
-				}
+					}
 			}
 			else if (mode_type(_cmd[2][i])) // CHANNEL MODE
 			{
