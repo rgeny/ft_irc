@@ -6,11 +6,17 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 15:36:06 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/06 19:00:37 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/12 14:49:31 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "String.hpp"
+
+size_t	String::find	(const std::string & str) const
+{
+	std::cout	<< "t1\n";
+	return (this->std::string::find(str, 0));
+}
 
 size_t	String::find	(const String & str
 						,size_t pos) const

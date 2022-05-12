@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 00:16:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/10 17:21:12 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/12 14:20:12 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ class String
 						,const char * s
 						,size_t n) const;
 
+		size_t	find	(const std::string & str) const;
 		size_t	find	(const String & str
 						,size_t pos = 0) const;
 		size_t	find	(const char * s
