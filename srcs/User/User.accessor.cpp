@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 18:04:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/05 15:27:20 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/23 19:07:24 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,39 @@
 const String		User::get_username	(void) const
 {
 	return (this->_username);
+}
+
+const String		User::get_user_details	(void) const
+{
+	String whoisuser;
+
+	whoisuser += "~";	
+	whoisuser += this->get_username();
+	whoisuser += " ";
+	whoisuser += this->get_host();
+	whoisuser += " * :";
+	whoisuser += this->get_realname();
+	return (whoisuser);
+}
+
+String		User::get_user_chan_list	(void)
+{
+	String user_chan_list;
+	CHAN_USERMODE chan_usermode;
+	
+	// :*.freenode.net 319 abesombes Morgawr :@#ufeff #vidyadev
+	
+	chan_usermode = this->get_chan_usermode();
+	if (chan_usermode.size() > 0)
+		user_chan_list += ":";
+	for (CHAN_USERMODE::iterator it = chan_usermode.begin(), ite = chan_usermode.end(); it != ite; it++)
+	{
+		if (this->get_chan_usermode_vec((*it).first)[USERMODE_o] == true)
+			user_chan_list += "@";
+		user_chan_list += (*it).first;
+	}
+
+	return (user_chan_list);
 }
 
 const String		User::get_host	(void) const
@@ -70,29 +103,10 @@ void	User::set_realname		(String realname)
 	this->_realname = realname;
 }
 
-// void	User::set_chan_usermode	(String chan
-// 							,int mode)
-// {
-// 	std::vector<bool> tmp_vb(3, 0);
-// 	int i = 2;
-// 	while (i >= 0)
-// 	{
-// 		tmp_vb[2 - i] = mode >> i;
-// 		i--;
-// 	}
-
-// 	if (this->_chan_usermode.find(chan) == _chan_usermode.end())
-// 	{
-// 		this->_chan_usermode[chan] = tmp_vb;
-// 	}
-
-// }
-
 void	User::set_chan_usermode	(String chan
 							, UserMode mode
 							, bool val)
 {
-		// std::cout	<< "t1\n";
 		MODE_VEC & mode_vec = _chan_usermode[chan];
 		mode_vec.resize(8);
 		mode_vec[mode] = val;
@@ -102,7 +116,6 @@ void	User::set_chan_usermode	(String chan
 							, size_t mode
 							, bool val)
 {
-		// std::cout	<< "t1\n";
 		MODE_VEC & mode_vec = _chan_usermode[chan];
 		mode_vec.resize(8);
 		mode_vec[mode] = val;

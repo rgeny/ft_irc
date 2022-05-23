@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   String.find.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 15:36:06 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/12 14:49:31 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/23 10:32:17 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 size_t	String::find	(const std::string & str) const
 {
-	std::cout	<< "t1\n";
 	return (this->std::string::find(str, 0));
 }
 

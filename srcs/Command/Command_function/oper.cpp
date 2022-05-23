@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   oper.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 14:34:26 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/11 16:16:36 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/23 17:34:53 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,5 @@ e_error	Command::_oper	(void)
 		return (ERROR_CONTINUE);
 	}
 	(*this->_users_it)->set_specific_mode(USERMODE_o, true);
-//	this->_cmd.clear();
-//	this->_cmd.push_back(MODE);
-//	this->_cmd.push_back((*this->_users_it)->get_nickname());
-//	this->_mode();
 	return (this->_rpl_youreoper());
 }

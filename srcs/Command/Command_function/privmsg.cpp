@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 12:44:29 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/06 21:32:56 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/23 10:32:13 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ e_error	Command::_privmsg	(void)
           if (!this->_chan_exist(_cmd[1]))
 			      return(_err_nosuchchannel());
 	        this->_chans_it = this->_chans.find(_cmd[1]);
-          if (this->_chans_it == this->_chans.end())
-            std::cout   << "t1\n";
           bool moderated = _chans[_cmd[1]]->get_specific_mode(CHANMODE_m);
           Channel & cur_chan = *((*_chans_it).second);
           if (user_exist_in_chan(cur_chan, _cmd[1]))

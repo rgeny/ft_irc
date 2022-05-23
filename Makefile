@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by ayzapata          #+#    #+#              #
-#    Updated: 2022/05/12 15:15:11 by abesombe         ###   ########.fr        #
+#    Updated: 2022/05/23 17:29:24 by abesombe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,20 +113,26 @@ SRCS				= $(addsuffix .cpp,				main \
 													rpl_creationtime \
 													rpl_endofbanlist \
 													rpl_endofnames \
+													rpl_endofwho \
+													rpl_endofwhois \
 													rpl_inviting \
 													rpl_list \
 													rpl_listend \
+													rpl_luserclient \
+													rpl_luserop \
+													rpl_luserchannels \
+													rpl_luserme \
 													rpl_myinfo \
 													rpl_namreply \
 													rpl_notopic \
 													rpl_topic \
 													rpl_topicwhotime \
 													rpl_welcome \
+													rpl_whoischannels \
+													rpl_whoisserver \
+													rpl_whoisuser \
+													rpl_whoreply \
 													rpl_yourhost \
-													rpl_luserclient \
-													rpl_luserop \
-													rpl_luserchannels \
-													rpl_luserme \
 													rpl_youreoper \
 													\
 													cmd_error \
@@ -136,6 +142,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													cmd_kick \
 													cmd_mode \
 													cmd_motd \
+													cmd_nick \
 													cmd_notice \
 													cmd_part \
 													cmd_pong \
@@ -143,7 +150,6 @@ SRCS				= $(addsuffix .cpp,				main \
 													cmd_time \
 													cmd_topic \
 													cmd_userhost \
-													cmd_nick \
 													\
 						$(addprefix Command,		$(DEFAULT_FILES)) \
 													init_cmd_fct \
@@ -169,6 +175,8 @@ SRCS				= $(addsuffix .cpp,				main \
 													topic \
 													user \
 													userhost \
+													who \
+													whois \
 													\
 						$(addprefix Server,			$(DEFAULT_FILES)) \
 						$(addprefix Client,			$(DEFAULT_FILES)) \

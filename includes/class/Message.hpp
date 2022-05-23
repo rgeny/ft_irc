@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/12 15:12:48 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/23 18:30:56 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,21 +74,27 @@ class Message
 		e_error	_rpl_creationtime		(void) const;
 		e_error	_rpl_endofbanlist		(void) const;	
 		e_error	_rpl_endofnames			(void) const;	
+		e_error	_rpl_endofwho			(void) const;
+		e_error	_rpl_endofwhois			(void) const;
 		e_error	_rpl_inviting			(void) const;
 		e_error	_rpl_list				(std::vector<String> list) const;
 		e_error	_rpl_listend			(void) const;
+		e_error	_rpl_luserclient		(void) const;
+		e_error	_rpl_luserchannels		(void) const;
+		e_error	_rpl_luserme			(void) const;
+		e_error	_rpl_luserop			(void) const;
 		e_error	_rpl_myinfo				(void) const;
 		e_error	_rpl_namreply			(String name_list) const;
 		e_error	_rpl_notopic			(void) const;
 		e_error	_rpl_topic				(void) const;
 		e_error	_rpl_topicwhotime		(void) const;
-		e_error	_rpl_yourhost			(void) const;
 		e_error	_rpl_welcome			(void) const;
-		e_error	_rpl_luserclient		(void) const;
-		e_error	_rpl_luserop			(void) const;
-		e_error	_rpl_luserchannels		(void) const;
-		e_error	_rpl_luserme			(void) const;
+		e_error	_rpl_whoisuser			(String user_details) const;
+		e_error	_rpl_whoischannels		(String user_chan_list) const;
+		e_error	_rpl_whoisserver		(void) const;		
+		e_error	_rpl_whoreply			(String who_list) const;
 		e_error	_rpl_youreoper			(void) const;
+		e_error	_rpl_yourhost			(void) const;
 
 		//command reply
 		e_error	_cmd_error		(e_error code);
