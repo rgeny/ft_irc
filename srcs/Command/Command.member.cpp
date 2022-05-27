@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/12 14:21:15 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/27 22:27:41 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,6 @@ void Command::leave_all (void)
 			it = chan_usermode.begin();
 			ite = chan_usermode.end();
 		}
-		_err_badchanmask();
 	}
 }
 

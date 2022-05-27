@@ -6,12 +6,12 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/12 15:38:37 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/27 21:36:11 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Command.hpp"
-
+#include "User.hpp"
 /*
 
 A JOIN message may also be sent from the server to indicate that someone has joined a channel. In this case, the <prefix> indicates the user that’s joined. If a user’s JOIN command is successful, they receive one of these messages. In addition, all other clients also receive a JOIN message. For example, if dan and alice are on the channel #toast, and barry joins #toast, then dan and alice will receive a JOIN message indicating that barry has joined the channel.
@@ -118,7 +118,7 @@ e_error	Command::_join	(void)
 		return (this->_err_needmoreparams());
 	else
 	{
-		if (_cmd[1] == "#0")
+		if (_cmd[1] == "0")
 		{
 			leave_all();
 		}
@@ -126,16 +126,36 @@ e_error	Command::_join	(void)
 		{
 			std::vector<String> chan_list;
 			std::vector<String> password_list;
+			User::CHAN_USERMODE chan_usermode;
+
+			bool user_already_in_channel = false;
+			bool flag_badchanmask;
 
 			chan_list = split(this->_cmd[1], ",");
 			if (_cmd.size() > 2)
 				password_list = split(this->_cmd[2], ",");
 			for (std::vector<String>::iterator it = chan_list.begin(), ite = chan_list.end(); it != ite; it++)
 			{
+				chan_usermode = (*_users_it)->get_chan_usermode();
+				if (chan_usermode.find(*it) != chan_usermode.end())
+					user_already_in_channel = true;
+				else
+					user_already_in_channel = false;
+				flag_badchanmask = false;
 				_cmd[1] = *it;	
-				if (check_chan_name(this->_cmd[1]) == false || check_chan_name(this->_cmd[1]) == false)
-					return (_err_badchanmask());
-				if (join_process(_cmd[1]) != ERROR_CONTINUE)
+				if (check_chan_name(this->_cmd[1]) == false)
+				{	
+					if (chan_list.size() == 1 || it == ite - 1)
+						return (_err_badchanmask());
+					else
+					{
+						_err_badchanmask();
+						flag_badchanmask = true;
+					}
+				}
+				if (user_already_in_channel == false \
+					&& join_process(_cmd[1]) != ERROR_CONTINUE \
+					&& flag_badchanmask == false)
 				{
 					if (it != ite - 1)
 						this->_cmd_join();

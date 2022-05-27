@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/12 17:48:20 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/27 23:14:50 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int Command::apply_mode(String target)
 				Channel::CHAN_BAN_LIST *chan_ban_list = NULL;
 				std::cout << "Nb of channels: " << _chans.size() << std::endl;
 				bool chan_operator = is_operator((*_users_it)->get_nickname(), *_chans_it->second);
-				if (_chans.size() > 0 && chan_operator == true)
+				if ((_chans.size() > 0 && chan_operator == true) || (_cmd[2][i] == 'b'))
 				{
 					if ((_cmd[2][i] == 'o' || _cmd[2][i] == 'v') &&_cmd.size() > 3)
 					{
@@ -171,6 +171,19 @@ int Command::apply_mode(String target)
 								_cmd[3] = _cmd[3] + "!*@*";
 							}
 						}
+						else if (_cmd[2][i] == 'b' && add == false && _cmd.size() > 3)
+						{
+							String needle_nick;
+							if (_cmd[3].substr(_cmd[3].length() - 4) == "!*@*")
+							{
+								needle_nick = _cmd[3].substr(0, _cmd[3].length() - 4);
+								std::cout << "needle_nick: " << needle_nick << std::endl;
+								if (!chan_operator)
+									return (_err_chanoprivsneeded());
+								chan_ban_list->erase(needle_nick);
+								modified = CHAN_MODE_MODIFIED;
+							}
+						}
 
 
 						previous_state = (*this->_chans_it).second->get_specific_mode(chanmodes.find(_cmd[2][i]));
@@ -212,7 +225,7 @@ int Command::apply_mode(String target)
 						<< "]\n";
 					}
 				}
-				else if (_chans.size() > 0 && chan_operator == false)
+				else if (_chans.size() > 0 && chan_operator == false && _cmd[2][i] == 'm')
 					return (_err_chanoprivsneeded("You must have channel halfop access or above to set channel mode m"));
 			}
 
@@ -243,12 +256,12 @@ int Command::apply_mode(String target)
 		}
 		else if (_cmd[2][i] == '+')
 		{
-			std::cout << "char is a +\n";
+			// std::cout << "char is a +\n";
 			add = true;
 		}
 		else if (_cmd[2][i] == '-')
 		{
-			std::cout << "char is a -\n";
+			// std::cout << "char is a -\n";
 			add = false;
 		}
 		i++;
