@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:57:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/04 21:34:31 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/27 22:33:14 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ int		Client::receive	(String & msg)
 
 //	Get next message send by user
 	int	ret = this->_get_next_msg(msg);
+	std::cout	<< "ret 1 : "
+				<< ret
+				<< std::endl;
 	if (ret == RECV_ERROR)
 		return (RECV_ERROR);
 
@@ -72,6 +75,10 @@ int		Client::receive	(String & msg)
 	msg_timer += MSG_PENALIZE_TIME;
 	this->_t_last_msg = cur_time;
 
+	std::cout	<< "ret : "
+				<< ret
+				<< std::endl;
+
 	return (ret);
 }
 
@@ -82,6 +89,8 @@ int		Client::_get_next_msg	(String & msg)
 	if (this->_recv_queue.empty())
 	{
 		ret	= this->Socket::receive(this->_recv_buf);
+		if (ret == 0)
+			return (ret);
 		size_t	end_of_msg	= this->_recv_buf.rfind(END_OF_MSG);
 
 		if (end_of_msg == String::npos)
