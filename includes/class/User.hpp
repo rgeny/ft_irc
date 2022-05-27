@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:04:52 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/23 18:03:20 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/27 12:21:28 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ class User
 		typedef std::map<String, MODE_VEC > 			CHAN_USERMODE;
 		const String				get_username		(void) const;
 		const String				get_user_details	(void) const;
+		String						get_user_moredetail	(String hostname, String chan_name);
 		const String				get_host			(void) const;
 		const std::vector<bool>		get_mode			(void) const;
 		bool						get_specific_mode	(UserMode mode) const;

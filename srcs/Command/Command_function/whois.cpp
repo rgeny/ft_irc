@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 17:24:23 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/23 19:05:47 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/24 15:04:13 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,19 @@ e_error	Command::_whois	(void)
 
     if (this->_cmd.size() < 2)
 		return (this->_err_needmoreparams());
-	else
-	{
-        target_user = _get_user(_cmd[1]);
-        if (!has_begin_hashtag(_cmd[1]) && target_user != NULL)
-        {
-            user_details = target_user->get_user_details();
-            user_chan_list = target_user->get_user_chan_list();
-            _rpl_whoisuser(user_details);
-            if (!user_chan_list.empty())
-                _rpl_whoischannels(user_chan_list);
-            _rpl_whoisserver();
-        }
-        _rpl_endofwhois();
+    else if (this->_user_exist(_cmd[1]) == false)
+        _err_nosuchnick();
+    target_user = _get_user(_cmd[1]);
+    if (!has_begin_hashtag(_cmd[1]) && target_user != NULL)
+    {
+        user_details = target_user->get_user_details();
+        user_chan_list = target_user->get_user_chan_list();
+        _rpl_whoisuser(user_details);
+        if (!user_chan_list.empty())
+            _rpl_whoischannels(user_chan_list);
+        _rpl_whoisserver();
     }
+    _rpl_endofwhois();
+
 	return (SUCCESS);
 }

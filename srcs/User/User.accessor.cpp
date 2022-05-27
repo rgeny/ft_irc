@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 18:04:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/23 19:07:24 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/27 12:20:51 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,26 @@ const String		User::get_user_details	(void) const
 	whoisuser += " ";
 	whoisuser += this->get_host();
 	whoisuser += " * :";
+	whoisuser += this->get_realname();
+	return (whoisuser);
+}
+
+String		User::get_user_moredetail	(String hostname, String chan_name)
+{
+	String whoisuser;
+
+	whoisuser += "~";	
+	whoisuser += this->get_username();
+	whoisuser += " ";
+	whoisuser += this->get_host();
+	whoisuser += " ";
+	whoisuser += hostname;
+	whoisuser += " ";
+	whoisuser += this->get_nickname();
+	whoisuser += " H";
+	if (this->get_chan_usermode_vec(chan_name)[USERMODE_o] == true)
+		whoisuser += "@";	
+	whoisuser += "s :0 ";
 	whoisuser += this->get_realname();
 	return (whoisuser);
 }
