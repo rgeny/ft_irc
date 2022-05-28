@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/27 21:36:11 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/28 13:12:42 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ int  Command::join_process(String chan_name)
 		is_above_chan_limit = ((*this->_chans_it).second->get_limit() < chan_user_list->size() + 1);
 
 		std::cout << "is_on_ban_list? " << is_on_ban_list << std::endl;
-	
+		
+		String current_key = (*this->_chans_it).second->get_key();
 		
 		if (!is_key_set)
 		{
@@ -99,12 +100,16 @@ int  Command::join_process(String chan_name)
 				(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), USERMODE_o, false);
 			}
 		}
-		else if ((*this->_chans_it).second->get_key() == _cmd[2])
+		else if (current_key == _cmd[2])
 		{
+			std::cout << "Key offered: " << _cmd[2] << " vs real key: " << current_key << std::endl;
 			(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), USERMODE_o, false);
 		}
-		else if ((*this->_chans_it).second->get_key() != _cmd[2])
+		else if (current_key != _cmd[2])
+		{
+			std::cout << "Key offered: " << _cmd[2] << " vs real key: " << current_key << std::endl;
 			return (_err_badchannelkey());
+		}
 	}
 	chan_user_list = &(*_chans_it).second->get_chan_user_list();
 	(*chan_user_list)[(*_users_it)->get_nickname()] = *_users_it;
@@ -134,8 +139,11 @@ e_error	Command::_join	(void)
 			chan_list = split(this->_cmd[1], ",");
 			if (_cmd.size() > 2)
 				password_list = split(this->_cmd[2], ",");
+			int pwd_index = 0;
 			for (std::vector<String>::iterator it = chan_list.begin(), ite = chan_list.end(); it != ite; it++)
 			{
+				if (_cmd.size() > 2)
+					_cmd[2] = password_list[pwd_index];
 				chan_usermode = (*_users_it)->get_chan_usermode();
 				if (chan_usermode.find(*it) != chan_usermode.end())
 					user_already_in_channel = true;
@@ -162,6 +170,7 @@ e_error	Command::_join	(void)
 					else
 						return (this->_cmd_join());
 				}
+				pwd_index++;
 			}
 		}
 	}
