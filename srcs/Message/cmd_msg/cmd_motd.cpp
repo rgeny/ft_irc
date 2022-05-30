@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_motd.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/01 14:03:00 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/10 19:20:25 by rgeny            ###   ########.fr       */
+/*   Created: 2022/05/01 14:03:00 by abesombe          #+#    #+#             */
+/*   Updated: 2022/05/30 18:51:50 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ e_error	Message::_cmd_motd	(void) const
     }
     msg	= this->_set_msg_base(this->_servername, "376 "
                             + (*this->_users_it)->get_nickname()
-                            + " "
+                            + ""
                             , ""
                             , ":End of /MOTD command.")
                             + "\r\n";

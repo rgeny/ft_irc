@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_server_name.cpp                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/30 16:55:45 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/01 19:29:36 by ayzapata         ###   ########.fr       */
+/*   Created: 2022/04/30 16:55:45 by abesombe          #+#    #+#             */
+/*   Updated: 2022/05/30 18:51:50 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

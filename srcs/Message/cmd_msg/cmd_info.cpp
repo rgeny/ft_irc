@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_info.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/01 14:03:00 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/30 16:08:53 by ayzapata         ###   ########.fr       */
+/*   Created: 2022/05/01 14:03:00 by abesombe          #+#    #+#             */
+/*   Updated: 2022/05/30 18:51:50 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static const char *info[] = {
 "Authors: (｡◝‿◜｡)",
 "- Remy GENY            - rgeny",
 "- Alexandre BESOMBES   - abesombe",
-"- Vanessa ZAPATA       - ayzapata",
 "42 students",
 "2022",
 "",

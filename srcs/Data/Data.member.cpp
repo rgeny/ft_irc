@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 11:22:06 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/11 17:32:10 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/30 18:51:50 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ Data::OPE_TYPE	Data::_init_ope_list	(void)
 {
 	Data::OPE_TYPE	ope_list;
 
-	ope_list["Ayzapata"] = "aTaPaZyA";
+	ope_list["abesombe"] = "aTaPaZyA";
 	ope_list["Abesombes"] = "SeBmOsEbA";
 	ope_list["Rgeny"] = "YnEgR";
 

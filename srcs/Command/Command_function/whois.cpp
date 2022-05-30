@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 17:24:23 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/24 15:04:13 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/30 18:51:50 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@
 
 */
 
-e_error	Command::_whois	(void)
+e_error Command::_whois(void)
 {
     String user_details;
     String user_chan_list;
-    User* target_user = NULL;
+    User *target_user = NULL;
 
     if (this->_cmd.size() < 2)
-		return (this->_err_needmoreparams());
+        return (this->_err_needmoreparams());
     else if (this->_user_exist(_cmd[1]) == false)
         _err_nosuchnick();
     target_user = _get_user(_cmd[1]);
@@ -45,5 +45,5 @@ e_error	Command::_whois	(void)
     }
     _rpl_endofwhois();
 
-	return (SUCCESS);
+    return (SUCCESS);
 }
