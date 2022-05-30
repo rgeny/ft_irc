@@ -6,7 +6,7 @@
 /*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 14:03:00 by ayzapata          #+#    #+#             */
-/*   Updated: 2022/05/02 10:51:36 by ayzapata         ###   ########.fr       */
+/*   Updated: 2022/05/30 16:08:53 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,17 @@ e_error	Message::_cmd_info	(void) const
 {
     for (size_t i = 0; ::info[i]; ++i)
     {
-        String  msg	= this->_set_msg_base(this->_hostname, "371 "
+        String  msg	= this->_set_msg_base(this->_servername, "371 "
                                         + (*this->_users_it)->get_nickname()
-                                        + " "
+                                        + ""
                                         , ""
                                         , ::info[i])
                                         + "\r\n";
         (*this->_users_it)->add_to_queue(msg);
     }
-    String  msg	= this->_set_msg_base(this->_hostname, "374 "
+    String  msg	= this->_set_msg_base(this->_servername, "374 "
                                     + (*this->_users_it)->get_nickname()
-                                    + " "
+                                    + ""
                                     , ""
                                     , ":End of /INFO list.")
                                     + "\r\n";
