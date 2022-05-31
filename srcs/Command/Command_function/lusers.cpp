@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lusers.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 18:10:55 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/10 19:46:37 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/31 15:51:19 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ e_error	Command::_lusers	(void)
 	}
 	this->_rpl_luserclient();
 	this->_rpl_luserop();
-//	this->_rpl_luserunknown();
 	this->_rpl_luserchannels();
 	this->_rpl_luserme();
 	return (SUCCESS);

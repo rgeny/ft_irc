@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 17:08:30 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/30 18:51:50 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/31 16:09:22 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ e_error	Command::_topic	(void)
 		return (this->_err_needmoreparams());
 	else
 	{
-		std::cout << "I am in TOPIC\n";
 		if (!has_begin_hashtag(this->_cmd[1]))
 		{
 			return (this->_err_nosuchchannel());
@@ -30,9 +29,10 @@ e_error	Command::_topic	(void)
 			else
 			{
 				this->_chans_it = (this->_chans.find(_cmd[1]));
+				Channel *cur_chan = (*this->_chans_it).second;
 				if (this->_cmd.size() > 2)
 				{
-					if (user_exist_in_chan(*(*this->_chans_it).second, (*_users_it)->get_nickname()) == false)
+					if (user_exist_in_chan(*cur_chan, (*_users_it)->get_nickname()) == false)
 						return (_err_notonchannel());
 					String tmp;
 					for (std::vector<String>::iterator it = _cmd.begin() + 2, ite = _cmd.end(); it != ite; it++)
@@ -41,13 +41,12 @@ e_error	Command::_topic	(void)
 							tmp = tmp + " ";
 						tmp = tmp + *it;
 					}
-					std::cout << "TMP: " << tmp << std::endl;
-					bool is_topic_blocked = (*this->_chans_it).second->get_specific_mode(CHANMODE_t);
-					if (is_operator((*_users_it)->get_nickname(), *(*this->_chans_it).second) || (is_topic_blocked == false))
+					bool is_topic_blocked = cur_chan->get_specific_mode(CHANMODE_t);
+					if (is_operator((*_users_it)->get_nickname(), *cur_chan) || (is_topic_blocked == false))
 					{
-						(*this->_chans_it).second->set_topic(tmp);
-						(*this->_chans_it).second->set_topic_creation_time(time(0));
-						(*this->_chans_it).second->set_topic_creator(*_users_it);
+						cur_chan->set_topic(tmp);
+						cur_chan->set_topic_creation_time(time(0));
+						cur_chan->set_topic_creator(*_users_it);
 					}
 					else
 						return (_err_chanoprivsneeded());

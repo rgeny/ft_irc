@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/31 15:48:27 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/31 16:03:55 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,15 @@ void Command::init_access_control_data(void)
 
 void Command::set_new_channel(String chan_name)
 {
+	Channel *cur_chan = NULL;
 	this->_chans[chan_name] = new Channel(chan_name, "");
 	_chans_it = this->_chans.find(chan_name);
 	// By Default, new channels are created with mode +nt
-	(*_chans_it->second).set_specific_mode(CHANMODE_n, true);
-	(*_chans_it->second).set_specific_mode(CHANMODE_t, true);	
+	cur_chan = (*this->_chans_it).second;
+	cur_chan->set_specific_mode(CHANMODE_n, true);
+	cur_chan->set_specific_mode(CHANMODE_t, true);	
 	// Current user who creates a brand new channel is automatically promoted to chan op status
-	(*_users_it)->set_chan_usermode((*_chans_it).second->get_chan_name(), USERMODE_o, true);	
+	(*_users_it)->set_chan_usermode(cur_chan->get_chan_name(), USERMODE_o, true);	
 	// ADD USER TO CHAN_USER_LIST
 }
 

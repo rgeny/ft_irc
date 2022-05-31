@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:53:29 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/27 12:19:08 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/31 16:04:54 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ e_error	Command::_who	(void)
     std::vector<User*> nick_list;
     String who_list;
     User* target_user;
+    Channel *cur_chan = NULL;
 
     if (this->_cmd.size() < 2)
 		return (this->_err_needmoreparams());
@@ -38,10 +39,11 @@ e_error	Command::_who	(void)
         if (has_begin_hashtag(_cmd[1]) && _chans.find(_cmd[1]) != _chans.end())
         {
             _chans_it = _chans.find(_cmd[1]);
-            if (user_exist_in_chan(*_chans_it->second, (*_users_it)->get_nickname()) == false)
-                nick_list = (*_chans_it->second).get_raw_nick_list(0);
+            cur_chan = (*this->_chans_it).second;
+            if (user_exist_in_chan(*cur_chan, (*_users_it)->get_nickname()) == false)
+                nick_list = cur_chan->get_raw_nick_list(CHAN_USER_STATUS);
             else
-                nick_list = (*_chans_it->second).get_raw_nick_list(1);
+                nick_list = cur_chan->get_raw_nick_list(CHAN_OP_STATUS);
             if (nick_list.size() > 0)
             {
                 for (std::vector<User*>::iterator it = nick_list.begin(), ite = nick_list.end(); it != ite; it++)

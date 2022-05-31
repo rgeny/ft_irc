@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 18:13:29 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/30 18:51:50 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/31 16:16:43 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ e_error		Command::_part	(void)
 	User::CHAN_USERMODE chan_usermode;
 
 	bool user_already_in_channel = false;
+	Channel *cur_chan = (*this->_chans_it).second;
 
 	chan_list = split(this->_cmd[1], ",");
     if (this->_cmd.size() < 2)
@@ -27,7 +28,6 @@ e_error		Command::_part	(void)
 		for (std::vector<String>::iterator it = chan_list.begin(), ite = chan_list.end(); it != ite; it++)
 		{
 			_cmd[1] = *it;
-			std::cout << "cur_chan: " << *it << std::endl;
 			if (!has_begin_hashtag(*it) || this->_chan_exist(*it) == false)
 			{	
 				if (it == ite - 1)
@@ -41,7 +41,8 @@ e_error		Command::_part	(void)
 			else
 			{
 				this->_chans_it = (this->_chans.find(*it));
-				if (user_exist_in_chan(*(*this->_chans_it).second, (*_users_it)->get_nickname()) == false)
+				cur_chan = (*this->_chans_it).second;
+				if (user_exist_in_chan(*cur_chan, (*_users_it)->get_nickname()) == false)
 				{
 					if (it == ite - 1)
 						return (_err_notonchannel());
@@ -52,7 +53,7 @@ e_error		Command::_part	(void)
 					}
 				}	
 				Channel::CHAN_USER_LIST *tmp = NULL;
-				tmp = &(*_chans_it).second->get_chan_user_list();
+				tmp = &cur_chan->get_chan_user_list();
 				
 				(*tmp).erase((*_users_it)->get_nickname());
 				User::CHAN_USERMODE & chan_usermode = (*_users_it)->get_chan_usermode();
@@ -64,7 +65,7 @@ e_error		Command::_part	(void)
 				this->_cmd_part(reason);
 				if (tmp->size() < 1)
 				{
-					delete ((*this->_chans_it).second);
+					delete (cur_chan);
 					_chans.erase((*_chans_it).first);
 				}
 			}

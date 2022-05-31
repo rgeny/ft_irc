@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/31 13:19:35 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/31 15:53:52 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include "User.hpp"
 # include "Message.hpp"
 # include "e_error.hpp"
+# define CHAN_USER_STATUS 0
+# define CHAN_OP_STATUS 1
 
 class Command
 	:virtual protected Message
