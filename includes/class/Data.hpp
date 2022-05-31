@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 10:50:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/11 15:02:51 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/31 14:44:59 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,25 @@ class Data
 
 		std::vector<String>	_expand_mask	(String name);
 		std::vector<String> _find_chan		(String name);
+		
+
+		// Access Control
+		Channel::CHAN_USER_LIST *_chan_user_list;
+		Channel::CHAN_INVITE_LIST *_chan_invite_list;
+		Channel::CHAN_BAN_LIST *_chan_ban_list;
+		bool _is_key_set;
+		bool _is_limit_set;
+		bool _inviteonly_set;
+		bool _is_on_ban_list;
+		bool _is_on_guestlist;
+		bool _is_above_chan_limit;
+		String _current_key;
+		std::vector<String> _chan_list;
+		std::vector<String> _password_list;
+		User::CHAN_USERMODE _chan_usermode;
+
+		bool _user_already_in_channel;
+		bool _flag_badchanmask;
 
 	private:
 		static OPE_TYPE	_init_ope_list	(void);

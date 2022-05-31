@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/28 13:00:12 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/31 13:19:35 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ class Command
 		int 	join_process(String chan_name);
 		int		mode_type(char mode);
 		int		apply_mode(String target);
+		void 	set_new_channel(String chan_name);
+		void 	init_access_control_data(void);
+		void 	reset_access_control_data(void);
 
 	protected:
 
