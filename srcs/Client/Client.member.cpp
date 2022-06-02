@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Client.member.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:57:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/27 22:33:14 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/06/01 16:55:00 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		Client::receive	(String & msg)
 
 //	Get next message send by user
 	int	ret = this->_get_next_msg(msg);
-	std::cout	<< "ret 1 : "
+	std::cout	<< "#chars received : "
 				<< ret
 				<< std::endl;
 	if (ret == RECV_ERROR)

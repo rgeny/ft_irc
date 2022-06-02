@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/31 16:03:55 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/01 16:15:33 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,10 @@ int  Command::join_process(String chan_name)
 			else if (_inviteonly_set && !_is_on_guestlist)
 				return (_err_inviteonlychan());
 			else if (_is_on_ban_list && _is_on_guestlist)
+			{
 				(*_users_it)->set_chan_usermode(cur_chan->get_chan_name(), USERMODE_o, false);
+				(*_chan_invite_list).erase((*_users_it)->get_nickname());
+			}
 			else if (!_inviteonly_set && _is_on_ban_list)
 				return (_err_bannedfromchan());
 			else if (!_inviteonly_set && !_is_on_ban_list)

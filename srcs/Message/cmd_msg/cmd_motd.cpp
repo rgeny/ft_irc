@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 14:03:00 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/30 18:51:50 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/02 15:56:59 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,30 +61,32 @@ NULL };
 e_error	Message::_cmd_motd	(void) const
 {
     String  msg;
+    String nickname = (*this->_users_it)->get_nickname();
     msg	= this->_set_msg_base(this->_servername, "375 "
-                            + (*this->_users_it)->get_nickname()
+                            + nickname
                             + " "
                             , ""
-                            , this->_servername + "Message of the Day")
+                            , this->_servername 
+                            + "Message of the Day")
                             + "\r\n";
     (*this->_users_it)->add_to_queue(msg);
     for (size_t i = 0; ::motd[i]; ++i)
     {
         msg	= this->_set_msg_base(this->_servername, "372 "
-                                    + (*this->_users_it)->get_nickname()
+                                    + nickname
                                     + " "
                                     , ""
                                     , ::motd[i])
                                     + "\r\n";
 		msg	= this->_set_msg_base(RPL_MOTD)
-			+ (*this->_users_it)->get_nickname()
+			+ nickname
 			+ " "
 			+ ::motd[i]
 			+ "\r\n";
         (*this->_users_it)->add_to_queue(msg);
     }
     msg	= this->_set_msg_base(this->_servername, "376 "
-                            + (*this->_users_it)->get_nickname()
+                            + nickname
                             + ""
                             , ""
                             , ":End of /MOTD command.")

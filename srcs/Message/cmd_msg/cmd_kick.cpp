@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:21:42 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/30 18:51:50 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/02 15:54:28 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ dan kicking a user that does not exist, and a user that isn’t on the channel
 
 e_error	Message::_cmd_kick	(String reason, String kicked) const
 {
+	Channel::CHAN_USER_LIST *chan_ulist = NULL;
 	String	msg	= this->_set_msg_base((*_users_it)->get_nickname() 
 									+ "!"
 									+ (*_users_it)->get_username()
@@ -73,8 +74,8 @@ e_error	Message::_cmd_kick	(String reason, String kicked) const
                                     (reason != ":" ? reason : ""))
 									+ "\r\n";
 	(*this->_users_it)->add_to_queue(msg);
-
-	for (Channel::CHAN_USER_LIST::iterator it = ((*_chans_it).second)->get_chan_user_list().begin(); it != ((*_chans_it).second)->get_chan_user_list().end(); it++)
+	chan_ulist = &(*_chans_it).second->get_chan_user_list();
+	for (Channel::CHAN_USER_LIST::iterator it = chan_ulist->begin(), ite = chan_ulist->end(); it != ite; it++)
 	{
         if (it->second != *_users_it)
 		    (*it).second->add_to_queue(msg);

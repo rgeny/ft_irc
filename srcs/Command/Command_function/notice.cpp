@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 20:46:32 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/10 19:10:10 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/31 21:50:05 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ e_error	Command::_notice	(void)
           Channel cur_chan = *(*_chans_it).second;
           if (user_exist_in_chan(cur_chan, _cmd[1]))
              voice = (*_users_it)->get_chan_usermode_vec(this->_cmd[1])[USERMODE_v];
-          bool chan_operator = is_operator((*_users_it)->get_nickname(), *_chans_it->second);
+          bool chan_operator = is_operator((*_users_it)->get_nickname(), cur_chan);
           bool n_activated = _chans[_cmd[1]]->get_specific_mode(CHANMODE_n);
           if (chan_operator == false && moderated == true && voice == false) 
             return (_err_cannotsendtochan("You cannot send messages to this channel whilst the +m (moderated) mode is set."));

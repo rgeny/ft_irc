@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 18:21:05 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/30 18:51:50 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/02 17:09:22 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,34 @@
 
 e_error	Message::_cmd_part (String reason) const
 {
-	String	msg	= this->_set_msg_base((*_users_it)->get_nickname()
-									+ "!" + (*_users_it)->get_username()
+	User *cur_user = (*this->_users_it);
+	String nickname = cur_user->get_nickname();
+	String username = cur_user->get_username();
+	Channel *cur_chan = (*this->_chans_it).second;
+	Channel::CHAN_USER_LIST &chan_ulist = cur_chan->get_chan_user_list();
+	String host = cur_user->get_host();
+	String	msg	= this->_set_msg_base(nickname
+									+ "!" 
+									+ username
 									+ "@"
-									+ this->_hostname, this->_cmd[0] , this->_cmd[1] + (!reason.empty()? " " + reason: ""))
+									+ this->_hostname
+									, this->_cmd[0]
+									, this->_cmd[1] 
+									+ (!reason.empty()? " " + reason: ""))
 									+ "\r\n";
-	(*this->_users_it)->add_to_queue(msg);
-	// std::cout << "Current User: " << ((*_chans_it).second)->get_chan_user_list().begin()->first << std::endl;
-	for (Channel::CHAN_USER_LIST::iterator it = ((*_chans_it).second)->get_chan_user_list().begin(), ite = ((*_chans_it).second)->get_chan_user_list().end(); it != ite; it++)
+	cur_user->add_to_queue(msg);
+	for (Channel::CHAN_USER_LIST::iterator it = chan_ulist.begin(), ite = chan_ulist.end(); it != ite; it++)
 	{
-		// std::cout << "Current User: " << it->first << std::endl;
-		if ((*it).second != *_users_it)
+		if ((*it).second != cur_user)
 		{
-	        String	msg	= this->_set_msg_base((*_users_it)->get_nickname()
-									+ "!" + (*_users_it)->get_username()
+	        String	msg	= this->_set_msg_base(nickname
+									+ "!" 
+									+ username
 									+ "@"
-									+ this->_hostname, this->_cmd[0] , this->_cmd[1] + (!reason.empty()? " " + reason: ""))
+									+ this->_hostname
+									, this->_cmd[0] 
+									, this->_cmd[1] 
+									+ (!reason.empty()? " " + reason: ""))
 									+ "\r\n";
 			(*it).second->add_to_queue(msg);
 		}

@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 18:04:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/27 12:20:51 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/31 22:21:26 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ String		User::get_user_chan_list	(void)
 		user_chan_list += ":";
 	for (CHAN_USERMODE::iterator it = chan_usermode.begin(), ite = chan_usermode.end(); it != ite; it++)
 	{
+		if (it != chan_usermode.begin())
+			user_chan_list += " ";
 		if (this->get_chan_usermode_vec((*it).first)[USERMODE_o] == true)
 			user_chan_list += "@";
 		user_chan_list += (*it).first;

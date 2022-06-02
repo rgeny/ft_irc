@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 13:38:08 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/06 19:53:44 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/01 19:57:01 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 e_error	Message::_rpl_banlist	(void) const
 {
     String	msg;
-    Channel::CHAN_BAN_LIST chan_blist = ((*_chans_it).second)->get_chan_ban_list();
+    Channel *cur_chan = (*this->_chans_it).second;
+    Channel::CHAN_BAN_LIST chan_blist = cur_chan->get_chan_ban_list();
     time_t creation_time;
 
     std::vector<Channel::CHAN_BAN_LIST::iterator> sorted_list_of_bans;
@@ -48,9 +49,9 @@ e_error	Message::_rpl_banlist	(void) const
             last_min = min;
         // }
     }
-    std::cout   << "vect size : "
-                << sorted_list_of_bans.size()
-                << std::endl;
+    // std::cout   << "vect size : "
+    //             << sorted_list_of_bans.size()
+    //             << std::endl;
     for (std::vector<Channel::CHAN_BAN_LIST::iterator>::iterator it = sorted_list_of_bans.begin(), ite = sorted_list_of_bans.end(); it != ite; it++)
     {
         creation_time = ((*(*it)).second).second;

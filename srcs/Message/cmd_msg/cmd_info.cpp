@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 14:03:00 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/30 18:51:50 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/02 15:41:24 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,11 @@ NULL };
                     
 e_error	Message::_cmd_info	(void) const
 {
+    String nickname = (*this->_users_it)->get_nickname();
     for (size_t i = 0; ::info[i]; ++i)
     {
         String  msg	= this->_set_msg_base(this->_servername, "371 "
-                                        + (*this->_users_it)->get_nickname()
+                                        + nickname
                                         + ""
                                         , ""
                                         , ::info[i])
@@ -68,7 +69,7 @@ e_error	Message::_cmd_info	(void) const
         (*this->_users_it)->add_to_queue(msg);
     }
     String  msg	= this->_set_msg_base(this->_servername, "374 "
-                                    + (*this->_users_it)->get_nickname()
+                                    + nickname
                                     + ""
                                     , ""
                                     , ":End of /INFO list.")
