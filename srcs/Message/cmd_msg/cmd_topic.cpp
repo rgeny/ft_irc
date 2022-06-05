@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 17:23:29 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/02 16:55:11 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/03 23:25:06 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ e_error	Message::_cmd_topic	(int choice) const
     String topic = cur_chan->get_topic();
 	User *cur_user = (*this->_users_it);
 	*_chan_user_list = cur_chan->get_chan_user_list();
+	if (topic.empty())
+		topic = ":";
+	else
+		topic = ":" + topic;
 	if (choice == 1)
 	{
 		String	msg	= this->_set_msg_base(nickname
@@ -61,6 +65,7 @@ e_error	Message::_cmd_topic	(int choice) const
 		else
 		{
 			_rpl_topic();
+			_rpl_topicwhotime();
 		}
 		cur_user->add_to_queue(msg);
 		return (SUCCESS);

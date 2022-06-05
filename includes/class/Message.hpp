@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/30 18:51:50 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/05 11:23:39 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ class Message
 		e_error	_err_unavailresource	(void) const;
 		e_error	_err_usersdontmatch		(void) const;
 		e_error	_err_usernotinchannel	(void) const;
+		e_error	_err_useronchannel		(void) const;
 		e_error	_err_noprivileges		(String reason) const;
 		e_error	_err_toomanymatches		(void) const;
 		e_error	_err_unknowncommand		(void) const;

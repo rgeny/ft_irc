@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by abesombe          #+#    #+#              #
-#    Updated: 2022/05/30 18:51:50 by abesombe         ###   ########.fr        #
+#    Updated: 2022/06/05 11:23:13 by abesombe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,6 +102,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													err_umodeunknownflag \
 													err_unavailresource \
 													err_usernotinchannel \
+													err_useronchannel \
 													err_usersdontmatch \
 													err_toomanymatches \
 													err_unknowncommand \

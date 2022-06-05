@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 00:32:23 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/02 17:22:00 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/05 11:32:54 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ e_error	Command::_invite	(void)
 
 	if (is_operator(cur_user, *_chans_it->second) == false)
 		return (_err_chanoprivsneeded());
+	if (user_exist_in_chan(*_chans_it->second, target))
+		return (_err_useronchannel());  	
 	_chan_invite_list = &(*_chans_it).second->get_chan_invite_list();
 	(*_chan_invite_list)[target] = _get_user(target);
 	return (_cmd_invite());
