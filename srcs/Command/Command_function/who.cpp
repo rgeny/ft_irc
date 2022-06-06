@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:53:29 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/06 13:16:24 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/05/31 16:04:54 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ e_error	Command::_who	(void)
 {
     std::vector<User*> nick_list;
     String who_list;
-    User* target_user = NULL;
+    User* target_user;
     Channel *cur_chan = NULL;
 
     if (this->_cmd.size() < 2)

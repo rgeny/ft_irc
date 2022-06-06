@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/06 16:24:32 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/06 22:34:50 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,10 @@ bool	Command::_nick_already_used	(String & nickname) const
 
 bool 	Command::user_exist_in_chan(Channel &chan, String nickname) const
 {
-	Channel::CHAN_USER_LIST &chan_ulist = chan.get_chan_user_list();
-    String name_list;
-
-    if (chan_ulist.find(nickname) == chan_ulist.end())
+	Channel::CHAN_USER_LIST *chan_ulist = NULL;
+	chan_ulist = &(chan.get_chan_user_list());
+	
+    if (chan_ulist && chan_ulist->find(nickname) == chan_ulist->end())
         return (false);
     return (true);
 }

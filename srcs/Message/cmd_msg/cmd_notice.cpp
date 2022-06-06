@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 20:47:10 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/06 15:49:08 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/02 16:03:14 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 e_error	Message::_cmd_notice	(String chat_msg) const
 {
-    Channel::CHAN_USER_LIST chan_ulist;
+    Channel::CHAN_USER_LIST chan_user_list;
     std::vector<String> target_list;
     target_list = split(this->_cmd[1], ",");
     for (std::vector<String>::iterator it = target_list.begin(), ite = target_list.end(); it != ite; it++)
@@ -40,8 +40,8 @@ e_error	Message::_cmd_notice	(String chat_msg) const
                 current_chan = _chans.find(current_target)->second;
             if (current_chan != NULL)
             {
-                chan_ulist = current_chan->get_chan_user_list();
-                for (Channel::CHAN_USER_LIST::iterator it = chan_ulist.begin(), ite = chan_ulist.end(); it != ite; it++)
+                chan_user_list = current_chan->get_chan_user_list();
+                for (Channel::CHAN_USER_LIST::iterator it = chan_user_list.begin(), ite = chan_user_list.end(); it != ite; it++)
                 {
                     if (it->first != nickname)
                         it->second->add_to_queue(msg);

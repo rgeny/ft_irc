@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/05 12:18:30 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/02 17:15:06 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # include "e_error.hpp"
 # define CHAN_USER_STATUS 0
 # define CHAN_OP_STATUS 1
-# define CONTINUE -2
 # define USERMODES_LIST "aiwroOsv"
 # define CHANMODES_LIST "aimnqpsrtklbeIov"
 # define MODES_LIST "aiswoOpstnmlbvk"
@@ -58,9 +57,7 @@ class Command
 		void 	reset_access_control_data(void);
 		void	display_chan_mode(Channel *cur_chan);
 		void	display_user_mode(User *target_user, String user_type);
-		void	update_user_mode(bool &previous_state, int &modified, int i, bool &add, String target);
-		int		ban_mode(Channel::CHAN_BAN_LIST *chan_ban_list, char mode_char, bool add, bool chan_operator, int *modified);
-		int 	key_userlimit_mode(char mode_char, bool add, bool is_key_set, bool is_limit_set, Channel* cur_chan, size_t *i);
+		void	update_user_mode(bool &previous_state, int &modified, int i, bool &add, String target);		
 
 	protected:
 
