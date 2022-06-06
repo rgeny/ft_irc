@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/01 16:15:33 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/06 17:36:50 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void Command::init_access_control_data(void)
 	_inviteonly_set = cur_chan->get_specific_mode(CHANMODE_i);
 	_chan_ban_list = &cur_chan->get_chan_ban_list();
 	_is_on_ban_list = (_chan_ban_list->find((*_users_it)->get_nickname()) != _chan_ban_list->end());
-	_chan_user_list = &cur_chan->get_chan_user_list();
+	*_chan_user_list = cur_chan->get_chan_user_list();
 	_is_above_chan_limit = (cur_chan->get_limit() < _chan_user_list->size() + 1);
 	_current_key = cur_chan->get_key();
 }

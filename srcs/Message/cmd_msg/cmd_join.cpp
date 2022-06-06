@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:52:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/02 15:52:12 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/06 16:28:12 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ S <-   :irc.example.com 333 alice #test dan!~d@localhost 1547691506
 S <-   :irc.example.com 353 dan = #test :@dan
 S <-   :irc.example.com 366 dan #test :End of /NAMES list.
 */
-	Channel::CHAN_USER_LIST *chan_ulist = NULL;
+
 	Channel *cur_chan = (*this->_chans_it).second;
+	Channel::CHAN_USER_LIST &chan_ulist = cur_chan->get_chan_user_list();
 	String	msg	= this->_set_msg_base((*_users_it)->get_nickname() 
 									+ "!"
 									+ (*_users_it)->get_username()
@@ -34,8 +35,7 @@ S <-   :irc.example.com 366 dan #test :End of /NAMES list.
 									+ this->_cmd[1])
 									+ "\r\n";
 	(*this->_users_it)->add_to_queue(msg);
-	chan_ulist = &(*_chans_it).second->get_chan_user_list();
-	for (Channel::CHAN_USER_LIST::iterator it = chan_ulist->begin(), ite = chan_ulist->end(); it != ite; it++)
+	for (Channel::CHAN_USER_LIST::iterator it = chan_ulist.begin(), ite = chan_ulist.end(); it != ite; it++)
 	{
 		String	msg	= this->_set_msg_base((*_users_it)->get_nickname()
 										+ "!" + (*_users_it)->get_username()
@@ -48,11 +48,11 @@ S <-   :irc.example.com 366 dan #test :End of /NAMES list.
 					+ "\r\n";
 	(*this->_users_it)->add_to_queue(msg);
 	String name_list;
-	chan_ulist = &(*_chans_it).second->get_chan_user_list();
-	for (Channel::CHAN_USER_LIST::iterator it = chan_ulist->begin(); it != chan_ulist->end(); it++)
+	chan_ulist = cur_chan->get_chan_user_list();
+	for (Channel::CHAN_USER_LIST::iterator it = chan_ulist.begin(); it != chan_ulist.end(); it++)
 	{
 		std::cout << "Users in this channel: " << (*it).second->get_nickname() << std::endl;
-		if (it != chan_ulist->begin())
+		if (it != chan_ulist.begin())
 			name_list += " ";
 		if ((*it).second->get_chan_usermode_vec(this->_cmd[1])[USERMODE_o] == true)
 			name_list += "@";

@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 17:37:04 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/03 18:32:55 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/06 16:19:28 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,11 +122,10 @@ time_t & Channel::get_topic_creation_time()
 
 String Channel::get_name_list(int access_level)
 {
-    CHAN_USER_LIST *chan_ulist = NULL;
+	Channel::CHAN_USER_LIST &chan_ulist = this->get_chan_user_list();
     String name_list;
 
-    chan_ulist = &this->get_chan_user_list();
-    for (CHAN_USER_LIST::iterator it = chan_ulist->begin(); it != chan_ulist->end(); it++)
+    for (CHAN_USER_LIST::iterator it = chan_ulist.begin(); it != chan_ulist.end(); it++)
     {
         // if requesting user is not member of the channel && if the chan_user is in invisible mode, 
         // chan_user should not appear in the list.
@@ -136,7 +135,7 @@ String Channel::get_name_list(int access_level)
         // std::cout << "chan = " << this->get_chan_name() << " - is_in_chan? " << access_level << " - " << (*it).second->get_nickname() << " > is_user_invisible? " << is_invisible << std::endl;
         if (access_level || !is_invisible)
         {
-            if (it != chan_ulist->begin())
+            if (it != chan_ulist.begin())
                 name_list += " ";
             if ((*it).second->get_chan_usermode_vec(this->get_chan_name())[USERMODE_o] == true)
                 name_list += "@";
@@ -148,11 +147,10 @@ String Channel::get_name_list(int access_level)
 
 std::vector<User*> Channel::get_raw_nick_list(int access_level)
 {
-    CHAN_USER_LIST *chan_ulist = NULL;
+	Channel::CHAN_USER_LIST &chan_ulist = this->get_chan_user_list();
     std::vector<User*> name_list;
 
-    chan_ulist = &this->get_chan_user_list();
-    for (CHAN_USER_LIST::iterator it = chan_ulist->begin(); it != chan_ulist->end(); it++)
+    for (CHAN_USER_LIST::iterator it = chan_ulist.begin(); it != chan_ulist.end(); it++)
     {
         // if requesting user is not member of the channel && if the chan_user is in invisible mode, 
         // chan_user should not appear in the list.

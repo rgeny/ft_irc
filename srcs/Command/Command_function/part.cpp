@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 18:13:29 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/02 17:25:04 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/06 16:12:16 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ e_error		Command::_part	(void)
 	String nickname = (*_users_it)->get_nickname();
 	String cur_chan_name = (*_chans_it).first;
 
-	bool user_already_in_channel = false;
 	Channel *cur_chan = (*this->_chans_it).second;
 
 	chan_list = split(this->_cmd[1], ",");
@@ -54,10 +53,10 @@ e_error		Command::_part	(void)
 						continue;
 					}
 				}	
-				Channel::CHAN_USER_LIST *tmp = NULL;
-				tmp = &cur_chan->get_chan_user_list();
+				Channel::CHAN_USER_LIST *chan_ulist = NULL;
+				*chan_ulist = cur_chan->get_chan_user_list();
 				
-				(*tmp).erase(nickname);
+				(*chan_ulist).erase(nickname);
 				User::CHAN_USERMODE & chan_usermode = (*_users_it)->get_chan_usermode();
 				chan_usermode.erase(cur_chan_name);
 
@@ -65,7 +64,7 @@ e_error		Command::_part	(void)
 				if (this->_cmd.size() > 2)
 					reason = concat_last_args(2);
 				this->_cmd_part(reason);
-				if (tmp->size() < 1)
+				if (chan_ulist->size() < 1)
 				{
 					delete (cur_chan);
 					_chans.erase(cur_chan_name);

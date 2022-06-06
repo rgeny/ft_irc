@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/02 17:31:44 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/05 12:19:19 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,100 @@ int Command::mode_type(char mode)
 	return (1);
 }
 
+int Command::ban_mode(Channel::CHAN_BAN_LIST *chan_ban_list, char mode_char, bool add, bool chan_operator, int *modified)
+{
+	size_t count_mode_letters = 0;
+	for (size_t i = 0 ; i < _cmd[2].size(); i++)
+	{
+		if (mode_char != '+' && mode_char != '-')
+			count_mode_letters++;
+	}
+		
+	if (mode_char == 'b' && add == true && _cmd.size() < 4)
+	{
+		if (chan_ban_list->size() > 0)
+			_rpl_banlist();
+		if (count_mode_letters > 1)
+			_rpl_endofbanlist();
+		else
+			return (_rpl_endofbanlist());
+	}
+	else if (mode_char == 'b' && add == true && _cmd.size() > 3)
+	{
+		if (!chan_operator)
+			return (_err_chanoprivsneeded());
+		if (chan_ban_list->size() >= CHAN_BAN_LIST_MAX_SIZE)
+			return (_err_banlistfull());
+		if (chan_ban_list->find(_cmd[3]) == chan_ban_list->end())
+		{
+			Channel::PAIR_BAN_CREATORNAME_TIME bpair = std::make_pair(*_users_it, time(0));
+			chan_ban_list->insert(std::make_pair(_cmd[3], bpair));
+			_cmd[3] = _cmd[3] + "!*@*";
+		}
+	}
+	else if (mode_char == 'b' && add == false && _cmd.size() > 3)
+	{
+		String needle_nick;
+		if (_cmd[3].substr(_cmd[3].length() - 4) == "!*@*")
+		{
+			needle_nick = _cmd[3].substr(0, _cmd[3].length() - 4);
+			if (!chan_operator)
+				return (_err_chanoprivsneeded());
+			chan_ban_list->erase(needle_nick);
+			*modified = CHAN_MODE_MODIFIED;
+		}
+	}
+	return (SUCCESS);
+}
+
+int Command::key_userlimit_mode(char mode_char, bool add, bool is_key_set, bool is_limit_set, Channel* cur_chan, size_t *i)
+{
+	if (mode_char == 'k' && add == true && is_key_set == false)
+	{ 
+		if (_cmd.size() < 4)
+			return (this->_err_needmoreparams("k * You must specify a parameter for the key mode. Syntax: <key>."));
+		cur_chan->set_key(_cmd[3]);
+	}
+	else if (mode_char == 'k' && add == true && is_key_set == true)
+	{
+		(*i)++;
+		return (CONTINUE);	
+	}
+	else if (mode_char == 'k' && add == false && is_key_set == true)
+	{
+		cur_chan->set_key("");
+	}
+	else if (mode_char == 'k' && add == false && is_key_set == false)
+	{
+		(*i)++;
+		return (CONTINUE);
+	}
+
+	// MODE "l"
+	
+	if (mode_char == 'l' && add == true && is_limit_set == false)
+	{
+		if (_cmd.size() < 4)
+			return (this->_err_needmoreparams("l * You must specify a parameter for the limit mode. Syntax: <limit>."));
+		cur_chan->set_limit(_cmd[3]);
+	}
+	else if (mode_char == 'l' && add == true && is_limit_set == true)
+	{
+		(*i)++;
+		return (CONTINUE);
+	}
+	else if (mode_char == 'l' && add == false && is_limit_set == true)
+	{
+		cur_chan->set_limit(0);
+	}
+	else if (mode_char == 'l' && add == false && is_limit_set == false)
+	{
+		(*i)++;
+		return (CONTINUE);
+	}
+	return (SUCCESS);
+}
+
 int Command::apply_mode(String target)
 {
 	size_t 	size_modestr = _cmd[2].length();
@@ -118,7 +212,6 @@ int Command::apply_mode(String target)
 				{
 					if ((mode_char == 'o' || mode_char == 'v') && _cmd.size() > 3)
 					{
-						std::cout << "Update modes 'o' ou 'v' sur une target" << std::endl;
 						if (this->_user_exist(_cmd[3]) == false)
 							return (_err_nosuchnick());
 						if (user_exist_in_chan(*cur_chan, _cmd[3]) == false)
@@ -127,10 +220,7 @@ int Command::apply_mode(String target)
 						previous_state = target_user->get_chan_usermode_vec(_cmd[1])[usermodes.find(mode_char)];
 						target_user->set_chan_usermode(_cmd[1], usermodes.find(mode_char), add);
 						if (previous_state != target_user->get_chan_usermode_vec(_cmd[1])[usermodes.find(mode_char)])
-						{
 							modified = CHAN_MODE_MODIFIED;
-							std::cout << "CHAN MODE UPDATED\n";
-						}
 					}
 					else
 					{
@@ -138,97 +228,16 @@ int Command::apply_mode(String target)
 						bool is_limit_set = cur_chan->get_specific_mode(CHANMODE_l);
 						chan_ban_list = &(*_chans_it).second->get_chan_ban_list();
 
-						// MODE "k"
-						if (mode_char == 'k' && add == true && is_key_set == false)
-						{ 
-							// std::cout << "I am in +k mode request\n";
-							if (_cmd.size() < 4)
-								return (this->_err_needmoreparams("k * You must specify a parameter for the key mode. Syntax: <key>."));
-							cur_chan->set_key(_cmd[3]);
-						}
-						else if (mode_char == 'k' && add == true && is_key_set == true)
-						{
-							i++;
-							continue;	
-						}
-						else if (mode_char == 'k' && add == false && is_key_set == true)
-						{
-							cur_chan->set_key("");
-						}
-						else if (mode_char == 'k' && add == false && is_key_set == false)
-						{
-							i++;
+						// MODE "k" et "l"
+						int ret = key_userlimit_mode(mode_char, add, is_key_set, is_limit_set, cur_chan, &i);
+						if (ret == CONTINUE)
 							continue;
-						}
-
-						// MODE "l"
-						
-						if (mode_char == 'l' && add == true && is_limit_set == false)
-						{
-							if (_cmd.size() < 4)
-								return (this->_err_needmoreparams("l * You must specify a parameter for the limit mode. Syntax: <limit>."));
-							cur_chan->set_limit(_cmd[3]);
-						}
-						else if (mode_char == 'l' && add == true && is_limit_set == true)
-						{
-							i++;
-							continue;	
-						}
-						else if (mode_char == 'l' && add == false && is_limit_set == true)
-						{
-							cur_chan->set_limit(0);
-						}
-						else if (mode_char == 'l' && add == false && is_limit_set == false)
-						{
-							i++;
-							continue;
-						}
+						else if (ret == ERROR_CONTINUE)
+							return (ERROR_CONTINUE);
 
 						// MODE "b"
-						std::cout << "b: _cmd.size(): " << _cmd.size() << std::endl;
-						size_t count_mode_letters = 0;
-						for (size_t i = 0 ; i < _cmd[2].size(); i++)
-						{
-							if (mode_char != '+' && mode_char != '-')
-								count_mode_letters++;
-						}
-							
-						if (mode_char == 'b' && add == true && _cmd.size() < 4)
-						{
-							if (chan_ban_list->size() > 0)
-								_rpl_banlist();
-							if (count_mode_letters > 1)
-								_rpl_endofbanlist();
-							else
-								return (_rpl_endofbanlist());
-						}
-						else if (mode_char == 'b' && add == true && _cmd.size() > 3)
-						{
-							if (!chan_operator)
-							    return (_err_chanoprivsneeded());
-							if (chan_ban_list->size() >= CHAN_BAN_LIST_MAX_SIZE)
-								return (_err_banlistfull());
-							if (chan_ban_list->find(_cmd[3]) == chan_ban_list->end())
-							{
-								Channel::PAIR_BAN_CREATORNAME_TIME bpair = std::make_pair(*_users_it, time(0));
-								chan_ban_list->insert(std::make_pair(_cmd[3], bpair));
-								_cmd[3] = _cmd[3] + "!*@*";
-							}
-						}
-						else if (mode_char == 'b' && add == false && _cmd.size() > 3)
-						{
-							String needle_nick;
-							if (_cmd[3].substr(_cmd[3].length() - 4) == "!*@*")
-							{
-								needle_nick = _cmd[3].substr(0, _cmd[3].length() - 4);
-								std::cout << "needle_nick: " << needle_nick << std::endl;
-								if (!chan_operator)
-									return (_err_chanoprivsneeded());
-								chan_ban_list->erase(needle_nick);
-								modified = CHAN_MODE_MODIFIED;
-							}
-						}
-
+						if (ban_mode(chan_ban_list, mode_char, add, chan_operator, &modified) == ERROR_CONTINUE)
+							return (ERROR_CONTINUE);
 
 						previous_state = cur_chan->get_specific_mode(chanmodes.find(mode_char));
 						std::cout << "previous_state: " << previous_state << std::endl;
