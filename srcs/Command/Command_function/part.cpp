@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   part.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 18:13:29 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/02 17:25:04 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/07 00:40:24 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ e_error		Command::_part	(void)
 			{
 				this->_chans_it = (this->_chans.find(*it));
 				cur_chan = (*this->_chans_it).second;
-				if (user_exist_in_chan(*cur_chan, nickname) == false)
+				if (user_exist_in_chan(*(*this->_chans_it).second, (*_users_it)->get_nickname()) == false)
 				{
 					if (it == ite - 1)
 						return (_err_notonchannel());
@@ -54,18 +54,19 @@ e_error		Command::_part	(void)
 						continue;
 					}
 				}	
-				Channel::CHAN_USER_LIST *tmp = NULL;
-				tmp = &cur_chan->get_chan_user_list();
+				Channel::CHAN_USER_LIST *chan_ulist = NULL;
+				chan_ulist = &cur_chan->get_chan_user_list();
 				
-				(*tmp).erase(nickname);
+				chan_ulist->erase(nickname);
 				User::CHAN_USERMODE & chan_usermode = (*_users_it)->get_chan_usermode();
+				cur_chan_name = (*_chans_it).first;
 				chan_usermode.erase(cur_chan_name);
 
 				String reason;
 				if (this->_cmd.size() > 2)
 					reason = concat_last_args(2);
 				this->_cmd_part(reason);
-				if (tmp->size() < 1)
+				if (chan_ulist->size() < 1)
 				{
 					delete (cur_chan);
 					_chans.erase(cur_chan_name);
