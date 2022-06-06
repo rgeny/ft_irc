@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.member.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/06 22:34:50 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/06 23:51:52 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,20 +151,24 @@ void Command::leave_all (void)
 {
 	std::cout << "Current user: " << (*_users_it)->get_nickname() << std::endl;
 	User::CHAN_USERMODE & chan_usermode = (*_users_it)->get_chan_usermode();
+	std::cout << "Chan_usermode.size(): " << chan_usermode.size() << std::endl;
 	if (chan_usermode.size() == 0)
 		_err_badchanmask();
 	else if (chan_usermode.size() > 0)
 	{
 		User::CHAN_USERMODE::iterator it = chan_usermode.begin();
 		User::CHAN_USERMODE::iterator ite = chan_usermode.end();
+		int i = 0;
 		while (it != ite)
 		{
+			std::cout << "I AM IN THE LOOP " << i++ << "\n";
 			_cmd.clear();
 			_cmd.push_back("part");
 			_cmd.push_back((*it).first);
 			_cmd.push_back(":Left");
 			_cmd.push_back("all");
 			_cmd.push_back("channels");
+			std::cout << "chan_name: " << (*it).first << std::endl;
 			_part();
 			it = chan_usermode.begin();
 			ite = chan_usermode.end();
