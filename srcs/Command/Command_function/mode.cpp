@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/07 12:23:34 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/07 12:39:04 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,8 +269,6 @@ e_error	Command::_mode	(void)
 {
 	int ret;
 	bool is_channel = has_begin_hashtag(this->_cmd[1]);
-	std::cout << "is_channel? " << is_channel << std::endl;
-	std::cout << "chan_exist? " << this->_chan_exist(_cmd[1]) << std::endl;
 	
 	if (this->_cmd.size() < 2)
 		return (this->_err_needmoreparams());

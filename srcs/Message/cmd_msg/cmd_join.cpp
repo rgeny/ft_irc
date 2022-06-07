@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_join.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:52:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/02 15:52:12 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/07 14:24:31 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ S <-   :irc.example.com 366 dan #test :End of /NAMES list.
 	}
 
 	_rpl_namreply(name_list);
-	_rpl_endofnames();
+	_rpl_endofnames(false);
 	return (SUCCESS);
 }

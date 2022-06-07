@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Message.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/05 11:23:39 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/07 14:06:11 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ class Message
 		e_error	_rpl_created			(void) const;
 		e_error	_rpl_creationtime		(void) const;
 		e_error	_rpl_endofbanlist		(void) const;	
-		e_error	_rpl_endofnames			(void) const;	
+		e_error	_rpl_endofnames			(bool empty) const;	
 		e_error	_rpl_endofwho			(void) const;
 		e_error	_rpl_endofwhois			(void) const;
 		e_error	_rpl_inviting			(void) const;

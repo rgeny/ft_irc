@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   who.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:53:29 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/31 16:04:54 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/07 14:09:11 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ e_error	Command::_who	(void)
 {
     std::vector<User*> nick_list;
     String who_list;
-    User* target_user;
+    User* target_user = NULL;
     Channel *cur_chan = NULL;
 
     if (this->_cmd.size() < 2)
