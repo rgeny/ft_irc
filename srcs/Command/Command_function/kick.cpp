@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   kick.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:22:23 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/01 16:24:54 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/07 10:35:27 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ e_error	Command::_kick (void)
         chan_usermode.erase(_chans_it->first);
 
         if (tmp->size() < 1)
+        {
             _chans.erase((*_chans_it).first);
+            this->_chans_it = _chans.begin();
+        }
         return (_cmd_kick(reason,_cmd[2]));       
     }
     return (SUCCESS);

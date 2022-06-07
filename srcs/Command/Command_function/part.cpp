@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 18:13:29 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/07 00:40:24 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/07 10:29:59 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ e_error		Command::_part	(void)
 	String nickname = (*_users_it)->get_nickname();
 	String cur_chan_name = (*_chans_it).first;
 
-	bool user_already_in_channel = false;
 	Channel *cur_chan = (*this->_chans_it).second;
 
 	chan_list = split(this->_cmd[1], ",");
@@ -70,6 +69,7 @@ e_error		Command::_part	(void)
 				{
 					delete (cur_chan);
 					_chans.erase(cur_chan_name);
+					this->_chans_it = _chans.begin();
 				}
 			}
 		}
