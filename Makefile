@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
+#    By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by abesombe          #+#    #+#              #
-#    Updated: 2022/06/05 11:23:13 by abesombe         ###   ########.fr        #
+#    Updated: 2022/06/07 09:56:52 by abesombes        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ DEL_DIR				= rm -rf
 VERSION				= -std=c++98
 
 CC					= c++
-COMPILE_FLAG		= $(DEPS_FLAG) $(VERSION) -g #-Wall -Werror -Wextra
+COMPILE_FLAG		= $(DEPS_FLAG) $(VERSION) -g -Wall -Werror -Wextra
 DEPS_FLAG			= -MMD
 INCLUDES_FLAG		= $(addprefix -I ,	$(INCLUDES_DIR) \
 										$(CLASS_DIR) \
