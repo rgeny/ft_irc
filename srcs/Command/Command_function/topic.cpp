@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   topic.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 17:08:30 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/03 18:08:26 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/07 22:16:20 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,11 @@ e_error	Command::_topic	(void)
 				}
 				else if (this->_cmd.size() == 2)
 				{
-					return (this->_cmd_topic(2));
+					bool is_secret_chan = cur_chan->get_specific_mode(CHANMODE_s);
+					if (!is_secret_chan)
+						return (this->_cmd_topic(2));
+					else
+						return (_err_nosuchchannel());
 				}
 			}
 		}
