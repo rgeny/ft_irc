@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/07 14:06:11 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/07 17:37:28 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ class Message
 		e_error	_err_chanoprivsneeded	(String reason = "You must be a channel operator") const;
 		e_error	_err_erroneusnickname	(void) const;
 		e_error	_err_inviteonlychan		(void) const;		
-		e_error	_err_needmoreparams		(String reason = "Not enough parameters") const;
+		e_error	_err_needmoreparams		(String reason = "Not enough parameters.") const;
 		e_error	_err_nicknameinuse		(void) const;
 		e_error	_err_nonicknamegiven	(void) const;
 		e_error	_err_noorigin			(void) const;
