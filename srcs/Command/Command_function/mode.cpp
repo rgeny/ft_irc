@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/07 12:39:04 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/07 17:29:31 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,6 +269,7 @@ e_error	Command::_mode	(void)
 {
 	int ret;
 	bool is_channel = has_begin_hashtag(this->_cmd[1]);
+	Channel *cur_chan = NULL;
 	
 	if (this->_cmd.size() < 2)
 		return (this->_err_needmoreparams());
@@ -276,10 +277,21 @@ e_error	Command::_mode	(void)
 	{
 		if (is_channel == false && (_cmd[1] != (*_users_it)->get_nickname()))
 			return (this->_err_usersdontmatch());
+
 		if (is_channel == true && this->_chan_exist(_cmd[1]) == false)
 			return (this->_err_nosuchchannel());
 		else
+		{
 			_chans_it = _chans.find(_cmd[1]);
+			if (_chans_it != _chans.end())
+			{
+				cur_chan = (*this->_chans_it).second;
+				bool chan_operator = is_operator((*_users_it)->get_nickname(), *cur_chan);
+				if ((cur_chan->get_specific_mode(CHANMODE_p) == true
+				|| cur_chan->get_specific_mode(CHANMODE_s) == true) && !chan_operator)
+					return (this->_err_nosuchchannel());
+			}
+		}
 		if (this->_cmd.size() == 2)
 		{
 			_rpl_channelmodeis();

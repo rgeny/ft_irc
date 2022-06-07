@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:52:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/07 14:24:31 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/07 15:03:45 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ S <-   :irc.example.com 366 dan #test :End of /NAMES list.
 	chan_ulist = &(*_chans_it).second->get_chan_user_list();
 	for (Channel::CHAN_USER_LIST::iterator it = chan_ulist->begin(); it != chan_ulist->end(); it++)
 	{
-		std::cout << "Users in this channel: " << (*it).second->get_nickname() << std::endl;
 		if (it != chan_ulist->begin())
 			name_list += " ";
 		if ((*it).second->get_chan_usermode_vec(this->_cmd[1])[USERMODE_o] == true)

@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 15:17:17 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/07 14:05:40 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/07 15:23:29 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ e_error	Command::_names	(void)
                     name_list = cur_chan->get_name_list(0);
                 else if (cur_chan)
                     name_list = cur_chan->get_name_list(1);
-                if (!name_list.empty())
+                if (!name_list.empty() 
+                && cur_chan->get_specific_mode(CHANMODE_s) == false)
                     _rpl_namreply(name_list);
                 _rpl_endofnames(false);
             }
