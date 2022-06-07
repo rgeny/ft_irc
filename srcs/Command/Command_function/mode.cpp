@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mode.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/06 22:52:30 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/07 12:23:34 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,15 +269,12 @@ e_error	Command::_mode	(void)
 {
 	int ret;
 	bool is_channel = has_begin_hashtag(this->_cmd[1]);
+	std::cout << "is_channel? " << is_channel << std::endl;
+	std::cout << "chan_exist? " << this->_chan_exist(_cmd[1]) << std::endl;
 	
 	if (this->_cmd.size() < 2)
 		return (this->_err_needmoreparams());
-	else if (this->_cmd.size() == 2)
-	{
-		_rpl_channelmodeis();
-		return (_rpl_creationtime());
-	}
-	else if (this->_cmd.size() >= 3)
+	else 
 	{
 		if (is_channel == false && (_cmd[1] != (*_users_it)->get_nickname()))
 			return (this->_err_usersdontmatch());
@@ -285,11 +282,19 @@ e_error	Command::_mode	(void)
 			return (this->_err_nosuchchannel());
 		else
 			_chans_it = _chans.find(_cmd[1]);
-		ret = apply_mode(_cmd[1]);
-		if (ret == CHAN_MODE_MODIFIED)
-			return (this->_cmd_mode(1));
-		else if (ret == USER_MODE_MODIFIED)
-			return (this->_cmd_mode(0));
+		if (this->_cmd.size() == 2)
+		{
+			_rpl_channelmodeis();
+			return (_rpl_creationtime());
+		}
+		else if (this->_cmd.size() >= 3)
+		{
+			ret = apply_mode(_cmd[1]);
+			if (ret == CHAN_MODE_MODIFIED)
+				return (this->_cmd_mode(1));
+			else if (ret == USER_MODE_MODIFIED)
+				return (this->_cmd_mode(0));
+		}
 	}
 	return (SUCCESS);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   names.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 15:17:17 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/31 21:48:40 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/07 11:04:21 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,9 @@ e_error	Command::_names	(void)
         {
             _chans_it = _chans.find(*it);
             cur_chan = (*this->_chans_it).second;
-            if (check_chan_name(*it) == false || check_chan_name(*it) == false)
-                return (_err_badchanmask());
-            if (user_exist_in_chan(*cur_chan, (*_users_it)->get_nickname()) == false)
+            if (cur_chan && user_exist_in_chan(*cur_chan, (*_users_it)->get_nickname()) == false)
                 name_list = cur_chan->get_name_list(0);
-            else
+            else if (cur_chan)
                 name_list = cur_chan->get_name_list(1);
             if (!name_list.empty())
                 _rpl_namreply(name_list);
