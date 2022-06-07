@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:31:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/07 10:34:59 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/07 19:28:43 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	Server::_del_user		(void)
 		{
 			delete (*it).second;
 			this->_chans.erase(it);
-			this->_chans_it = _chans.begin();
+			it = _chans.begin();
 		}
 		else
 			it++;
