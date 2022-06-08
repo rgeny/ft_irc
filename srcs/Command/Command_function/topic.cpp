@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   topic.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ayzapata <ayzapata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 17:08:30 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/07 22:16:20 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/08 03:41:57 by ayzapata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ e_error	Command::_topic	(void)
 				}
 				else if (this->_cmd.size() == 2)
 				{
+					if (user_exist_in_chan(*cur_chan, (*_users_it)->get_nickname()) == false)
+						return (_err_notonchannel());
+						
 					bool is_secret_chan = cur_chan->get_specific_mode(CHANMODE_s);
 					if (!is_secret_chan)
 						return (this->_cmd_topic(2));
