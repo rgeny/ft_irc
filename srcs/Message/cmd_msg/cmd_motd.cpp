@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_motd.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 14:03:00 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/02 15:56:59 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/08 15:40:32 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,15 @@ e_error	Message::_cmd_motd	(void) const
 {
     String  msg;
     String nickname = (*this->_users_it)->get_nickname();
-    msg	= this->_set_msg_base(this->_servername, "375 "
+    msg	= this->_set_msg_base(this->_hostname, "375 "
                             + nickname
-                            + " "
-                            , ""
-                            , this->_servername 
-                            + "Message of the Day")
+                            , this->_hostname
+                            , "Message of the Day")
                             + "\r\n";
     (*this->_users_it)->add_to_queue(msg);
     for (size_t i = 0; ::motd[i]; ++i)
     {
-        msg	= this->_set_msg_base(this->_servername, "372 "
+        msg	= this->_set_msg_base(this->_hostname, "372 "
                                     + nickname
                                     + " "
                                     , ""
@@ -85,11 +83,9 @@ e_error	Message::_cmd_motd	(void) const
 			+ "\r\n";
         (*this->_users_it)->add_to_queue(msg);
     }
-    msg	= this->_set_msg_base(this->_servername, "376 "
-                            + nickname
-                            + ""
-                            , ""
-                            , ":End of /MOTD command.")
+    msg	= this->_set_msg_base(this->_hostname, "376 "
+                            , nickname
+                            , ":End of message of the day.")
                             + "\r\n";
     (*this->_users_it)->add_to_queue(msg);
 	return (SUCCESS);

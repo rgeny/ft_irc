@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rpl_whoreply.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:46:37 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/27 12:10:25 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/08 14:56:57 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 e_error	Message::_rpl_whoreply	(String who_list) const
 {
-	String msg	= this->_set_msg_base(this->_servername, String(RPL_WHOREPLY) + " " + (*this->_users_it)->get_nickname()
+	String msg	= this->_set_msg_base(this->_hostname, String(RPL_WHOREPLY) + " " + (*this->_users_it)->get_nickname()
 							, this->_cmd[1]
 							+ " "
 							+ who_list)

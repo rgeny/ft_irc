@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/06 23:51:52 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/08 16:44:07 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,10 +158,8 @@ void Command::leave_all (void)
 	{
 		User::CHAN_USERMODE::iterator it = chan_usermode.begin();
 		User::CHAN_USERMODE::iterator ite = chan_usermode.end();
-		int i = 0;
 		while (it != ite)
 		{
-			std::cout << "I AM IN THE LOOP " << i++ << "\n";
 			_cmd.clear();
 			_cmd.push_back("part");
 			_cmd.push_back((*it).first);

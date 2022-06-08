@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:53:29 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/07 14:09:11 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/08 18:03:46 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ e_error	Command::_who	(void)
             if (!who_list.empty())
                 _rpl_whoreply(who_list);
         }
-        _rpl_endofwho();
+        // if (this->_chan_exist((*this->_chans_it).first) == true)
+            _rpl_endofwho();
     }
 	return (SUCCESS);
 }

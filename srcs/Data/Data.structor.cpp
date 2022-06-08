@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Data.structor.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 11:13:11 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/11 14:36:53 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/06/08 15:34:57 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,18 @@ Data:: Data	(String password
 {
 	std::cout	<< "Data dfl constructor."
 				<< std::endl;
+
+				
 	time_t	cur_time = time(NULL);
-	this->_created_date = ctime(&cur_time);
+	struct tm * timeinfo;
+  	char buffer [80];
+
+  	time (&cur_time);
+  	timeinfo = localtime (&cur_time);
+
+	strftime (buffer,80,"%H:%M:%S %b %d %Y",timeinfo);
+	this->_created_date = String(buffer);
+	//this->_created_date = ctime(&cur_time);
 	String::iterator	it = this->_created_date.end() - 1;
 	if (*it == '\n')
 		this->_created_date.erase(it);

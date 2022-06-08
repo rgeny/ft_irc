@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/08 13:22:58 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/08 13:48:56 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 String	Message::_set_msg_base	(String code) const
 {
 	String	msg	= ":"
-				+ this->_servername
+				+ this->_hostname
 				+ " "
 				+ code
 				+ " ";
@@ -27,7 +27,7 @@ String	Message::_set_msg_base	(String code
 {
 	String	msg	= ":";
 	if (receiver == (*this->_users_it)->get_nickname())
-		msg	+= this->_servername;
+		msg	+= this->_hostname;
 	else
 		msg	+= this->_set_sender();
 	msg	+= " "
