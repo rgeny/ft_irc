@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Message.member.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/30 18:51:50 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/08 13:22:58 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,8 @@ String	Message::_set_sender	(void) const
 
 String	Message::_set_sender	(String oldest) const
 {
-	String	sender	= oldest
+	String	sender	= ":"
+					+ oldest
 					+ "!"
 					+ (*this->_users_it)->get_username()
 					+ "@"

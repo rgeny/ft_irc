@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 17:23:29 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/08 11:51:04 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/08 11:56:35 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ e_error	Message::_cmd_topic	(int choice) const
 	String nickname = (*this->_users_it)->get_nickname();
 	String username = (*this->_users_it)->get_username();
     String topic = cur_chan->get_topic();
-	std::cout << "current topic: " << topic << std::endl;
 	User *cur_user = (*this->_users_it);
 	*_chan_user_list = cur_chan->get_chan_user_list();
 	if (topic.empty())

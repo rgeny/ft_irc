@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_nick.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 22:02:32 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/02 15:58:49 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/08 13:20:14 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ e_error	Message::_cmd_nick	(String & oldest) const
 	String	msg	= this->_set_sender(oldest)
 				+ " "
 				+ NICK
-				+ " "
+				+ " :"
 				+ nickname
 				+ "\r\n";
 	(*this->_users_it)->add_to_queue(msg);
