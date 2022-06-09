@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/08 16:44:07 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/10 00:29:02 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,3 +174,23 @@ void Command::leave_all (void)
 	}
 }
 
+void Command::update_all_nickname_records(String nickname)
+{
+	User* cur_user = _get_user(nickname);
+	// std::cout << "cur_user: " << nickname << std::endl;
+	for (CHANS_IT it = _chans.begin(), ite = _chans.end(); it != ite; it++)
+	{
+		Channel* cur_chan = (*it).second;
+		Channel::CHAN_USER_LIST *chan_user_list = &(cur_chan->get_chan_user_list());
+		// Channel::CHAN_BAN_LIST *chan_ban_list = &(cur_chan->get_chan_ban_list());
+		Channel::CHAN_INVITE_LIST *chan_invite_list = &(cur_chan->get_chan_invite_list());
+		chan_user_list->erase(nickname);
+		(*chan_user_list)[nickname] = cur_user;
+		// std::cout << "chan_user_list: " << (*chan_user_list)[nickname]->get_nickname() << std::endl;
+		// Channel::PAIR_BAN_CREATORNAME_TIME saved_pair = (*chan_ban_list)[nickname];
+		// chan_ban_list->erase(nickname);
+		// (*chan_ban_list)[nickname] = saved_pair;
+		chan_invite_list->erase(nickname);
+		(*chan_invite_list)[nickname] = cur_user;
+	}
+}

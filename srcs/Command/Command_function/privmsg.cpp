@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   privmsg.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 12:44:29 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/31 16:10:44 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/10 00:00:17 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ e_error	Command::_privmsg	(void)
           bool n_activated = _chans[_cmd[1]]->get_specific_mode(CHANMODE_n);
           if (chan_operator == false && moderated == true && voice == false) 
             return (_err_cannotsendtochan("You cannot send messages to this channel whilst the +m (moderated) mode is set."));
+          std::cout << "current_user: " << (*_users_it)->get_nickname() << std::endl;
+          
           if (!user_exist_in_chan(cur_chan, (*_users_it)->get_nickname()) && n_activated == true)
             return (_err_cannotsendtochan("You cannot send external messages to this channel whilst the +n (noextmsg) mode is set."));
         }
