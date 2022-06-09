@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   User.member.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 18:08:44 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/05 12:52:44 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/09 16:46:13 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ bool	User::co_is_complete	(void) const
 			&& this->_username != DFL_USERNAME
 			&& this->_realname != DFL_REALNAME);
 }
+
+
 
 // void User::init_chan_usermode_vec (void)
 // {

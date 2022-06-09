@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   User.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:04:52 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/27 12:21:28 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/09 16:47:42 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ class User
 		String						get_user_chan_list	(void);
 		std::vector<bool> 			get_chan_usermode_vec	(String chan_name);
 		CHAN_USERMODE &				get_chan_usermode	(void);
+		String						get_last_joined_chan (void);
 
 		void	set_username		(String username);
 		void	set_mode			(String mode);
@@ -101,6 +102,7 @@ class User
 									,size_t mode
 									,bool val);
 		void	set_realname		(String realname);
+		void	set_last_joined_chan(String last_joined_chan);
 
 		bool	co_is_complete	(void) const;
 
@@ -110,6 +112,7 @@ class User
 		String									_realname;
 		CHAN_USERMODE							_chan_usermode;
 		String									_host;
+		String									_last_joined_chan;
 };
 
 std::ostream &	operator<<	(std::ostream & os

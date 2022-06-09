@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/07 17:37:28 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/09 22:20:17 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ class Message
 		e_error	_rpl_creationtime		(void) const;
 		e_error	_rpl_endofbanlist		(void) const;	
 		e_error	_rpl_endofnames			(bool empty) const;	
-		e_error	_rpl_endofwho			(void) const;
+		e_error	_rpl_endofwho			(String target) const;
 		e_error	_rpl_endofwhois			(void) const;
 		e_error	_rpl_inviting			(void) const;
 		e_error	_rpl_list				(std::vector<String> list) const;
@@ -93,7 +93,7 @@ class Message
 		e_error	_rpl_whoisuser			(String user_details) const;
 		e_error	_rpl_whoischannels		(String user_chan_list) const;
 		e_error	_rpl_whoisserver		(void) const;		
-		e_error	_rpl_whoreply			(String who_list) const;
+		e_error	_rpl_whoreply			(String who_list, String chan_name) const;
 		e_error	_rpl_youreoper			(void) const;
 		e_error	_rpl_yourhost			(void) const;
 

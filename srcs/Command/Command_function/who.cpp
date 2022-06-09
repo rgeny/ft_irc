@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:53:29 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/08 18:03:46 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/09 22:20:57 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ e_error	Command::_who	(void)
     String who_list;
     User* target_user = NULL;
     Channel *cur_chan = NULL;
+    String target;
 
     if (this->_cmd.size() < 2)
 		return (this->_err_needmoreparams());
@@ -49,18 +50,19 @@ e_error	Command::_who	(void)
                 for (std::vector<User*>::iterator it = nick_list.begin(), ite = nick_list.end(); it != ite; it++)
                 {
                     who_list = (*it)->get_user_moredetail(_hostname, _cmd[1]);
-                    _rpl_whoreply(who_list);
+                    _rpl_whoreply(who_list, _cmd[1]);
                 }
             }
         }
-        else if (!has_begin_hashtag(_cmd[1]) && (target_user == _get_user(_cmd[1])))
+        else if (!has_begin_hashtag(_cmd[1]) && (_user_exist(_cmd[1]) == true))
         {
-            who_list = target_user->get_user_moredetail(_hostname, _cmd[1]);
+            target_user = _get_user(_cmd[1]);
+            String last_joined_chan = target_user->get_last_joined_chan();
+            who_list = target_user->get_user_moredetail(_hostname, last_joined_chan);
             if (!who_list.empty())
-                _rpl_whoreply(who_list);
+                _rpl_whoreply(who_list, last_joined_chan);
         }
-        // if (this->_chan_exist((*this->_chans_it).first) == true)
-            _rpl_endofwho();
+        _rpl_endofwho(_cmd[1]);
     }
 	return (SUCCESS);
 }

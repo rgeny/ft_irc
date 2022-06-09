@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/06 23:26:54 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/09 22:34:13 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,13 @@ int  Command::join_process(String chan_name)
 	if (this->_chans_it == _chans.end())
 	{
 		set_new_channel(chan_name);
+		(*_users_it)->set_last_joined_chan(chan_name);
 	}
 	else 
 	{
 		init_access_control_data();
 		cur_chan = (*this->_chans_it).second;
+		String cur_chan_name = cur_chan->get_chan_name();
 		if (!_is_key_set)
 		{
 			_chan_invite_list = &cur_chan->get_chan_invite_list();
@@ -91,24 +93,30 @@ int  Command::join_process(String chan_name)
 				return (_err_channelisfull());
 			if (_inviteonly_set && _is_on_guestlist)
 			{
-				(*_users_it)->set_chan_usermode(cur_chan->get_chan_name(), USERMODE_o, false);
+				(*_users_it)->set_chan_usermode(cur_chan_name, USERMODE_o, false);
 				(*_chan_invite_list).erase((*_users_it)->get_nickname());
+				(*_users_it)->set_last_joined_chan(cur_chan_name);
 			}
 			else if (_inviteonly_set && !_is_on_guestlist)
 				return (_err_inviteonlychan());
 			else if (_is_on_ban_list && _is_on_guestlist)
 			{
-				(*_users_it)->set_chan_usermode(cur_chan->get_chan_name(), USERMODE_o, false);
+				(*_users_it)->set_chan_usermode(cur_chan_name, USERMODE_o, false);
 				(*_chan_invite_list).erase((*_users_it)->get_nickname());
+				(*_users_it)->set_last_joined_chan(cur_chan_name);
 			}
 			else if (!_inviteonly_set && _is_on_ban_list)
 				return (_err_bannedfromchan());
 			else if (!_inviteonly_set && !_is_on_ban_list)
-				(*_users_it)->set_chan_usermode(cur_chan->get_chan_name(), USERMODE_o, false);
+			{
+				(*_users_it)->set_chan_usermode(cur_chan_name, USERMODE_o, false);
+				(*_users_it)->set_last_joined_chan(cur_chan_name);
+			}
 		}
 		else if (_current_key == _cmd[2])
 		{
-			(*_users_it)->set_chan_usermode(cur_chan->get_chan_name(), USERMODE_o, false);
+			(*_users_it)->set_chan_usermode(cur_chan_name, USERMODE_o, false);
+			(*_users_it)->set_last_joined_chan(cur_chan_name);
 		}
 		else if (_current_key != _cmd[2])
 		{
@@ -118,6 +126,7 @@ int  Command::join_process(String chan_name)
 	cur_chan = (*this->_chans_it).second;
 	_chan_user_list = &(cur_chan->get_chan_user_list());
 	(*_chan_user_list)[(*_users_it)->get_nickname()] = *_users_it;
+	std::cout << "Last joined channel = " << (*_users_it)->get_last_joined_chan() << std::endl;
 
 	return (SUCCESS);
 }

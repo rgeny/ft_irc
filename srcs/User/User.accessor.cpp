@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   User.accessor.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 18:04:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/31 22:21:26 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/09 22:33:12 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,20 @@ String		User::get_user_moredetail	(String hostname, String chan_name)
 	whoisuser += " ";
 	whoisuser += this->get_nickname();
 	whoisuser += " H";
-	if (this->get_chan_usermode_vec(chan_name)[USERMODE_o] == true)
-		whoisuser += "@";	
+	if (this->get_chan_usermode().size() > 0) // Active user is member of at least one channel
+	{
+	 	if (this->get_chan_usermode_vec(chan_name)[USERMODE_o] == true)
+			whoisuser += "@";
+	}
 	whoisuser += "s :0 ";
 	whoisuser += this->get_realname();
 	return (whoisuser);
+}
+
+
+String		User::get_last_joined_chan (void)
+{
+	return (_last_joined_chan);
 }
 
 String		User::get_user_chan_list	(void)
@@ -152,4 +161,9 @@ std::vector<bool> User::get_chan_usermode_vec(String chan_name)
 User::CHAN_USERMODE & User::get_chan_usermode( void )
 {
 	return (_chan_usermode);
+}
+
+void	User::set_last_joined_chan(String last_joined_chan)
+{
+	this->_last_joined_chan = last_joined_chan;
 }
