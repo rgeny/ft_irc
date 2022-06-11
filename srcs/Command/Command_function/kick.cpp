@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:22:23 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/11 18:29:17 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/11 19:04:01 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ e_error	Command::_kick (void)
             if (user_exist_in_chan(*_chans_it->second, *it) == false)
             {
                 if (it == ite - 1)
-                    return (_err_usernotinchannel());
+                    return (_err_usernotinchannel(*it, _chans_it->second->get_chan_name()));
                 else
                 {
-                    _err_usernotinchannel();
+                    _err_usernotinchannel(*it, _chans_it->second->get_chan_name());
                     continue;
                 }
             }

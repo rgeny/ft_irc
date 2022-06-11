@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 18:13:29 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/07 10:29:59 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/11 19:01:38 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ e_error		Command::_part	(void)
 			{
 				this->_chans_it = (this->_chans.find(*it));
 				cur_chan = (*this->_chans_it).second;
-				if (user_exist_in_chan(*(*this->_chans_it).second, (*_users_it)->get_nickname()) == false)
+				String cur_nickname = (*_users_it)->get_nickname();
+				if (user_exist_in_chan(*(*this->_chans_it).second, cur_nickname) == false)
 				{
 					if (it == ite - 1)
 						return (_err_notonchannel());

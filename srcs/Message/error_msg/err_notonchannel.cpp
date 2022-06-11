@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   err_notonchannel.cpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 18:15:56 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/30 18:51:50 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/11 19:01:14 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

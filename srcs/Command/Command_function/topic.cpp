@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 17:08:30 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/08 11:55:18 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/11 19:01:47 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@ e_error	Command::_topic	(void)
 			{
 				this->_chans_it = (this->_chans.find(_cmd[1]));
 				Channel *cur_chan = (*this->_chans_it).second;
+				String cur_chan_name = cur_chan->get_chan_name();
+				String cur_nickname = (*_users_it)->get_nickname();
 				if (this->_cmd.size() > 2)
 				{
-					if (user_exist_in_chan(*cur_chan, (*_users_it)->get_nickname()) == false)
+					if (user_exist_in_chan(*cur_chan, cur_nickname) == false)
 						return (_err_notonchannel());
 					String tmp;
 					for (std::vector<String>::iterator it = _cmd.begin() + 2, ite = _cmd.end(); it != ite; it++)

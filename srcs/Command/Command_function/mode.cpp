@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/11 18:29:28 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/11 19:04:20 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int Command::apply_mode(String target)
 						if (this->_user_exist(_cmd[3]) == false)
 							return (_err_nosuchnick(_cmd[3]));
 						if (user_exist_in_chan(*cur_chan, _cmd[3]) == false)
-							return (_err_usernotinchannel());
+							return (_err_usernotinchannel(_cmd[3], cur_chan->get_chan_name()));
 						target_user = _get_user(_cmd[3]);
 						previous_state = target_user->get_chan_usermode_vec(_cmd[1])[usermodes.find(mode_char)];
 						target_user->set_chan_usermode(_cmd[1], usermodes.find(mode_char), add);

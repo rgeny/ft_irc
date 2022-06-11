@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/11 18:28:21 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/11 19:01:03 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ class Message
 		e_error	_err_umodeunknownflag	(String failed, String reason) const;
 		e_error	_err_unavailresource	(void) const;
 		e_error	_err_usersdontmatch		(void) const;
-		e_error	_err_usernotinchannel	(void) const;
+		e_error	_err_usernotinchannel	(String nickname, String chan_name) const;
 		e_error	_err_useronchannel		(void) const;
 		e_error	_err_noprivileges		(String reason) const;
 		e_error	_err_toomanymatches		(void) const;
