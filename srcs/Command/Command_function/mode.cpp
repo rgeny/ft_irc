@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/07 17:29:31 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/11 18:29:28 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int Command::apply_mode(String target)
 					{
 						std::cout << "Update modes 'o' ou 'v' sur une target" << std::endl;
 						if (this->_user_exist(_cmd[3]) == false)
-							return (_err_nosuchnick());
+							return (_err_nosuchnick(_cmd[3]));
 						if (user_exist_in_chan(*cur_chan, _cmd[3]) == false)
 							return (_err_usernotinchannel());
 						target_user = _get_user(_cmd[3]);

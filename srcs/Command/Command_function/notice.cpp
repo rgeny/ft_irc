@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   notice.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 20:46:32 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/31 21:50:05 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/11 18:29:35 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ e_error	Command::_notice	(void)
         else if (!has_begin_hashtag(this->_cmd[1]))
         {
           if (this->_user_exist(_cmd[1]) == false)
-            return (_err_nosuchnick());
+            return (_err_nosuchnick(_cmd[1]));
         }
           String msg = concat_last_args(2);
           return (this->_cmd_notice(msg));

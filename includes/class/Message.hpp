@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/09 22:20:17 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/11 18:28:21 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ class Message
 		e_error	_err_nonicknamegiven	(void) const;
 		e_error	_err_noorigin			(void) const;
 		e_error	_err_nosuchchannel		(void) const;
-		e_error	_err_nosuchnick			(void) const;
+		e_error	_err_nosuchnick			(String nickname) const;
 		e_error	_err_nosuchserver		(void) const;
 		e_error	_err_notonchannel		(void) const;
 		e_error	_err_passwdmismatch		(void) const;

@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 12:44:29 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/10 15:54:46 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/11 18:29:39 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ e_error	Command::_privmsg	(void)
 		else if (!has_begin_hashtag(this->_cmd[1]))
 		{
 			if (this->_user_exist(_cmd[1]) == false)
-				return (_err_nosuchnick());
+				return (_err_nosuchnick(_cmd[1]));
 		}
 		String msg = concat_last_args(2);
 		return (this->_cmd_privmsg(msg));

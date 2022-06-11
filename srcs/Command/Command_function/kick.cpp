@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:22:23 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/11 10:56:56 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/11 18:29:17 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ e_error	Command::_kick (void)
             if (this->_user_exist(*it) == false)
             {
                 if (it == ite - 1)
-                    return (_err_nosuchnick());
+                    return (_err_nosuchnick(*it));
                 else
                 {
-                    _err_nosuchnick();
+                    _err_nosuchnick(*it);
                     continue;
                 }
             }

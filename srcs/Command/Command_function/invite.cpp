@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   invite.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 00:32:23 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/05 11:32:54 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/11 18:29:02 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ e_error	Command::_invite	(void)
 	if (this->_cmd.size() < 3)
 		return (this->_err_needmoreparams());
 	if (this->_user_exist(_cmd[1]) == false)
-		return (_err_nosuchnick());
+		return (_err_nosuchnick(_cmd[1]));
 	if (this->_chan_exist(_cmd[2]) == false)
 		return (_err_nosuchchannel());  
 	_chans_it = _chans.find(_cmd[2]);
