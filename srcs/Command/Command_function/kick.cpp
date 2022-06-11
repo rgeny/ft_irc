@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:22:23 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/07 10:35:27 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/11 10:56:56 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,51 @@ e_error	Command::_kick (void)
 
 		if (is_operator((*_users_it)->get_nickname(), *cur_chan) == false)
             return (_err_chanoprivsneeded());
-        if (this->_user_exist(_cmd[2]) == false)
-             return (_err_nosuchnick());
-        if (user_exist_in_chan(*_chans_it->second, _cmd[2]) == false)
-            return (_err_usernotinchannel());
         String reason = concat_last_args(3);
-        Channel::CHAN_USER_LIST *tmp = NULL;
-        tmp = &(*_chans_it).second->get_chan_user_list();
+        Channel::CHAN_USER_LIST *chan_ulist = NULL;
+        chan_ulist = &(*_chans_it).second->get_chan_user_list();
+        _nick_list = split(this->_cmd[2], ",");
         
-        (*tmp).erase((this->_get_user(_cmd[2]))->get_nickname());
-        User::CHAN_USERMODE & chan_usermode = (this->_get_user(_cmd[2]))->get_chan_usermode();
-        chan_usermode.erase(_chans_it->first);
-
-        if (tmp->size() < 1)
+        for (std::vector<String>::iterator it = _nick_list.begin(), ite = _nick_list.end(); it != ite; it++)
         {
-            _chans.erase((*_chans_it).first);
-            this->_chans_it = _chans.begin();
-        }
-        return (_cmd_kick(reason,_cmd[2]));       
+            std::cout << "cur_user: " << *it << std::endl;
+            if (this->_user_exist(*it) == false)
+            {
+                if (it == ite - 1)
+                    return (_err_nosuchnick());
+                else
+                {
+                    _err_nosuchnick();
+                    continue;
+                }
+            }
+            if (user_exist_in_chan(*_chans_it->second, *it) == false)
+            {
+                if (it == ite - 1)
+                    return (_err_usernotinchannel());
+                else
+                {
+                    _err_usernotinchannel();
+                    continue;
+                }
+            }
+            (*chan_ulist).erase(*it);
+            User* cur_user = (this->_get_user(*it));
+            String cur_chan_name = _chans_it->first;
+            User::CHAN_USERMODE & chan_usermode = cur_user->get_chan_usermode();
+            chan_usermode.erase(cur_chan_name);
+
+            if (chan_ulist->size() < 1)
+            {
+                _chans.erase(cur_chan_name);
+                this->_chans_it = _chans.begin();
+            }
+            std::cout << "cur_user: " << *it << std::endl;
+            if (it == ite - 1)
+                return (_cmd_kick(reason,*it));
+            else
+                _cmd_kick(reason,*it);
+        }   
     }
     return (SUCCESS);
 }

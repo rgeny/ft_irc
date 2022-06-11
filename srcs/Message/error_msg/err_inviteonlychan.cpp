@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   err_inviteonlychan.cpp                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:22:17 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/06 01:31:06 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/10 16:34:27 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 e_error	Message::_err_inviteonlychan	(void) const
 {
-	String	msg	= this->_set_reply_base (ERR_ERRONEUSNICKNAME)
+	String	msg	= this->_set_reply_base (ERR_INVITEONLYCHAN)
 				+ this->_cmd[1]
-				+ " :Cannot join to channel " + _cmd[2] + " (You must be invited)\r\n";
+				+ " :Cannot join channel (invite only)\r\n";
 	(*this->_users_it)->add_to_queue(msg);
 	return (ERROR_CONTINUE);
 }

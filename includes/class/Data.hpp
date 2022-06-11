@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Data.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 10:50:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/31 14:44:59 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/11 10:15:07 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ class Data
 		String _current_key;
 		std::vector<String> _chan_list;
 		std::vector<String> _password_list;
+		std::vector<String> _nick_list;
 		User::CHAN_USERMODE _chan_usermode;
 
 		bool _user_already_in_channel;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_kick.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:21:42 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/02 15:54:28 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/11 10:53:31 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ e_error	Message::_cmd_kick	(String reason, String kicked) const
                                     + " "
                                     + _cmd[1] 
                                     + " " 
-                                    + _cmd[2], 
+                                    + kicked, 
                                     (reason != ":" ? reason : ""))
 									+ "\r\n";
 	(*this->_users_it)->add_to_queue(msg);
