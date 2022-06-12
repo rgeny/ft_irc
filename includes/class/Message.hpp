@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/11 19:01:03 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/12 19:46:48 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ class Message
 		e_error	_cmd_part		(String reason) const;
 		e_error	_cmd_pong		(void) const;
 		e_error	_cmd_privmsg	(String chat_msg) const;
+		e_error	_cmd_quit		(void) const;
 		e_error	_cmd_topic		(int choice) const;
 		e_error	_cmd_userhost	(String userhost_list) const;
 		e_error	_cmd_info		(void) const;
@@ -142,6 +143,7 @@ class Message
 
 		String	_set_sender		(void) const;
 		String	_set_sender		(String oldest) const;
+		void	_broadcast_to_chan_members(String msg) const;
 };
 
 #endif

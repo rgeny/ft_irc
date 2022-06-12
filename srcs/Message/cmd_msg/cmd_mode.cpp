@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_mode.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 18:56:04 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/02 16:09:24 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/12 19:14:14 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ e_error	Message::_cmd_mode	(int broadcast) const
 	Channel *cur_chan = (*this->_chans_it).second;
 	User* cur_user = (*this->_users_it);
 	String nickname = cur_user->get_nickname();
-	String username = cur_user->get_nickname();
+	String username = cur_user->get_username();
 		
 	msg	= this->_set_msg_base(nickname
 							+ "!" 

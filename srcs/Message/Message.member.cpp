@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:53:45 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/08 13:48:56 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/12 19:49:33 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,29 @@ String	Message::_set_sender	(String oldest) const
 	return (sender);
 }
 
+void Message::_broadcast_to_chan_members(String msg) const
+{
+	User* cur_user = (*this->_users_it);
+	String nickname = cur_user->get_nickname();
+	std::map<String, String> mailing_list;
+    mailing_list[nickname] = nickname;
+	User::CHAN_USERMODE chan_usermode = (*this->_users_it)->get_chan_usermode();
+
+	for (User::CHAN_USERMODE::iterator it = chan_usermode.begin(), ite = chan_usermode.end(); it != ite; it++)
+	{
+		Channel *current_chan = (*(_chans.find((*it).first))).second;
+		for (Channel::CHAN_USER_LIST::iterator itu = current_chan->get_chan_user_list().begin(), itue = current_chan->get_chan_user_list().end(); itu != itue; itu++)
+		{
+
+			String cur_target = itu->first;
+			if (cur_target != nickname && mailing_list.find(cur_target) == mailing_list.end())
+			{
+				itu->second->add_to_queue(msg);
+				mailing_list[cur_target] = cur_target;
+			}
+		}
+	}
+}
 
 //void	Message::_init_msg_list	(void)
 //{
