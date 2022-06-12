@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 18:13:29 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/11 19:01:38 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/13 00:41:35 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ e_error		Command::_part	(void)
 	std::vector<String> chan_list;
 	User::CHAN_USERMODE chan_usermode;
 	String nickname = (*_users_it)->get_nickname();
-	String cur_chan_name = (*_chans_it).first;
-
 	Channel *cur_chan = (*this->_chans_it).second;
 
 	chan_list = split(this->_cmd[1], ",");
@@ -41,7 +39,9 @@ e_error		Command::_part	(void)
 			}
 			else
 			{
+				std::cout << "I AM HERE ON SIDE 44\n";
 				this->_chans_it = (this->_chans.find(*it));
+				String cur_chan_name = (*_chans_it).first;
 				cur_chan = (*this->_chans_it).second;
 				String cur_nickname = (*_users_it)->get_nickname();
 				if (user_exist_in_chan(*(*this->_chans_it).second, cur_nickname) == false)
