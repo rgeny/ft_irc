@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/10 19:41:44 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/06/13 10:10:15 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,10 @@ void Command::update_all_nickname_records(String former_nick, String new_nick)
 		{
 			chan_user_list->erase(former_nick);
 			(*chan_user_list)[new_nick] = cur_user;
+		}
+		Channel::CHAN_INVITE_LIST::iterator	guest = chan_invite_list->find(former_nick);
+		if (guest != chan_invite_list->end())
+		{
 			chan_invite_list->erase(former_nick);
 			(*chan_invite_list)[new_nick] = cur_user;
 		}

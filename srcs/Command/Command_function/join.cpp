@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/09 22:34:13 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/13 10:06:24 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,9 @@ int  Command::join_process(String chan_name)
 		{
 			_chan_invite_list = &cur_chan->get_chan_invite_list();
 			_is_on_guestlist = (_chan_invite_list->find((*_users_it)->get_nickname()) != _chan_invite_list->end());
+			std::cout << "_is_limit_set? " << _is_limit_set << " - and limit nb = " << cur_chan->get_limit() << std::endl;
+			std::cout << "_is_above_chan_limit? " << _is_above_chan_limit << std::endl;
+			std::cout << "_is_on_guestlist? " << _is_on_guestlist << std::endl;
 			if (_is_limit_set && _is_above_chan_limit && !_is_on_guestlist)
 				return (_err_channelisfull());
 			if (_inviteonly_set && _is_on_guestlist)
