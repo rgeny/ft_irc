@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:52:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/10 13:27:50 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/14 22:05:38 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ S <-   :irc.example.com 366 dan #test :End of /NAMES list.
 	{
 		if (it != chan_ulist->begin())
 			name_list += " ";
-		if ((*it).second != NULL && (*it).second->get_chan_usermode_vec(this->_cmd[1])[USERMODE_o] == true)
+		if ((*it).second != NULL && (*it).second->get_chan_usermode().size() > 0 && (*it).second->get_chan_usermode_vec(this->_cmd[1])[USERMODE_o] == true)
 			name_list += "@";
 		name_list += (*it).second->get_nickname();
 	}

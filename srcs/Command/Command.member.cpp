@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/13 10:10:15 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/14 22:19:07 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ bool 	Command::is_operator(String nickname, Channel &chan)
 {
 	if (user_exist_in_chan(chan, nickname) == true)
 	{
-		if (((*_users_it)->get_chan_usermode_vec(chan.get_chan_name()))[USERMODE_o] == true)
+		if ((*_users_it)->get_chan_usermode().size() > 0 && ((*_users_it)->get_chan_usermode_vec(chan.get_chan_name()))[USERMODE_o] == true)
 			return (true);
 		return (false);
 	}

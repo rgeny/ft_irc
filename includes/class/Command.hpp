@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/10 15:53:10 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/14 14:29:05 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,20 @@ class Command
 		void	leave_all (void);
 		int 	join_process(String chan_name);
 		int		mode_type(char mode);
-		int		apply_mode(String target);
+		int		apply_mode(String target, String *mode_change);
 		void 	set_new_channel(String chan_name);
 		void 	init_access_control_data(void);
 		void 	reset_access_control_data(void);
 		void	display_chan_mode(Channel *cur_chan);
 		void	display_user_mode(User *target_user, String user_type);
-		void	update_user_mode(bool &previous_state, int &modified, int i, bool &add, String target);
+		void	update_user_mode(bool &previous_state, int &modified, int i, bool &add, String target, String *mode_change);
 		void	update_all_nickname_records(String former_nick, String new_nick);
 		String 	generate_channel_mode(Channel* cur_chan);
 		void	add_to_list(Channel* cur_chan, std::vector<String>* list);
-
+		String	char_to_String(char c);
+		String 	strip_orphan_sign(String mode_change);
+		String 	get_user_mode(User* target_user);
+		
 	protected:
 
 

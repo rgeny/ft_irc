@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/13 10:06:24 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/14 19:16:28 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,12 +116,12 @@ int  Command::join_process(String chan_name)
 				(*_users_it)->set_last_joined_chan(cur_chan_name);
 			}
 		}
-		else if (_current_key == _cmd[2])
+		else if (_is_key_set && _current_key == _cmd[2] && (!_is_limit_set || !_is_above_chan_limit))
 		{
 			(*_users_it)->set_chan_usermode(cur_chan_name, USERMODE_o, false);
 			(*_users_it)->set_last_joined_chan(cur_chan_name);
 		}
-		else if (_current_key != _cmd[2])
+		else if (_is_key_set && _current_key != _cmd[2])
 		{
 			return (_err_badchannelkey());
 		}

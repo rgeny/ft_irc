@@ -6,7 +6,7 @@
 #    By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by abesombe          #+#    #+#              #
-#    Updated: 2022/06/11 19:55:51 by abesombes        ###   ########.fr        #
+#    Updated: 2022/06/14 14:16:43 by abesombes        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -128,6 +128,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													rpl_notopic \
 													rpl_topic \
 													rpl_topicwhotime \
+													rpl_umodeis \
 													rpl_welcome \
 													rpl_whoischannels \
 													rpl_whoisserver \

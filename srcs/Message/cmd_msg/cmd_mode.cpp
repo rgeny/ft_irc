@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 18:56:04 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/12 19:14:14 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/14 11:13:01 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,20 @@
 #include "Channel.hpp"
 
 
-e_error	Message::_cmd_mode	(int broadcast) const
+e_error	Message::_cmd_mode	(int broadcast, String mode_change) const
 {
 	String	msg;
-	String  part1 = (_cmd.size() > 3 ? _cmd[2] + "" : ":" + _cmd[2]);
-	String 	part2 = (_cmd.size() > 3 ? " :" + _cmd[3] : "");
-	String  final_part = part1 + part2;
+	String 	args_list;
+	for (size_t i = 3; i < _cmd.size(); i++)
+	{
+		if (i > 3)
+			args_list += " ";
+		if (i == _cmd.size() - 1)
+			args_list += ":";
+		args_list += _cmd[i];
+	}
+	std::cout << "args_list: " << args_list << std::endl;
+	String  final_part = mode_change + " " + args_list;
 	Channel *cur_chan = (*this->_chans_it).second;
 	User* cur_user = (*this->_users_it);
 	String nickname = cur_user->get_nickname();

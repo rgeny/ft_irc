@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/12 19:46:48 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/14 14:33:11 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ class Message
 		e_error	_rpl_notopic			(void) const;
 		e_error	_rpl_topic				(void) const;
 		e_error	_rpl_topicwhotime		(void) const;
+		e_error	_rpl_umodeis			(String user_mode) const;
 		e_error	_rpl_welcome			(void) const;
 		e_error	_rpl_whoisuser			(String user_details) const;
 		e_error	_rpl_whoischannels		(String user_chan_list) const;
@@ -102,7 +103,7 @@ class Message
 		e_error	_cmd_invite		(void) const;
 		e_error	_cmd_join		(void) const;
 		e_error	_cmd_kick		(String reason, String kicked) const;
-		e_error	_cmd_mode		(int broadcast) const;
+		e_error	_cmd_mode		(int broadcast, String mode_change) const;
 		e_error	_cmd_notice		(String chat_msg) const;
 		e_error	_cmd_part		(String reason) const;
 		e_error	_cmd_pong		(void) const;
