@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/14 14:33:11 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/15 19:55:35 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ class Message
 		e_error	_cmd_error		(e_error code);
 		e_error	_cmd_invite		(void) const;
 		e_error	_cmd_join		(void) const;
-		e_error	_cmd_kick		(String reason, String kicked) const;
+		e_error	_cmd_kick		(String reason, String kicked, bool broadcast) const;
 		e_error	_cmd_mode		(int broadcast, String mode_change) const;
 		e_error	_cmd_notice		(String chat_msg) const;
 		e_error	_cmd_part		(String reason) const;

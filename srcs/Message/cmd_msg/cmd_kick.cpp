@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:21:42 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/11 10:53:31 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/15 19:56:36 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ dan kicking a user that does not exist, and a user that isn’t on the channel
 
 */
 
-e_error	Message::_cmd_kick	(String reason, String kicked) const
+e_error	Message::_cmd_kick	(String reason, String kicked, bool broadcast) const
 {
 	Channel::CHAN_USER_LIST *chan_ulist = NULL;
 	String	msg	= this->_set_msg_base((*_users_it)->get_nickname() 
@@ -74,12 +74,18 @@ e_error	Message::_cmd_kick	(String reason, String kicked) const
                                     (reason != ":" ? reason : ""))
 									+ "\r\n";
 	(*this->_users_it)->add_to_queue(msg);
-	chan_ulist = &(*_chans_it).second->get_chan_user_list();
-	for (Channel::CHAN_USER_LIST::iterator it = chan_ulist->begin(), ite = chan_ulist->end(); it != ite; it++)
+	if (broadcast)
 	{
-        if (it->second != *_users_it)
-		    (*it).second->add_to_queue(msg);
+		chan_ulist = &(*_chans_it).second->get_chan_user_list();
+		if (chan_ulist && chan_ulist->size() > 0)
+		{
+			for (Channel::CHAN_USER_LIST::iterator it = chan_ulist->begin(), ite = chan_ulist->end(); it != ite; it++)
+			{
+				if (it->second != *_users_it)
+					(*it).second->add_to_queue(msg);
+			}
+			this->_get_user(kicked)->add_to_queue(msg);
+		}
 	}
-	this->_get_user(kicked)->add_to_queue(msg);
 	return (SUCCESS);
 }

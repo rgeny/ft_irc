@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:22:23 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/11 19:04:01 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/15 19:57:50 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 e_error	Command::_kick (void)
 {
+    bool broadcast = BROADCAST;
     Channel *cur_chan = (*this->_chans_it).second;
     if (this->_cmd.size() < 3)
 		return (this->_err_needmoreparams());
@@ -63,12 +64,13 @@ e_error	Command::_kick (void)
             {
                 _chans.erase(cur_chan_name);
                 this->_chans_it = _chans.begin();
+                broadcast = NOBROADCAST;
             }
             std::cout << "cur_user: " << *it << std::endl;
             if (it == ite - 1)
-                return (_cmd_kick(reason,*it));
+                return (_cmd_kick(reason,*it, broadcast));
             else
-                _cmd_kick(reason,*it);
+                _cmd_kick(reason,*it, broadcast);
         }   
     }
     return (SUCCESS);

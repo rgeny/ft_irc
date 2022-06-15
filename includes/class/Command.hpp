@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/14 14:29:05 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/15 19:54:58 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@
 # define ERR_CHANMODERATED "You cannot send messages to this channel whilst the +m (moderated) mode is set."
 # define ERR_NOMSGWHILEBANNED "You cannot send messages to this channel whilst banned."
 # define ERR_CHANMODENOEXTMSG "You cannot send external messages to this channel whilst the +n (noextmsg) mode is set."
-
+# define NOBROADCAST 0
+# define BROADCAST 1
 
 class Command
 	:virtual protected Message
