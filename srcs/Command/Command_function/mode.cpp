@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/14 14:44:02 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/15 10:10:00 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,10 @@ int Command::apply_mode(String target, String *mode_change)
 						if (user_exist_in_chan(*cur_chan, _cmd[arg_num]) == false)
 							return (_err_usernotinchannel(_cmd[arg_num], cur_chan->get_chan_name()));
 						target_user = _get_user(_cmd[arg_num]);
-						previous_state = target_user->get_chan_usermode_vec(_cmd[1])[usermodes.find(mode_char)];
+						if (target_user->get_chan_usermode().size() > 0)
+							previous_state = false;
+						else if (target_user->get_chan_usermode_vec(_cmd[1]).size() > 0)
+							previous_state = target_user->get_chan_usermode_vec(_cmd[1])[usermodes.find(mode_char)];
 						target_user->set_chan_usermode(_cmd[1], usermodes.find(mode_char), add);
 						if (previous_state != target_user->get_chan_usermode_vec(_cmd[1])[usermodes.find(mode_char)])
 						{
@@ -225,8 +228,8 @@ int Command::apply_mode(String target, String *mode_change)
 								arg_num++;
 								continue;
 							}
-							arg_num++;
 							cur_chan->set_limit(_cmd[arg_num]);
+							arg_num++;
 						}
 						else if (mode_char == 'l' && add == true && is_limit_set == true)
 						{
@@ -353,9 +356,11 @@ e_error	Command::_mode	(void)
 	
 	if (this->_cmd.size() < 2)
 		return (this->_err_needmoreparams());
-	else 
+	else if (this->_cmd.size() >= 2)
 	{
-		if (is_channel == false && (_cmd[1] != (*_users_it)->get_nickname()))
+		if (is_channel == false && _user_exist(_cmd[1]) == false)
+			return (this->_err_nosuchnick(_cmd[1]));
+		else if (is_channel == false && (_cmd[1] != (*_users_it)->get_nickname()))
 			return (this->_err_usersdontmatch());
 		else if (is_channel == false && (_cmd[1] == (*_users_it)->get_nickname()) && _cmd.size() == 2)
 			return (this->_rpl_umodeis(get_user_mode(*_users_it)));

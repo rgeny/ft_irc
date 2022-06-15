@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/14 19:16:28 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/15 10:04:52 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,13 @@ int  Command::join_process(String chan_name)
 		init_access_control_data();
 		cur_chan = (*this->_chans_it).second;
 		String cur_chan_name = cur_chan->get_chan_name();
+		_chan_invite_list = &cur_chan->get_chan_invite_list();
+		_is_on_guestlist = (_chan_invite_list->find((*_users_it)->get_nickname()) != _chan_invite_list->end());
+		std::cout << "_is_limit_set? " << _is_limit_set << " - and limit nb = " << cur_chan->get_limit() << std::endl;
+		std::cout << "_is_above_chan_limit? " << _is_above_chan_limit << std::endl;
+		std::cout << "_is_on_guestlist? " << _is_on_guestlist << std::endl;
 		if (!_is_key_set)
 		{
-			_chan_invite_list = &cur_chan->get_chan_invite_list();
-			_is_on_guestlist = (_chan_invite_list->find((*_users_it)->get_nickname()) != _chan_invite_list->end());
-			std::cout << "_is_limit_set? " << _is_limit_set << " - and limit nb = " << cur_chan->get_limit() << std::endl;
-			std::cout << "_is_above_chan_limit? " << _is_above_chan_limit << std::endl;
-			std::cout << "_is_on_guestlist? " << _is_on_guestlist << std::endl;
 			if (_is_limit_set && _is_above_chan_limit && !_is_on_guestlist)
 				return (_err_channelisfull());
 			if (_inviteonly_set && _is_on_guestlist)
@@ -116,10 +116,37 @@ int  Command::join_process(String chan_name)
 				(*_users_it)->set_last_joined_chan(cur_chan_name);
 			}
 		}
-		else if (_is_key_set && _current_key == _cmd[2] && (!_is_limit_set || !_is_above_chan_limit))
+		else if (_is_key_set && _current_key == _cmd[2])
 		{
-			(*_users_it)->set_chan_usermode(cur_chan_name, USERMODE_o, false);
-			(*_users_it)->set_last_joined_chan(cur_chan_name);
+			std::cout << "Is_above_chan_limit? " << _is_above_chan_limit << std::endl;
+			if (_is_limit_set && _is_above_chan_limit && !_is_on_guestlist)
+				return (_err_channelisfull());
+			if (_inviteonly_set && _is_on_guestlist)
+			{
+				(*_users_it)->set_chan_usermode(cur_chan_name, USERMODE_o, false);
+				(*_chan_invite_list).erase((*_users_it)->get_nickname());
+				(*_users_it)->set_last_joined_chan(cur_chan_name);
+			}
+			else if (_inviteonly_set && !_is_on_guestlist)
+				return (_err_inviteonlychan());
+			else if (_is_on_ban_list && _is_on_guestlist)
+			{
+				(*_users_it)->set_chan_usermode(cur_chan_name, USERMODE_o, false);
+				(*_chan_invite_list).erase((*_users_it)->get_nickname());
+				(*_users_it)->set_last_joined_chan(cur_chan_name);
+			}
+			else if (!_inviteonly_set && _is_on_ban_list)
+				return (_err_bannedfromchan());
+			else if (!_inviteonly_set && !_is_on_ban_list)
+			{
+				(*_users_it)->set_chan_usermode(cur_chan_name, USERMODE_o, false);
+				(*_users_it)->set_last_joined_chan(cur_chan_name);
+			}
+			// if (!_is_limit_set || !_is_above_chan_limit)
+			// {
+			// 	(*_users_it)->set_chan_usermode(cur_chan_name, USERMODE_o, false);
+			// 	(*_users_it)->set_last_joined_chan(cur_chan_name);
+			// }
 		}
 		else if (_is_key_set && _current_key != _cmd[2])
 		{
