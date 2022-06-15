@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/15 10:10:00 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/15 18:41:38 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,7 @@ int Command::apply_mode(String target, String *mode_change)
 						else if (target_user->get_chan_usermode_vec(_cmd[1]).size() > 0)
 							previous_state = target_user->get_chan_usermode_vec(_cmd[1])[usermodes.find(mode_char)];
 						target_user->set_chan_usermode(_cmd[1], usermodes.find(mode_char), add);
+						// std::cout << ">>>>>>>>> HAS VOICE? <<<<<<<<<<<< " << target_user->get_chan_usermode_vec(this->_cmd[1])[USERMODE_v] << std::endl;
 						if (previous_state != target_user->get_chan_usermode_vec(_cmd[1])[usermodes.find(mode_char)])
 						{
 							modified = CHAN_MODE_MODIFIED;
