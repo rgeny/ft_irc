@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.structor.cpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:19:17 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/30 18:51:50 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/15 18:57:39 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ Channel::Channel(String &name
 	this->_mode.resize(14);
 	for (int i = 0; i < 14; i++)
 		this->_mode[i] = false;
+	_limit = 0;
 }
 
 // Channel::Channel(String 	const & name
