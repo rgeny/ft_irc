@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_mode.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 18:56:04 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/14 11:13:01 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/16 22:10:17 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ e_error	Message::_cmd_mode	(int broadcast, String mode_change) const
 			args_list += ":";
 		args_list += _cmd[i];
 	}
-	std::cout << "args_list: " << args_list << std::endl;
 	String  final_part = mode_change + " " + args_list;
 	Channel *cur_chan = (*this->_chans_it).second;
 	User* cur_user = (*this->_users_it);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:56:54 by rgeny             #+#    #+#             */
-/*   Updated: 2022/04/21 19:56:57 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/06/16 22:05:51 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int main(int argc, char const *argv[])
 		getline(std::cin, input);
 		input += "\r\n";
 		send(sock, input.c_str(), input.length(), 0);
-		// std::cout << "Hello message sent" << std::endl;
 		valread = recv(sock, buffer, 512, 0);
 		buffer[valread] = '\0';
 		std::cout << buffer << std::endl;

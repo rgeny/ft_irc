@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mode.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/15 23:12:02 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/16 22:08:48 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ int Command::apply_mode(String target, String *mode_change)
 						else if (target_user->get_chan_usermode_vec(_cmd[1]).size() > 0)
 							previous_state = target_user->get_chan_usermode_vec(_cmd[1])[usermodes.find(mode_char)];
 						target_user->set_chan_usermode(_cmd[1], usermodes.find(mode_char), add);
-						// std::cout << ">>>>>>>>> HAS VOICE? <<<<<<<<<<<< " << target_user->get_chan_usermode_vec(this->_cmd[1])[USERMODE_v] << std::endl;
+
 						if (previous_state != target_user->get_chan_usermode_vec(_cmd[1])[usermodes.find(mode_char)])
 						{
 							modified = CHAN_MODE_MODIFIED;
@@ -195,7 +195,6 @@ int Command::apply_mode(String target, String *mode_change)
 						// MODE "k"
 						if (mode_char == 'k' && add == true && is_key_set == false)
 						{ 
-							// std::cout << "I am in +k mode request\n";
 							if (arg_num > _cmd.size() - 1)
 								return (this->_err_needmoreparams("k * You must specify a parameter for the key mode. Syntax: <key>."));
 							cur_chan->set_key(_cmd[arg_num]);
@@ -251,7 +250,6 @@ int Command::apply_mode(String target, String *mode_change)
 						}
 
 						// MODE "b"
-						std::cout << "b: _cmd.size(): " << _cmd.size() << std::endl;
 						size_t count_mode_letters = 0;
 						for (size_t i = 0 ; i < _cmd[2].size(); i++)
 						{
@@ -288,7 +286,6 @@ int Command::apply_mode(String target, String *mode_change)
 							if (_cmd[arg_num].substr(_cmd[arg_num].length() - 4) == "!*@*")
 							{
 								needle_nick = _cmd[arg_num].substr(0, _cmd[arg_num].length() - 4);
-								std::cout << "needle_nick: " << needle_nick << std::endl;
 								if (!chan_operator)
 									return (_err_chanoprivsneeded());
 								chan_ban_list->erase(needle_nick);
@@ -300,7 +297,7 @@ int Command::apply_mode(String target, String *mode_change)
 
 
 						previous_state = cur_chan->get_specific_mode(chanmodes.find(mode_char));
-						std::cout << "previous_state: " << previous_state << std::endl;
+
 						_chans[target]->set_specific_mode(chanmodes.find(mode_char), add);
 						if (previous_state != cur_chan->get_specific_mode(chanmodes.find(mode_char)))
 						{

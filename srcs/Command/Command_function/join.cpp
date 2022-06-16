@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   join.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/15 17:32:14 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/16 22:07:29 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,9 @@ int  Command::join_process(String chan_name)
 		String cur_chan_name = cur_chan->get_chan_name();
 		_chan_invite_list = &cur_chan->get_chan_invite_list();
 		_is_on_guestlist = (_chan_invite_list->find((*_users_it)->get_nickname()) != _chan_invite_list->end());
-		std::cout << "_is_limit_set? " << _is_limit_set << " - and limit nb = " << cur_chan->get_limit() << std::endl;
-		std::cout << "_is_above_chan_limit? " << _is_above_chan_limit << std::endl;
-		std::cout << "_is_on_guestlist? " << _is_on_guestlist << std::endl;
+		// std::cout << "_is_limit_set? " << _is_limit_set << " - and limit nb = " << cur_chan->get_limit() << std::endl;
+		// std::cout << "_is_above_chan_limit? " << _is_above_chan_limit << std::endl;
+		// std::cout << "_is_on_guestlist? " << _is_on_guestlist << std::endl;
 		if (_is_on_guestlist)
 		{
 			(*_users_it)->set_chan_usermode(cur_chan_name, USERMODE_o, false);
@@ -118,7 +118,7 @@ int  Command::join_process(String chan_name)
 	cur_chan = (*this->_chans_it).second;
 	_chan_user_list = &(cur_chan->get_chan_user_list());
 	(*_chan_user_list)[(*_users_it)->get_nickname()] = *_users_it;
-	std::cout << "Last joined channel = " << (*_users_it)->get_last_joined_chan() << std::endl;
+	// std::cout << "Last joined channel = " << (*_users_it)->get_last_joined_chan() << std::endl;
 
 	return (SUCCESS);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.member.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/14 22:19:07 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/16 22:06:56 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,9 +149,8 @@ String	Command::concat_last_args(size_t start_index)
 
 void Command::leave_all (void)
 {
-	std::cout << "Current user: " << (*_users_it)->get_nickname() << std::endl;
 	User::CHAN_USERMODE & chan_usermode = (*_users_it)->get_chan_usermode();
-	std::cout << "Chan_usermode.size(): " << chan_usermode.size() << std::endl;
+
 	if (chan_usermode.size() == 0)
 		_err_badchanmask();
 	else if (chan_usermode.size() > 0)

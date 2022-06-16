@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 17:37:04 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/03 18:32:55 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/16 22:06:06 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ String Channel::get_name_list(int access_level)
         User* cur_user = (*it).second;
         String chan_name = this->get_chan_name();
         bool is_invisible = cur_user->get_specific_mode(USERMODE_i) ;
-        // std::cout << "chan = " << this->get_chan_name() << " - is_in_chan? " << access_level << " - " << (*it).second->get_nickname() << " > is_user_invisible? " << is_invisible << std::endl;
+        
         if (access_level || !is_invisible)
         {
             if (it != chan_ulist->begin())

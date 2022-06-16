@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   kick.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:22:23 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/16 10:42:32 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/16 22:07:49 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ e_error	Command::_kick (void)
         
         for (std::vector<String>::iterator it = _nick_list.begin(), ite = _nick_list.end(); it != ite; it++)
         {
-            std::cout << "cur_user: " << *it << std::endl;
+
             if (this->_user_exist(*it) == false)
             {
                 if (it == ite - 1)
@@ -67,7 +67,7 @@ e_error	Command::_kick (void)
                 this->_chans_it = _chans.begin();
                 broadcast = NOBROADCAST;
             }
-            std::cout << "cur_user: " << *it << std::endl;
+
             if (it == ite - 1)
                 return (_cmd_kick(reason,*it, broadcast));
             else

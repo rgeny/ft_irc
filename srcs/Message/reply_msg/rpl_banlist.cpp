@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 13:38:08 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/01 19:57:01 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/16 22:10:35 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,11 @@ e_error	Message::_rpl_banlist	(void) const
                     min = it;
             }
         }
-        // if (min != ite)
-        // {
             sorted_list_of_bans.push_back(min);
             last_min = min;
-        // }
+
     }
-    // std::cout   << "vect size : "
-    //             << sorted_list_of_bans.size()
-    //             << std::endl;
+
     for (std::vector<Channel::CHAN_BAN_LIST::iterator>::iterator it = sorted_list_of_bans.begin(), ite = sorted_list_of_bans.end(); it != ite; it++)
     {
         creation_time = ((*(*it)).second).second;

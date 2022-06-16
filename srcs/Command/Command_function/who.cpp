@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   who.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:53:29 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/10 11:40:26 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/16 22:09:38 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ e_error	Command::_who	(void)
             {
                 for (std::vector<User*>::iterator it = nick_list.begin(), ite = nick_list.end(); it != ite; it++)
                 {
-                    std::cout << "cur_user: " << (*it)->get_nickname() << std::endl;
                     who_list = (*it)->get_user_moredetail(_hostname, _cmd[1]);
                     _rpl_whoreply(who_list, _cmd[1]);
                 }

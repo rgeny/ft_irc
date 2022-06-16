@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.structor.cpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:19:17 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/15 18:57:39 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/16 22:06:30 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,27 +32,6 @@ Channel::Channel(String &name
 		this->_mode[i] = false;
 	_limit = 0;
 }
-
-// Channel::Channel(String 	const & name
-// 				,String 	const & topic
-// 				,std::vector<bool> 	const & mode
-// 				,String 	const & password
-// 				,std::size_t 	const & limit
-// 				,bool			const & is_safe
-// 				,int			const &	reop_delay
-// 				)
-// 	:
-// 	_name(name),
-// 	_topic(topic),
-// 	_mode(mode),
-// 	_password(password),
-// 	_limit(limit),
-// 	_creation(time(0)),
-// 	_is_safe(is_safe),
-// 	_reop_delay(reop_delay)
-// {
-// 	// std::cout << "Parameterized constructor Channel" << std::endl;
-// }
 
 Channel::Channel	(Channel const & src)
 {

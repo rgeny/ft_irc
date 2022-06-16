@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   part.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 18:13:29 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/15 23:13:16 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/16 22:05:34 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ e_error		Command::_part	(void)
 			}
 			else
 			{
-				std::cout << "I AM HERE ON SIDE 44\n";
 				this->_chans_it = (this->_chans.find(*it));
 				String cur_chan_name = (*_chans_it).first;
 				cur_chan = (*this->_chans_it).second;
