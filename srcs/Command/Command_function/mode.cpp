@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/16 22:08:48 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/16 23:22:01 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ int Command::apply_mode(String target, String *mode_change)
 	size_t 	i = 0;
 	Channel* cur_chan = (*this->_chans_it).second;
 	User* cur_user = (*_users_it);
+	String err_msg;
 	bool	add = true;
 	int		modified = 0;
 	size_t	arg_num = 3;
@@ -137,13 +138,19 @@ int Command::apply_mode(String target, String *mode_change)
 		bool is_channel = has_begin_hashtag(this->_cmd[1]);
 		std::cout << "char[" << i << "] is being analyzed for mode changes\n";
 		std::cout << "arg_num: " << arg_num << std::endl;
+		
 		char mode_char = _cmd[2][i];
 		if (mode_type(mode_char)) // MODE EXISTS
 		{
 			std::cout << "char is a " << mode_char << "\n";
 			
 			if (!has_begin_hashtag(this->_cmd[1]) && mode_char == 'o' && arg_num > _cmd.size() - 1)
-				return (_err_noprivileges("Permission Denied - Only operators may set user mode o"));
+			{
+				err_msg = String("You must specify a parameter for the ") + (mode_char == 'o' ? "op" : "voice") + String(" mode. Syntax: <nick>.");
+				this->_err_needmoreparams(err_msg);
+				continue;
+			}
+				// return (_err_noprivileges("Permission Denied - Only operators may set user mode o"));
 			else if (!has_begin_hashtag(this->_cmd[1]) && std::string("asOv").find(mode_char) != std::string::npos && _cmd.size() == 3)
 				return (_err_umodeunknownflag(String(1, mode_char), "is not a recognised user mode"));
 
@@ -182,8 +189,9 @@ int Command::apply_mode(String target, String *mode_change)
 					}
 					else if ((mode_char == 'o' || mode_char == 'v') && arg_num > _cmd.size() - 1)
 					{
-						String err_msg = String("You must specify a parameter for the ") + (mode_char == 'o' ? "op" : "voice") + String(" mode. Syntax: <nick>.");
+						err_msg = String("You must specify a parameter for the ") + (mode_char == 'o' ? "op" : "voice") + String(" mode. Syntax: <nick>.");
 						this->_err_needmoreparams(err_msg);
+						i++;
 						continue;
 					}
 					else
@@ -226,6 +234,7 @@ int Command::apply_mode(String target, String *mode_change)
 							{
 								this->_err_needmoreparams("l * You must specify a parameter for the limit mode. Syntax: <limit>.");
 								arg_num++;
+								i++;
 								continue;
 							}
 							cur_chan->set_limit(_cmd[arg_num]);
