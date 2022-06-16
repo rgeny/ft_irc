@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 00:32:23 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/15 23:11:08 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/16 11:27:28 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ e_error	Command::_invite	(void)
 	if (this->_chan_exist(_cmd[2]) == false)
 		return (_err_nosuchchannel(_cmd[2]));  
 	_chans_it = _chans.find(_cmd[2]);
-
+	Channel *cur_chan = (*this->_chans_it).second;
+	if (user_exist_in_chan(*cur_chan, cur_user) == false)
+		return (_err_notonchannel());
 	if (is_operator(cur_user, *_chans_it->second) == false)
 		return (_err_chanoprivsneeded());
 	if (user_exist_in_chan(*_chans_it->second, target))
