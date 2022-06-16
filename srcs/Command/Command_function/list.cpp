@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 15:05:19 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/10 15:46:08 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/15 23:11:41 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ e_error	Command::_list	(void)
 			String cur_chan_name = *it;
 			if (this->_chan_exist(cur_chan_name) == false)
 			{
-				_cmd[1] = cur_chan_name;
-				_err_nosuchchannel();
+				_err_nosuchchannel(cur_chan_name);
 				continue;
 			}
 			add_to_list(cur_chan, &list);

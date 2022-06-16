@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 18:13:29 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/13 00:41:35 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/15 23:13:16 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ e_error		Command::_part	(void)
 			if (!has_begin_hashtag(*it) || this->_chan_exist(*it) == false)
 			{	
 				if (it == ite - 1)
-					return (_err_nosuchchannel());
+					return (_err_nosuchchannel(*it));
 				else
 				{
-					_err_nosuchchannel();
+					_err_nosuchchannel(*it);
 					continue;
 				}
 			}

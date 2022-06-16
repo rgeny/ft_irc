@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 20:46:32 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/15 19:35:42 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/15 23:12:14 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ e_error	Command::_notice	(void)
 		if (has_begin_hashtag(this->_cmd[1]))
 		{
 			if (!this->_chan_exist(_cmd[1]))
-				return(_err_nosuchchannel());
+				return(_err_nosuchchannel(_cmd[1]));
 			else
 				_chans_it = _chans.find(_cmd[1]);
 			bool moderated = _chans[_cmd[1]]->get_specific_mode(CHANMODE_m);

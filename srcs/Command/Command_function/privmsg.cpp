@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 12:44:29 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/15 18:52:06 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/16 10:50:24 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,15 @@ e_error	Command::_privmsg	(void)
 		if (has_begin_hashtag(this->_cmd[1]))
 		{
 			if (!this->_chan_exist(_cmd[1]))
-					return(_err_nosuchchannel());
+					return(_err_nosuchchannel(_cmd[1]));
 					
 			this->_chans_it = this->_chans.find(_cmd[1]);
 			bool moderated = _chans[_cmd[1]]->get_specific_mode(CHANMODE_m);
 			Channel & cur_chan = *((*_chans_it).second);
 			if (user_exist_in_chan(cur_chan, (*_users_it)->get_nickname()))
 			{
-				std::cout << "Voice updated from false? YES\n";
 				voice = (*_users_it)->get_chan_usermode_vec(this->_cmd[1])[USERMODE_v];
 			}
-			std::cout << "Voice? " << voice << std::endl;
 			_chan_ban_list = &cur_chan.get_chan_ban_list();
 			_is_on_ban_list = (_chan_ban_list->find(nickname) != _chan_ban_list->end());
 			bool chan_operator = is_operator(nickname, *_chans_it->second);

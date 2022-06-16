@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:22:23 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/15 19:57:50 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/16 10:42:32 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ e_error	Command::_kick (void)
 	else
 	{
         if (this->_chan_exist(_cmd[1]) == false)
-            return (_err_nosuchchannel());  
+            return (_err_nosuchchannel(_cmd[1]));  
         _chans_it = _chans.find(_cmd[1]);
 
 		if (is_operator((*_users_it)->get_nickname(), *cur_chan) == false)
@@ -62,6 +62,7 @@ e_error	Command::_kick (void)
 
             if (chan_ulist->size() < 1)
             {
+                delete(_chans.find(cur_chan_name)->second);
                 _chans.erase(cur_chan_name);
                 this->_chans_it = _chans.begin();
                 broadcast = NOBROADCAST;

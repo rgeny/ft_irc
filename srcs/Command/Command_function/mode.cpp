@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/15 18:41:38 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/15 23:12:02 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -367,7 +367,7 @@ e_error	Command::_mode	(void)
 			return (this->_rpl_umodeis(get_user_mode(*_users_it)));
 
 		if (is_channel == true && this->_chan_exist(_cmd[1]) == false)
-			return (this->_err_nosuchchannel());
+			return (this->_err_nosuchchannel(_cmd[1]));
 		else
 		{
 			_chans_it = _chans.find(_cmd[1]);
@@ -377,7 +377,7 @@ e_error	Command::_mode	(void)
 				bool chan_operator = is_operator((*_users_it)->get_nickname(), *cur_chan);
 				if ((cur_chan->get_specific_mode(CHANMODE_p) == true
 				|| cur_chan->get_specific_mode(CHANMODE_s) == true) && !chan_operator)
-					return (this->_err_nosuchchannel());
+					return (this->_err_nosuchchannel(_cmd[1]));
 			}
 		}
 		if (this->_cmd.size() == 2)

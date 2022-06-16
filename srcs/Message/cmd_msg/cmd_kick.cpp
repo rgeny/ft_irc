@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:21:42 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/15 19:56:36 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/16 10:12:24 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ dan kicking a user that does not exist, and a user that isn’t on the channel
 e_error	Message::_cmd_kick	(String reason, String kicked, bool broadcast) const
 {
 	Channel::CHAN_USER_LIST *chan_ulist = NULL;
-	String	msg	= this->_set_msg_base((*_users_it)->get_nickname() 
+	String nickname = (*_users_it)->get_nickname();
+	String	msg	= this->_set_msg_base(nickname
 									+ "!"
 									+ (*_users_it)->get_username()
 									+ "@"
@@ -84,7 +85,8 @@ e_error	Message::_cmd_kick	(String reason, String kicked, bool broadcast) const
 				if (it->second != *_users_it)
 					(*it).second->add_to_queue(msg);
 			}
-			this->_get_user(kicked)->add_to_queue(msg);
+			if (kicked != nickname)
+				this->_get_user(kicked)->add_to_queue(msg);
 		}
 	}
 	return (SUCCESS);

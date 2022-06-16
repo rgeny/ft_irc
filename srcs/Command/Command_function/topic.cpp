@@ -6,7 +6,7 @@
 /*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 17:08:30 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/11 19:01:47 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/15 23:14:57 by abesombes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ e_error	Command::_topic	(void)
 	{
 		if (!has_begin_hashtag(this->_cmd[1]))
 		{
-			return (this->_err_nosuchchannel());
+			return (this->_err_nosuchchannel(_cmd[1]));
 		}
 		else 
 		{
 			if (this->_chan_exist(_cmd[1]) == false)
-				return (this->_err_nosuchchannel());
+				return (this->_err_nosuchchannel(_cmd[1]));
 			else
 			{
 				this->_chans_it = (this->_chans.find(_cmd[1]));
@@ -63,7 +63,7 @@ e_error	Command::_topic	(void)
 					if (!is_secret_chan)
 						return (this->_cmd_topic(2));
 					else
-						return (_err_nosuchchannel());
+						return (_err_nosuchchannel(cur_chan->get_chan_name()));
 				}
 			}
 		}
