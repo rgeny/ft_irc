@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rpl_umodeis.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:17:42 by abesombes         #+#    #+#             */
-/*   Updated: 2022/06/14 14:34:27 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/17 19:51:08 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ e_error	Message::_rpl_umodeis	(String user_mode) const
                                         String(RPL_UMODEIS) 
                                         + " " 
                                         + this->_cmd[1]
-							            , String((user_mode.empty()? ":": ":+"))
-							            + user_mode)
+							            , String(":+" + user_mode))
 							            + "\r\n";
 	(*this->_users_it)->add_to_queue(msg);
     return (SUCCESS);
