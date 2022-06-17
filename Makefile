@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+         #
+#    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by abesombe          #+#    #+#              #
-#    Updated: 2022/06/14 14:16:43 by abesombes        ###   ########.fr        #
+#    Updated: 2022/06/17 18:42:39 by abesombe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,6 +88,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													err_chanoprivsneeded \
 													err_erroneusnickname \
 													err_inviteonlychan \
+													err_keyset \
 													err_needmoreparams \
 													err_nicknameinuse \
 													err_nonicknamegiven \

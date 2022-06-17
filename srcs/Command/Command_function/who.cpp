@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:53:29 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/16 22:09:38 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/17 15:28:28 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ e_error	Command::_who	(void)
     String target;
 
     if (this->_cmd.size() < 2)
-		return (this->_err_needmoreparams());
+		return (this->_err_needmoreparams(_cmd[0]));
 	else
 	{
         if (has_begin_hashtag(_cmd[1]) && _chans.find(_cmd[1]) != _chans.end())

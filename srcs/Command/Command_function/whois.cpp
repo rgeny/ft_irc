@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   whois.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 17:24:23 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/11 18:29:45 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/17 15:28:31 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ e_error Command::_whois(void)
 	User *target_user = NULL;
 
 	if (this->_cmd.size() < 2)
-		return (this->_err_needmoreparams());
+		return (this->_err_needmoreparams(_cmd[0]));
 	else if (this->_user_exist(_cmd[1]) == false)
 		_err_nosuchnick(_cmd[1]);
 	target_user = _get_user(_cmd[1]);

@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/16 22:07:29 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/17 19:23:33 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int  Command::join_process(String chan_name)
 e_error	Command::_join	(void)
 {
 	if (this->_cmd.size() < 2)
-		return (this->_err_needmoreparams());
+		return (this->_err_needmoreparams(_cmd[0]));
 	else
 	{
 		if (_cmd[1] == "0")

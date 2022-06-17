@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   topic.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 17:08:30 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/15 23:14:57 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/17 15:28:22 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 e_error	Command::_topic	(void)
 {
 	if (this->_cmd.size() < 2)
-		return (this->_err_needmoreparams());
+		return (this->_err_needmoreparams(_cmd[0]));
 	else
 	{
 		if (!has_begin_hashtag(this->_cmd[1]))

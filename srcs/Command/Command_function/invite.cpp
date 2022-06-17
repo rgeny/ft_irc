@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   invite.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 00:32:23 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/16 11:27:28 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/17 15:12:05 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ e_error	Command::_invite	(void)
 	String target = _cmd[1];
 	String cur_user = (*_users_it)->get_nickname();
 	if (this->_cmd.size() < 3)
-		return (this->_err_needmoreparams());
+		return (this->_err_needmoreparams(_cmd[0]));
 	if (this->_user_exist(_cmd[1]) == false)
 		return (_err_nosuchnick(_cmd[1]));
 	if (this->_chan_exist(_cmd[2]) == false)

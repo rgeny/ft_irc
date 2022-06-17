@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/15 19:54:58 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/17 15:05:01 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ class Command
 		String	char_to_String(char c);
 		String 	strip_orphan_sign(String mode_change);
 		String 	get_user_mode(User* target_user);
+		bool	invalid_mode_input(String input);
 		
 	protected:
 
@@ -121,54 +122,3 @@ class Command
 std::ostream &	operator<<	(std::ostream & os
 							,Command & src);
 #endif
-
-// e_error		_admin		(void);
-// e_error		_away		(void);
-// e_error		_cap		(void);
-// e_error		_cnotice	(void);
-// e_error		_cprivmsg	(void);
-// e_error		_connect	(void);
-// e_error		_die		(void);
-// e_error		_encap		(void);
-// e_error		_error		(void);
-// e_error		_help		(void);
-// e_error		_info		(void);
-// e_error		_invite		(void);
-// e_error		_ison		(void);
-// e_error		_kick		(void);
-// e_error		_kill		(void);
-// e_error		_knock		(void);
-// e_error		_links		(void);
-// e_error		_list		(void);
-// e_error		_lusers		(void);
-// e_error		_mode		(void);
-// e_error		_motd		(void);
-// e_error		_names		(void);
-// e_error		_namesx		(void);
-// e_error		_notice		(void);
-// e_error		_oper		(void);
-// e_error		_part		(void);
-// e_error		_privmsg	(void);
-// e_error		_rehash		(void);
-// e_error		_rules		(void);
-// e_error		_server		(void);
-// e_error		_service	(void);
-// e_error		_servlist	(void);
-// e_error		_squery		(void);
-// e_error		_squit		(void);
-// e_error		_setname	(void);
-// e_error		_silence	(void);
-// e_error		_stats		(void);
-// e_error		_summon		(void);
-// e_error		_time		(void);
-// e_error		_topic		(void);
-// e_error		_trace		(void);
-// e_error		_uhnames	(void);
-// e_error		_userhost	(void);
-// e_error		_userip		(void);
-// e_error		_users		(void);
-// e_error		_version	(void);
-// e_error		_wallops	(void);
-// e_error		_watch		(void);
-// e_error		_who		(void);
-// e_error		_whois		(void);

@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:22:23 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/16 22:07:49 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/17 15:12:22 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ e_error	Command::_kick (void)
     bool broadcast = BROADCAST;
     Channel *cur_chan = (*this->_chans_it).second;
     if (this->_cmd.size() < 3)
-		return (this->_err_needmoreparams());
+		return (this->_err_needmoreparams(_cmd[0]));
 	else
 	{
         if (this->_chan_exist(_cmd[1]) == false)

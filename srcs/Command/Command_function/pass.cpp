@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:13:14 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/02 17:19:58 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/17 15:28:16 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ e_error		Command::_pass	(void)
 {
 	User *cur_user = (*this->_users_it);
 	if (this->_cmd.size() < 2)
-		return (this->_err_needmoreparams());
+		return (this->_err_needmoreparams(_cmd[0]));
 	else if (static_cast<User *>((*this->_users_it))->co_is_complete())
 		return (this->_err_alreadyregistred());
 

@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/16 23:22:01 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/17 19:32:10 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,19 @@ int Command::mode_type(char mode)
 	return (1);
 }
 
+bool Command::invalid_mode_input(String input)
+{
+	
+	for (size_t i = 0; i < input.size() ; i++)
+	{
+		if (i == 0 && input[i] == '+')
+			continue;
+		if (!isdigit(input[i]))
+			return(true);
+	}
+	return (false);
+}
+
 int Command::apply_mode(String target, String *mode_change)
 {
 	size_t 	size_modestr = _cmd[2].length();
@@ -134,26 +147,40 @@ int Command::apply_mode(String target, String *mode_change)
 	{
 		std::string usermodes = USERMODES_LIST;
 		std::string chanmodes = CHANMODES_LIST;
+		String erroneous_elem;
+		bool arg_valid = false;
 		User *target_user = NULL;
 		bool is_channel = has_begin_hashtag(this->_cmd[1]);
-		std::cout << "char[" << i << "] is being analyzed for mode changes\n";
-		std::cout << "arg_num: " << arg_num << std::endl;
-		
 		char mode_char = _cmd[2][i];
+		std::cout << "char[" << i << "] = " << mode_char << " is being analyzed for mode changes\n";
+		std::cout << "arg_num: " << arg_num << std::endl;
+		erroneous_elem = String(_cmd[1] + " +" + mode_char);
+		
 		if (mode_type(mode_char)) // MODE EXISTS
 		{
-			std::cout << "char is a " << mode_char << "\n";
-			
-			if (!has_begin_hashtag(this->_cmd[1]) && mode_char == 'o' && arg_num > _cmd.size() - 1)
+			if (has_begin_hashtag(this->_cmd[1]) 
+				&& (((mode_char == 'o' || mode_char == 'l' || mode_char == 'v') && add == true) || mode_char == 'k')
+				&& arg_num > _cmd.size() - 1)
 			{
-				err_msg = String("You must specify a parameter for the ") + (mode_char == 'o' ? "op" : "voice") + String(" mode. Syntax: <nick>.");
-				this->_err_needmoreparams(err_msg);
+				String param_name = (mode_char == 'o' ? "op" : mode_char == 'v' ? "voice" : mode_char == 'k' ? "key": "limit");
+				String syntax = (mode_char == 'o' || mode_char == 'v' ? "nick" : param_name);
+				err_msg = String(":You must specify a parameter for the ") + param_name + String(" mode. Syntax: <") + syntax + String(">.");
+				this->_err_needmoreparams(erroneous_elem + " * ", err_msg);
+				arg_num++;
+				i++;
 				continue;
 			}
-				// return (_err_noprivileges("Permission Denied - Only operators may set user mode o"));
-			else if (!has_begin_hashtag(this->_cmd[1]) && std::string("asOv").find(mode_char) != std::string::npos && _cmd.size() == 3)
+			else if (!has_begin_hashtag(this->_cmd[1]) 
+					&& (std::string("asOv").find(mode_char) != std::string::npos || std::string(USERMODES_LIST).find(mode_char) == std::string::npos) 
+					&& _cmd.size() == 3)
 				return (_err_umodeunknownflag(String(1, mode_char), "is not a recognised user mode"));
-
+			if (mode_char == 'l' && add == true && invalid_mode_input(_cmd[arg_num]))
+			{
+				err_msg = String(":Invalid limit mode parameter. Syntax: <limit>.");
+				this->_err_needmoreparams(erroneous_elem + " " + _cmd[arg_num] + " ", err_msg);
+				i++;
+				continue;
+			}
 			bool previous_state = false;
 			if (mode_type(mode_char) == 1 && !is_channel) // USER MODE
 				update_user_mode(previous_state, modified, i, add, target, mode_change);
@@ -187,13 +214,6 @@ int Command::apply_mode(String target, String *mode_change)
 						}
 						arg_num++;
 					}
-					else if ((mode_char == 'o' || mode_char == 'v') && arg_num > _cmd.size() - 1)
-					{
-						err_msg = String("You must specify a parameter for the ") + (mode_char == 'o' ? "op" : "voice") + String(" mode. Syntax: <nick>.");
-						this->_err_needmoreparams(err_msg);
-						i++;
-						continue;
-					}
 					else
 					{
 						bool is_key_set = cur_chan->get_specific_mode(CHANMODE_k);
@@ -203,8 +223,6 @@ int Command::apply_mode(String target, String *mode_change)
 						// MODE "k"
 						if (mode_char == 'k' && add == true && is_key_set == false)
 						{ 
-							if (arg_num > _cmd.size() - 1)
-								return (this->_err_needmoreparams("k * You must specify a parameter for the key mode. Syntax: <key>."));
 							cur_chan->set_key(_cmd[arg_num]);
 							arg_num++;
 						}
@@ -214,7 +232,14 @@ int Command::apply_mode(String target, String *mode_change)
 							arg_num++;
 							continue;	
 						}
-						else if (mode_char == 'k' && add == false && is_key_set == true)
+						else if (mode_char == 'k' && add == false && is_key_set == true && _cmd[arg_num] != cur_chan->get_key())
+						{
+							arg_num++;
+							_err_keyset();
+							i++;
+							continue;
+						}
+						else if (mode_char == 'k' && add == false && is_key_set == true && _cmd[arg_num] == cur_chan->get_key())
 						{
 							arg_num++;
 							cur_chan->set_key("");
@@ -230,13 +255,6 @@ int Command::apply_mode(String target, String *mode_change)
 						
 						if (mode_char == 'l' && add == true && is_limit_set == false)
 						{
-							if (arg_num > _cmd.size() - 1)
-							{
-								this->_err_needmoreparams("l * You must specify a parameter for the limit mode. Syntax: <limit>.");
-								arg_num++;
-								i++;
-								continue;
-							}
 							cur_chan->set_limit(_cmd[arg_num]);
 							arg_num++;
 						}
@@ -260,13 +278,16 @@ int Command::apply_mode(String target, String *mode_change)
 
 						// MODE "b"
 						size_t count_mode_letters = 0;
+						bool flag_b = true;
 						for (size_t i = 0 ; i < _cmd[2].size(); i++)
 						{
 							if (mode_char != '+' && mode_char != '-')
 								count_mode_letters++;
+							if (mode_char != 'b' && count_mode_letters > 0 && add == true)
+								flag_b = false;
 						}
 							
-						if (mode_char == 'b' && add == true && (arg_num > _cmd.size() - 1))
+						if (mode_char == 'b' && add == true && flag_b == true && (arg_num > _cmd.size() - 1))
 						{
 							if (chan_ban_list->size() > 0)
 								_rpl_banlist();
@@ -286,6 +307,7 @@ int Command::apply_mode(String target, String *mode_change)
 								Channel::PAIR_BAN_CREATORNAME_TIME bpair = std::make_pair(*_users_it, time(0));
 								chan_ban_list->insert(std::make_pair(_cmd[arg_num], bpair));
 								_cmd[arg_num] = _cmd[arg_num] + "!*@*";
+								arg_valid = true;
 							}
 							arg_num++;
 						}
@@ -299,7 +321,7 @@ int Command::apply_mode(String target, String *mode_change)
 									return (_err_chanoprivsneeded());
 								chan_ban_list->erase(needle_nick);
 								modified = CHAN_MODE_MODIFIED;
-								*mode_change = *mode_change + char_to_String(mode_char);
+								arg_valid = true;
 								arg_num++;
 							}
 						}
@@ -308,11 +330,15 @@ int Command::apply_mode(String target, String *mode_change)
 						previous_state = cur_chan->get_specific_mode(chanmodes.find(mode_char));
 
 						_chans[target]->set_specific_mode(chanmodes.find(mode_char), add);
-						if (previous_state != cur_chan->get_specific_mode(chanmodes.find(mode_char)))
+						if (previous_state != cur_chan->get_specific_mode(chanmodes.find(mode_char)) || (mode_char == 'b' && add == false && arg_valid))
 						{
-							modified = CHAN_MODE_MODIFIED;
-							*mode_change = *mode_change + char_to_String(mode_char);
-							std::cout << "CHAN MODE UPDATED\n";
+							std::cout << "_cmd.size() - 1: " << _cmd.size() - 1  << " vs arg_num = " << arg_num << std::endl;
+							if (mode_char != 'b' || (mode_char == 'b' && arg_valid))
+							{
+								modified = CHAN_MODE_MODIFIED;
+								*mode_change = *mode_change + char_to_String(mode_char);
+								std::cout << "CHAN MODE UPDATED\n";
+							}
 						}
 						if (mode_char == 'b')
 							_chans[target]->set_specific_mode(chanmodes.find(mode_char), false);
@@ -362,7 +388,7 @@ e_error	Command::_mode	(void)
 	Channel *cur_chan = NULL;
 	
 	if (this->_cmd.size() < 2)
-		return (this->_err_needmoreparams());
+		return (this->_err_needmoreparams(_cmd[0]));
 	else if (this->_cmd.size() >= 2)
 	{
 		if (is_channel == false && _user_exist(_cmd[1]) == false)

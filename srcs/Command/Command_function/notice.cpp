@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   notice.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 20:46:32 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/16 17:37:45 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/17 15:28:01 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ e_error	Command::_notice	(void)
 	bool voice = false;
 	String nickname = (*_users_it)->get_nickname();
 	if (this->_cmd.size() < 3)
-		return (this->_err_needmoreparams());
+		return (this->_err_needmoreparams(_cmd[0]));
 	else
 	{
 		if (has_begin_hashtag(this->_cmd[1]))
