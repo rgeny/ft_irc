@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:23:38 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/30 18:51:50 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/17 08:01:01 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main	(__attribute((unused)) int argc
 	try
 	{
 		signal(SIGINT, SIG_IGN);
+		signal(SIGTSTP, SIG_IGN);
 		int	port;
 		String	password;
 
