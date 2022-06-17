@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/16 22:06:56 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/17 11:41:17 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,14 @@ void	Command::_parse	(void)
 
 void	Command::_check_cmd	(void)
 {
-	if (!this->_check_prefix())
+	if (!this->_check_prefix()
+		|| (!(*this->_users_it)->co_is_complete()
+			&& this->_cmd[0] != PASS
+			&& this->_cmd[0] != NICK
+			&& this->_cmd[0] != USER))
+	{
 		return ;
+	}
 
 	CmdsFct::iterator	it = this->_cmds_fct.find(this->_cmd[0]);
 
