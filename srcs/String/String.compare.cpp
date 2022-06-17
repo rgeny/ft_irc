@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 01:41:40 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/11 15:31:24 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/06/17 18:11:47 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,10 @@ int	String::compare	(size_t pos
 		if ((i + k) < len
 			&& (*this)[i + k] == '\\')
 		{
-			i++;
+			if ((*this)[j + k] == '\\')
+				k++;
+			else
+				i++;
 			if (!this->_is_valid_name(i, len, str, j, k, sublen, l))
 				return (this->_cast((*this)[i + k + l]) - this->_cast(str[j + k + l]));
 		}
