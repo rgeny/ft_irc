@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/17 19:47:07 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/18 00:26:49 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ String Command::get_user_mode(User* target_user)
 	String user_mode;
 	user_mode = user_mode 
 				+ (target_user->get_specific_mode(USERMODE_i) ? "i" : "")
+				+ (target_user->get_specific_mode(USERMODE_o) ? "o" : "")
 				+ (target_user->get_specific_mode(USERMODE_w) ? "w" : "");
 
 	return (user_mode);
@@ -158,6 +159,7 @@ int Command::apply_mode(String target, String *mode_change)
 		
 		if (mode_type(mode_char)) // MODE EXISTS
 		{
+			/* Check if mode is either 'olvk' which requires argument */
 			if (has_begin_hashtag(this->_cmd[1]) 
 				&& (((mode_char == 'o' || mode_char == 'l' || mode_char == 'v') && add == true) || mode_char == 'k')
 				&& arg_num > _cmd.size() - 1)
@@ -170,10 +172,13 @@ int Command::apply_mode(String target, String *mode_change)
 				i++;
 				continue;
 			}
+			/* Check if _cmd[1] is a user and if the mode_char is a usermode or not */
 			else if (!has_begin_hashtag(this->_cmd[1]) 
-					&& (std::string("asOv").find(mode_char) != std::string::npos || std::string(USERMODES_LIST).find(mode_char) == std::string::npos) 
+					&& std::string("awrOsv").find(mode_char) == std::string::npos
 					&& _cmd.size() == 3)
 				return (_err_umodeunknownflag(String(1, mode_char), "is not a recognised user mode"));
+
+			/* Check if limit argument can be recognized as an integer or not */
 			if (mode_char == 'l' && add == true && invalid_mode_input(_cmd[arg_num]))
 			{
 				err_msg = String(":Invalid limit mode parameter. Syntax: <limit>.");
@@ -190,24 +195,57 @@ int Command::apply_mode(String target, String *mode_change)
 				std::cout << "Nb of channels: " << _chans.size() << std::endl;
 				String nickname = (*_users_it)->get_nickname();
 				bool chan_operator = is_operator(nickname, *cur_chan);
-				if ((_chans.size() > 0 && chan_operator == true) || (mode_char == 'b'))
+				
+				/* Check if the current user has the right priviledge level to request mode change */
+				if (_chans.size() > 0 && chan_operator == false 
+					&& (mode_char == 'm' || mode_char == 'p' || mode_char == 's' || mode_char == 't' || mode_char == 'l' || mode_char == 'b' || mode_char == 'k'))
+				{
+					this->_err_chanoprivsneeded("You must have channel halfop access or above to set channel mode " + mode_char);
+					arg_num++;
+					i++;
+					continue;
+				}
+				else if (_chans.size() > 0 && chan_operator == false && mode_char == 'o')
+				{
+					this->_err_chanoprivsneeded("You must have channel op access or above to set channel mode o");
+					arg_num++;
+					i++;
+					continue;
+				}
+				else if ((_chans.size() > 0 && chan_operator == true) || (mode_char == 'b'))
 				{
 					if ((mode_char == 'o' || mode_char == 'v') && arg_num <= _cmd.size() - 1)
 					{
-						std::cout << "Update modes 'o' ou 'v' sur une target" << std::endl;
+						/* Check if the target user of o or v mode change does exist or not */
 						if (this->_user_exist(_cmd[arg_num]) == false)
-							return (_err_nosuchnick(_cmd[arg_num]));
-						if (user_exist_in_chan(*cur_chan, _cmd[arg_num]) == false)
-							return (_err_usernotinchannel(_cmd[arg_num], cur_chan->get_chan_name()));
+						{
+							this->_err_nosuchnick(_cmd[arg_num]);
+							arg_num++;
+							i++;
+							continue;
+						}
+						
+						/* Check if the target user of o or v mode change does exist IN THE TARGET CHANNEL or not */
+						if (this->user_exist_in_chan(*cur_chan, _cmd[arg_num]) == false)
+						{
+							this->_err_usernotinchannel(_cmd[arg_num], cur_chan->get_chan_name());
+							arg_num++;
+							i++;
+							continue;
+						}
+
 						target_user = _get_user(_cmd[arg_num]);
+						
 						if (target_user->get_chan_usermode().size() > 0)
 							previous_state = false;
 						else if (target_user->get_chan_usermode_vec(_cmd[1]).size() > 0)
 							previous_state = target_user->get_chan_usermode_vec(_cmd[1])[usermodes.find(mode_char)];
+						
 						target_user->set_chan_usermode(_cmd[1], usermodes.find(mode_char), add);
 
 						if (previous_state != target_user->get_chan_usermode_vec(_cmd[1])[usermodes.find(mode_char)])
 						{
+							/* Check if the mode change did modify something or not -> if yes, add this mode char to the final reply */
 							modified = CHAN_MODE_MODIFIED;
 							*mode_change = *mode_change + char_to_String(mode_char);
 							std::cout << "CHAN MODE UPDATED\n";
@@ -221,61 +259,52 @@ int Command::apply_mode(String target, String *mode_change)
 						chan_ban_list = &(*_chans_it).second->get_chan_ban_list();
 
 						// MODE "k"
-						if (mode_char == 'k' && add == true && is_key_set == false)
+						if (mode_char == 'k' && add == true && is_key_set == false) // +k with no previous key set yet
 						{ 
 							cur_chan->set_key(_cmd[arg_num]);
 							arg_num++;
 						}
-						else if (mode_char == 'k' && add == true && is_key_set == true)
+						else if (mode_char == 'k' 
+								&& ((add == true && is_key_set == true) || (add == false && is_key_set == false))) // +k while there is already a set key or -k with no set key => ignore both
 						{
 							i++;
 							arg_num++;
 							continue;	
 						}
-						else if (mode_char == 'k' && add == false && is_key_set == true && _cmd[arg_num] != cur_chan->get_key())
+						else if (mode_char == 'k' && add == false && is_key_set == true && _cmd[arg_num] != cur_chan->get_key()) // -k wrong_key
 						{
 							arg_num++;
 							_err_keyset();
 							i++;
 							continue;
 						}
-						else if (mode_char == 'k' && add == false && is_key_set == true && _cmd[arg_num] == cur_chan->get_key())
+						else if (mode_char == 'k' && add == false && is_key_set == true && _cmd[arg_num] == cur_chan->get_key()) // -k right_key => reset key to ""
 						{
 							arg_num++;
 							cur_chan->set_key("");
 						}
-						else if (mode_char == 'k' && add == false && is_key_set == false)
-						{
-							i++;
-							arg_num++;
-							continue;
-						}
 
 						// MODE "l"
 						
-						if (mode_char == 'l' && add == true && is_limit_set == false)
+						if (mode_char == 'l' && add == true && is_limit_set == false) // +l with no previously set limit
 						{
-							cur_chan->set_limit(_cmd[arg_num]);
+							cur_chan->set_limit(_cmd[arg_num]); // set new limit
 							arg_num++;
 						}
-						else if (mode_char == 'l' && add == true && is_limit_set == true)
+						else if (mode_char == 'l' 
+								&& ((add == true && is_limit_set == true) || (add == false && is_limit_set == false))) // +l while limit is already set or -l with no set key => ignore
 						{
 							i++;
 							arg_num++;
 							continue;	
 						}
-						else if (mode_char == 'l' && add == false && is_limit_set == true)
+						else if (mode_char == 'l' && add == false && is_limit_set == true) // -l while limit is set.
 						{
-							cur_chan->set_limit(0);
+							cur_chan->set_limit(0); // remove limit
+							cur_chan->set_specific_mode(CHANMODE_l, false);	// set 'l' mode to false
 							arg_num++;
 						}
-						else if (mode_char == 'l' && add == false && is_limit_set == false)
-						{
-							i++;
-							arg_num++;
-							continue;
-						}
-
+						
 						// MODE "b"
 						size_t count_mode_letters = 0;
 						bool flag_b = true;
@@ -299,9 +328,19 @@ int Command::apply_mode(String target, String *mode_change)
 						else if (mode_char == 'b' && add == true && arg_num <= _cmd.size() - 1)
 						{
 							if (!chan_operator)
-							    return (_err_chanoprivsneeded());
+							{
+							    this->_err_chanoprivsneeded();
+								arg_num++;
+								i++;
+								continue;
+							}
 							if (chan_ban_list->size() >= CHAN_BAN_LIST_MAX_SIZE)
-								return (_err_banlistfull());
+							{
+								this->_err_banlistfull();
+								arg_num++;
+								i++;
+								continue;
+							}
 							if (chan_ban_list->find(_cmd[arg_num]) == chan_ban_list->end())
 							{
 								Channel::PAIR_BAN_CREATORNAME_TIME bpair = std::make_pair(*_users_it, time(0));
@@ -318,7 +357,12 @@ int Command::apply_mode(String target, String *mode_change)
 							{
 								needle_nick = _cmd[arg_num].substr(0, _cmd[arg_num].length() - 4);
 								if (!chan_operator)
-									return (_err_chanoprivsneeded());
+								{
+									this->_err_chanoprivsneeded();
+									arg_num++;
+									i++;
+									continue;
+								}
 								chan_ban_list->erase(needle_nick);
 								modified = CHAN_MODE_MODIFIED;
 								arg_valid = true;
@@ -326,13 +370,11 @@ int Command::apply_mode(String target, String *mode_change)
 							}
 						}
 
-
 						previous_state = cur_chan->get_specific_mode(chanmodes.find(mode_char));
 
 						_chans[target]->set_specific_mode(chanmodes.find(mode_char), add);
 						if (previous_state != cur_chan->get_specific_mode(chanmodes.find(mode_char)) || (mode_char == 'b' && add == false && arg_valid))
 						{
-							std::cout << "_cmd.size() - 1: " << _cmd.size() - 1  << " vs arg_num = " << arg_num << std::endl;
 							if (mode_char != 'b' || (mode_char == 'b' && arg_valid))
 							{
 								modified = CHAN_MODE_MODIFIED;
@@ -347,12 +389,13 @@ int Command::apply_mode(String target, String *mode_change)
 					if (target_user != NULL)
 						display_user_mode(target_user, "target_user");
 				}
-				else if (_chans.size() > 0 && chan_operator == false && mode_char == 'm')
-					return (_err_chanoprivsneeded("You must have channel halfop access or above to set channel mode m"));
 			}
 			else
 			{
-				return (_err_umodeunknownflag("m:", "is not a recognised user mode."));
+				this->_err_umodeunknownflag(mode_char + "m:", "is not a recognised user mode.");
+				arg_num++;
+				i++;
+				continue;
 			}
 
 			if (_chans_it != _chans.end() && cur_chan != NULL)
