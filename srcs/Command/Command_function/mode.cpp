@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/18 21:22:28 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/18 22:16:54 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -340,9 +340,6 @@ int Command::apply_mode(String target, String *mode_change)
 						}
 						if (mode_char == 'b')
 							count_b++;
-						
-						std::cout << "flag_b: " << flag_b << std::endl;
-						std::cout << "count_b: " << count_b << std::endl;
 							
 						if (mode_char == 'b' && add == true && flag_b == true && count_b == 1 && (arg_num > _cmd.size() - 1))
 						{
@@ -373,6 +370,13 @@ int Command::apply_mode(String target, String *mode_change)
 								_cmd[arg_num] = _cmd[arg_num] + "!*@*";
 								arg_valid = true;
 							}
+							else if (chan_ban_list->find(_cmd[arg_num]) != chan_ban_list->end())
+							{
+								_err_alreadyinbanlist(_cmd[1], _cmd[arg_num] + "!*@*");
+								arg_num++;
+								i++;
+								continue;
+							}
 							arg_num++;
 						}
 						else if (mode_char == 'b' && add == false && arg_num <= _cmd.size() - 1)
@@ -388,7 +392,15 @@ int Command::apply_mode(String target, String *mode_change)
 									i++;
 									continue;
 								}
-								chan_ban_list->erase(needle_nick);
+								if (chan_ban_list->find(needle_nick) == chan_ban_list->end())
+								{
+									this->_err_notinbanlist(_cmd[1], _cmd[arg_num]);
+									arg_num++;
+									i++;
+									continue;
+								}
+								else
+									chan_ban_list->erase(needle_nick);
 								modified = CHAN_MODE_MODIFIED;
 								arg_valid = true;
 								arg_num++;

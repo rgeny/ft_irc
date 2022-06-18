@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 13:13:28 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/06 15:27:06 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/06/18 21:55:30 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,5 +152,7 @@
 # define ERR_NOOPERHOST 		"491"
 # define ERR_UMODEUNKNOWNFLAG	"501"
 # define ERR_USERSDONTMATCH		"502"
+# define ERR_ALREADYINBANLIST	"697"
+# define ERR_NOTINBANLIST		"698"
 
 #endif

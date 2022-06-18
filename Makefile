@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by abesombe          #+#    #+#              #
-#    Updated: 2022/06/17 18:42:39 by abesombe         ###   ########.fr        #
+#    Updated: 2022/06/18 22:18:30 by abesombe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ SRCS				= $(addsuffix .cpp,				main \
 						$(addprefix Message,		$(DEFAULT_FILES)) \
 													init_msg_error \
 													\
+													err_alreadyinbanlist \
 													err_alreadyregistred \
 													err_badchanmask \
 													err_badchannelkey \
@@ -97,6 +98,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													err_nosuchchannel \
 													err_nosuchnick \
 													err_nosuchserver \
+													err_notinbanlist \
 													err_notonchannel \
 													err_passwdmismatch \
 													err_restricted \

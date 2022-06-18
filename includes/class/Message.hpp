@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/18 16:24:46 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/18 22:18:14 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ class Message
 	protected:
 		//error reply
 		e_error	_err_alreadyregistred	(void) const;
+		e_error _err_alreadyinbanlist	(String chan_name, String target) const;
 		e_error	_err_badchanmask		(void) const;
 		e_error	_err_badchannelkey		(void) const;
 		e_error	_err_banlistfull		(void) const;
@@ -57,6 +58,7 @@ class Message
 		e_error	_err_nosuchnick			(String nickname) const;
 		e_error	_err_nosuchserver		(void) const;
 		e_error	_err_notonchannel		(void) const;
+		e_error _err_notinbanlist		(String chan_name, String target) const;
 		e_error	_err_passwdmismatch		(void) const;
 		e_error	_err_restricted			(void) const;
 		e_error	_err_umodeunknownflag	(String failed, String reason) const;
