@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/18 10:02:40 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/18 10:38:26 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ int Command::apply_mode(String target, String *mode_change)
 		std::string chanmodes = CHANMODES_LIST;
 		String erroneous_elem;
 		bool arg_valid = false;
+		bool l_change = false;
 		User *target_user = NULL;
 		bool is_channel = has_begin_hashtag(this->_cmd[1]);
 		char mode_char = _cmd[2][i];
@@ -295,14 +296,16 @@ int Command::apply_mode(String target, String *mode_change)
 						}
 
 						// MODE "l"
-						
-						if (mode_char == 'l' && add == true && is_limit_set == false) // +l with no previously set limit
+						size_t new_limit = strtol(_cmd[arg_num].c_str(), NULL, 10);
+						// std::cout << "is_limit_set = " << is_limit_set << " - cur_chan->get_limit() = " << cur_chan->get_limit() << " vs new limit = " << new_limit << std::endl;
+						if (mode_char == 'l' && add == true && (is_limit_set == false || (is_limit_set == true && cur_chan->get_limit() != new_limit))) // +l with no previously set limit
 						{
+							l_change = true;
 							cur_chan->set_limit(_cmd[arg_num]); // set new limit
 							arg_num++;
 						}
 						else if (mode_char == 'l' 
-								&& ((add == true && is_limit_set == true) || (add == false && is_limit_set == false))) // +l while limit is already set or -l with no set key => ignore
+								&& ((add == true && is_limit_set == true && cur_chan->get_limit() == new_limit) || (add == false && is_limit_set == false))) // +l while limit is already set or -l with no set key => ignore
 						{
 							i++;
 							arg_num++;
@@ -322,7 +325,7 @@ int Command::apply_mode(String target, String *mode_change)
 						{
 							if (mode_char != '+' && mode_char != '-')
 								count_mode_letters++;
-							if (mode_char != 'b' && count_mode_letters > 0 && add == true)
+							if (mode_char == 'b' && count_mode_letters > 0 && add == true)
 								flag_b = false;
 						}
 							
@@ -383,9 +386,9 @@ int Command::apply_mode(String target, String *mode_change)
 						previous_state = cur_chan->get_specific_mode(chanmodes.find(mode_char));
 
 						_chans[target]->set_specific_mode(chanmodes.find(mode_char), add);
-						if (previous_state != cur_chan->get_specific_mode(chanmodes.find(mode_char)) || (mode_char == 'b' && add == false && arg_valid))
+						if (previous_state != cur_chan->get_specific_mode(chanmodes.find(mode_char)) || (mode_char == 'b' && add == false && arg_valid) || l_change)
 						{
-							if (mode_char != 'b' || (mode_char == 'b' && arg_valid))
+							if (mode_char != 'b' || (mode_char == 'b' && arg_valid) || l_change)
 							{
 								modified = CHAN_MODE_MODIFIED;
 								*mode_change = *mode_change + char_to_String(mode_char);
