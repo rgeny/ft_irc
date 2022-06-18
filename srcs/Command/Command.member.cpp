@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/17 11:41:17 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/06/18 13:47:12 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void	Command::_check_cmd	(void)
 		|| (!(*this->_users_it)->co_is_complete()
 			&& this->_cmd[0] != PASS
 			&& this->_cmd[0] != NICK
-			&& this->_cmd[0] != USER))
+			&& this->_cmd[0] != USER
+			&& this->_cmd[0] != QUIT))
 	{
 		return ;
 	}
