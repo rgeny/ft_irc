@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/18 10:38:26 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/18 10:59:42 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,18 +71,19 @@ void Command::display_chan_mode(Channel *cur_chan)
 	<< "]\n";
 }
 
-void Command::display_user_mode(User* target_user, String user_type)
+void Command::display_user_mode(User* target_user, String user_type, String chan_name)
 {
+	std::cout << "current_user = " << target_user->get_nickname() << std::endl;
 	std::cout << "USER MODES " << user_type << " [o|w|O|i|v]: ["
-	<< target_user->get_chan_usermode_vec(this->_cmd[1])[USERMODE_o]
+	<< target_user->get_chan_usermode_vec(chan_name)[USERMODE_o]
 	<< "|" 
 	<< target_user->get_specific_mode(USERMODE_w) 
 	<< "|" 
-	<< target_user->get_chan_usermode_vec(this->_cmd[1])[USERMODE_O]
+	<< target_user->get_chan_usermode_vec(chan_name)[USERMODE_O]
 	<< "|" 
 	<< target_user->get_specific_mode(USERMODE_i) 
 	<< "|" 
-	<< target_user->get_chan_usermode_vec(this->_cmd[1])[USERMODE_v]
+	<< target_user->get_chan_usermode_vec(chan_name)[USERMODE_v]
 	<< "]\n";
 }
 
@@ -297,7 +298,6 @@ int Command::apply_mode(String target, String *mode_change)
 
 						// MODE "l"
 						size_t new_limit = strtol(_cmd[arg_num].c_str(), NULL, 10);
-						// std::cout << "is_limit_set = " << is_limit_set << " - cur_chan->get_limit() = " << cur_chan->get_limit() << " vs new limit = " << new_limit << std::endl;
 						if (mode_char == 'l' && add == true && (is_limit_set == false || (is_limit_set == true && cur_chan->get_limit() != new_limit))) // +l with no previously set limit
 						{
 							l_change = true;
@@ -314,7 +314,6 @@ int Command::apply_mode(String target, String *mode_change)
 						else if (mode_char == 'l' && add == false && is_limit_set == true) // -l while limit is set.
 						{
 							cur_chan->set_limit(0); // remove limit
-							// cur_chan->set_specific_mode(CHANMODE_l, false);	// set 'l' mode to false
 							arg_num++;
 						}
 						
@@ -398,9 +397,10 @@ int Command::apply_mode(String target, String *mode_change)
 						if (mode_char == 'b')
 							_chans[target]->set_specific_mode(chanmodes.find(mode_char), false);
 					}
-					display_user_mode(cur_user, "current_user");
-					if (target_user != NULL)
-						display_user_mode(target_user, "target_user");
+					if (cur_user != NULL && !_cmd[1].empty() && _chan_exist(_cmd[1]))
+						display_user_mode(cur_user, "current_user", _cmd[1]);
+					if (target_user != NULL && !_cmd[1].empty() && _chan_exist(_cmd[1]))
+						display_user_mode(target_user, "target_user", _cmd[1]);
 				}
 			}
 			else

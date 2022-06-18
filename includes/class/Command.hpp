@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/18 01:02:56 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/18 10:57:35 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ class Command
 		void 	init_access_control_data(void);
 		void 	reset_access_control_data(void);
 		void	display_chan_mode(Channel *cur_chan);
-		void	display_user_mode(User *target_user, String user_type);
+		void	display_user_mode(User *target_user, String user_type, String chan_name);
 		void	update_user_mode(bool &previous_state, int &modified, int i, bool &add, String target, String *mode_change);
 		void	update_all_nickname_records(String former_nick, String new_nick);
 		String 	generate_channel_mode(Channel* cur_chan);
