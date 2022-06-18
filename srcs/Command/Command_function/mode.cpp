@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/18 00:26:49 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/18 03:27:27 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ int Command::apply_mode(String target, String *mode_change)
 				if (_chans.size() > 0 && chan_operator == false 
 					&& (mode_char == 'm' || mode_char == 'p' || mode_char == 's' || mode_char == 't' || mode_char == 'l' || mode_char == 'b' || mode_char == 'k'))
 				{
-					this->_err_chanoprivsneeded("You must have channel halfop access or above to set channel mode " + mode_char);
+					this->_err_chanoprivsneeded(String("You must have channel halfop access or above to set channel mode ") + mode_char);
 					arg_num++;
 					i++;
 					continue;
