@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/18 17:40:19 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/18 21:22:28 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@ String Command::strip_orphan_sign(String mode_change)
 
 void Command::update_user_mode(bool &previous_state, int &modified, int i, bool &add, String target, String *mode_change)		
 {
+
 	std::string usermodes = USERMODES_LIST;
 	size_t cur_mode = usermodes.find(_cmd[2][i]);
 	previous_state = (*this->_users_it)->get_specific_mode(cur_mode);
+
 	this->_get_user(target)->set_specific_mode(cur_mode, add);
 	if (previous_state != (*this->_users_it)->get_specific_mode(cur_mode))
 	{
@@ -127,9 +129,10 @@ int Command::apply_mode(String target, String *mode_change)
 {
 	size_t 	size_modestr = _cmd[2].length();
 	size_t 	i = 0;
+	size_t	count_b = 0;
 	Channel* cur_chan = (*this->_chans_it).second;
-	User* cur_user = (*_users_it);
-	String err_msg;
+	User* 	cur_user = (*_users_it);
+	String 	err_msg;
 	bool	add = true;
 	int		modified = 0;
 	size_t	arg_num = 3;
@@ -196,7 +199,7 @@ int Command::apply_mode(String target, String *mode_change)
 			bool previous_state = false;
 			if (mode_type(mode_char) == 1 && !is_channel) // USER MODE
 				update_user_mode(previous_state, modified, i, add, target, mode_change);
-			else if (mode_type(mode_char) == 1 && is_channel && mode_char != 'o' && mode_char != 'v') // WRONG MODES FOR CHANNELS => THESE ARE USER MODES, NOT CHAN MODES
+			else if (mode_type(mode_char) == 1 && is_channel && mode_char != 'o' && mode_char != 'v' && mode_char != 's') // WRONG MODES FOR CHANNELS => THESE ARE USER MODES, NOT CHAN MODES
 			{
 				_err_umodeunknownflag(String(1, mode_char), "is not a recognised chan mode");
 				i++;
@@ -248,10 +251,12 @@ int Command::apply_mode(String target, String *mode_change)
 
 						target_user = _get_user(_cmd[arg_num]);
 						
-						if (target_user->get_chan_usermode().size() > 0)
+						if (target_user->get_chan_usermode().size() == 0)
 							previous_state = false;
 						else if (target_user->get_chan_usermode_vec(_cmd[1]).size() > 0)
 							previous_state = target_user->get_chan_usermode_vec(_cmd[1])[usermodes.find(mode_char)];
+						
+						std::cout << "Previous_state = " << previous_state << " - add = " << add << std::endl; 
 						
 						target_user->set_chan_usermode(_cmd[1], usermodes.find(mode_char), add);
 
@@ -320,21 +325,26 @@ int Command::apply_mode(String target, String *mode_change)
 						}
 						
 						// MODE "b"
-						/* Determine if b is the first mode letter - if yes, then display the ban_list - otherwise no ban_list display */
-						bool flag_b = true; 
+						/* Determine if b is the first mode letter - if yes, then display the ban_list if very 1st b- otherwise no ban_list display */
+						bool flag_b = true;
+
 						size_t count_mode_letters = 0;
-						for (size_t i = 0 ; i < _cmd[2].size(); i++)
+						for (size_t j = 0 ; j < _cmd[2].size(); j++)
 						{
-							if (_cmd[2][i] != '+' && _cmd[2][i] != '-')
+							if (_cmd[2][j] != '+' && _cmd[2][j] != '-')
 							{
-								if (count_mode_letters == 0 && _cmd[2][i] != 'b')
+								if (count_mode_letters == 0 && _cmd[2][j] != 'b')
 									flag_b = false;
 								count_mode_letters++;
 							}
 						}
-						std::cout << "flag_b: " << flag_b << std::endl; 
+						if (mode_char == 'b')
+							count_b++;
+						
+						std::cout << "flag_b: " << flag_b << std::endl;
+						std::cout << "count_b: " << count_b << std::endl;
 							
-						if (mode_char == 'b' && add == true && flag_b == true && (arg_num > _cmd.size() - 1))
+						if (mode_char == 'b' && add == true && flag_b == true && count_b == 1 && (arg_num > _cmd.size() - 1))
 						{
 							if (chan_ban_list->size() > 0)
 								_rpl_banlist();
