@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 19:32:23 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/18 12:51:11 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/06/18 14:37:37 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ std::vector<String>	split	(String s
 	for (size_t pos = tmp.find(delimiter); pos != String::npos; pos = tmp.find(delimiter))
 	{
 		if (pos > 0)
-			result.push_back(s.substr(0, pos));
+			result.push_back(tmp.substr(0, pos));
 		tmp.erase(0, pos + delimiter.length());
 	}
 	if (!tmp.empty())
