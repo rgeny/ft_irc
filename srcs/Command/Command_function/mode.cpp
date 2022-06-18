@@ -6,11 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/06/18 00:49:44 by abesombe         ###   ########.fr       */
-=======
-/*   Updated: 2022/06/18 03:30:56 by rgeny            ###   ########.fr       */
->>>>>>> 338420c38d7a2fd9fc2f2e77a6d9345172fbc7ca
+/*   Updated: 2022/06/18 09:30:51 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,11 +156,11 @@ int Command::apply_mode(String target, String *mode_change)
 		std::cout << "char[" << i << "] = " << mode_char << " is being analyzed for mode changes\n";
 		std::cout << "arg_num: " << arg_num << std::endl;
 		erroneous_elem = String(_cmd[1] + " +" + mode_char);
-		std::cout << mode_char << " is here: 159\n";
-		if (mode_type(mode_char)) // MODE EXISTS
+
+		if (mode_type(mode_char) && chanmodes.find(mode_char) != std::string::npos) // MODE EXISTS
 		{
 			/* Check if mode is either 'olvk' which requires argument */
-			std::cout << mode_char << " is here: 163\n";
+
 			if (has_begin_hashtag(this->_cmd[1]) 
 				&& (((mode_char == 'o' || mode_char == 'l' || mode_char == 'v') && add == true) || mode_char == 'k')
 				&& arg_num > _cmd.size() - 1)
@@ -181,7 +177,11 @@ int Command::apply_mode(String target, String *mode_change)
 			else if (!has_begin_hashtag(this->_cmd[1]) 
 					&& std::string("awrOsv").find(mode_char) != std::string::npos
 					&& _cmd.size() == 3)
-				return (_err_umodeunknownflag(String(1, mode_char), "is not a recognised user mode"));
+			{
+				_err_umodeunknownflag(String(1, mode_char), "is not a recognised user mode");
+				i++;
+				continue;
+			}
 
 			/* Check if limit argument can be recognized as an integer or not */
 			if (mode_char == 'l' && add == true && invalid_mode_input(_cmd[arg_num]))
@@ -194,17 +194,21 @@ int Command::apply_mode(String target, String *mode_change)
 			bool previous_state = false;
 			if (mode_type(mode_char) == 1 && !is_channel) // USER MODE
 				update_user_mode(previous_state, modified, i, add, target, mode_change);
+			else if (mode_type(mode_char) == 1 && is_channel && mode_char != 'o' && mode_char != 'v') // WRONG MODES FOR CHANNELS => THESE ARE USER MODES, NOT CHAN MODES
+			{
+				_err_umodeunknownflag(String(1, mode_char), "is not a recognised chan mode");
+				i++;
+				continue;
+			}
 			else if (mode_type(mode_char) && is_channel) // CHANNEL MODE
 			{
-				std::cout << mode_char << " is here: 195\n";
 				Channel::CHAN_BAN_LIST *chan_ban_list = NULL;
-				std::cout << "Nb of channels: " << _chans.size() << std::endl;
 				String nickname = (*_users_it)->get_nickname();
 				bool chan_operator = is_operator(nickname, *cur_chan);
 				
 				/* Check if the current user has the right priviledge level to request mode change */
 				if (_chans.size() > 0 && chan_operator == false 
-					&& (mode_char == 'm' || mode_char == 'p' || mode_char == 's' || mode_char == 't' || mode_char == 'l' || mode_char == 'b' || mode_char == 'k'))
+					&& (mode_char == 'm' || mode_char == 'p' || mode_char == 's' || mode_char == 't' || mode_char == 'l' || (mode_char == 'b' && arg_num <= _cmd.size() - 1) || mode_char == 'k'))
 				{
 					this->_err_chanoprivsneeded(String("You must have channel halfop access or above to set channel mode ") + mode_char);
 					arg_num++;
