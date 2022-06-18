@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/18 00:26:49 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/18 00:49:44 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,10 +156,11 @@ int Command::apply_mode(String target, String *mode_change)
 		std::cout << "char[" << i << "] = " << mode_char << " is being analyzed for mode changes\n";
 		std::cout << "arg_num: " << arg_num << std::endl;
 		erroneous_elem = String(_cmd[1] + " +" + mode_char);
-		
+		std::cout << mode_char << " is here: 159\n";
 		if (mode_type(mode_char)) // MODE EXISTS
 		{
 			/* Check if mode is either 'olvk' which requires argument */
+			std::cout << mode_char << " is here: 163\n";
 			if (has_begin_hashtag(this->_cmd[1]) 
 				&& (((mode_char == 'o' || mode_char == 'l' || mode_char == 'v') && add == true) || mode_char == 'k')
 				&& arg_num > _cmd.size() - 1)
@@ -174,7 +175,7 @@ int Command::apply_mode(String target, String *mode_change)
 			}
 			/* Check if _cmd[1] is a user and if the mode_char is a usermode or not */
 			else if (!has_begin_hashtag(this->_cmd[1]) 
-					&& std::string("awrOsv").find(mode_char) == std::string::npos
+					&& std::string("awrOsv").find(mode_char) != std::string::npos
 					&& _cmd.size() == 3)
 				return (_err_umodeunknownflag(String(1, mode_char), "is not a recognised user mode"));
 
@@ -191,6 +192,7 @@ int Command::apply_mode(String target, String *mode_change)
 				update_user_mode(previous_state, modified, i, add, target, mode_change);
 			else if (mode_type(mode_char) && is_channel) // CHANNEL MODE
 			{
+				std::cout << mode_char << " is here: 195\n";
 				Channel::CHAN_BAN_LIST *chan_ban_list = NULL;
 				std::cout << "Nb of channels: " << _chans.size() << std::endl;
 				String nickname = (*_users_it)->get_nickname();
