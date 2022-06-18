@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/18 03:27:27 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/06/18 03:30:56 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -392,7 +392,7 @@ int Command::apply_mode(String target, String *mode_change)
 			}
 			else
 			{
-				this->_err_umodeunknownflag(mode_char + "m:", "is not a recognised user mode.");
+				this->_err_umodeunknownflag(mode_char + String("m:"), "is not a recognised user mode.");
 				arg_num++;
 				i++;
 				continue;
