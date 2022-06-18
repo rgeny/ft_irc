@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/18 09:59:04 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/18 10:02:40 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -311,7 +311,7 @@ int Command::apply_mode(String target, String *mode_change)
 						else if (mode_char == 'l' && add == false && is_limit_set == true) // -l while limit is set.
 						{
 							cur_chan->set_limit(0); // remove limit
-							cur_chan->set_specific_mode(CHANMODE_l, false);	// set 'l' mode to false
+							// cur_chan->set_specific_mode(CHANMODE_l, false);	// set 'l' mode to false
 							arg_num++;
 						}
 						
