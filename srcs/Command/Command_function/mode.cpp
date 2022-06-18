@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/18 10:59:42 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/18 17:40:19 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -297,8 +297,10 @@ int Command::apply_mode(String target, String *mode_change)
 						}
 
 						// MODE "l"
-						size_t new_limit = strtol(_cmd[arg_num].c_str(), NULL, 10);
-						if (mode_char == 'l' && add == true && (is_limit_set == false || (is_limit_set == true && cur_chan->get_limit() != new_limit))) // +l with no previously set limit
+						size_t new_limit = 0;
+						if (arg_num <= _cmd.size() - 1)
+							new_limit = strtol(_cmd[arg_num].c_str(), NULL, 10);
+						if (mode_char == 'l' && add == true && (is_limit_set == false || (is_limit_set == true && new_limit > 0 && cur_chan->get_limit() != new_limit))) // +l with no previously set limit
 						{
 							l_change = true;
 							cur_chan->set_limit(_cmd[arg_num]); // set new limit
@@ -318,24 +320,25 @@ int Command::apply_mode(String target, String *mode_change)
 						}
 						
 						// MODE "b"
+						/* Determine if b is the first mode letter - if yes, then display the ban_list - otherwise no ban_list display */
+						bool flag_b = true; 
 						size_t count_mode_letters = 0;
-						bool flag_b = true;
 						for (size_t i = 0 ; i < _cmd[2].size(); i++)
 						{
-							if (mode_char != '+' && mode_char != '-')
+							if (_cmd[2][i] != '+' && _cmd[2][i] != '-')
+							{
+								if (count_mode_letters == 0 && _cmd[2][i] != 'b')
+									flag_b = false;
 								count_mode_letters++;
-							if (mode_char == 'b' && count_mode_letters > 0 && add == true)
-								flag_b = false;
+							}
 						}
+						std::cout << "flag_b: " << flag_b << std::endl; 
 							
 						if (mode_char == 'b' && add == true && flag_b == true && (arg_num > _cmd.size() - 1))
 						{
 							if (chan_ban_list->size() > 0)
 								_rpl_banlist();
-							if (count_mode_letters > 1)
-								_rpl_endofbanlist();
-							else
-								return (_rpl_endofbanlist());
+							_rpl_endofbanlist();
 						}
 						else if (mode_char == 'b' && add == true && arg_num <= _cmd.size() - 1)
 						{

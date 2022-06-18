@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/17 18:42:59 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/18 16:24:46 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ class Message
 		e_error	_err_erroneusnickname	(void) const;
 		e_error	_err_inviteonlychan		(void) const;	
 		e_error	_err_keyset				(void) const;				
-		e_error	_err_needmoreparams		(String erroneous_elem, String reason = ":Not enough parameters.") const;
+		e_error	_err_needmoreparams		(String erroneous_elem, String reason = ": Not enough parameters.") const;
 		e_error	_err_nicknameinuse		(void) const;
 		e_error	_err_nonicknamegiven	(void) const;
 		e_error	_err_noorigin			(void) const;
