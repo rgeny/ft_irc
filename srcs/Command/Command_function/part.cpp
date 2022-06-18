@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 18:13:29 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/17 15:28:13 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/18 14:04:39 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ e_error		Command::_part	(void)
 	std::vector<String> chan_list;
 	User::CHAN_USERMODE chan_usermode;
 	String nickname = (*_users_it)->get_nickname();
-	Channel *cur_chan = (*this->_chans_it).second;
+	Channel *cur_chan = NULL;
 
 	chan_list = split(this->_cmd[1], ",");
     if (this->_cmd.size() < 2)
