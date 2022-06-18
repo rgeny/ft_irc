@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/18 09:30:51 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/18 09:59:04 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,8 +183,8 @@ int Command::apply_mode(String target, String *mode_change)
 				continue;
 			}
 
-			/* Check if limit argument can be recognized as an integer or not */
-			if (mode_char == 'l' && add == true && invalid_mode_input(_cmd[arg_num]))
+			/* Check if limit argument can be recognized as a strictly positive integer or not */
+			if (mode_char == 'l' && add == true && (invalid_mode_input(_cmd[arg_num]) || strtol(_cmd[arg_num].c_str(), NULL, 10) == 0))
 			{
 				err_msg = String(":Invalid limit mode parameter. Syntax: <limit>.");
 				this->_err_needmoreparams(erroneous_elem + " " + _cmd[arg_num] + " ", err_msg);
