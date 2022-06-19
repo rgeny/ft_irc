@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:56:54 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/16 22:05:51 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/20 00:47:26 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ int main(int argc, char const *argv[])
 		std::cout << "\n Socket creation error \n" << std::endl;
 		return -1;
 	}
+	if (setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &(int){1}, sizeof(int)) < 0)
+    	error("setsockopt(SO_REUSEADDR) failed");
+	if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEPORT, (const char*)&reuse, sizeof(reuse)) < 0) 
+			perror("setsockopt(SO_REUSEPORT) failed");
 
 	serv_addr.sin_family = AF_INET;
 	serv_addr.sin_port = htons(atoi(argv[1]));

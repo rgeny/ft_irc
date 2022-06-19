@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:13:25 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/18 10:57:35 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/20 00:00:42 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ class Command
 		void	leave_all (void);
 		int 	join_process(String chan_name);
 		int		mode_type(char mode);
-		int		apply_mode(String target, String *mode_change);
+		int		apply_mode(String target, String *mode_change, String *args_list);
 		void 	set_new_channel(String chan_name);
 		void 	init_access_control_data(void);
 		void 	reset_access_control_data(void);
@@ -69,6 +69,7 @@ class Command
 		String 	strip_orphan_sign(String mode_change);
 		String 	get_user_mode(User* target_user);
 		bool	invalid_mode_input(String input);
+		String	add_final_colon(String args_list);
 		
 	protected:
 

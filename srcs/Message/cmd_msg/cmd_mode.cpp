@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 18:56:04 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/16 22:10:17 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/19 18:25:59 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 #include "Channel.hpp"
 
 
-e_error	Message::_cmd_mode	(int broadcast, String mode_change) const
+e_error	Message::_cmd_mode	(int broadcast, String mode_change, String args_list) const
 {
 	String	msg;
-	String 	args_list;
-	for (size_t i = 3; i < _cmd.size(); i++)
-	{
-		if (i > 3)
-			args_list += " ";
-		if (i == _cmd.size() - 1)
-			args_list += ":";
-		args_list += _cmd[i];
-	}
+	// String 	args_list;
+	// for (size_t i = 3; i < _cmd.size(); i++)
+	// {
+	// 	if (i > 3)
+	// 		args_list += " ";
+	// 	if (i == _cmd.size() - 1)
+	// 		args_list += ":";
+	// 	args_list += _cmd[i];
+	// }
 	String  final_part = mode_change + " " + args_list;
 	Channel *cur_chan = (*this->_chans_it).second;
 	User* cur_user = (*this->_users_it);
