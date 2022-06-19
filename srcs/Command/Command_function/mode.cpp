@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/19 12:59:59 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/19 15:23:13 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -340,6 +340,7 @@ int Command::apply_mode(String target, String *mode_change)
 						}
 						if (mode_char == 'b')
 							count_b++;
+						std::cout << "count_b: " << count_b << " - flag_b = " << flag_b << std::endl;
 							
 						if (mode_char == 'b' && add == true && flag_b == true && count_b == 1 && (arg_num > _cmd.size() - 1))
 						{
@@ -382,7 +383,7 @@ int Command::apply_mode(String target, String *mode_change)
 						else if (mode_char == 'b' && add == false && arg_num <= _cmd.size() - 1)
 						{
 							String needle_nick;
-							if (_cmd[arg_num].substr(_cmd[arg_num].length() - 4) == "!*@*")
+							if (_cmd[arg_num].size() >= 4 && _cmd[arg_num].substr(_cmd[arg_num].length() - 4) == "!*@*")
 							{
 								needle_nick = _cmd[arg_num].substr(0, _cmd[arg_num].length() - 4);
 								if (!chan_operator)
@@ -404,6 +405,13 @@ int Command::apply_mode(String target, String *mode_change)
 								modified = CHAN_MODE_MODIFIED;
 								arg_valid = true;
 								arg_num++;
+							}
+							else
+							{
+								this->_err_notinbanlist(_cmd[1], _cmd[arg_num]);
+								arg_num++;
+								i++;
+								continue;
 							}
 						}
 
