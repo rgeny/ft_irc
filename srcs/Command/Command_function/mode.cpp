@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/20 01:17:42 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/20 01:20:21 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -417,10 +417,6 @@ int Command::apply_mode(String target, String *mode_change, String *args_list)
 							else if (chan_ban_list->find(_cmd[arg_num]) != chan_ban_list->end())
 							{
 								_err_alreadyinbanlist(_cmd[1], _cmd[arg_num] + "!*@*");
-								if ((*args_list).empty())
-									*args_list = _cmd[arg_num];
-								else
-									*args_list += " " + _cmd[arg_num];
 								std::cout << "args_list 419: " << *args_list << std::endl;
 								arg_num++;
 								i++;
