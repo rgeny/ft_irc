@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/20 01:05:43 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/20 01:17:42 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -483,14 +483,6 @@ int Command::apply_mode(String target, String *mode_change, String *args_list)
 							if (mode_char != 'b' || (mode_char == 'b' && arg_valid) || l_change)
 							{
 								modified = CHAN_MODE_MODIFIED;
-								// if (l_change)
-								// {
-								// 	if ((*args_list).empty())
-								// 		*args_list = _cmd[arg_num];
-								// 	else
-								// 		*args_list += " " + _cmd[arg_num];
-								// 	std::cout << "args_list 484: " << *args_list << std::endl;
-								// }
 								*mode_change = *mode_change + char_to_String(mode_char);
 								std::cout << "CHAN MODE UPDATED\n";
 							}
