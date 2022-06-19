@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/18 22:16:54 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/19 12:59:59 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ int Command::apply_mode(String target, String *mode_change)
 			}
 			/* Check if _cmd[1] is a user and if the mode_char is a usermode or not */
 			else if (!has_begin_hashtag(this->_cmd[1]) 
-					&& std::string("awrOsv").find(mode_char) != std::string::npos
+					&& std::string("awrOosv").find(mode_char) != std::string::npos
 					&& _cmd.size() == 3)
 			{
 				_err_umodeunknownflag(String(1, mode_char), "is not a recognised user mode");
@@ -189,7 +189,7 @@ int Command::apply_mode(String target, String *mode_change)
 			}
 
 			/* Check if limit argument can be recognized as a strictly positive integer or not */
-			if (mode_char == 'l' && add == true && (invalid_mode_input(_cmd[arg_num]) || strtol(_cmd[arg_num].c_str(), NULL, 10) == 0))
+			if (mode_char == 'l' && is_channel && add == true && (invalid_mode_input(_cmd[arg_num]) || strtol(_cmd[arg_num].c_str(), NULL, 10) == 0))
 			{
 				err_msg = String(":Invalid limit mode parameter. Syntax: <limit>.");
 				this->_err_needmoreparams(erroneous_elem + " " + _cmd[arg_num] + " ", err_msg);
@@ -199,7 +199,7 @@ int Command::apply_mode(String target, String *mode_change)
 			bool previous_state = false;
 			if (mode_type(mode_char) == 1 && !is_channel) // USER MODE
 				update_user_mode(previous_state, modified, i, add, target, mode_change);
-			else if (mode_type(mode_char) == 1 && is_channel && mode_char != 'o' && mode_char != 'v' && mode_char != 's') // WRONG MODES FOR CHANNELS => THESE ARE USER MODES, NOT CHAN MODES
+			else if (mode_type(mode_char) == 1 && is_channel && mode_char != 'o' && mode_char != 'v' && mode_char != 's' && mode_char != 'i') // WRONG MODES FOR CHANNELS => THESE ARE USER MODES, NOT CHAN MODES
 			{
 				_err_umodeunknownflag(String(1, mode_char), "is not a recognised chan mode");
 				i++;
@@ -430,7 +430,10 @@ int Command::apply_mode(String target, String *mode_change)
 			}
 			else
 			{
-				this->_err_umodeunknownflag(mode_char + String("m:"), "is not a recognised user mode.");
+				std::cout << "mode_char perdu: [" << mode_char << "]"<< std::endl;
+				String mode_str = mode_char + "";
+				std::cout << "mode_str perdu: [" << mode_char << "]"<< std::endl;
+				this->_err_umodeunknownflag(char_to_String(mode_char), "is not a recognised user mode.");
 				arg_num++;
 				i++;
 				continue;
@@ -451,7 +454,7 @@ int Command::apply_mode(String target, String *mode_change)
 		}
 		else
 		{	
-			_err_umodeunknownflag(char_to_String(mode_char), ":Unknown MODE flag");
+			_err_umodeunknownflag(char_to_String(mode_char), ":is not a recognised mode flag.");
 		}
 		i++;
 	}

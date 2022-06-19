@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 12:44:29 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/17 15:28:19 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/19 12:26:16 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,15 @@ e_error	Command::_privmsg	(void)
 			bool chan_operator = is_operator(nickname, *_chans_it->second);
 			bool n_activated = _chans[_cmd[1]]->get_specific_mode(CHANMODE_n);
 			
+			if (!user_exist_in_chan(cur_chan, nickname) && n_activated == true)
+				return (_err_cannotsendtochan(ERR_CHANMODENOEXTMSG));		
+					
 			if (chan_operator == false && moderated == true && voice == false) 
 				return (_err_cannotsendtochan(ERR_CHANMODERATED));
 
 			if (chan_operator == false && _is_on_ban_list) 
 				return (_err_cannotsendtochan(ERR_NOMSGWHILEBANNED));
-			
-			if (!user_exist_in_chan(cur_chan, nickname) && n_activated == true)
-				return (_err_cannotsendtochan(ERR_CHANMODENOEXTMSG));
+
 		}
 		else if (!has_begin_hashtag(this->_cmd[1]))
 		{
