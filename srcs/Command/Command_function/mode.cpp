@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/20 12:54:04 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/20 13:49:37 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -373,7 +373,7 @@ int Command::apply_mode(String target, String *mode_change, String *args_list)
 						}
 						if (mode_char == 'b')
 							count_b++;
-						std::cout << "count_b: " << count_b << " - flag_b = " << flag_b << std::endl;
+						// std::cout << "count_b: " << count_b << " - flag_b = " << flag_b << std::endl;
 							
 						if (mode_char == 'b' && add == true && flag_b == true && count_b == 1 && (arg_num > _cmd.size() - 1))
 						{
@@ -477,10 +477,10 @@ int Command::apply_mode(String target, String *mode_change, String *args_list)
 						if (mode_char == 'b')
 							_chans[target]->set_specific_mode(chanmodes.find(mode_char), false);
 					}
-					if (cur_user != NULL && !_cmd[1].empty() && _chan_exist(_cmd[1]))
-						display_user_mode(cur_user, "current_user", _cmd[1]);
-					if (target_user != NULL && !_cmd[1].empty() && _chan_exist(_cmd[1]))
-						display_user_mode(target_user, "target_user", _cmd[1]);
+					// if (cur_user != NULL && !_cmd[1].empty() && _chan_exist(_cmd[1]))
+					// 	display_user_mode(cur_user, "current_user", _cmd[1]);
+					// if (target_user != NULL && !_cmd[1].empty() && _chan_exist(_cmd[1]))
+					// 	display_user_mode(target_user, "target_user", _cmd[1]);
 				}
 			}
 			else
