@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   User.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:04:52 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/09 23:26:09 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/20 19:06:17 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ class User
 		std::vector<bool> 			get_chan_usermode_vec	(String chan_name);
 		CHAN_USERMODE &				get_chan_usermode	(void);
 		String						get_last_joined_chan (void);
+		//String					get_current_joined_chans_list(void);
 
 		void	set_username		(String username);
 		void	set_mode			(String mode);

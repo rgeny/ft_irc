@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/20 10:30:18 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/20 19:21:51 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,10 +125,13 @@ int  Command::join_process(String chan_name)
 
 e_error	Command::_join	(void)
 {
+	std::cout << "_chans.size(): " << _chans.size() << std::endl;
+	std::cout << "List of chans memberships: " << (*_users_it)->get_user_chan_list() << std::endl;
 	if (this->_cmd.size() < 2)
 		return (this->_err_needmoreparams(_cmd[0]));
 	else
 	{
+
 		if (_cmd[1] == "0")
 		{
 			leave_all();
