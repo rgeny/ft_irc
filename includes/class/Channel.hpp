@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:14:15 by abesombe          #+#    #+#             */
-/*   Updated: 2022/05/30 18:51:50 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/20 12:03:03 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ class Channel
 		String	get_mode_string(void);
 		String	get_name_list(int access_level);
 		std::vector<User*> get_raw_nick_list(int access_level);
+		String	add_final_colon(String args_list);
 
 
 		// bool user_exist_in_chan(String nickname) const;
