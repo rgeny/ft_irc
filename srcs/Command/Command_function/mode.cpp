@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/20 01:20:21 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/20 12:54:04 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,6 @@ int Command::apply_mode(String target, String *mode_change, String *args_list)
 
 	while (i < size_modestr)
 	{
-		std::cout << "MODIFIED: " << modified << std::endl;
 		std::string usermodes = USERMODES_LIST;
 		std::string chanmodes = CHANMODES_LIST;
 		String erroneous_elem;
@@ -175,8 +174,8 @@ int Command::apply_mode(String target, String *mode_change, String *args_list)
 		User *target_user = NULL;
 		bool is_channel = has_begin_hashtag(this->_cmd[1]);
 		char mode_char = _cmd[2][i];
-		std::cout << "char[" << i << "] = " << mode_char << " is being analyzed for mode changes\n";
-		std::cout << "arg_num: " << arg_num << std::endl;
+		// std::cout << "char[" << i << "] = " << mode_char << " is being analyzed for mode changes\n";
+		// std::cout << "arg_num: " << arg_num << std::endl;
 		erroneous_elem = String(_cmd[1] + " +" + mode_char);
 
 		if (mode_type(mode_char) && chanmodes.find(mode_char) != std::string::npos) // MODE EXISTS
@@ -287,8 +286,7 @@ int Command::apply_mode(String target, String *mode_change, String *args_list)
 								*args_list = _cmd[arg_num];
 							else
 								*args_list += " " + _cmd[arg_num];
-							std::cout << "args_list 290: " << *args_list << std::endl;
-							std::cout << "CHAN MODE UPDATED\n";
+							// std::cout << "CHAN MODE UPDATED\n";
 						}
 						arg_num++;
 					}
@@ -306,7 +304,6 @@ int Command::apply_mode(String target, String *mode_change, String *args_list)
 								*args_list = _cmd[arg_num];
 							else
 								*args_list += " " + _cmd[arg_num];
-							std::cout << "args_list 308: " << *args_list << std::endl;
 							arg_num++;
 						}
 						else if (mode_char == 'k' 
@@ -329,7 +326,6 @@ int Command::apply_mode(String target, String *mode_change, String *args_list)
 								*args_list = _cmd[arg_num];
 							else
 								*args_list += " " + _cmd[arg_num];
-							std::cout << "args_list 330: " << *args_list << std::endl;
 							arg_num++;
 							cur_chan->set_key("");
 						}
@@ -346,7 +342,6 @@ int Command::apply_mode(String target, String *mode_change, String *args_list)
 								*args_list = _cmd[arg_num];
 							else
 								*args_list += " " + _cmd[arg_num];
-							std::cout << "args_list 345: " << *args_list << std::endl;
 							arg_num++;
 						}
 						else if (mode_char == 'l' 
@@ -411,13 +406,11 @@ int Command::apply_mode(String target, String *mode_change, String *args_list)
 									*args_list = _cmd[arg_num];
 								else
 									*args_list += " " + _cmd[arg_num];
-								std::cout << "args_list 410: " << *args_list << std::endl;
 								arg_valid = true;
 							}
 							else if (chan_ban_list->find(_cmd[arg_num]) != chan_ban_list->end())
 							{
 								_err_alreadyinbanlist(_cmd[1], _cmd[arg_num] + "!*@*");
-								std::cout << "args_list 419: " << *args_list << std::endl;
 								arg_num++;
 								i++;
 								continue;
@@ -426,7 +419,6 @@ int Command::apply_mode(String target, String *mode_change, String *args_list)
 								*args_list = _cmd[arg_num];
 							else
 								*args_list += " " + _cmd[arg_num];
-							std::cout << "args_list 427: " << *args_list << std::endl;
 							arg_num++;
 						}
 						else if (mode_char == 'b' && add == false && arg_num <= _cmd.size() - 1)
@@ -459,7 +451,6 @@ int Command::apply_mode(String target, String *mode_change, String *args_list)
 									*args_list = _cmd[arg_num];
 								else
 									*args_list += " " + _cmd[arg_num];
-								std::cout << "args_list 459: " << *args_list << std::endl;
 								arg_num++;
 							}
 							else
@@ -480,7 +471,7 @@ int Command::apply_mode(String target, String *mode_change, String *args_list)
 							{
 								modified = CHAN_MODE_MODIFIED;
 								*mode_change = *mode_change + char_to_String(mode_char);
-								std::cout << "CHAN MODE UPDATED\n";
+								// std::cout << "CHAN MODE UPDATED\n";
 							}
 						}
 						if (mode_char == 'b')
@@ -567,7 +558,6 @@ e_error	Command::_mode	(void)
 		{
 			String mode_change = "";
 			ret = apply_mode(_cmd[1], &mode_change, &args_list);
-			std::cout << "args_list: " << args_list << std::endl;
 			if (ret == CHAN_MODE_MODIFIED)
 				return (this->_cmd_mode(1, strip_orphan_sign(mode_change), add_final_colon(args_list)));
 			else if (ret == USER_MODE_MODIFIED)
