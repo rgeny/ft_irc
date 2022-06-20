@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:22:23 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/17 15:12:22 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/20 11:23:02 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ e_error	Command::_kick (void)
                 _chans.erase(cur_chan_name);
                 this->_chans_it = _chans.begin();
                 broadcast = NOBROADCAST;
+				break;
             }
 
             if (it == ite - 1)
