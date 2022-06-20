@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 17:08:30 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/17 15:28:22 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/20 16:48:28 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,9 @@ e_error	Command::_topic	(void)
 						return (_err_notonchannel());
 						
 					bool is_secret_chan = cur_chan->get_specific_mode(CHANMODE_s);
-					if (!is_secret_chan)
+					if (cur_chan->get_topic().empty())
+						return (this->_rpl_notopic());
+					else if (!is_secret_chan)
 						return (this->_cmd_topic(2));
 					else
 						return (_err_nosuchchannel(cur_chan->get_chan_name()));
