@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:55:34 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/20 13:49:37 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/20 14:44:34 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ int Command::apply_mode(String target, String *mode_change, String *args_list)
 	size_t 	i = 0;
 	size_t	count_b = 0;
 	Channel* cur_chan = (*this->_chans_it).second;
-	User* 	cur_user = (*_users_it);
+	// User* 	cur_user = (*_users_it);
 	String 	err_msg;
 	bool	add = true;
 	int		modified = 0;
