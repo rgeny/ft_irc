@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:16:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/17 19:23:33 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/20 10:30:18 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ e_error	Command::_join	(void)
 					_user_already_in_channel = true;
 				else
 					_user_already_in_channel = false;
-				_flag_badchanmask = false;
+
 				_cmd[1] = *it;	
 				if (check_chan_name(this->_cmd[1]) == false)
 				{	
@@ -159,12 +159,12 @@ e_error	Command::_join	(void)
 					else
 					{
 						_err_badchanmask();
-						_flag_badchanmask = true;
+						pwd_index++;
+						continue;
 					}
 				}
 				if (_user_already_in_channel == false \
-					&& join_process(_cmd[1]) != ERROR_CONTINUE \
-					&& _flag_badchanmask == false)
+					&& join_process(_cmd[1]) != ERROR_CONTINUE)
 				{
 					if (it != ite - 1)
 						this->_cmd_join();
