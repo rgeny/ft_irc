@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesombes <abesombes@student.42.fr>        +#+  +:+       +#+        */
+/*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 15:05:19 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/15 23:11:41 by abesombes        ###   ########.fr       */
+/*   Updated: 2022/06/20 13:39:34 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ e_error	Command::_list	(void)
 			add_to_list(cur_chan, &list);
 		}
 	}
-
+	_rpl_liststart();
 	_rpl_list(list);
 	_rpl_listend();
 	return (SUCCESS);

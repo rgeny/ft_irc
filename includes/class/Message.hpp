@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:18:17 by abesombe          #+#    #+#             */
-/*   Updated: 2022/06/19 18:26:48 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/20 13:38:37 by abesombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ class Message
 		e_error	_rpl_inviting			(void) const;
 		e_error	_rpl_list				(std::vector<String> list) const;
 		e_error	_rpl_listend			(void) const;
+		e_error	_rpl_liststart			(void) const;
 		e_error	_rpl_luserclient		(void) const;
 		e_error	_rpl_luserchannels		(void) const;
 		e_error	_rpl_luserme			(void) const;

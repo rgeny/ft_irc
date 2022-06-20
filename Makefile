@@ -6,7 +6,7 @@
 #    By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:21:35 by abesombe          #+#    #+#              #
-#    Updated: 2022/06/18 22:18:30 by abesombe         ###   ########.fr        #
+#    Updated: 2022/06/20 13:38:52 by abesombe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -122,6 +122,7 @@ SRCS				= $(addsuffix .cpp,				main \
 													rpl_inviting \
 													rpl_list \
 													rpl_listend \
+													rpl_liststart \
 													rpl_luserclient \
 													rpl_luserop \
 													rpl_luserchannels \
