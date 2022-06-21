@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/06/20 10:14:56 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/21 10:20:23 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,9 +162,11 @@ void Command::leave_all (void)
 		_err_badchanmask();
 	else if (chan_usermode.size() > 0)
 	{
+		size_t	chan_nb	= this->_chans.size() + 2;
 		User::CHAN_USERMODE::iterator it = chan_usermode.begin();
 		User::CHAN_USERMODE::iterator ite = chan_usermode.end();
-		while (it != ite)
+		while (it != ite
+				&& chan_nb > 0)
 		{
 			_cmd.clear();
 			_cmd.push_back("part");
@@ -176,6 +178,7 @@ void Command::leave_all (void)
 			_part();
 			it = chan_usermode.begin();
 			ite = chan_usermode.end();
+			chan_nb--;
 		}
 	}
 }

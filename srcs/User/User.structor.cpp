@@ -6,7 +6,7 @@
 /*   By: abesombe <abesombe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:35:05 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/06 12:18:08 by abesombe         ###   ########.fr       */
+/*   Updated: 2022/06/21 10:26:02 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ User:: User	(String	nickname
 		this->_mode[i] = false;
 //	this->_mod[USERMODE_w] = (mode == "2" || mode == "6");
 //	this->_mod[USERMODE_i] = (mode == "6" || mode == "4");
+	std::cout	<< "User parameters constructor."
+				<< std::endl;
 }
 
 User:: User	(User const & src)
